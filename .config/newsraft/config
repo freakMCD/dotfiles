@@ -1,0 +1,30 @@
+# General
+set scrolloff 5
+set menu-item-sorting unread-desc
+set notification-command notify-send 'Newsraft brought %q news!'; paplay ~/.config/dunst/alarms/sms-alert-1-daniel_simon.wav &
+
+# Bindings
+bind o mark-read; exec nohup qutebrowser "%l" >/dev/null 2>&1 &
+bind m exec nohup mpv --wayland-app-id="mpvfloat" "%l" >/dev/null 2>&1 &
+bind M mark-read; exec nohup mpv --save-position-on-quit=no "%l" >/dev/null 2>&1 &
+bind q navigate-back
+
+# Format
+set menu-item-entry-format " %u │ %o"
+set menu-explore-item-entry-format " %u │ %-20.20O │ %o"
+
+# Colors
+# Section listing
+set color-list-section blue bold
+set color-list-section-unread red bold italic
+
+# Within the feeds comprising a section
+set color-list-feed green
+set color-list-feed-unread magenta italic
+
+# Individual posts
+set color-list-item white
+set color-list-item-unread default bold italic
+
+set color-list-item-important yellow
+

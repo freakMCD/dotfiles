@@ -1,0 +1,88 @@
+#!/bin/bash
+REL="$(rpm -E %fedora)"
+echo "We are running Fedora $REL."
+
+setup_repos() {
+    # RPMFusion
+    sudo dnf install \
+        https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$REL".noarch.rpm \
+        https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$REL".noarch.rpm \
+
+    sudo dnf update --refresh
+}
+
+install_basics() {
+    # Multimedia codecs and printing packages
+    sudo dnf install pciutils cpu-x 
+    sudo dnf install @multimedia @printing --exclude=qt5-qtwebengine-freeworld,pipewire-codec-aptx 
+
+    # Basics (xprop maybe needed)
+    sudo dnf install feh grim slurp wf-recorder foot maim lftp pulseaudio-utils xev w3m unar\
+    fd-find fzf mpd mpc mpv mpv-mpris pass neomutt neovim puddletag \
+    isync msmtp zathura zathura-pdf-mupdf\
+    gcc gdouros-symbola-fonts google-noto-cjk-fonts pavucontrol python3-pip python3-devel 
+ 
+    # pyprland
+    python -m venv ~/.local/share/virtualenv/pyprland/ && source ~/.local/share/virtualenv/pyprland/bin/activate
+    pip install pyprland
+
+    # For Steam
+    sudo dnf install lsof
+    # hplip, hplip-gui for hp printers drivers and simple-scan
+}
+
+install_texlive_packages() {
+    # texlive bits
+    sudo dnf install texlive latexmk
+}
+
+enable_services () {
+    systemctl daemon-reload 
+
+    echo "Starting/enabling mpd service"
+    systemctl --user enable --now mpd.service 
+
+    echo "Starting user timers"
+    systemctl enable --now mbsync.timer
+
+    echo "dnf-makecache"
+    systemctl disable --now dnf-makecache.timer
+}
+
+
+usage() {
+    echo "$0: Install packages and software"
+    echo
+    echo "Usage: $0 [-dbth]"
+    echo
+    echo "-b: install basics and Setup Repos"
+    echo "-t: install TeXlive packages"
+    echo "-h: print this usage text and exit"
+}
+
+if [ $# -lt 1 ]
+then
+    usage
+    exit 1
+fi
+
+# parse options
+while getopts "dbth" OPTION; do
+    case $OPTION in
+        b)
+            setup_repos
+            install_basics
+            configure_neovim
+            enable_services
+            exit 0
+            ;;
+        t)
+            install_texlive_packages
+            exit 0
+            ;;
+        h)
+            usage
+            exit 0
+            ;;
+    esac
+done

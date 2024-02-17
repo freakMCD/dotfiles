@@ -1,0 +1,11 @@
+[Unit]
+Description=Mailbox synchronization service
+
+[Service]
+Type=oneshot
+Environment=GNUPGHOME="%h/.local/share/gnupg"
+EnvironmentFile=%h/.local/share/linuxfedora
+ExecStart=/usr/bin/sh %h/bin/mailboxes_sync.sh
+
+[Install]
+WantedBy=default.target

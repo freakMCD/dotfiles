@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+mkdir -p $HOME/.local/share/steam_garbage
+HOME=$HOME/.local/share/steam_garbage # or wherever
+exec /usr/bin/steam "$@"

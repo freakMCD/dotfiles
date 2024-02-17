@@ -1,0 +1,15 @@
+ncmpcpp_directory = ~/.config/ncmpcpp
+
+lyrics_directory = ~/Music/2015-2022/lyrics
+
+mpd_music_dir = ~/Music/2015-2022
+
+mpd_host = localhost
+song_columns_list_format = "(40)[4]{ar} (55)[8]{t} (5)[7]{l}"
+mpd_crossfade_time = 5
+playlist_display_mode = columns
+follow_now_playing_lyrics = no
+startup_screen = playlist
+jump_to_now_playing_song_at_start = yes
+media_library_albums_split_by_date = no
+lyrics_fetchers = musixmatch, metrolyrics, tekstowo, zeneszoveg, justsomelyrics,  internet, plyrics, jahlyrics, sing365 

@@ -1,0 +1,44 @@
+source ~/.config/neomutt/colors
+source ~/.config/neomutt/mappings
+
+set from = "vastagox@gmail.com"
+set real_name = "Edwin Velarde"
+
+# paths
+set folder = "~/.local/share/email/gmail"
+set header_cache = "~/.cache/mutt/gmail/header_cache"
+set message_cachedir = "~/.cache/mutt/gmail/message_cache"
+set sendmail = "msmtp -C $HOME/.config/neomutt/.msmtprc -a gmail"
+set mailcap_path="~/.config/neomutt/mailcap"
+
+# mailbox settings
+set mbox_type = Maildir
+set spool_file = +INBOX
+set postponed = +Drafts 
+set trash= +[Gmail].Papelera
+unset record
+mailboxes +INBOX +Github +Interbank
+
+## Generic
+set editor=`echo \$EDITOR`
+set use_threads=yes
+set pager_stop
+set use_threads=yes sort=reverse-last-date sort_aux=reverse-date
+set thorough_search
+set tilde
+unset markers # Disables the `+` displayed at line wraps
+unset quit
+
+# Set preffered view modes
+auto_view text/html# view html automatically
+alternative_order text/html text/plain text/enriched text/*
+
+# Index page format. Default "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
+set index_format='%-15.15L    %s %*     %<[y?%<[m?%<[7d?%<[d?%[  %H:%M ]&%8[%A]>&%[    %a %d]>&%[  %b %d]>&%[%d/%m/%y]>'
+
+set nohelp
+
+# Status Bar -----------------------------------------
+set status_format = "───[ Folder: %D ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+set status_chars  = " *%A"
+

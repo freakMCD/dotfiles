@@ -1,0 +1,79 @@
+{
+    "layer": "top", // Waybar at top layer
+    // "position": "top", // Waybar position (top|bottom|left|right)
+    // "width": 1280, // Waybar width
+    "spacing": 10, // Gaps between modules (4px)
+    "margin-top": 0,
+    "margin-bottom": 0,
+    // Choose the order of the modules
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["mpd"],
+    "modules-right": ["idle_inhibitor", "temperature", "network", "cpu", "memory", "disk", "clock", "tray"],
+    // Modules configuration
+    "hyprland/workspaces": {
+      "format": "<sub>{icon}</sub>",
+      "ignore-workspaces": [
+          "10",
+          ],
+    },
+
+     "mpd": {
+        "format": "<span color='#d3869b'>{stateIcon}  {artist} - {title}</span>",
+        "format-disconnected": "Disconnected",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stoppep",
+        "unknown-tag": "N/A",
+        "interval": 2,
+        "consume-icons": {
+            "on": " "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}    ",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        // "timezone": "Bogota/Lima",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:<span color='#d8a657'>%b %d</span> %a %H:%M}"
+    },
+    "cpu": {
+        "format": "<span color='#d8a657'>CPU</span> {usage}%",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "<span color='#d8a657'>RAM</span> {}%"
+    },
+    "temperature": {
+         "thermal-zone": 0,
+         "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "critical-threshold": 80,
+         "format-critical": "{temperatureC}°C {icon}",
+        "format": "<span color='#d8a657'>{icon}</span> {temperatureC}°C",
+        "format-icons": ["", "", ""]
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-ethernet": "<span color='#a9b665'>{ipaddr}/{cidr}</span>",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-disconnected": "Disconnected ⚠",
+    },
+    "disk": {
+        "interval": 30,
+        "format": "<span color='#d8a657'>SSD</span> {specific_free:0.0f} GB",
+        "unit": "GB"
+        },
+}
+

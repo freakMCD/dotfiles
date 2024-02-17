@@ -1,0 +1,32 @@
+[pyprland]
+plugins = [
+    "scratchpads",
+]
+
+[scratchpads.newsraft]
+command = "foot --app-id=floating --title=newsraft newsraft"
+excludes = ["neomutt"]
+
+[scratchpads.neomutt]
+command = "foot --app-id=floating --title=neomutt neomutt"
+lazy = true
+excludes = ["newsraft"]
+
+[scratchpads.floatterm]
+command = "TMOUT=0 foot --app-id=floating"
+lazy = true
+
+[scratchpads.utilities]
+command = "foot --app-id=floating ~/bin/utilities.sh"
+lazy = true
+
+[scratchpads.trans]
+animation = "fromBottom"
+command = "foot --app-id=floating trans -4 -I"
+lazy = true
+
+[scratchpads.yazi]
+animation = "fromRight"
+command = "foot --app-id=floating yazi"
+lazy = true
+

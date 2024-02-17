@@ -1,0 +1,10 @@
+text/html;      qutebrowser %s;     nametemplate=%s.html;       needsterminal
+text/html;      w3m -v -F -T text/html -dump %s;        copiousoutput
+text/plain; nvim %s
+
+#PDFS
+application/pdf; zathura %s;
+
+#Images
+image/png; /usr/bin/feh %s
+image/jpeg; /usr/bin/feh %s
