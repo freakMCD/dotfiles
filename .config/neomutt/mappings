@@ -39,7 +39,7 @@ macro index S "<shell-escape>systemctl --user start mbsync.service &<enter>" "sy
 
 ## Make quick html view macro
 bind index,pager o  noop        ## Unbinds V from version
-macro index,pager o "<view-attachments><search>html<enter><view-mailcap><exit>"
+macro index,pager o "<tag-prefix>N<previous-entry><view-attachments><search>html<enter><view-mailcap><exit>"
 
 # Actions
 # ----------------------------------------------------

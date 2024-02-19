@@ -18,7 +18,7 @@ install_basics() {
 
     # Basics (xprop maybe needed)
     sudo dnf install feh grim slurp wf-recorder foot maim lftp pulseaudio-utils xev w3m unar\
-    fd-find fzf mpd mpc mpv mpv-mpris pass neomutt neovim puddletag \
+    fd-find fzf mpd mpc mpv mpv-mpris pass neomutt rofi neovim puddletag \
     isync msmtp zathura zathura-pdf-mupdf\
     gcc gdouros-symbola-fonts google-noto-cjk-fonts pavucontrol python3-pip python3-devel 
  
