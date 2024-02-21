@@ -22,6 +22,12 @@ c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt',
                                     'https://www.i-dont-care-about-cookies.eu/abp/',
                                     'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt']
 c.content.javascript.enabled = True
+c.content.javascript.clipboard = "access-paste"
+c.colors.webpage.darkmode.enabled = True
+c.fonts.default_size = "10pt"
+c.fonts.default_family = "JetBrainsMono Nerd Font"
+c.completion.shrink = True
+c.completion.open_categories = ["searchengines", "quickmarks", "bookmarks"]
 
 # Prevents *all* tabs from being loaded on restore, only loads on activating them
 c.session.lazy_restore = True

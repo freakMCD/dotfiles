@@ -20,11 +20,12 @@ set -a
     XDG_STATE_HOME="$HOME/.local/state"
     CARGO_HOME="$HOME/.local/share/.cargo/"
 
-#    TERM='st-256color'
     EDITOR='nvim'
     VISUAL='nvim'
     MANPAGER='nvim +Man!'
     BROWSER="qutebrowser"
+
+    PASSWORD_STORE_DIR="/home/edwin/.PrivateHub/password-store/"
     GNUPGHOME="$XDG_DATA_HOME/gnupg"
     TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
     WINEPREFIX="/media/data/.wine"

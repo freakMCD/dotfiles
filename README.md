@@ -8,7 +8,7 @@ This repository contains my dotfiles and system configuration. Below is a summar
 * **WM**: Hyprland
 * **StatusBar** : Waybar
 * **Terminal**: foot
-* **Notifications**: Dunst
+* **Notifications**: fnott
 * **Launcher**: fzf
 * **File Manager**: yazi
 * **Text Editor**: neovim
@@ -19,40 +19,34 @@ This repository contains my dotfiles and system configuration. Below is a summar
 * **Email Client**: Neomutt + Isync + msmtp
 * **Screen capture**: grim + slurp + wf-recorder
 
-## System Configuration
+
+## Guide Installation (after Arch Installation Guide)
+
+**1. Install essential packages**
 ```bash
-# Replace line in /etc/systemd/journald.conf
-SystemMaxUse=50M
-
-# Replace line in /etc/systemd/logind.conf 
-HandlePowerKey=ignore
-
-# Replace line in /etc/default/grub
-# Fix Risk of Rain 2 slow load
-GRUB_CMDLINE_LINUX="rhgb quiet clocksource=tsc tsc=reliable"
-```
-
-## Guide Installation (after Fedora Everything minimal install)
-
-**1. Disable weak dependancies**
-```bash
-#Add lines in /etc/dnf/dnf.conf
-install_weak_deps=false 
-max_parallel_downloads=10 
-```
-**2. Install essential packages**
-```bash
-sudo dnf install hyprland xdg-portal-desktop-hyprland waybar dunst git qutebrowser 
-
-## Run this first to save git credentials ##
+# Configures Git to globally store authentication credentials
 git config --global credential.helper "store --file ~/.local/share/git-credentials"
 
 # Install yadm
-mkdir -p ~/.local/bin
-curl -fLo ~/.local/bin/yadm https://github.com/TheLocehiliosan/yadm/raw/master/yadm && chmod a+x ~/.local/bin/yadm
+sudo pacman -Syu yadm
 yadm clone https://github.com/freakMCD/dotfiles.git 
+
+sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si
+yay hyprland-git pyprland 
+sudo pacman -S waybar libnotify fnott foot yazi qt6-wayland qutebrowser python-adblock
 ```
-**3. Run 'yadm bootstrap' to install the rest**
+**2. Restart, and run 'yadm bootstrap' to install the rest**
+
+**Keybindings are in ~/.config/hypr/hyprland.conf 
+
+## Autologin
+
+**Create a drop-in file (Edit it with your username)**
+
+    $ cat /etc/systemd/system/serial-getty@ttyS0.service.d/override.conf
+    [Service]
+    ExecStart=
+    ExecStart=-/sbin/agetty -o '-p -f -- \\u' --keep-baud --autologin username 115200,57600,38400,9600 - $TERM
 
 <details><summary>
 <h2>Notes</h2>
@@ -99,12 +93,10 @@ PASSWORD_STORE_GPG_OPTS='--pinentry-mode=loopback --passphrase <passphrase>'
 nmcli dev status
 nmcli dev connect/disconnect <device>
 
-# Newsraft Build - Instructions
-git clone https://codeberg.org/grisha/newsraft.git
-sudo dnf install gumbo-parser-devel yajl-devel expat-devel ncurses-devel sqlite-devel curl-devel
-
 # PulseAudio Control (pactl) 
 pactl list sinks # It list the sinks beggining with "SINK #INDEX"
 pactl set-default-source <INDEX> # for example "pactl set-default-source 52"
 ```
 </details>
+
+# vim: set nowrap :

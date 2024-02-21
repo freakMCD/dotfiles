@@ -1,39 +1,23 @@
 #!/bin/bash
-REL="$(rpm -E %fedora)"
-echo "We are running Fedora $REL."
-
-setup_repos() {
-    # RPMFusion
-    sudo dnf install \
-        https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$REL".noarch.rpm \
-        https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$REL".noarch.rpm \
-
-    sudo dnf update --refresh
-}
 
 install_basics() {
-    # Multimedia codecs and printing packages
-    sudo dnf install pciutils cpu-x 
-    sudo dnf install @multimedia @printing --exclude=qt5-qtwebengine-freeworld,pipewire-codec-aptx 
+    # Multimedia 
+        
 
-    # Basics (xprop maybe needed)
-    sudo dnf install feh grim slurp wf-recorder foot maim lftp pulseaudio-utils xev w3m unar\
-    fd-find fzf mpd mpc mpv mpv-mpris pass neomutt rofi neovim puddletag \
-    isync msmtp zathura zathura-pdf-mupdf\
-    gcc gdouros-symbola-fonts google-noto-cjk-fonts pavucontrol python3-pip python3-devel 
+    # Basics
+    sudo pacman -Syu feh grim slurp wl clipboard wf-recorder lftp wev w3m unarchiver \
+    easytag fd fzf mpd mpc mpv pass ncmpcpp neomutt neovim rofi yt-dlp \
+    isync msmtp zathura\
+    adobe-source-han-sans-otc-fonts sound-theme-freedesktop 
+
+    yay newsraft-git
  
-    # pyprland
-    python -m venv ~/.local/share/virtualenv/pyprland/ && source ~/.local/share/virtualenv/pyprland/bin/activate
-    pip install pyprland
-
-    # For Steam
-    sudo dnf install lsof
     # hplip, hplip-gui for hp printers drivers and simple-scan
 }
 
 install_texlive_packages() {
     # texlive bits
-    sudo dnf install texlive latexmk
+    # sudo pacman -Syu install texlive latexmk
 }
 
 enable_services () {
@@ -53,9 +37,9 @@ enable_services () {
 usage() {
     echo "$0: Install packages and software"
     echo
-    echo "Usage: $0 [-dbth]"
+    echo "Usage: $0 [-bth]"
     echo
-    echo "-b: install basics and Setup Repos"
+    echo "-b: install basics and enable services"
     echo "-t: install TeXlive packages"
     echo "-h: print this usage text and exit"
 }
@@ -70,9 +54,7 @@ fi
 while getopts "dbth" OPTION; do
     case $OPTION in
         b)
-            setup_repos
             install_basics
-            configure_neovim
             enable_services
             exit 0
             ;;

@@ -5,6 +5,7 @@ plugins = [
 
 [scratchpads.newsraft]
 command = "foot --app-id=floating --title=newsraft newsraft"
+lazy = true
 excludes = ["neomutt"]
 
 [scratchpads.neomutt]
@@ -23,10 +24,5 @@ lazy = true
 [scratchpads.trans]
 animation = "fromBottom"
 command = "foot --app-id=floating trans -4 -I"
-lazy = true
-
-[scratchpads.yazi]
-animation = "fromRight"
-command = "foot --app-id=floating yazi"
 lazy = true
 

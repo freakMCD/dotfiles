@@ -3,7 +3,7 @@ alias bashrc="nvim ~/.bashrc && source ~/.bashrc"
 alias dus='du -h --max-depth=1 | sort -hr' # Disk Usage Sorted
 alias rclone="rclone -P"
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
-alias pypr='~/.local/share/virtualenv/pyprland/bin/pypr'
+alias df='df -h'
 
 alias mymusic='mpv --shuffle --volume=67 --save-position-on-quit=no "https://www.youtube.com/playlist?list=PL4CmunqMOJjLhWvgQUXWvewHEOoPAVAkt"'
 alias mp3dl='yt-dlp --restrict-filenames --extract-audio --audio-format mp3 --no-playlist'
@@ -15,13 +15,16 @@ alias gpg-backup="gpg -o private.gpg --export-options backup --export-secret-key
 alias gpg-restore="gpg --import-options restore --import private.gpg"
 
 # Custom dnf alias
-dnfexclude="--exclude=texlive*,libreoffice*,wine*"
-alias install="sudo dnf install"
-alias search="sudo dnf search"
-alias update="sudo dnf upgrade --exclude=kernel* $dnfexclude"
-alias upgrade="sudo dnf upgrade --refresh $dnfexclude"
-alias remove="sudo dnf remove"
-alias update-grub="sudo grub2-mkconfig -o /boot/grub2/grub.cfg"
+alias pacu='sudo pacman -Syu' # Update the system
+alias paci='sudo pacman -S'
+alias pacr='sudo pacman -Rs'
+alias pacs='sudo pacman -Ss'
+alias paclist='pacman -Q'
+alias pacinfo='pacman -Qi'
+alias pacorphans='pacman -Qtd'
+alias pacclean='sudo pacman -Sc'
+
+alias update-grub='sudo grub2-mkconfig -o /boot/grub2/grub.cfg'
 
 stage () {
     printf "First argument: yadm or git\nSecond argument: modified or deleted\n\n"
@@ -30,10 +33,6 @@ stage () {
 
 dict () { 
     curl -s 'dict://dict.org/d:'"$@"'' | nvim +Man!
-}
-
-dnfhist () {
-    sudo dnf history "$@"| grep -E -w 'install|upgrade' 
 }
 
 mpv() {

@@ -21,8 +21,8 @@ mem() {
 
 ### FZF ###
 if [ -x "$(command -v fzf)" ]; then
-	source /usr/share/fzf/shell/key-bindings.bash
-	source /usr/share/fzf/shell/completion.bash
+    source /usr/share/fzf/key-bindings.bash
+    source /usr/share/fzf/completion.bash
     fdExclude="-E '{*[Cc]ache,*.git,.local,r2modman*}'"
     export FZF_DEFAULT_COMMAND="fd -t f -H -L "$fdExclude""
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
