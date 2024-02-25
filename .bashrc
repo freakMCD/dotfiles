@@ -16,14 +16,17 @@ PS4='Line ${LINENO}: '
 set +a
 
 mem() { 
-    ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i $@ | awk '{printf $1/1024 "MB"; $1=""; print }'
+    ps -eo euser,rss,args --sort %mem | \
+    grep -v grep | grep -i $@ | \
+    awk 'BEGIN { printf "\033[1;34m%-10s %-10s %s\033[0m\n", "EUSER", "RSS(MB)", "COMMAND" }
+         {rss=sprintf("%.2f", $2/1024); printf "%-10s %-10s %.40s\n", $1, rss, substr($0, index($0,$3))}'
 }
 
 ### FZF ###
 if [ -x "$(command -v fzf)" ]; then
     source /usr/share/fzf/key-bindings.bash
     source /usr/share/fzf/completion.bash
-    fdExclude="-E '{*[Cc]ache,*.git,.local,r2modman*}'"
+    fdExclude="-E '{*[Cc]ache,*.git,.local,r2modman*,Games,heroic}'"
     export FZF_DEFAULT_COMMAND="fd -t f -H -L "$fdExclude""
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_ALT_C_COMMAND="fd -t d -H -L "$fdExclude""

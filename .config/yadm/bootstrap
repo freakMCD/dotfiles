@@ -1,23 +1,25 @@
 #!/bin/bash
 
-install_basics() {
-    # Multimedia 
-        
+install_sound_system() {
+    sudo pacman -S --needed pipewire pipewire-pulse wireplumber
+    systemctl --user --now enable pipewire pipewire-pulse wireplumber
+}
 
+install_basics() {
     # Basics
-    sudo pacman -Syu feh grim slurp wl clipboard wf-recorder lftp wev w3m unarchiver \
-    easytag fd fzf mpd mpc mpv pass ncmpcpp neomutt neovim rofi yt-dlp \
+    sudo pacman -S feh grim slurp wl-clipboard wf-recorder lftp wev w3m unarchiver \
+    fd fzf mpd mpc mpv pass ncmpcpp neomutt neovim rofi yt-dlp \
     isync msmtp zathura\
     adobe-source-han-sans-otc-fonts sound-theme-freedesktop 
 
-    yay newsraft-git
+    yay newsraft-git perl-mime-encwords
  
     # hplip, hplip-gui for hp printers drivers and simple-scan
 }
 
 install_texlive_packages() {
     # texlive bits
-    # sudo pacman -Syu install texlive latexmk
+    sudo pacman -S install texlive-mathscience texlive-binextra zathura-pdf-poppler
 }
 
 enable_services () {
@@ -35,12 +37,13 @@ enable_services () {
 
 
 usage() {
-    echo "$0: Install packages and software"
+    echo "$0: First Setup:"
     echo
-    echo "Usage: $0 [-bth]"
+    echo "Usage: $0 [-sbth]"
     echo
-    echo "-b: install basics and enable services"
-    echo "-t: install TeXlive packages"
+    echo "-s: Install sound system" 
+    echo "-p: Install programs and enable services"
+    echo "-t: Install TeXlive packages"
     echo "-h: print this usage text and exit"
 }
 
@@ -51,20 +54,20 @@ then
 fi
 
 # parse options
-while getopts "dbth" OPTION; do
+while getopts "sdbth" OPTION; do
     case $OPTION in
+        s)
+            install_sound_system
+            break;;
         b)
             install_basics
             enable_services
-            exit 0
             ;;
         t)
             install_texlive_packages
-            exit 0
             ;;
         h)
             usage
-            exit 0
             ;;
     esac
 done

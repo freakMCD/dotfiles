@@ -45,3 +45,5 @@ settings:
     global: always
   statusbar.show:
     global: in-mode
+  tabs.show:
+    global: always

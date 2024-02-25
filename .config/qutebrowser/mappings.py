@@ -31,7 +31,7 @@ bind = {
     "gW": "open -t https://web.whatsapp.com",
 
 	leader + "js": "config-cycle content.javascript.enabled true false",
-	leader + "t": "config-cycle tabs.show switching always",
+	leader + "b": "config-cycle tabs.show switching always",
 	leader + "v": "config-source ;; message-info 'qutebrowser reloaded'",
     ## mpv 
     lleader + "m": "hint videos spawn --detach mpv --ytdl-format='bestvideo[height<=720]+bestaudio/best' {hint-url} --force-window=yes",

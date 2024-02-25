@@ -27,7 +27,7 @@ c.colors.webpage.darkmode.enabled = True
 c.fonts.default_size = "10pt"
 c.fonts.default_family = "JetBrainsMono Nerd Font"
 c.completion.shrink = True
-c.completion.open_categories = ["searchengines", "quickmarks", "bookmarks"]
+c.completion.open_categories = ["quickmarks", "bookmarks", "searchengines"]
 
 # Prevents *all* tabs from being loaded on restore, only loads on activating them
 c.session.lazy_restore = True

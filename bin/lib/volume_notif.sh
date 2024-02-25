@@ -3,59 +3,56 @@
 audiovolumechange="/usr/share/sounds/freedesktop/stereo/audio-volume-change.oga"
 
 function get_volume {
-    pactl get-sink-volume 0 | awk '{print $5}' | cut -d '%' -f 1
+    wpctl get-volume @DEFAULT_SINK@ | awk '{print $2*100}'
 }
 
 function volume_notification {
     volume=$(get_volume)
 
     # Show the volume notification
-    notify-send -r 2000 -u low -h int:value:"$volume" "Volume: ${volume}%"
+    notify-send -r 2000 -t 1000 -u low -h int:value:"$volume" "Volume: ${volume}%"
 
     # Play the volume changed sound
-    paplay $audiovolumechange
+    pw-cat --playback $audiovolumechange
 
 }
 
 function mute_notification {
-    muted=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
+    muted=$(wpctl get-volume @DEFAULT_SINK@ | awk '{print $3}')
 
-    if [ $muted == 'yes' ]
-    then
+    if [[ $muted == "[MUTED]" ]]; then
         notify-send -r 2000 -t 0 "muted"
     else
         notify-send -r 2000 -t 1000 "unmuted"
-        paplay $audiovolumechange
+        pw-cat --playback $audiovolumechange
     fi
 }
 
 function mic_notification {
-	volume=$(pactl get-source-mute 0)
+	volume=$(wpctl get-volume @DEFAULT_SOURCE@ | awk '{print $3}')
 	
-	if [[ "$volume" == "Mute: yes" ]]; then
+	if [[ "$volume" == "[MUTED]" ]]; then
 		notify-send -r 2001 -t 0 --hint=string:x-dunst-stack-tag:mic ""
-	elif [[ "$volume" == "Mute: no" ]]; then
+    else
 		notify-send -r 2001 -t 5000 --hint=string:x-dunst-stack-tag:mic ""
-	else 
-		notify-send "CODE WHEN WRONG"
 	fi
 }
 
 case $1 in
     up)
-        pactl set-sink-volume @DEFAULT_SINK@ +5%
+        wpctl set-volume @DEFAULT_SINK@ 0.05+
         volume_notification
         ;;
     down)
-        pactl set-sink-volume @DEFAULT_SINK@ -5%
+        wpctl set-volume @DEFAULT_SINK@ 0.05-
         volume_notification
 	    ;;
     mute)
-        pactl set-sink-mute @DEFAULT_SINK@ toggle
+        wpctl set-mute @DEFAULT_SINK@ toggle
         mute_notification
         ;;
     mic)
-        pactl set-source-mute @DEFAULT_SOURCE@ toggle
+        wpctl set-mute @DEFAULT_SOURCE@ toggle
         mic_notification
         ;;
     *)

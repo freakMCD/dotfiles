@@ -2,8 +2,11 @@ alias aliasrc="nvim ~/.bash_aliases && source ~/.bash_aliases"
 alias bashrc="nvim ~/.bashrc && source ~/.bashrc"
 alias dus='du -h --max-depth=1 | sort -hr' # Disk Usage Sorted
 alias rclone="rclone -P"
-alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
+alias curl='curl -O'
 alias df='df -h'
+alias heroic='~/Desktop/squashfs-root/heroic --enable-features=UseOzonePlatform --ozone-platform=wayland &exit'
+alias steam='gamescope -r 60 -o 10 -F fsr -e -- steamlx -bigpicture'
+alias sortmusic='cd ~/Music/2015-2022 && stat --format="%W %n" * | sort -n'
 
 alias mymusic='mpv --shuffle --volume=67 --save-position-on-quit=no "https://www.youtube.com/playlist?list=PL4CmunqMOJjLhWvgQUXWvewHEOoPAVAkt"'
 alias mp3dl='yt-dlp --restrict-filenames --extract-audio --audio-format mp3 --no-playlist'

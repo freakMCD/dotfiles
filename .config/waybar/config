@@ -18,11 +18,9 @@
 		"6": "六",
 		"7": "七",
 		"8": "八",
-		"9": "九"
+		"9": "九",
+		"10": " "
 	  },
-      "ignore-workspaces": [
-          "10",
-          ],
     },
 
      "mpd": {
@@ -53,6 +51,7 @@
     },
    
     "cpu": {
+        "interval": 2,
         "format": "<span color='#d8a657'>CPU</span> {usage}%",
         "tooltip": false,
     },

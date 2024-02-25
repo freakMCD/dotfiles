@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# terminal application launcher for dwm, using fzf
+# terminal application launcher using fzf
 # Based on: https://gitlab.com/FlyingWombat/my-scripts/blob/master/sway-launcher
 # https://gist.github.com/Biont/40ef59652acf3673520c7a03c9f22d2a
 shopt -s nullglob globstar
