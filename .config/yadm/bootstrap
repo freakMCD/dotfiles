@@ -30,9 +30,6 @@ enable_services () {
 
     echo "Starting user timers"
     systemctl enable --now mbsync.timer
-
-    echo "dnf-makecache"
-    systemctl disable --now dnf-makecache.timer
 }
 
 
