@@ -19,7 +19,7 @@ mem() {
     ps -eo euser,rss,args --sort %mem | \
     grep -v grep | grep -i $@ | \
     awk 'BEGIN { printf "\033[1;34m%-10s %-10s %s\033[0m\n", "EUSER", "RSS(MB)", "COMMAND" }
-         {rss=sprintf("%.2f", $2/1024); printf "%-10s %-10s %.40s\n", $1, rss, substr($0, index($0,$3))}'
+         {rss=sprintf("%.2f", $2/1024); printf "%-10s %-10s %.80s\n", $1, rss, substr($0, index($0,$3))}'
 }
 
 ### FZF ###
