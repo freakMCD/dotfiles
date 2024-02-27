@@ -1,0 +1,52 @@
+bar:
+ location: top
+ foreground: eeaaccff
+ margin: 10
+ spacing: 12
+ font: JetBrainsMono Nerd Font:pixelsize=12px
+ 
+ height: 15
+ background: 00000066
+
+ left:
+   - network:
+       name: enp34s0
+       content:
+         map:
+           conditions:
+             ~carrier: {empty: {}}
+             carrier:
+               map:
+                 default: {string: {text: Connecting, foreground: ffffff66}}
+                 conditions:
+                   state == up:
+                     map:
+                       default: {string: {text: Connected}}
+                       conditions:
+                         ipv4 == "": {string: {text: , foreground: ffffff66}}
+
+ center:
+   - mpd:
+       host: /run/user/1000/mpd/socket
+       content:
+         string: {text: "{artist} - {title}"}
+
+ right:
+
+   - cpu:
+       poll-interval: 2500
+       content:
+         map:
+           conditions:
+             id < 0:
+               - string: {text: "CPU {cpu}%"}
+
+   - mem:
+       poll-interval: 2500
+       content:
+         string: {text: "{used:mb}MB"}
+
+
+   - clock:
+       content:
+         - string: {text: "{time}"}

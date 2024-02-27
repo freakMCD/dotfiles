@@ -39,6 +39,12 @@ settings:
     global: JetBrainsMono Nerd Font
   fonts.default_size:
     global: 10pt
+  prompt.radius:
+    global: 8
+  qt.chromium.low_end_device_mode:
+    global: auto
+  qt.chromium.process_model:
+    global: process-per-site
   qt.highdpi:
     global: false
   qt.workarounds.disable_accelerated_2d_canvas:

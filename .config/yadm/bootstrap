@@ -7,12 +7,14 @@ install_sound_system() {
 
 install_basics() {
     # Basics
-    sudo pacman -S feh grim slurp wl-clipboard wf-recorder lftp wev w3m unarchiver \
+    sudo pacman -S bc feh grim slurp wl-clipboard wf-recorder lftp wev w3m unarchiver \
     fd fzf mpd mpc mpv pass ncmpcpp neomutt neovim rofi yt-dlp \
     isync msmtp zathura\
     adobe-source-han-sans-otc-fonts sound-theme-freedesktop
 
-    yay newsraft-git perl-mime-encwords
+    yay newsraft-git perl-mime-encwords xdg-desktop-portal-hyprland-git
+
+    systemctl --user mask xdg-desktop-portal
  
     # hplip, hplip-gui for hp printers drivers and simple-scan
 }

@@ -97,6 +97,9 @@ nmcli dev connect/disconnect <device>
 # PulseAudio Control (pactl) 
 pactl list sinks # It list the sinks beggining with "SINK #INDEX"
 pactl set-default-source <INDEX> # for example "pactl set-default-source 52"
+
+# Systemd
+systemctl --user mask/unmask <service-name>
 ```
 </details>
 
