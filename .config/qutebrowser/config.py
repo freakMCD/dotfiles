@@ -28,7 +28,6 @@ c.fonts.default_size = "10pt"
 c.fonts.default_family = "JetBrainsMono Nerd Font"
 c.completion.shrink = True
 c.completion.open_categories = ["quickmarks", "bookmarks", "searchengines"]
-c.qt.chromium.process_model = "single-process"
 
 # Prevents *all* tabs from being loaded on restore, only loads on activating them
 c.session.lazy_restore = True

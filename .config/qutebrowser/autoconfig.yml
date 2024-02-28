@@ -7,7 +7,7 @@
 config_version: 2
 settings:
   colors.webpage.darkmode.enabled:
-    global: true
+    global: false
   colors.webpage.darkmode.policy.images:
     global: never
   colors.webpage.darkmode.policy.page:
@@ -44,7 +44,7 @@ settings:
   qt.chromium.low_end_device_mode:
     global: auto
   qt.chromium.process_model:
-    global: process-per-site
+    global: process-per-site-instance
   qt.highdpi:
     global: false
   qt.workarounds.disable_accelerated_2d_canvas:
