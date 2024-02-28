@@ -34,7 +34,7 @@ yadm clone https://github.com/freakMCD/dotfiles.git
 
 sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si
 yay hyprland-git
-sudo pacman -S waybar libnotify fnott foot yazi qt6-wayland qutebrowser python-adblock
+sudo pacman -S waybar libnotify fnott foot vifm qt6-wayland qutebrowser python-adblock
 ```
 **2. Restart, and run 'yadm bootstrap' to install the rest**
 
