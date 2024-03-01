@@ -6,11 +6,11 @@ Overview
 This repository contains my dotfiles and system configuration. Below is a summary of what's included.
 
 * **WM**: Hyprland
-* **StatusBar** : Waybar
+* **StatusBar** : Yambar
 * **Terminal**: foot
 * **Notifications**: fnott
 * **Launcher**: fzf
-* **File Manager**: yazi
+* **File Manager**: vifm
 * **Text Editor**: neovim
 * **Music player** ncmpcpp + mpd + mpc
 * **Image Viewer** : feh
@@ -33,8 +33,8 @@ cd ~
 yadm clone https://github.com/freakMCD/dotfiles.git 
 
 sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si
-yay hyprland-git
-sudo pacman -S waybar libnotify fnott foot vifm qt6-wayland qutebrowser python-adblock
+yay hyprland-git yambar-wayland
+sudo pacman -S libnotify fnott foot vifm qt6-wayland qutebrowser python-adblock
 ```
 **2. Restart, and run 'yadm bootstrap' to install the rest**
 

@@ -6,7 +6,6 @@ config.load_autoconfig()
 
 c.content.user_stylesheets = ["~/.config/qutebrowser/css/gruvbox-all-sites.css"]
 
-config.source('redirects.py')
 config.source('mappings.py')
 config.source('gruvbox.py')
 
@@ -39,6 +38,6 @@ c.qt.args += [  'ignore-gpu-blocklist',
              ]
 c.url.searchengines = {
     "DEFAULT": "https://lite.duckduckgo.com/lite/?q={}",
-    "yt": "farside.link/invidious/search?q={}",
+    "yt": "farside.link/piped/results?search_query={}",
 }
 

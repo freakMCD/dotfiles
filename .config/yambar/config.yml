@@ -1,12 +1,11 @@
 bar:
  location: top
- foreground: eeaaccff
  margin: 10
  spacing: 12
- font: JetBrainsMono Nerd Font:pixelsize=12px
+ font: JetBrainsMono Nerd Font:pixelsize=12px:style=bold
  
- height: 15
- background: 00000066
+ height: 18
+ background: 00000099
 
  left:
    - network:
@@ -17,36 +16,45 @@ bar:
              ~carrier: {empty: {}}
              carrier:
                map:
-                 default: {string: {text: Connecting, foreground: ffffff66}}
+                 default: {string: {text: Connecting, foreground: e78a4eff}}
                  conditions:
                    state == up:
                      map:
-                       default: {string: {text: Connected}}
+                       default: {string: {text: online, foreground: 89b482ff}}
                        conditions:
-                         ipv4 == "": {string: {text: , foreground: ffffff66}}
+                         ipv4 == "": {string: {text: offline, foreground: e78a4eff}}
 
  center:
    - mpd:
        host: /run/user/1000/mpd/socket
        content:
-         string: {text: "{artist} - {title}"}
+         string: 
+          text: "{artist} - {title}"
+          foreground: d3869bff
 
  right:
 
    - cpu:
-       poll-interval: 2500
+       poll-interval: 2000
        content:
          map:
            conditions:
              id < 0:
-               - string: {text: "CPU {cpu}%"}
+               - string: 
+                  text: "CPU "
+                  foreground: d8a657ff
+               - string:
+                  text: "{cpu}%"
 
    - mem:
-       poll-interval: 2500
+       poll-interval: 2000
        content:
-         string: {text: "{used:mb}MB"}
+         - string: {text: "RAM ", foreground: d8a657ff}
+         - string: {text: "{used:mb} MB"}
 
 
    - clock:
+       date-format: "%a"
        content:
+         - string: {text: "{date} ", foreground: d8a657ff}
          - string: {text: "{time}"}

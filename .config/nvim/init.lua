@@ -13,6 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    'vifm/vifm.vim',
     'lervag/vimtex',
     'nvim-lualine/lualine.nvim', dependencies = {'kyazdani42/nvim-web-devicons' },
 
