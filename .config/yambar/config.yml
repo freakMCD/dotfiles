@@ -28,14 +28,22 @@ bar:
    - mpd:
        host: /run/user/1000/mpd/socket
        content:
-         string: 
-          text: "{artist} - {title}"
-          foreground: d3869bff
+         map:
+          conditions:
+            state == paused:      
+              string: 
+                text: "  {artist} - {title}"
+                foreground: d3869b99
+            state == playing:      
+              string: 
+                text: "  {artist} - {title}"
+                foreground: d3869bff
+
 
  right:
 
    - cpu:
-       poll-interval: 2000
+       poll-interval: 3000
        content:
          map:
            conditions:
@@ -47,7 +55,7 @@ bar:
                   text: "{cpu}%"
 
    - mem:
-       poll-interval: 2000
+       poll-interval: 3000
        content:
          - string: {text: "RAM ", foreground: d8a657ff}
          - string: {text: "{used:mb} MB"}

@@ -27,11 +27,11 @@ install_texlive_packages() {
 enable_services () {
     systemctl daemon-reload 
 
-    echo "Starting/enabling mpd service"
-    systemctl --user enable --now mpd.service 
-
     echo "Starting user timers"
-    systemctl enable --now mbsync.timer
+    systemctl --user enable --now mpd.service mbsync.timer
+
+    echo "Starting system timers"
+    systemctl enable --now fstrim.timer
 }
 
 

@@ -101,6 +101,9 @@ pactl set-default-source <INDEX> # for example "pactl set-default-source 52"
 # Systemd
 systemctl --user mask/unmask <service-name>
 ```
+**Tuning storage devices**
+- Disable coredump (See https://wiki.archlinux.org/title/Core_dump#Disabling_automatic_core_dumps)
+- Set "noatime,commit=60" in /etc/fstab (ext4 options)
 </details>
 
 # vim: set nowrap :

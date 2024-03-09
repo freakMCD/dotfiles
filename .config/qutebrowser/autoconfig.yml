@@ -6,6 +6,37 @@
 
 config_version: 2
 settings:
+  bindings.commands:
+    global:
+      command:
+        <Escape>: mode-enter normal;; set statusbar.show in-mode
+        <Return>: command-accept;; set statusbar.show in-mode
+      hint:
+        e: mode-leave
+        f: mode-leave
+      normal:
+        ',M': hint links spawn --detach mpv {hint-url} --force-window=yes
+        ',m': hint videos spawn --detach mpv {hint-url} --force-window=yes
+        /: set statusbar.show always;; cmd-set-text /
+        ':': 'set statusbar.show always;; cmd-set-text :'
+        <Space>b: config-cycle tabs.show switching always
+        <Space>js: config-cycle content.javascript.enabled true false
+        <Space>v: config-source ;; message-info 'qutebrowser reloaded'
+        I: hint inputs
+        J: tab-prev
+        K: tab-next
+        O: set statusbar.show always;; cmd-set-text -s :open -t
+        e: hint button
+        gD: open -t https://discord.com/channels/@me
+        gW: open -t https://web.whatsapp.com
+        gd: open https://discord.com/channels/@me
+        gw: open https://web.whatsapp.com
+        i: hint --first inputs
+        j: scroll-px 0 200
+        k: scroll-px 0 -200
+        l: scroll-px 100 0
+        o: set statusbar.show always;; cmd-set-text -s :open
+        q: null
   colors.webpage.darkmode.enabled:
     global: false
   colors.webpage.darkmode.policy.images:
@@ -29,6 +60,23 @@ settings:
     global: true
   content.desktop_capture:
     https://discord.com: true
+  content.fullscreen.window:
+    global: true
+  content.javascript.enabled:
+    '*://*.checkout.steampowered.com/*': true
+    '*://*.store.epicgames.com/*': true
+    '*://*.store.steampowered.com/*': true
+    '*://*.www.epicgames.com/*': true
+    '*://*.www.protondb.com/*': true
+    '*://chat.openai.com/*': true
+    '*://discord.com/*': true
+    '*://mail.google.com/*': true
+    '*://mangareader.to/*': true
+    '*://steamcommunity.com/*': true
+    '*://web.whatsapp.com/*': true
+    '*://www.facebook.com/*': true
+    '*://www.youtube.com/*': true
+    global: false
   content.media.audio_capture:
     https://discord.com: true
   content.notifications.enabled:
@@ -51,5 +99,27 @@ settings:
     global: always
   statusbar.show:
     global: in-mode
+  tabs.favicons.show:
+    global: always
+  tabs.max_width:
+    global: 200
+  tabs.position:
+    global: left
   tabs.show:
     global: always
+  tabs.show_switching_delay:
+    global: 800
+  tabs.title.alignment:
+    global: left
+  tabs.title.elide:
+    global: right
+  tabs.title.format:
+    global: '{audio}{index}: {current_title}'
+  tabs.title.format_pinned:
+    global: '{index}'
+  tabs.tooltips:
+    global: true
+  tabs.width:
+    global: 3%
+  url.default_page:
+    global: https://lite.duckduckgo.com/

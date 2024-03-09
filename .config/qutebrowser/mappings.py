@@ -18,11 +18,14 @@ video_selector = ' , '.join([f'{prefix}"{part}"]' for part in video_selector_par
 # Specific selectors
 twitch_selector= 'a[data-a-target*="preview-card-image-link"]'
 youtube_selector = 'a[id*="video-title"]'
+reddit_selector = '.comments,.choice,.title,p a[rel="nofollow"]' 
+reddit_videos = 'a[class*="thumbnail"]'
 
 # Set selectors for video hints
 config.set('hints.selectors', {'videos': [video_selector]}, pattern='*')
 config.set('hints.selectors', {'videos': [twitch_selector]}, pattern='*://*.twitch.tv/*')
 config.set('hints.selectors', {'videos': [youtube_selector]}, pattern='*://*.youtube.com/*')
+config.set('hints.selectors', {'all': [reddit_selector], 'videos': [reddit_videos]}, pattern='*://*.reddit.com/*')
 
 bind = {
     "gd": "open https://discord.com/channels/@me",

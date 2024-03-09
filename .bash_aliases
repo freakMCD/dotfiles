@@ -5,7 +5,8 @@ alias rclone="rclone -P"
 alias curl='curl -O'
 alias df='df -h'
 alias heroic='~/Desktop/squashfs-root/heroic --enable-features=UseOzonePlatform --ozone-platform=wayland &exit'
-alias steam='gamescope -r 60 -o 10 -F fsr -e -- steamlx'
+
+alias steam='gamescope -r 60 -o 24 -F fsr -e -- steamlx'
 alias sortmusic='cd ~/Music/2015-2022 && stat --format="%W %n" * | sort -n'
 
 alias mymusic='mpv --shuffle --volume=67 --save-position-on-quit=no "https://www.youtube.com/playlist?list=PL4CmunqMOJjLhWvgQUXWvewHEOoPAVAkt"'
@@ -18,7 +19,7 @@ alias gpg-backup="gpg -o private.gpg --export-options backup --export-secret-key
 alias gpg-restore="gpg --import-options restore --import private.gpg"
 
 # Custom dnf alias
-alias pacu='sudo pacman -Syu --ignore wine' # Update the system
+alias pacu='sudo pacman -Syu' # Update the system
 alias paci='sudo pacman -S'
 alias pacr='sudo pacman -Rs'
 alias pacs='sudo pacman -Ss'

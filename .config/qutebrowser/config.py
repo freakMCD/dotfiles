@@ -20,22 +20,24 @@ c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt',
                                     'https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt',
                                     'https://www.i-dont-care-about-cookies.eu/abp/',
                                     'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt']
-c.content.javascript.enabled = True
+# General
+c.content.javascript.enabled = False
 c.content.javascript.clipboard = "access-paste"
 c.colors.webpage.darkmode.enabled = True
 c.fonts.default_size = "10pt"
 c.fonts.default_family = "JetBrainsMono Nerd Font"
 c.completion.shrink = True
 c.completion.open_categories = ["quickmarks", "bookmarks", "searchengines"]
+c.content.fullscreen.window = True
+c.content.webgl = False
 
-# Prevents *all* tabs from being loaded on restore, only loads on activating them
+# Tabs
 c.session.lazy_restore = True
-c.tabs.show = "always"
+c.tabs.show = "multiple"
+c.tabs.position = "top"
+c.tabs.max_width = 200
 
-c.qt.args += [  'ignore-gpu-blocklist',
-                'autoplay-policy=user-gesture-require',
-              'enable-features=VaapiIgnoreDriverChecks', 
-             ]
+
 c.url.searchengines = {
     "DEFAULT": "https://lite.duckduckgo.com/lite/?q={}",
     "yt": "farside.link/piped/results?search_query={}",

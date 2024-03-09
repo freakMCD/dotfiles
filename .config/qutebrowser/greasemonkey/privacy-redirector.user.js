@@ -139,7 +139,7 @@ let tiktok = [true, false];
 let twitter = [true, true];
 let wikipedia = [true, false];
 let youtube = [false, false];
-let twitch = [true, false];
+let twitch = [false, false];
 let instagram = [true, true];
 
 // PREFERRED FRONTEND
