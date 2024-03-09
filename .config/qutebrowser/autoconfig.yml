@@ -72,6 +72,7 @@ settings:
     '*://discord.com/*': true
     '*://mail.google.com/*': true
     '*://mangareader.to/*': true
+    '*://piped.smnz.de/*': true
     '*://steamcommunity.com/*': true
     '*://web.whatsapp.com/*': true
     '*://www.facebook.com/*': true

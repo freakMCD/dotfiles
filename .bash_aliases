@@ -30,12 +30,12 @@ alias pacclean='sudo pacman -Sc'
 
 alias update-grub='sudo grub2-mkconfig -o /boot/grub2/grub.cfg'
 
-stage () {
+stage() {
     printf "First argument: yadm or git\nSecond argument: modified or deleted\n\n"
     $1 ls-files -z --$2 | xargs -0 $1 add  
 }
 
-dict () { 
+dict() { 
     curl -s 'dict://dict.org/d:'"$@"'' | nvim +Man!
 }
 

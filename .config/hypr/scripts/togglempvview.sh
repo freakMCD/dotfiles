@@ -26,7 +26,7 @@ toggle_x_coordinates() {
     esac
 
     if [ -n "$new_position" ]; then
-        hyprctl --batch "dispatch focuswindow address:$address; dispatch moveactive exact $new_position"
+        hyprctl_commands+="dispatch focuswindow address:$address; dispatch moveactive exact $new_position;"
     fi
 }
 
@@ -34,5 +34,5 @@ toggle_x_coordinates() {
 while read -r address position; do
     toggle_x_coordinates "$address" "$position"
 done <<< "$addresses_positions"
-hyprctl dispatch focuscurrentorlast
+hyprctl --batch ""$hyprctl_commands" dispatch focuscurrentorlast"
 
