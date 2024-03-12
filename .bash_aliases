@@ -1,3 +1,5 @@
+alias shellevents="socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock  EXEC:'/home/edwin/.config/hypr/shellevents/shellevents /home/edwin/.config/hypr/shellevents/mpvwindows.sh',nofork"
+alias reloadevent="killall shellevents -USR1"
 alias aliasrc="nvim ~/.bash_aliases && source ~/.bash_aliases"
 alias bashrc="nvim ~/.bashrc && source ~/.bashrc"
 alias dus='du -h --max-depth=1 | sort -hr' # Disk Usage Sorted

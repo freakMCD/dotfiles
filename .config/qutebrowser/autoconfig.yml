@@ -63,11 +63,17 @@ settings:
   content.fullscreen.window:
     global: true
   content.javascript.enabled:
+    '*://*.anilist.co/*': true
     '*://*.checkout.steampowered.com/*': true
+    '*://*.github.com/*': true
+    '*://*.piped.lunar.icu/*': true
+    '*://*.piped.privacydev.net/*': true
     '*://*.store.epicgames.com/*': true
     '*://*.store.steampowered.com/*': true
     '*://*.www.epicgames.com/*': true
     '*://*.www.protondb.com/*': true
+    '*://*.www.shellcheck.net/*': true
+    '*://*.www.webtoons.com/*': true
     '*://chat.openai.com/*': true
     '*://discord.com/*': true
     '*://mail.google.com/*': true
