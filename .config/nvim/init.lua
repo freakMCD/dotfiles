@@ -17,6 +17,16 @@ require("lazy").setup({
     'lervag/vimtex',
     'nvim-lualine/lualine.nvim', dependencies = {'kyazdani42/nvim-web-devicons' },
 
+	{
+	  "ibhagwan/fzf-lua",
+	  -- optional for icon support
+	  dependencies = { "nvim-tree/nvim-web-devicons" },
+	  config = function()
+	    -- calling `setup` is optional for customization
+	    require("fzf-lua").setup({})
+	  end
+	},
+
    {
     'hrsh7th/nvim-cmp', 
     -- load cmp on InsertEnter
@@ -185,6 +195,9 @@ vim.cmd[[
     highlight Normal ctermbg=NONE guibg=NONE
     filetype plugin indent on
 ]]
+
+vim.keymap.set("n", "<c-P>",
+  "<cmd>lua require('fzf-lua').files({ cmd = vim.env.FZF_DEFAULT_COMMAND })<CR>", { silent = true })
 
 -- Vimtex
 set.conceallevel = 1

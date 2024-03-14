@@ -1,12 +1,7 @@
 #!/bin/bash
 
-is_fullscreen=$(hyprctl activewindow -j | jq -r 'select(.fullscreen == true)')
-if [[ $is_fullscreen != "" ]]; then
-    exit
-fi 
-
 # Find the addresses and positions of the active (non-hidden) mpv windows
-addresses_positions=$(hyprctl clients -j | jq -r '.[] | select(.class=="mpv") | "\(.address) \(.at | @csv)"')
+addresses_positions=$(hyprctl clients -j | jq -r '.[] | select(.class=="mpv" and .fullscreen != "true") | "\(.address) \(.at | @csv)"')
 if [[ $addresses_positions == "" ]];then
     exit
 fi
@@ -26,7 +21,7 @@ toggle_x_coordinates() {
     esac
 
     if [ -n "$new_position" ]; then
-        hyprctl_commands+="dispatch focuswindow address:$address; dispatch moveactive exact $new_position;"
+        hyprctl_commands+="dispatch movewindowpixel exact $new_position,address:$address;"
     fi
 }
 
@@ -34,5 +29,5 @@ toggle_x_coordinates() {
 while read -r address position; do
     toggle_x_coordinates "$address" "$position"
 done <<< "$addresses_positions"
-hyprctl --batch ""$hyprctl_commands" dispatch focuscurrentorlast"
+hyprctl --batch ""$hyprctl_commands""
 

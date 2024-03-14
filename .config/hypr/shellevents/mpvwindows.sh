@@ -38,34 +38,34 @@ event_openwindow() {
 }
 
 event_closewindow() {
-    local clients is_mpv
+    local clients is_mpv addresses_positions hypr_cmd
     clients=$(hyprctl clients -j)
     is_mpv=$(jq -r ".[] | select(.address == \"0x$WINDOWADDRESS\" and .initialClass == \"mpv\")" <<< "$clients")
 
-    if [[ -n "$is_mpv" ]];then
-        local window_y addresses_positions hypr_cmd 
-        window_y=$(( $(jq -r ".[] | select(.address == \"0x$WINDOWADDRESS\") | .at[1]" <<< "$clients") - 132 ))
-        addresses_positions=$(jq -r '.[] | select(.class=="mpv") | "\(.address) \(.at | @csv)"' <<< "$clients")
-        if [[ -n "$addresses_positions" ]];then
-            local current_window_y adjusted_position
-            while read -r address position; do
-                current_window_y=${position#*,}
+    if [[ "$is_mpv" == "" ]]; then
+        mapfile -t addresses_positions < <(jq -r '[.[] | select(.class == "mpv")] | sort_by(.at[1]) | .[] | "\(.address) \(.at[0]) \(.at[1])"' <<< "$clients")  
+        if [[ ${#addresses_positions[@]} -gt 0 ]]; then
+            read -r address1 width1 height1 <<< "${addresses_positions[0]}"
+            pid=$(jq -r ".[] | select(.address == \"$address1\") | .pid" <<< "$clients") 
+            mpvplaycontrol "$pid" "$clients"
 
-                # Check if the window is below the closing window
-                if [[ "$current_window_y" -ge "$window_y" ]]; then
-                    case "$position" in
-                        *",320") adjusted_position="${position/,320/ 20}" 
-                                 target_pid=$(jq -r ".[] | select(.address == \"$address\") | .pid" <<< "$clients") 
-                                 mpvplaycontrol "$target_pid" "$clients"
-                                ;;
-                                 
-                        *",620") adjusted_position="${position/,620/ 320}" ;;
-                    esac
-                    hypr_cmd+="dispatch movewindowpixel exact $adjusted_position,address:$address;"
-                fi      
-            done <<< "$addresses_positions"
-            hyprctl --batch "$hypr_cmd"
+            case "${#addresses_positions[@]}" in
+                1)
+                    if [[ $height1 -eq 320 ]]; then
+                        hypr_cmd+="dispatch movewindowpixel exact $width1 20,address:$address1;"
+                    fi
+                    ;;
+                2)
+                    read -r address2 width2 height2 <<< "${addresses_positions[1]}"
+                    if [[ $height2 -eq 620 ]];then
+                        hypr_cmd+="dispatch movewindowpixel exact $width1 20,address:$address1;"
+                        hypr_cmd+="dispatch movewindowpixel exact $width2 320,address:$address2;"
+                    fi
+                    ;;
+            esac
+            if [[ -n "$hypr_cmd" ]]; then
+                hyprctl --batch ""$hypr_cmd""
+            fi
         fi
     fi
 }
-

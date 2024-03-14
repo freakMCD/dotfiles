@@ -66,6 +66,7 @@ settings:
     '*://*.anilist.co/*': true
     '*://*.checkout.steampowered.com/*': true
     '*://*.github.com/*': true
+    '*://*.piped.adminforge.de/*': true
     '*://*.piped.lunar.icu/*': true
     '*://*.piped.privacydev.net/*': true
     '*://*.store.epicgames.com/*': true
@@ -76,12 +77,17 @@ settings:
     '*://*.www.webtoons.com/*': true
     '*://chat.openai.com/*': true
     '*://discord.com/*': true
+    '*://drive.google.com/*': true
+    '*://gitlab.archlinux.org/*': true
+    '*://gitlab.com/*': true
+    '*://jqplay.org/*': true
     '*://mail.google.com/*': true
     '*://mangareader.to/*': true
     '*://piped.smnz.de/*': true
     '*://steamcommunity.com/*': true
     '*://web.whatsapp.com/*': true
     '*://www.facebook.com/*': true
+    '*://www.twitch.tv/*': true
     '*://www.youtube.com/*': true
     global: false
   content.media.audio_capture:

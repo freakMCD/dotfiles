@@ -40,6 +40,6 @@ c.tabs.max_width = 200
 
 c.url.searchengines = {
     "DEFAULT": "https://lite.duckduckgo.com/lite/?q={}",
-    "yt": "farside.link/piped/results?search_query={}",
+    "yt": "https://inv.n8pjl.ca/results?search_query={}",
 }
 
