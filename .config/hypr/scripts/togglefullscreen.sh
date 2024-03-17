@@ -1,11 +1,10 @@
 #!/bin/bash
-#
 mpv_socket_dir="/tmp/mpvSockets"
 
 mpvplaycontrol() {
-    jq -r '.[] | select(.class == "mpv") | .pid' <<< "$2" | while read -r pid; do 
-        if [ "$pid" == "$1" ]; then
-            echo '{ "command": ["set_property", "pause", false] }' | socat - UNIX-CONNECT:"$mpv_socket_dir/$1"
+    jq -r '.[] | select(.class == "mpv") | "\(.address) \(.pid)"' <<< "$2" | while read -r address pid; do 
+        if [ "$address" == "$1" ]; then
+            echo '{ "command": ["set_property", "pause", false] }' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
 
         else
             echo '{ "command": ["set_property", "pause", true] }' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
@@ -28,12 +27,11 @@ if [[ "$height" -eq 0 ]]; then
 	if [[ ${#addresses_positions[@]} -gt 1 ]];then
 	    addresses_positions=("${addresses_positions[@]:1}")
         if [[ ${addresses_positions[0]#* } -eq 20 && ${addresses_positions[1]#* } -eq 620 ]]; then
-	        read -r next_address _ <<< "${addresses_positions[1]}"
+	        next_address=${addresses_positions[1]% *}
         else
-	        read -r next_address _ <<< "${addresses_positions[0]}"
+	        next_address=${addresses_positions[0]% *}
         fi
-        pid=$(jq -r ".[] | select(.address == \"$next_address\") | .pid" <<< "$clients") 
-        mpvplaycontrol "$pid" "$clients"
+        mpvplaycontrol "$next_address" "$clients"
     else
         hyprctl --batch ""$hypr_cmd" dispatch focuscurrentorlast"
         exit

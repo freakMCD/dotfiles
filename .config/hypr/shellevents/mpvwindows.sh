@@ -1,9 +1,9 @@
 mpv_socket_dir="/tmp/mpvSockets"
 
 mpvplaycontrol() {
-    jq -r '.[] | select(.class == "mpv") | .pid' <<< "$2" | while read -r pid; do 
-        if [ "$pid" == "$1" ]; then
-            echo '{ "command": ["set_property", "pause", false] }' | socat - UNIX-CONNECT:"$mpv_socket_dir/$1"
+    jq -r '.[] | select(.class == "mpv") | "\(.address) \(.pid)"' <<< "$2" | while read -r address pid; do 
+        if [ "$address" == "$1" ]; then
+            echo '{ "command": ["set_property", "pause", false] }' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
 
         else
             echo '{ "command": ["set_property", "pause", true] }' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
@@ -13,41 +13,33 @@ mpvplaycontrol() {
 
 event_openwindow() {
     case "$WINDOWCLASS" in
-    mpv)
-        local clients pid addresses_positions hypr_cmd
-        clients=$(hyprctl clients -j)
-        pid=$(jq -r ".[] | select(.address == \"0x$WINDOWADDRESS\") | .pid" <<< "$clients") 
-        mpvplaycontrol "$pid" "$clients"
-        addresses_positions=$(jq -r '.[] | select(.class=="mpv") | "\(.address) \(.at | @csv)"' <<< "$clients")
-        while read -r address position; do
-            if [ "$address" != "0x$WINDOWADDRESS" ];then
-                local adjusted_position
-                case "$position" in
-                    *",20") adjusted_position="${position/,20/ 320}" 
-                            ;;
-                                 
-                    *",320") adjusted_position="${position/,320/ 620}" ;;
-                esac
-                hypr_cmd+="dispatch movewindowpixel exact $adjusted_position,address:$address;"
-            fi
-        done <<< "$addresses_positions"
-        hypr_cmd+="dispatch movewindowpixel exact 1438 20,address:0x$WINDOWADDRESS"
-        hyprctl --batch "$hypr_cmd"
-        ;;
+        mpv)
+            local hypr_cmd addresses_widths height=20
+            clients=$(hyprctl clients -j)
+            mpvplaycontrol "0x$WINDOWADDRESS" "$clients"
+            hypr_cmd+="dispatch movewindowpixel exact 1438 $height,address:0x$WINDOWADDRESS"
+
+            addresses_widths=$(jq -r '[.[] | select(.class=="mpv" and .address != "0x'"$WINDOWADDRESS"'")] | sort_by(.at[1]) | .[] | "\(.address) \(.at[0])"' <<< "$clients")
+            while read -r address width; do
+                height=$((height + 300))
+                hypr_cmd+=";dispatch movewindowpixel exact $width $height,address:$address"
+            done <<< "$addresses_widths"
+
+            hyprctl --batch "$hypr_cmd"
+            ;;
     esac
 }
 
 event_closewindow() {
-    local clients is_mpv addresses_positions hypr_cmd
-    clients=$(hyprctl clients -j)
-    is_mpv=$(jq -r ".[] | select(.address == \"0x$WINDOWADDRESS\" and .initialClass == \"mpv\")" <<< "$clients")
+    local is_mpv addresses_positions hypr_cmd
+    is_mpv=$(jq -r ".[] | select(.address == \"0x$WINDOWADDRESS\")" <<< "$clients")
 
-    if [[ "$is_mpv" == "" ]]; then
+    if [[ "$is_mpv" != "" ]]; then
+        clients=$(hyprctl clients -j)
         mapfile -t addresses_positions < <(jq -r '[.[] | select(.class == "mpv")] | sort_by(.at[1]) | .[] | "\(.address) \(.at[0]) \(.at[1])"' <<< "$clients")  
         if [[ ${#addresses_positions[@]} -gt 0 ]]; then
             read -r address1 width1 height1 <<< "${addresses_positions[0]}"
-            pid=$(jq -r ".[] | select(.address == \"$address1\") | .pid" <<< "$clients") 
-            mpvplaycontrol "$pid" "$clients"
+            mpvplaycontrol "$address1" "$clients"
 
             case "${#addresses_positions[@]}" in
                 1)

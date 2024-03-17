@@ -87,6 +87,7 @@ settings:
     '*://steamcommunity.com/*': true
     '*://web.whatsapp.com/*': true
     '*://www.facebook.com/*': true
+    '*://www.speedrun.com/*': true
     '*://www.twitch.tv/*': true
     '*://www.youtube.com/*': true
     global: false
