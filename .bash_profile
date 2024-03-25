@@ -30,6 +30,7 @@ set -a
     TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
     WINEPREFIX="/media/data/.wine"
     TMOUT=300
+    XKB_DEFAULT_LAYOUT=es # For steam with gamescope
 set +a
 
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then

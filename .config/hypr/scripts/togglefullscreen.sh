@@ -13,7 +13,7 @@ mpvplaycontrol() {
 }
 
 clients=$(hyprctl clients -j)
-mapfile -t addresses_positions < <(jq -r '[.[] | select(.class == "mpv")] | sort_by(.at[1]) | .[] | "\(.address) \(.at[1])"' <<< "$clients")  
+mapfile -t addresses_positions < <(jq -r '[.[] | select(.class == "mpv" or .fullscreen == true)] | sort_by(.at[1]) | .[] | "\(.address) \(.at[1])"' <<< "$clients")  
 
 if [[ "${#addresses_positions[@]}" -eq 0 ]];then
     exit
@@ -40,4 +40,3 @@ fi
 
 hypr_cmd+="dispatch focuswindow address:$next_address; dispatch pin address:$next_address; dispatch fullscreen"
 hyprctl --batch "$hypr_cmd"
-

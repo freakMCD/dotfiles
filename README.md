@@ -49,61 +49,60 @@ sudo pacman -S libnotify fnott foot vifm qt6-wayland qutebrowser python-adblock
     ExecStart=
     ExecStart=-/sbin/agetty -o '-p -f -- \\u' --keep-baud --autologin username 115200,57600,38400,9600 - $TERM
 
+## Tuning**
+
+**Storage Devices**
+
+    - Disable coredump (See https://wiki.archlinux.org/title/Core_dump#Disabling_automatic_core_dumps)
+    - Set "noatime,commit=60" in /etc/fstab (ext4 options)
+
+**Gaming**
+
+    - Add "vm.max_map_count=1048576" -> /etc/sysctl.d/80-gamecompatibility.conf
+    - Add "tsc=reliable clocksource=tsc" -> GRUB_CMDLINE_LINUX_DEFAULT= -> /etc/default/grub
+
 <details><summary>
 <h2>Notes</h2>
 </summary>
+## Git and yadm examples
 
-**git and yadm examples**
-```bash
-# Set url to push commits
-git remote set-url --push origin https://github.com/freakMCD/<reponame>.git
+- *Sets the URL to push commits to the specified remote repository.*:
+  `git remote set-url --push origin https://github.com/freakMCD/<reponame>.git`
+  
+- *Deletes the last commit from the remote repository while keeping it locally.*:
+  `git push origin +HEAD^:main`
 
-# Delete last commit from remote repo but keep it locally
-git push origin +HEAD^:main
+- *Undoes the last commit, keeping the changes staged for commit.*:
+  `git reset --soft HEAD@{1}`
 
-# Undo last commit
-git reset --soft HEAD@{1}
+- *Commits all changes in the repository.*:
+  `yadm add -u`
 
-# To commit all changes**
-yadm add -u
+- *Untracks a specified file in the repository.*:
+  `yadm rm --cached <filename>`
 
-# To untrack a file
-yadm rm --cached <filename>
+- *Marks a file as assumed unchanged, useful for files that will not be edited.*:
+  `yadm update-index --assume-unchanged <filepath>`
 
-# For files you will never edit (e.g. "LICENSE")
-yadm update-index --assume-unchanged <filepath>
+- *Initializes a yadm repository in the current directory.*:
+  `yadm init
+  yadm remote add origin <url>
+  yadm fetch
+  yadm reset origin/master`
 
-# When you have local repo but lost refs from remote repo
-yadm init
-yadm remote add origin <url>
-yadm fetch
-yadm reset origin/master
+- *Deletes the build folder and test.txt file from all commits in the repository.*:
+  `git filter-repo --path build/ --path test.txt --invert-paths`# Other
 
-# Delete build folder and test.txt file from all commits
-$ git filter-repo --path build/ --path test.txt  --invert-paths
-```
-**Other**
-```bash
-# To change Drive permissions to username
-sudo chown -v username:username /media/username/disk-name
+## Other
+- *To change Drive permissions to username*
+  `sudo chown -v username:username /media/username/disk-name`
 
-# pass
-PASSWORD_STORE_GPG_OPTS='--pinentry-mode=loopback --passphrase <passphrase>'
+-  *pass*
+  `PASSWORD_STORE_GPG_OPTS='--pinentry-mode=loopback --passphrase <passphrase>'`
     
-# nmcli
-nmcli dev status
-nmcli dev connect/disconnect <device>
+-  *Systemd*
+  `systemctl --user mask/unmask <service-name>`
 
-# PulseAudio Control (pactl) 
-pactl list sinks # It list the sinks beggining with "SINK #INDEX"
-pactl set-default-source <INDEX> # for example "pactl set-default-source 52"
-
-# Systemd
-systemctl --user mask/unmask <service-name>
-```
-**Tuning storage devices**
-- Disable coredump (See https://wiki.archlinux.org/title/Core_dump#Disabling_automatic_core_dumps)
-- Set "noatime,commit=60" in /etc/fstab (ext4 options)
 </details>
 
 # vim: set nowrap :

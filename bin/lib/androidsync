@@ -16,7 +16,7 @@ music() {
    cd ~/Music/2015-2022/
    lftp ftp://${FTP_SERVER}:${FTP_PORT} -e "
    cd Music;
-   mirror -R --use-pget-n=5 --parallel=5 --no-recursion --delete-first --ignore-time --no-perms -v;
+   mirror -R --use-pget-n=5 --parallel=5 --no-recursion --delete-first --no-perms -v;
    bye" || echo "Music sync failed!"
 }
 

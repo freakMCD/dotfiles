@@ -131,7 +131,7 @@ c.colors.downloads.error.fg = bright_red
 ### Hints
 
 # Font color for hints.
-c.colors.hints.fg = bg0
+c.colors.hints.fg = 'rgb(0,0,0)'
 
 # Background color for hints.
 c.colors.hints.bg = 'rgba(250, 191, 47, 200)'  # bright_yellow

@@ -273,7 +273,7 @@ filextype {.blend}
         \ blender %c,
 filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         \ {View in sxiv}
-        \ sxiv %f,
+        \ swayimg %f,
         \ {View in gpicview}
         \ gpicview %c,
         \ {View in shotwell}
