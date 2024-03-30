@@ -66,6 +66,7 @@ settings:
     '*://*.anilist.co/*': true
     '*://*.checkout.steampowered.com/*': true
     '*://*.codeberg.org/*': true
+    '*://*.due.moe/*': true
     '*://*.github.com/*': true
     '*://*.piped.adminforge.de/*': true
     '*://*.piped.lunar.icu/*': true
@@ -75,8 +76,10 @@ settings:
     '*://*.www.epicgames.com/*': true
     '*://*.www.protondb.com/*': true
     '*://*.www.shellcheck.net/*': true
+    '*://*.www.unitru.edu.pe/*': true
     '*://*.www.webtoons.com/*': true
     '*://chat.openai.com/*': true
+    '*://createfeed.fivefilters.org/*': true
     '*://discord.com/*': true
     '*://drive.google.com/*': true
     '*://duckduckgo.com/*': false
@@ -89,6 +92,7 @@ settings:
     '*://piped.smnz.de/*': true
     '*://steamcommunity.com/*': true
     '*://store.epicgames.com/*': true
+    '*://unitru.edu.pe/*': true
     '*://web.whatsapp.com/*': true
     '*://www.facebook.com/*': true
     '*://www.speedrun.com/*': true

@@ -44,10 +44,10 @@ sudo pacman -S libnotify fnott foot vifm qt6-wayland qutebrowser python-adblock
 
 **Create a drop-in file (Edit it with your username)**
 
-    $ cat /etc/systemd/system/serial-getty@ttyS0.service.d/override.conf
+    $ cat /etc/systemd/system/getty@tty1.service.d/override.conf
     [Service]
     ExecStart=
-    ExecStart=-/sbin/agetty -o '-p -f -- \\u' --keep-baud --autologin username 115200,57600,38400,9600 - $TERM
+    ExecStart=-/usr/bin/agetty --autologin edwin --noclear %I $TERM
 
 ## Tuning**
 
