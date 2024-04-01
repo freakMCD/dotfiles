@@ -63,10 +63,12 @@ settings:
   content.fullscreen.window:
     global: true
   content.javascript.enabled:
+    '*://*.accounts.google.com/*': true
     '*://*.anilist.co/*': true
     '*://*.checkout.steampowered.com/*': true
     '*://*.codeberg.org/*': true
     '*://*.due.moe/*': true
+    '*://*.feedcontrol.fivefilters.org/*': true
     '*://*.github.com/*': true
     '*://*.piped.adminforge.de/*': true
     '*://*.piped.lunar.icu/*': true
@@ -90,11 +92,13 @@ settings:
     '*://mangareader.to/*': true
     '*://mega.nz/*': true
     '*://piped.smnz.de/*': true
+    '*://stackoverflow.com/*': true
     '*://steamcommunity.com/*': true
     '*://store.epicgames.com/*': true
     '*://unitru.edu.pe/*': true
     '*://web.whatsapp.com/*': true
     '*://www.facebook.com/*': true
+    '*://www.google.com/*': true
     '*://www.speedrun.com/*': true
     '*://www.twitch.tv/*': true
     '*://www.youtube.com/*': true
@@ -128,7 +132,7 @@ settings:
   tabs.position:
     global: left
   tabs.show:
-    global: always
+    global: switching
   tabs.show_switching_delay:
     global: 800
   tabs.title.alignment:
