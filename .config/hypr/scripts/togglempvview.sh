@@ -13,10 +13,10 @@ toggle_x_coordinates() {
 
     case "$current_position" in
         "1438,"*)
-            new_position="${current_position/1438,/1900 }"
+            new_position="${current_position/1438,/1916 }"
             ;;
-        "1900,"*)
-            new_position="${current_position/1900,/1438 }"
+        "1916,"*)
+            new_position="${current_position/1916,/1438 }"
             ;;
     esac
 

@@ -1,11 +1,11 @@
 # General
 set scrolloff 5
 set menu-item-sorting unread-desc
-set notification-command notify-send 'Newsraft brought %q news!'; paplay ~/.config/dunst/alarms/sms-alert-1-daniel_simon.wav &
+set notification-command notify-send 'Newsraft brought %q news!' && paplay ~/.config/dunst/alarms/sms-alert-1-daniel_simon.wav
 
 # Bindings
 bind o mark-read; exec nohup qutebrowser "%l" >/dev/null 2>&1 &
-bind m exec nohup mpv "%l" >/dev/null 2>&1 &
+bind m exec nohup mpv "%l" >/dev/null 2>&1 & 
 bind M mark-read; exec nohup mpv --save-position-on-quit=no "%l" >/dev/null 2>&1 &
 bind q navigate-back
 
