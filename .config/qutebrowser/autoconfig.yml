@@ -73,6 +73,7 @@ settings:
     '*://*.piped.adminforge.de/*': true
     '*://*.piped.lunar.icu/*': true
     '*://*.piped.privacydev.net/*': true
+    '*://*.soundbible.com/*': true
     '*://*.store.epicgames.com/*': true
     '*://*.store.steampowered.com/*': true
     '*://*.www.epicgames.com/*': true
@@ -94,7 +95,7 @@ settings:
     '*://piped.smnz.de/*': true
     '*://stackoverflow.com/*': true
     '*://steamcommunity.com/*': true
-    '*://store.epicgames.com/*': true
+    '*://store.epicgames.com/*': false
     '*://unitru.edu.pe/*': true
     '*://web.whatsapp.com/*': true
     '*://www.facebook.com/*': true

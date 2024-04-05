@@ -6,7 +6,7 @@ alias dus='du -h --max-depth=1 | sort -hr' # Disk Usage Sorted
 alias rclone="rclone -P"
 alias curl='curl -O'
 alias df='df -h'
-alias heroic='~/Desktop/squashfs-root/heroic --enable-features=UseOzonePlatform --ozone-platform=wayland &exit'
+alias heroic='~/Downloads/Programs/squashfs-root/heroic --enable-features=UseOzonePlatform --ozone-platform=wayland &exit'
 
 alias steam='gamescope -r 60 -o 24 -h 720 -H 1080 -F fsr -e -- steamlx'
 alias sortmusic='cd ~/Music/2015-2022 && stat --format="%W %n" * | sort -nr'

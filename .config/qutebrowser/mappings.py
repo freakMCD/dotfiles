@@ -17,9 +17,9 @@ video_selector = ' , '.join([f'{prefix}"{part}"]' for part in video_selector_par
 
 # Specific selectors
 twitch_selector= 'a[data-a-target*="preview-card-image-link"]'
-youtube_selector = 'a[id*="video-title"]'
+youtube_selector = 'a[id="thumbnail"]'
 reddit_selector = '.comments,.choice,.title,p a[rel="nofollow"]' 
-reddit_videos = 'a[class*="thumbnail"]'
+reddit_videos = 'a[class*="thumbnail"],[href*="youtu"]'
 
 # Set selectors for video hints
 config.set('hints.selectors', {'videos': [video_selector]}, pattern='*')
@@ -38,7 +38,8 @@ bind = {
 	leader + "v": "config-source ;; message-info 'qutebrowser reloaded'",
     ## mpv 
     lleader + "m": "hint videos spawn --detach mpv {hint-url} --force-window=yes",
-    lleader + "M": "hint links spawn --detach mpv {hint-url} --force-window=yes",
+    lleader + "M": "hint videos spawn --detach mpv {hint-url} --profile=fastYT --force-window=yes",
+    lleader + "f": "hint links spawn --detach mpv {hint-url} --force-window=yes",
     ## hints
     "e": "hint button",
 	"i": "hint --first inputs",
