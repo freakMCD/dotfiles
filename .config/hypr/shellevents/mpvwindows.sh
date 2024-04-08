@@ -16,6 +16,7 @@ event_openwindow() {
         mpv)
             local hypr_cmd addresses_widths height=20
             clients=$(hyprctl clients -j)
+            mpv_count=$(jq -r '. | map(select(.class == "mpv" )) | length' <<< "$clients")
             mpvplaycontrol "0x$WINDOWADDRESS" "$clients"
             hypr_cmd+="dispatch movewindowpixel exact 1438 $height,address:0x$WINDOWADDRESS"
 
@@ -32,12 +33,13 @@ event_openwindow() {
 
 event_closewindow() {
     local is_mpv addresses_positions hypr_cmd
-    is_mpv=$(jq -r ".[] | select(.address == \"0x$WINDOWADDRESS\")" <<< "$clients")
+    clients=$(hyprctl clients -j)
+    count_after=$(jq -r '. | map(select(.class == "mpv" )) | length' <<< "$clients")
 
-    if [[ "$is_mpv" != "" ]]; then
-        clients=$(hyprctl clients -j)
-        mapfile -t addresses_positions < <(jq -r '[.[] | select(.class == "mpv")] | sort_by(.at[1]) | .[] | "\(.address) \(.at[0]) \(.at[1])"' <<< "$clients")  
-        if [[ ${#addresses_positions[@]} -gt 0 ]]; then
+    if (( count_after == mpv_count -1 )); then
+        mpv_count=$count_after
+        if (( mpv_count > 0 ));then
+            mapfile -t addresses_positions < <(jq -r '[.[] | select(.class == "mpv")] | sort_by(.at[1]) | .[] | "\(.address) \(.at[0]) \(.at[1])"' <<< "$clients")  
             read -r address1 width1 height1 <<< "${addresses_positions[0]}"
             mpvplaycontrol "$address1" "$clients"
 

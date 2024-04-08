@@ -62,6 +62,9 @@ settings:
     https://discord.com: true
   content.fullscreen.window:
     global: true
+  content.headers.user_agent:
+    global: Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko)
+      {qt_key}/{qt_version} {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}
   content.javascript.enabled:
     '*://*.accounts.google.com/*': true
     '*://*.anilist.co/*': true
@@ -116,14 +119,22 @@ settings:
     global: 10pt
   prompt.radius:
     global: 8
+  qt.chromium.experimental_web_platform_features:
+    global: auto
   qt.chromium.low_end_device_mode:
     global: auto
   qt.chromium.process_model:
     global: process-per-site-instance
+  qt.environ:
+    global: null
+  qt.force_platform:
+    global: null
+  qt.force_software_rendering:
+    global: none
   qt.highdpi:
     global: false
   qt.workarounds.disable_accelerated_2d_canvas:
-    global: always
+    global: never
   statusbar.show:
     global: in-mode
   tabs.favicons.show:

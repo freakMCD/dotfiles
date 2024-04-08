@@ -6,11 +6,10 @@ alias dus='du -h --max-depth=1 | sort -hr' # Disk Usage Sorted
 alias rclone="rclone -P"
 alias curl='curl -O'
 alias df='df -h'
-alias heroic='~/Downloads/Programs/squashfs-root/heroic --enable-features=UseOzonePlatform --ozone-platform=wayland &exit'
 
 alias steam='gamescope -r 60 -o 24 -h 720 -H 1080 -F fsr -e -- steamlx'
-alias sortmusic='cd ~/Music/2015-2022 && stat --format="%W %n" * | sort -nr'
 
+alias sortmusic='cd ~/Music/2015-2022 && stat --format="%W %n" * | sort -nr'
 alias mymusic='mpv --shuffle --volume=67 --save-position-on-quit=no "https://www.youtube.com/playlist?list=PL4CmunqMOJjLhWvgQUXWvewHEOoPAVAkt"'
 alias mp3dl='yt-dlp --restrict-filenames --extract-audio --audio-format mp3 --no-playlist'
 alias litedlp="yt-dlp -f 'bestvideo[height<=720]+bestaudio/best'"
@@ -30,7 +29,7 @@ alias pacinfo='pacman -Qi'
 alias pacorphans='pacman -Qtd'
 alias pacclean='sudo pacman -Sc'
 
-alias update-grub='sudo grub2-mkconfig -o /boot/grub2/grub.cfg'
+alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
 stage() {
     printf "First argument: yadm or git\nSecond argument: modified or deleted\n\n"

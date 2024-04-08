@@ -58,7 +58,6 @@ sudo pacman -S libnotify fnott foot vifm qt6-wayland qutebrowser python-adblock
 
 **Gaming**
 
-    - Add "vm.max_map_count=1048576" -> /etc/sysctl.d/80-gamecompatibility.conf
     - Add "tsc=reliable clocksource=tsc" -> GRUB_CMDLINE_LINUX_DEFAULT= -> /etc/default/grub
 
 <details><summary>
