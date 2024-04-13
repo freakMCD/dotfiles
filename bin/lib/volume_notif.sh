@@ -21,9 +21,9 @@ function mute_notification {
     muted=$(wpctl get-volume @DEFAULT_SINK@ | awk '{print $3}')
 
     if [[ $muted == "[MUTED]" ]]; then
-        notify-send -r 2000 -t 0 "muted"
+        notify-send -r 2000 -t 0 -u low "muted"
     else
-        notify-send -r 2000 -t 1000 "unmuted"
+        notify-send -r 2000 -t 1000 -u low "unmuted"
         pw-cat --playback $audiovolumechange
     fi
 }
@@ -32,9 +32,10 @@ function mic_notification {
 	volume=$(wpctl get-volume @DEFAULT_SOURCE@ | awk '{print $3}')
 	
 	if [[ "$volume" == "[MUTED]" ]]; then
-		notify-send -r 2001 -t 0 --hint=string:x-dunst-stack-tag:mic ""
+		notify-send -r 2001 -t 0 -u low --hint=string:x-dunst-stack-tag:mic ""
     else
-		notify-send -r 2001 -t 5000 --hint=string:x-dunst-stack-tag:mic ""
+		notify-send -r 2001 -t 5000 -u low --hint=string:x-dunst-stack-tag:mic ""
+    pw-cat --playback $audiovolumechange
 	fi
 }
 

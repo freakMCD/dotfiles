@@ -92,6 +92,7 @@ settings:
     '*://gitlab.archlinux.org/*': true
     '*://gitlab.com/*': true
     '*://jqplay.org/*': true
+    '*://lite.duckduckgo.com/*': true
     '*://mail.google.com/*': true
     '*://mangareader.to/*': true
     '*://mega.nz/*': true
@@ -112,7 +113,6 @@ settings:
   content.notifications.enabled:
     https://web.whatsapp.com: true
     https://www.facebook.com: false
-    https://www.reddit.com: false
   fonts.default_family:
     global: JetBrainsMono Nerd Font
   fonts.default_size:
