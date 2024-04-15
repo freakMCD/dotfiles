@@ -70,6 +70,7 @@ settings:
     '*://*.anilist.co/*': true
     '*://*.checkout.steampowered.com/*': true
     '*://*.codeberg.org/*': true
+    '*://*.docs.google.com/*': true
     '*://*.due.moe/*': true
     '*://*.feedcontrol.fivefilters.org/*': true
     '*://*.github.com/*': true

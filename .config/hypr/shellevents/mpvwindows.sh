@@ -18,15 +18,10 @@ event_openwindow() {
             clients=$(hyprctl clients -j)
             mpv_count=$(jq -r '. | map(select(.class == "mpv" )) | length' <<< "$clients")
             mpvplaycontrol "0x$WINDOWADDRESS" "$clients"
+
+            height=$((20 + ($mpv_count - 1) * 300))
             hypr_cmd+="dispatch movewindowpixel exact 1438 $height,address:0x$WINDOWADDRESS"
-
-            addresses_widths=$(jq -r '[.[] | select(.class=="mpv" and .address != "0x'"$WINDOWADDRESS"'")] | sort_by(.at[1]) | .[] | "\(.address) \(.at[0])"' <<< "$clients")
-            while read -r address width; do
-                height=$((height + 300))
-                hypr_cmd+=";dispatch movewindowpixel exact $width $height,address:$address"
-            done <<< "$addresses_widths"
-
-            hyprctl --batch "$hypr_cmd"
+            hyprctl --batch "$hypr_cmd"            
             ;;
     esac
 }

@@ -78,7 +78,7 @@ sudo pacman -S libnotify fnott foot vifm qt6-wayland qutebrowser python-adblock
 - *Deletes the last commit from the remote repository while keeping it locally.*:
   `git push origin +HEAD^:main`
 
-- *Undoes the last commit, keeping the changes staged for commit.*:
+- *Undoes the last commit locally, keeping the changes staged for commit.*:
   `git reset --soft HEAD@{1}`
 
 - *Commits all changes in the repository.*:
