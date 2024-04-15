@@ -89,6 +89,7 @@ settings:
     '*://discord.com/*': true
     '*://drive.google.com/*': true
     '*://duckduckgo.com/*': false
+    '*://gds.google.com/*': true
     '*://gitlab.archlinux.org/*': true
     '*://gitlab.com/*': true
     '*://jqplay.org/*': true

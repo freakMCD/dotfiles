@@ -1,0 +1,20 @@
+#!/bin/bash
+
+twitch_vod_pattern="(\.*twitch\.tv\/videos\/\.*)"
+
+handle_twitch() {
+    if [[ $1 =~ $twitch_vod_pattern ]]; then
+        mpv "$1" --loop-playlist &>/dev/null & exit
+    else
+        streamlink --title '{author} - {title} - {category}' "$1" &>/dev/null & exit
+    fi
+}
+
+case $QUTE_URL in
+    *twitch.tv/*)
+        handle_twitch "$QUTE_URL"
+        ;;
+	*)
+        mpv $QUTE_URL &>/dev/null &exit
+        ;;
+esac

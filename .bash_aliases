@@ -41,7 +41,7 @@ dict() {
 }
 
 mpv() {
-    nohup /usr/bin/mpv --force-window=yes "$@" &>/dev/null & exit
+    nohup /usr/bin/mpv "$@" &>/dev/null & exit
 }
 
 fm()

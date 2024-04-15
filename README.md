@@ -60,6 +60,13 @@ sudo pacman -S libnotify fnott foot vifm qt6-wayland qutebrowser python-adblock
 
     - Add "tsc=reliable clocksource=tsc" -> GRUB_CMDLINE_LINUX_DEFAULT= -> /etc/default/grub
 
+## Unclutter .config
+
+**pulse**
+
+    Edit cookie-file in /etc/pulse/client.conf
+    > cookie-file = /tmp/pulse-cookie
+
 <details><summary>
 <h2>Notes</h2>
 </summary>
@@ -100,7 +107,13 @@ sudo pacman -S libnotify fnott foot vifm qt6-wayland qutebrowser python-adblock
   `PASSWORD_STORE_GPG_OPTS='--pinentry-mode=loopback --passphrase <passphrase>'`
     
 -  *Systemd*
-  `systemctl --user mask/unmask <service-name>`
+*  `systemctl --user mask/unmask <service-name>`
+
+- *To format a device to Fat*
+  *Install "dosfstools"*
+  *To find the device run "lsblk"*
+  `sudo mkfs.msdos -F 32 /dev/<device>`
+
 
 </details>
 
