@@ -8,45 +8,38 @@ mpvplaycontrol() {
 }
 
 clients=$(hyprctl clients -j)
-
-mapfile -t addresses_positions < <(jq -r '
-    # Get the workspace of the first mpv window
-    . as $clients | ($clients | map(select(.class == "mpv"))) | .[0].workspace.id as $mpv_workspace |
-    # Select mpv or fullscreen windows on the same workspace as the first mpv window
-    [$clients[] | select((.class == "mpv") or (.fullscreen == true and .workspace.id == $mpv_workspace))] |
-    sort_by(.at[1]) | .[] | "\(.address) \(.at[1])"
-' <<< "$clients")
+active_workspace=$(hyprctl activeworkspace -j | jq '.id')
+mapfile -t addresses_positions < <(jq -r '[.[] | select(.class == "mpv" or (.fullscreen == true and .workspace.id == '"$active_workspace"'))] | sort_by(.at[1]) | .[] | "\(.address) \(.at[1])"' <<< "$clients")
 
 [[ "${#addresses_positions[@]}" -eq 0 ]] && exit
 
 read -r address y_coord <<< "${addresses_positions[0]}"
-
 if [[ "$y_coord" -eq 0 ]]; then
-    hypr_cmd="dispatch fullscreen; dispatch pin address:$address; setprop address:$address nofocus 1;"
+    if jq -e '.[] | select(.workspace.id != '"$active_workspace"' and .address == "'"$address"'")' <<< "$clients"; then
+        hyprctl dispatch focuswindow address:$address
+    fi
+    hypr_cmd="dispatch fullscreen; dispatch pin address:$address;"
 	addresses_positions=("${addresses_positions[@]:1}")
 
     if [[ ${#addresses_positions[@]} -eq 0 ]];then
-        next_workspace=$(jq -r '.[] | select(.address == "'"${address}"'") | .workspace.id' <<< "$clients")
-        jq -e --argjson workspace "$next_workspace" '.[] | select(.workspace.id == $workspace and .class != "mpv")' <<< "$clients" >/dev/null && hypr_cmd+="; dispatch focuscurrentorlast"
+        # Check if there is another non mpv window in the same workspace to prevent a crash
+        jq -e '.[] | select(.workspace.id == '"$active_workspace"' and .class != "mpv")' <<< "$clients" >/dev/null && hypr_cmd+="dispatch focuscurrentorlast;"
+        hyprctl --batch "$hypr_cmd setprop address:$address nofocus 1"
+        exit
     fi
+    # Return focus only if the fullscreen window was MPV
+    address_class=$(jq -r '.[] | select(.address == "'"${address}"'") | .class' <<< "$clients")
+    [[ "$address_class" == "mpv" ]] && hypr_cmd+="dispatch focuscurrentorlast; setprop address:$address nofocus 1;"
 fi
 
 # Find the target address
 for pair in "${addresses_positions[@]}"; do
     read -r address coordinate <<< "$pair"
-    # Check if the coordinate is equal to argument
-    if [ "$coordinate" -eq "$1" ]; then
-        target_address=$address
-        break
-    fi
+    [[ "$coordinate" -eq "$1" ]] && target_address=$address && break
 done
 
-if [[ "$target_address" == "" ]];then
-    hyprctl --batch "$hypr_cmd"
-    exit
-fi
+[[ -z "$target_address" ]] && hyprctl --batch "$hypr_cmd" && exit
 
-hypr_cmd+="; setprop address:$target_address nofocus 0; dispatch focuswindow address:$target_address; dispatch pin address:$target_address; dispatch fullscreen"
+hypr_cmd+="setprop address:$target_address nofocus 0; dispatch focuswindow address:$target_address; dispatch pin address:$target_address; dispatch fullscreen"
 mpvplaycontrol "$target_address" "$clients"
-
 hyprctl --batch "$hypr_cmd"

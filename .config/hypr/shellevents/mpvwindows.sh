@@ -14,47 +14,43 @@ mpvplaycontrol() {
 event_openwindow() {
     case "$WINDOWCLASS" in
         mpv)
-            local hypr_cmd addresses_widths height=20
             clients=$(hyprctl clients -j)
-            mpv_count=$(jq -r '. | map(select(.class == "mpv" )) | length' <<< "$clients")
+            ((mpv_count++))
             mpvplaycontrol "0x$WINDOWADDRESS" "$clients"
-
             height=$((20 + ($mpv_count - 1) * 300))
-            hypr_cmd+="dispatch movewindowpixel exact 1438 $height,address:0x$WINDOWADDRESS"
-            hyprctl --batch "$hypr_cmd"            
+            hyprctl --batch "dispatch movewindowpixel exact 1438 $height,address:0x$WINDOWADDRESS"
+            addresses+=( "$WINDOWADDRESS" )
             ;;
     esac
 }
 
 event_closewindow() {
-    local is_mpv addresses_positions hypr_cmd
-    clients=$(hyprctl clients -j)
-    count_after=$(jq -r '. | map(select(.class == "mpv" )) | length' <<< "$clients")
-
-    if (( count_after == mpv_count -1 )); then
-        mpv_count=$count_after
-        if (( mpv_count > 0 ));then
-            mapfile -t addresses_positions < <(jq -r '[.[] | select(.class == "mpv")] | sort_by(.at[1]) | .[] | "\(.address) \(.at[0]) \(.at[1])"' <<< "$clients")  
-            read -r address1 width1 height1 <<< "${addresses_positions[0]}"
-            mpvplaycontrol "$address1" "$clients"
-
-            case "${#addresses_positions[@]}" in
-                1)
-                    if [[ $height1 -eq 320 ]]; then
-                        hypr_cmd+="dispatch movewindowpixel exact $width1 20,address:$address1;"
-                    fi
-                    ;;
-                2)
-                    read -r address2 width2 height2 <<< "${addresses_positions[1]}"
-                    if [[ $height2 -eq 620 ]];then
-                        hypr_cmd+="dispatch movewindowpixel exact $width1 20,address:$address1;"
-                        hypr_cmd+="dispatch movewindowpixel exact $width2 320,address:$address2;"
-                    fi
-                    ;;
-            esac
-            if [[ -n "$hypr_cmd" ]]; then
-                hyprctl --batch ""$hypr_cmd""
+    # Check if WINDOWADDRESS is in the array
+    if [[ " ${addresses[@]} " =~ " $WINDOWADDRESS " ]]; then
+        # Find and remove the closed window's address from the array
+        for i in "${!addresses[@]}"; do
+            if [[ "${addresses[$i]}" == "$WINDOWADDRESS" ]]; then
+                unset "addresses[$i]"
+                ((mpv_count--))
             fi
+        done
+        addresses=("${addresses[@]}")
+
+        if [[ -n ${addresses[@]} ]]; then
+            # Check if the activewindow is MPV and fullscreen
+			window_info=$(hyprctl activewindow -j)
+			if jq -e '.fullscreen == true and .class == "mpv"' <<< "$window_info" >/dev/null; then
+			    address=$(jq -r '.address' <<< "$window_info")
+			    hyprctl --batch "dispatch fullscreen; dispatch pin address:$address; dispatch focuscurrentorlast; setprop address:$address nofocus 1"
+			fi	
+
+	        # Adjust window positions if there are remaining windows
+            for ((i = 0; i < ${#addresses[@]}; i++)); do
+                height=$((20 + $i * 300))
+                hyprctl dispatch movewindowpixel exact 1438 "$height",address:"0x${addresses[$i]}"
+            done
         fi
+    else
+        return 1
     fi
 }

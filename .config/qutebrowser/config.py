@@ -5,9 +5,10 @@ from urllib.request import urlopen
 config.load_autoconfig()
 
 c.content.user_stylesheets = ["~/.config/qutebrowser/css/gruvbox-all-sites.css"]
-
 config.source('mappings.py')
 config.source('gruvbox.py')
+
+c.content.autoplay = False
 
 # Adblock
 c.content.blocking.enabled = True

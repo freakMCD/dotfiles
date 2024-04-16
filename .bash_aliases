@@ -7,7 +7,7 @@ alias rclone="rclone -P"
 alias curl='curl -O'
 alias df='df -h'
 
-alias steam='gamescope -r 60 -o 24 -h 720 -H 1080 -F fsr -e -- steamlx'
+alias steam='gamescope -r 60 -o 24 -e -- steamlx'
 
 alias sortmusic='cd ~/Music/2015-2022 && stat --format="%W %n" * | sort -nr'
 alias mymusic='mpv --shuffle --volume=67 --save-position-on-quit=no "https://www.youtube.com/playlist?list=PL4CmunqMOJjLhWvgQUXWvewHEOoPAVAkt"'

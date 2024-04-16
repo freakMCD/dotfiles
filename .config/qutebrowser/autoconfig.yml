@@ -80,6 +80,7 @@ settings:
     '*://*.soundbible.com/*': true
     '*://*.store.epicgames.com/*': true
     '*://*.store.steampowered.com/*': true
+    '*://*.twitter.com/*': true
     '*://*.www.epicgames.com/*': true
     '*://*.www.protondb.com/*': true
     '*://*.www.shellcheck.net/*': true
@@ -119,6 +120,10 @@ settings:
     global: JetBrainsMono Nerd Font
   fonts.default_size:
     global: 10pt
+  fonts.web.size.default:
+    global: 16
+  hints.chars:
+    global: asdghzxcvn
   prompt.radius:
     global: 8
   qt.chromium.experimental_web_platform_features:

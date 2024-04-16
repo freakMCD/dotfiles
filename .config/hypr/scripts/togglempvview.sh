@@ -2,7 +2,7 @@
 
 # Find the addresses and positions of the active (non-hidden) mpv windows
 addresses_positions=$(hyprctl clients -j | jq -r '.[] | select(.class=="mpv" and .fullscreen != "true") | "\(.address) \(.at | @csv)"')
-if [[ $addresses_positions == "" ]];then
+if [[ -z $addresses_positions ]];then
     exit
 fi
 

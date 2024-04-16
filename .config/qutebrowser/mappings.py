@@ -4,9 +4,8 @@ leader = "<Space>"
 # 'LocalLeader' key binding -- intended for 'in-page' personal maps
 lleader = ","
 
-c.hints.chars = "asdghzxcvb"
+c.hints.chars = "qweasdzxc"
 config.bind('f', 'mode-leave', mode='hint')
-config.bind('e', 'mode-leave', mode='hint')
 
 # Common prefix for video link selectors
 prefix = 'a[href*='
@@ -39,7 +38,6 @@ bind = {
     lleader + "f": "hint videos spawn --detach mpv {hint-url} --profile=fastYT --force-window=yes",
 
     ## hints
-    "e": "hint button",
 	"i": "hint --first inputs",
     "I": "hint inputs",
     ## qutebrowser mappings
