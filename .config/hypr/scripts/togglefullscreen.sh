@@ -7,19 +7,41 @@ mpvplaycontrol() {
     done
 }
 
-clients=$(hyprctl clients -j)
-active_workspace=$(hyprctl activeworkspace -j | jq '.id')
-mapfile -t addresses_positions < <(jq -r '[.[] | select(.class == "mpv" or (.fullscreen == true and .workspace.id == '"$active_workspace"'))] | sort_by(.at[1]) | .[] | "\(.address) \(.at[1])"' <<< "$clients")
+getFullscreenCoord() {
+    local coords=()
+    local expected_values=(20 320 620)
 
-[[ "${#addresses_positions[@]}" -eq 0 ]] && exit
+    for line in "$@"; do
+        # Extract the coord
+        coord="${line#* }"
+        coords+=("$coord")
+    done
+
+    # Perform missing number check
+    for expected_value in "${expected_values[@]}"; do
+        if [[ ! " ${coords[@]} " =~ " $expected_value " ]]; then
+            fullscreen_coord=$expected_value
+            break
+        fi
+    done
+}
+
+clients=$(hyprctl clients -j)
+# If there isn't any mpv window, exits the script
+jq -e '.[] | select(.class == "mpv")' <<< "$clients" >/dev/null || exit
+
+mapfile -t addresses_positions < <(jq -r '[.[] | select(.class == "mpv" or (.fullscreen == true and (.workspace.name | startswith("special:") | not)))] | sort_by(.at[1]) | .[] | "\(.address) \(.at[1])"' <<< "$clients")
 
 read -r address y_coord <<< "${addresses_positions[0]}"
 if [[ "$y_coord" -eq 0 ]]; then
+    active_workspace=$(hyprctl activeworkspace -j | jq '.id')
     if jq -e '.[] | select(.workspace.id != '"$active_workspace"' and .address == "'"$address"'")' <<< "$clients"; then
-        hyprctl dispatch focuswindow address:$address
+        hypr_cmd="dispatch focuswindow address:$address;"
+        getFullscreenCoord "${addresses_positions[@]}"
+        [[ "$fullscreen_coord" == "$1" ]] && hyprctl --batch "$hypr_cmd" && exit
     fi
-    hypr_cmd="dispatch fullscreen; dispatch pin address:$address;"
-	addresses_positions=("${addresses_positions[@]:1}")
+    hypr_cmd+="dispatch fullscreen; dispatch pin address:$address;"
+    addresses_positions=("${addresses_positions[@]:1}")
 
     if [[ ${#addresses_positions[@]} -eq 0 ]];then
         # Check if there is another non mpv window in the same workspace to prevent a crash

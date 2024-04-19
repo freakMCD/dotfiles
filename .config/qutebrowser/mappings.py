@@ -15,7 +15,7 @@ video_selector_parts = ['youtu', 'share/', 'reel/', 'watch?']
 video_selector = ' , '.join([f'{prefix}"{part}"]' for part in video_selector_parts])
 
 # Specific selectors
-twitch_selector= 'a[data-a-target*="preview-card-image-link"]'
+twitch_selector = '.side-nav-card, a[data-a-target="preview-card-image-link"]'
 youtube_selector = 'a[id="thumbnail"]'
 
 # Set selectors for video hints

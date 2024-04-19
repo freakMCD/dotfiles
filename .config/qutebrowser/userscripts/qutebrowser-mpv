@@ -1,5 +1,4 @@
 #!/bin/bash
-
 twitch_vod_pattern="(\.*twitch\.tv\/videos\/\.*)"
 
 handle_twitch() {
@@ -15,6 +14,6 @@ case $QUTE_URL in
         handle_twitch "$QUTE_URL"
         ;;
 	*)
-        mpv $QUTE_URL &>/dev/null &exit
+        mpv "$QUTE_URL" &>/dev/null &exit
         ;;
 esac
