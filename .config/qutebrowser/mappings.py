@@ -34,6 +34,7 @@ bind = {
 	leader + "v": "config-source ;; message-info 'qutebrowser reloaded'",
     ## mpv 
     lleader + "m": "hint videos userscript qutebrowser-mpv",
+    lleader + "p": "hint --rapid videos spawn --userscript add-to-mpv-playlist {hint-url}",
     lleader + "l": "hint links userscript qutebrowser-mpv",
     lleader + "f": "hint videos spawn --detach mpv {hint-url} --profile=fastYT --force-window=yes",
 

@@ -1,0 +1,42 @@
+#!/bin/bash
+mpv_socket_dir="/tmp/mpvSockets"
+
+# Function to add a URL to the playlist of a specific mpv instance
+add_url_to_playlist() {
+    local pid="$1"
+    local url="$2"
+    echo '{ "command": ["loadfile", "'"$url"'", "append"] }' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
+}
+
+# Get the target mpv instance based on y-coordinate
+get_mpv_instance_by_ycoord() {
+    local y_coord="20"
+    local target_pid
+
+    local mpv_instances=$(hyprctl clients -j | jq -r '[.[] | select(.class == "mpv" and .at[1] == '"$y_coord"')] | .[]')
+
+    if [[ -n "$mpv_instances" ]]; then
+        target_pid=$(jq -r '.pid' <<< "$mpv_instances")
+    fi
+
+    echo "$target_pid"
+}
+
+# Main script
+url="$1"
+y_coord="20"
+
+if [[ -z "$url" || -z "$y_coord" ]]; then
+    echo "Usage: $0 <url> <y-coordinate>"
+    exit 1
+fi
+
+# Get the target mpv instance based on y-coordinate
+target_pid=$(get_mpv_instance_by_ycoord "$y_coord")
+
+if [[ -n "$target_pid" ]]; then
+    # Add URL to the playlist of the target mpv instance
+    add_url_to_playlist "$target_pid" "$url"
+else
+    nohup mpv --volume=67 --save-position-on-quit=no --loop-playlist "$1" >/dev/null 2>&1 &
+fi

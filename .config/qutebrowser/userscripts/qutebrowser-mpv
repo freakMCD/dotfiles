@@ -5,7 +5,7 @@ handle_twitch() {
     if [[ $1 =~ $twitch_vod_pattern ]]; then
         mpv "$1" --loop-playlist &>/dev/null & exit
     else
-        streamlink --title '{author} - {title} - {category}' "$1" &>/dev/null & exit
+        streamlink --title '{author} - {title} - {category}' --twitch-proxy-playlist=https://eu.luminous.dev,https://lb-eu.cdn-perfprod.com "$1" &>/dev/null & exit
     fi
 }
 

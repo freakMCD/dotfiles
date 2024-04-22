@@ -8,40 +8,50 @@ bar:
  background: 00000099
 
  left:
-   - network:
-       name: enp34s0
+    - network:
+        content:
+          map:
+            default: {empty: {}}
+            conditions:
+              name == enp34s0:
+                map:
+                  conditions:
+                    ~carrier: {empty: {}}
+                    carrier:
+                      map:
+                        default: {string: {text: offline, foreground: e78a4eff}}
+                        conditions:
+                          state == up && ipv4 != "": {string: {text: online, foreground: 89b482ff}}
+ center:
+   - script:
+       path: /usr/bin/playerctl
+       args:
+         - "--follow"
+         - "metadata"
+         - "-f"
+         - |
+           status|string|{{status}}
+           playerName|string|{{playerName}}
+           artist|string|{{artist}}
+           title|string|{{title}}
        content:
          map:
            conditions:
-             ~carrier: {empty: {}}
-             carrier:
-               map:
-                 default: {string: {text: Connecting, foreground: e78a4eff}}
-                 conditions:
-                   state == up:
-                     map:
-                       default: {string: {text: online, foreground: 89b482ff}}
-                       conditions:
-                         ipv4 == "": {string: {text: offline, foreground: e78a4eff}}
+             status == Paused:
+              map:
+                default: {string: {text: "{artist} - {title}", foreground: FF6F6199}}
+                conditions:
+                  playerName == "mpd": {string: {text: "{artist} - {title}", foreground: d3869b99}}
+                  playerName == "mpv": {string: {text: "{artist} - {title}", foreground: 00bbcc99}}
 
- center:
-   - mpd:
-       host: /run/user/1000/mpd/socket
-       content:
-         map:
-          conditions:
-            state == paused:      
-              string: 
-                text: "  {artist} - {title}"
-                foreground: d3869b99
-            state == playing:      
-              string: 
-                text: "  {artist} - {title}"
-                foreground: d3869bff
-
+             status == Playing:
+              map:
+                default: {string: {text: "{artist} - {title}", foreground: FF6F61FF}}
+                conditions:
+                  playerName == "mpd": {string: {text: "{artist} - {title}", foreground: d3869bff}}
+                  playerName == "mpv": {string: {text: "{artist} - {title}", foreground: 00bbccFF}}
 
  right:
-
    - cpu:
        poll-interval: 3000
        content:

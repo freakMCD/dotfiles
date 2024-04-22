@@ -54,6 +54,7 @@ settings:
     '*://*.suv2.unitru.edu.pe/*': true
     '*://*.twitter.com/*': true
     '*://*.www.epicgames.com/*': true
+    '*://*.www.nerdfonts.com/*': true
     '*://*.www.protondb.com/*': true
     '*://*.www.shellcheck.net/*': true
     '*://*.www.unitru.edu.pe/*': true
