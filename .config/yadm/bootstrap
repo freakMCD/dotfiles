@@ -15,7 +15,8 @@ install_basics() {
     yay xdg-desktop-portal-hyprland-git puddletag newsraft-git perl-mime-encwords
 
     # Mpris
-    sudo pacman -S playerctl mpv-mpris mpd-mpris-bin
+    sudo pacman -S playerctl mpv-mpris
+    yay mpd-mpris-bin
 
     # Enable services
     systemctl --user enable --now enable mpd-mpris

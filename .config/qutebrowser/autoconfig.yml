@@ -67,6 +67,7 @@ settings:
     '*://gds.google.com/*': true
     '*://gitlab.archlinux.org/*': true
     '*://gitlab.com/*': true
+    '*://hollowknight.wiki/*': true
     '*://jqplay.org/*': true
     '*://lite.duckduckgo.com/*': true
     '*://mail.google.com/*': true

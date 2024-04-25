@@ -27,6 +27,8 @@ bar:
        path: /usr/bin/playerctl
        args:
          - "--follow"
+         - "-i"
+         - "chromium"
          - "metadata"
          - "-f"
          - |
@@ -42,14 +44,14 @@ bar:
                 default: {string: {text: "{artist} - {title}", foreground: FF6F6199}}
                 conditions:
                   playerName == "mpd": {string: {text: "{artist} - {title}", foreground: d3869b99}}
-                  playerName == "mpv": {string: {text: "{artist} - {title}", foreground: 00bbcc99}}
+                  playerName == "mpv": {string: {text: "{title}", foreground: 00bbcc99}}
 
              status == Playing:
               map:
                 default: {string: {text: "{artist} - {title}", foreground: FF6F61FF}}
                 conditions:
                   playerName == "mpd": {string: {text: "{artist} - {title}", foreground: d3869bff}}
-                  playerName == "mpv": {string: {text: "{artist} - {title}", foreground: 00bbccFF}}
+                  playerName == "mpv": {string: {text: "{title}", foreground: 00bbccFF}}
 
  right:
    - cpu:

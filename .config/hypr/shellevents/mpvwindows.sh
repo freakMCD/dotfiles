@@ -1,14 +1,9 @@
 mpv_socket_dir="/tmp/mpvSockets"
 
 mpvplaycontrol() {
-    jq -r '.[] | select(.class == "mpv") | "\(.address) \(.pid)"' <<< "$2" | while read -r address pid; do 
-        if [ "$address" == "$1" ]; then
-            echo '{ "command": ["set_property", "pause", false] }' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
-
-        else
-            echo '{ "command": ["set_property", "pause", true] }' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
-        fi
-    done
+    while read -r address pid; do 
+        echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
+    done <<< "$(jq -r '.[] | select(.class == "mpv" and .address != "'"$1"'" ) | "\(.address) \(.pid)"' <<< "$2")"
 }
 
 event_openwindow() {
@@ -16,10 +11,10 @@ event_openwindow() {
         mpv)
             clients=$(hyprctl clients -j)
             ((mpv_count++))
-            mpvplaycontrol "0x$WINDOWADDRESS" "$clients"
             height=$((20 + ($mpv_count - 1) * 300))
             hyprctl --batch "dispatch movewindowpixel exact 1438 $height,address:0x$WINDOWADDRESS"
             addresses+=( "$WINDOWADDRESS" )
+            mpvplaycontrol "0x$WINDOWADDRESS" "$clients"
             ;;
     esac
 }

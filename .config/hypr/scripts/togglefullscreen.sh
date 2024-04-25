@@ -1,10 +1,18 @@
 #!/bin/bash
 mpv_socket_dir="/tmp/mpvSockets"
 mpvplaycontrol() {
-    jq -r '.[] | select(.class == "mpv") | "\(.address) \(.pid)"' <<< "$2" | while read -r address pid; do 
-        if [[ "$address" == "$1" ]]; then mpv_action="false"; else mpv_action="true"; fi
-        echo '{ "command": ["set_property", "pause", '"$mpv_action"'] }' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
-    done
+    while read -r address pid; do 
+        if [[ "$address" == "$1" ]]; then
+            target_pid="$pid"
+        else
+            echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
+        fi
+    done <<< "$(jq -r '.[] | select(.class == "mpv") | "\(.address) \(.pid)"' <<< "$2")"
+    
+    if [ -n "$target_pid" ]; then
+        sleep 0.1
+        echo '{"command":["set_property","pause",false]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid"
+    fi
 }
 
 getFullscreenCoord() {
@@ -63,5 +71,5 @@ done
 [[ -z "$target_address" ]] && hyprctl --batch "$hypr_cmd" && exit
 
 hypr_cmd+="setprop address:$target_address nofocus 0; dispatch focuswindow address:$target_address; dispatch pin address:$target_address; dispatch fullscreen"
-mpvplaycontrol "$target_address" "$clients"
 hyprctl --batch "$hypr_cmd"
+mpvplaycontrol "$target_address" "$clients"
