@@ -7,7 +7,35 @@
 config_version: 2
 settings:
   bindings.commands:
-    global: null
+    global:
+      command:
+        <Escape>: mode-enter normal;; set statusbar.show in-mode
+        <Return>: command-accept;; set statusbar.show in-mode
+      hint:
+        f: mode-leave
+      normal:
+        ',f': hint videos spawn --detach mpv {hint-url} --profile=fastYT
+        ',m': hint videos spawn --detach mpv {hint-url}
+        ',p': hint --rapid videos spawn --userscript add-to-mpv-playlist {hint-url}
+        /: set statusbar.show always;; cmd-set-text /
+        ':': 'set statusbar.show always;; cmd-set-text :'
+        <Space>b: config-cycle tabs.show switching always
+        <Space>js: config-cycle content.javascript.enabled true false
+        <Space>v: config-source ;; message-info 'qutebrowser reloaded'
+        I: hint inputs
+        J: tab-prev
+        K: tab-next
+        O: set statusbar.show always;; cmd-set-text -s :open -t
+        gD: open -t https://discord.com/channels/@me
+        gW: open -t https://web.whatsapp.com
+        gd: open https://discord.com/channels/@me
+        gw: open https://web.whatsapp.com
+        i: hint --first inputs
+        j: scroll-px 0 200
+        k: scroll-px 0 -200
+        l: scroll-px 100 0
+        o: set statusbar.show always;; cmd-set-text -s :open
+        q: null
   colors.webpage.darkmode.enabled:
     global: false
   colors.webpage.darkmode.policy.images:
@@ -29,6 +57,10 @@ settings:
     global: always
   completion.shrink:
     global: true
+  completion.timestamp_format:
+    global: '%Y-%m-%d %H:%M'
+  content.blocking.adblock.lists:
+    global: null
   content.desktop_capture:
     https://discord.com: true
   content.fullscreen.window:
@@ -39,6 +71,7 @@ settings:
   content.javascript.enabled:
     '*://*.accounts.google.com/*': true
     '*://*.anilist.co/*': true
+    '*://*.bancaporinternet.interbank.pe/*': true
     '*://*.checkout.steampowered.com/*': true
     '*://*.codeberg.org/*': true
     '*://*.docs.google.com/*': true
@@ -63,13 +96,14 @@ settings:
     '*://createfeed.fivefilters.org/*': true
     '*://discord.com/*': true
     '*://drive.google.com/*': true
-    '*://duckduckgo.com/*': false
+    '*://duckduckgo.com/*': true
     '*://gds.google.com/*': true
     '*://gitlab.archlinux.org/*': true
     '*://gitlab.com/*': true
     '*://hollowknight.wiki/*': true
     '*://jqplay.org/*': true
     '*://lite.duckduckgo.com/*': true
+    '*://localhost/*': true
     '*://mail.google.com/*': true
     '*://mangareader.to/*': true
     '*://mega.nz/*': true
@@ -84,9 +118,12 @@ settings:
     '*://www.speedrun.com/*': true
     '*://www.twitch.tv/*': true
     '*://www.youtube.com/*': true
-    global: false
+    global: true
   content.media.audio_capture:
+    https://app.zoom.us: false
     https://discord.com: true
+  content.media.video_capture:
+    https://app.zoom.us: false
   content.notifications.enabled:
     https://web.whatsapp.com: true
     https://www.facebook.com: false

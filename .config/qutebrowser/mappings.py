@@ -15,12 +15,10 @@ video_selector_parts = ['youtu', 'share/', 'reel/', 'watch?']
 video_selector = ' , '.join([f'{prefix}"{part}"]' for part in video_selector_parts])
 
 # Specific selectors
-twitch_selector = '.side-nav-card, a[data-a-target="preview-card-image-link"]'
 youtube_selector = 'a[id="thumbnail"]'
 
 # Set selectors for video hints
 config.set('hints.selectors', {'videos': [video_selector]}, pattern='*')
-config.set('hints.selectors', {'videos': [twitch_selector]}, pattern='*://*.twitch.tv/*')
 config.set('hints.selectors', {'videos': [youtube_selector]}, pattern='*://*.youtube.com/*')
 
 bind = {
@@ -33,10 +31,9 @@ bind = {
 	leader + "b": "config-cycle tabs.show switching always",
 	leader + "v": "config-source ;; message-info 'qutebrowser reloaded'",
     ## mpv 
-    lleader + "m": "hint videos userscript qutebrowser-mpv",
+    lleader + "m": "hint videos spawn --detach mpv {hint-url}",
     lleader + "p": "hint --rapid videos spawn --userscript add-to-mpv-playlist {hint-url}",
-    lleader + "l": "hint links userscript qutebrowser-mpv",
-    lleader + "f": "hint videos spawn --detach mpv {hint-url} --profile=fastYT --force-window=yes",
+    lleader + "f": "hint videos spawn --detach mpv {hint-url} --profile=fastYT",
 
     ## hints
 	"i": "hint --first inputs",

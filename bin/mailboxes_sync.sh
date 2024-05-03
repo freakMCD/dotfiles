@@ -24,7 +24,7 @@ for file in "$prefix"/*; do
                         | perl -pe 'use MIME::EncWords(decode_mimewords); $_=decode_mimewords($_);')
                 subject=$(sed -n '/^Subject: /s/^Subject: //p' "$newemail" \
                         | perl -pe 'use MIME::EncWords(decode_mimewords); $_=decode_mimewords($_);')
-                /usr/bin/notify-send -t 60000 "$sender" "$subject" 
+                /usr/bin/notify-send -t 30000 "$sender" "$subject" 
                 #/usr/bin/notify-send -t 120000 "New email" "$newcount new messages in =$folder" 
             done
         fi
