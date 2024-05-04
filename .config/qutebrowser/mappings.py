@@ -31,7 +31,7 @@ bind = {
 	leader + "b": "config-cycle tabs.show switching always",
 	leader + "v": "config-source ;; message-info 'qutebrowser reloaded'",
     ## mpv 
-    lleader + "m": "hint videos spawn --detach mpv {hint-url}",
+    lleader + "m": "hint videos userscript qutebrowser-mpv",
     lleader + "p": "hint --rapid videos spawn --userscript add-to-mpv-playlist {hint-url}",
     lleader + "f": "hint videos spawn --detach mpv {hint-url} --profile=fastYT",
 

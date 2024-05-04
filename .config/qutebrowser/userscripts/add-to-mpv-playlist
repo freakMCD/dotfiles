@@ -38,5 +38,5 @@ if [[ -n "$target_pid" ]]; then
     # Add URL to the playlist of the target mpv instance
     add_url_to_playlist "$target_pid" "$url"
 else
-    nohup mpv --volume=67 --save-position-on-quit=no --loop-playlist "$1" >/dev/null 2>&1 &
+    nohup mpv --volume=80 --save-position-on-quit=no --loop-playlist "$1" >/dev/null 2>&1 &
 fi

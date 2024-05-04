@@ -1,0 +1,10 @@
+#!/bin/bash
+
+case $QUTE_URL in
+    *youtube.com/shorts/*)
+        mpv --loop-file=inf "$QUTE_URL" &>/dev/null &exit
+        ;;
+	*)
+        mpv "$QUTE_URL" &>/dev/null &exit
+        ;;
+esac

@@ -8,7 +8,8 @@ alias curl='curl -O'
 alias df='df -h'
 
 alias steam='gamescope -r 60 -o 24 -F fsr -e -- steamlx'
-alias steam_uncapped='gamescope -F fsr -e -- steamlx'
+alias hdsteam='gamescope -h 1080 -e -- steamlx'
+alias nocapsteam='gamescope -F fsr -e -- steamlx'
 
 alias sortmusic='cd ~/Music/2015-2022 && stat --format="%W %n" * | sort -nr'
 alias mymusic='mpv --shuffle --volume=67 --save-position-on-quit=no "https://www.youtube.com/playlist?list=PL4CmunqMOJjLhWvgQUXWvewHEOoPAVAkt"'

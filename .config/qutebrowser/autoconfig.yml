@@ -72,6 +72,7 @@ settings:
     '*://*.accounts.google.com/*': true
     '*://*.anilist.co/*': true
     '*://*.bancaporinternet.interbank.pe/*': true
+    '*://*.chatgpt.com/*': true
     '*://*.checkout.steampowered.com/*': true
     '*://*.codeberg.org/*': true
     '*://*.docs.google.com/*': true
@@ -127,6 +128,8 @@ settings:
   content.notifications.enabled:
     https://web.whatsapp.com: true
     https://www.facebook.com: false
+  content.register_protocol_handler:
+    https://mail.google.com?extsrc=mailto&url=%25s: false
   fonts.default_family:
     global: JetBrainsMono Nerd Font
   fonts.default_size:
