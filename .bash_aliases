@@ -1,4 +1,4 @@
-alias shellevents="socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock  EXEC:'/home/edwin/.config/hypr/shellevents/shellevents /home/edwin/.config/hypr/shellevents/mpvwindows.sh',nofork"
+alias shellevents="socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock  EXEC:'/home/edwin/.config/hypr/shellevents/shellevents /home/edwin/.config/hypr/shellevents/mpvwindows.sh',nofork"
 alias reloadevent="killall shellevents -USR1"
 alias aliasrc="nvim ~/.bash_aliases && source ~/.bash_aliases"
 alias bashrc="nvim ~/.bashrc && source ~/.bashrc"
@@ -6,6 +6,7 @@ alias dus='du -h --max-depth=1 | sort -hr' # Disk Usage Sorted
 alias rclone="rclone -P"
 alias curl='curl -O'
 alias df='df -h'
+alias bc='bc -l'
 
 alias steam='gamescope -r 60 -o 24 -F fsr -e -- steamlx'
 alias hdsteam='gamescope -h 1080 -e -- steamlx'

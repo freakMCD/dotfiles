@@ -86,7 +86,9 @@ settings:
     '*://*.store.epicgames.com/*': true
     '*://*.store.steampowered.com/*': true
     '*://*.suv2.unitru.edu.pe/*': true
+    '*://*.tramites-uraa.unitru.edu.pe/*': true
     '*://*.twitter.com/*': true
+    '*://*.uraa.unitru.edu.pe/*': true
     '*://*.www.epicgames.com/*': true
     '*://*.www.nerdfonts.com/*': true
     '*://*.www.protondb.com/*': true
@@ -114,6 +116,7 @@ settings:
     '*://store.epicgames.com/*': false
     '*://unitru.edu.pe/*': true
     '*://web.whatsapp.com/*': true
+    '*://wolfreealpha.gitlab.io/*': true
     '*://www.facebook.com/*': true
     '*://www.google.com/*': true
     '*://www.speedrun.com/*': true

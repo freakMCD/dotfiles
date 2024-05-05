@@ -18,7 +18,7 @@ music() {
    set ftp:ssl-allow false; set ftp:use-feat false;
    open ftp://${FTP_SERVER}:${FTP_PORT};
    cd Music;
-   mirror -R --use-pget-n=3 --parallel=10 --no-recursion --only-missing --no-perms -v;
+   mirror -R --use-pget-n=3 --parallel=10 --no-recursion --ignore-time --no-perms -v;
    bye" || echo "Music sync failed!"
 }
 
