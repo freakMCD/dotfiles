@@ -15,7 +15,7 @@ video_selector_parts = ['youtu', 'share/', 'reel/', 'watch?']
 video_selector = ' , '.join([f'{prefix}"{part}"]' for part in video_selector_parts])
 
 # Specific selectors
-youtube_selector = 'a[id="thumbnail"]'
+youtube_selector = '#thumbnail.inline-block'
 
 # Set selectors for video hints
 config.set('hints.selectors', {'videos': [video_selector]}, pattern='*')

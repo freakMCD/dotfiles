@@ -9,6 +9,14 @@ config.source('mappings.py')
 config.source('gruvbox.py')
 
 c.content.autoplay = False
+c.content.notifications.enabled = False
+config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
+
+# Whitelist specific subdomain
+config.set('content.blocking.whitelist', [
+    '*://*.reddit.com/r/qutebrowser/*',
+])
+
 
 # Adblock
 c.content.blocking.enabled = True
@@ -40,10 +48,9 @@ c.tabs.show = "multiple"
 c.tabs.position = "top"
 c.tabs.max_width = 200
 
-
 c.url.searchengines = {
     "DEFAULT": "https://lite.duckduckgo.com/lite/?q={}",
-    "yt": "https://inv.n8pjl.ca/results?search_query={}",
+    "yt": "https://invidious.privacyredirect.com/results?search_query={}",
 }
 
 with config.pattern("*://discord.com/*") as p:

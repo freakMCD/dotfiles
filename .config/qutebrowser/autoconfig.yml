@@ -15,7 +15,7 @@ settings:
         f: mode-leave
       normal:
         ',f': hint videos spawn --detach mpv {hint-url} --profile=fastYT
-        ',m': hint videos spawn --detach mpv {hint-url}
+        ',m': hint videos userscript qute-mpv
         ',p': hint --rapid videos spawn --userscript add-to-mpv-playlist {hint-url}
         /: set statusbar.show always;; cmd-set-text /
         ':': 'set statusbar.show always;; cmd-set-text :'
@@ -95,6 +95,8 @@ settings:
     '*://*.www.shellcheck.net/*': true
     '*://*.www.unitru.edu.pe/*': true
     '*://*.www.webtoons.com/*': true
+    '*://aulavirtual2.unitru.edu.pe/*': true
+    '*://bugreports.qt.io/*': true
     '*://chat.openai.com/*': true
     '*://createfeed.fivefilters.org/*': true
     '*://discord.com/*': true
@@ -118,6 +120,7 @@ settings:
     '*://web.whatsapp.com/*': true
     '*://wolfreealpha.gitlab.io/*': true
     '*://www.facebook.com/*': true
+    '*://www.google.com.br/*': true
     '*://www.google.com/*': true
     '*://www.speedrun.com/*': true
     '*://www.twitch.tv/*': true
@@ -129,7 +132,7 @@ settings:
   content.media.video_capture:
     https://app.zoom.us: false
   content.notifications.enabled:
-    https://web.whatsapp.com: true
+    https://www.bennish.net: true
     https://www.facebook.com: false
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: false
