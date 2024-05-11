@@ -1,7 +1,7 @@
 #!/bin/bash
  
 calculator() {
-    bc -l
+    calc
 }
 
 sync_android() {

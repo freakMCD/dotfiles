@@ -79,6 +79,7 @@ settings:
     '*://*.due.moe/*': true
     '*://*.feedcontrol.fivefilters.org/*': true
     '*://*.github.com/*': true
+    '*://*.math.stackexchange.com/*': true
     '*://*.piped.adminforge.de/*': true
     '*://*.piped.lunar.icu/*': true
     '*://*.piped.privacydev.net/*': true
@@ -102,6 +103,7 @@ settings:
     '*://discord.com/*': true
     '*://drive.google.com/*': true
     '*://duckduckgo.com/*': true
+    '*://filterlists.com/*': true
     '*://gds.google.com/*': true
     '*://gitlab.archlinux.org/*': true
     '*://gitlab.com/*': true

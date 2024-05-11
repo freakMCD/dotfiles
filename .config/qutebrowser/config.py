@@ -15,21 +15,17 @@ config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
 # Whitelist specific subdomain
 config.set('content.blocking.whitelist', [
     '*://*.reddit.com/r/qutebrowser/*',
+    '*://*.reddit.com/r/Handwriting/*',
+    '*://*.reddit.com/r/math/*',
 ])
-
 
 # Adblock
 c.content.blocking.enabled = True
 c.content.blocking.method = "both"
 c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt',
                                     'https://easylist.to/easylist/easyprivacy.txt',
-                                    'https://easylist.to/easylist/fanboy-social.txt',
-                                    'https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt',
-                                    'https://raw.githubusercontent.com/arapurayil/aBL/main/filters/nsfw.txt',
-                                    'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',
-                                    'https://secure.fanboy.co.nz/fanboy-annoyance.txt',
-                                    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt',
-                                    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt',]
+                                    'https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/pornography-hosts',
+                                    ]
 
 # General
 c.content.javascript.enabled = False

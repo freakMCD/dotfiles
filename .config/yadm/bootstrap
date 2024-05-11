@@ -7,7 +7,7 @@ install_sound_system() {
 
 install_basics() {
     # Basics
-    sudo pacman -S bc swayimg grim slurp wl-clipboard wf-recorder lftp wev w3m unarchiver \
+    sudo pacman -S calc swayimg grim slurp wl-clipboard wf-recorder lftp wev w3m unarchiver \
     fd fzf mpd mpc mpv pass ncmpcpp neomutt neovim \
     isync msmtp rclone yt-dlp zathura \
     adobe-source-han-sans-otc-fonts sound-theme-freedesktop qt5-wayland

@@ -1,8 +1,9 @@
 // ==UserScript==
 // @match *://*.steampowered.com/*
 // @match *://*.google.com/maps/*
-// @match https://bancaporinternet.interbank.pe/*
-// @match https://web.whatsapp.com/*
+// @match *://bancaporinternet.interbank.pe/*
+// @match *://web.whatsapp.com/*
+// @match *://artofproblemsolving.com/*
 // ==/UserScript==
 
 const meta = document.createElement('meta');
