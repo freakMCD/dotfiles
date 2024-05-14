@@ -96,6 +96,7 @@ settings:
     '*://*.www.shellcheck.net/*': true
     '*://*.www.unitru.edu.pe/*': true
     '*://*.www.webtoons.com/*': true
+    '*://archive.org/*': true
     '*://aulavirtual2.unitru.edu.pe/*': true
     '*://bugreports.qt.io/*': true
     '*://chat.openai.com/*': true
@@ -126,6 +127,7 @@ settings:
     '*://www.google.com/*': true
     '*://www.speedrun.com/*': true
     '*://www.twitch.tv/*': true
+    '*://www.wolframalpha.com/*': true
     '*://www.youtube.com/*': true
     global: true
   content.media.audio_capture:

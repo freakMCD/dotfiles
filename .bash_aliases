@@ -6,6 +6,7 @@ alias dus='du -h --max-depth=1 | sort -hr' # Disk Usage Sorted
 alias rclone="rclone -P"
 alias curl='curl -O'
 alias df='df -h'
+alias winplot='~/bin/winplot.sh &exit'
 
 alias steam='gamescope -r 60 -o 24 -F fsr -e -- steamlx'
 alias hdsteam='gamescope -h 1080 -e -- steamlx'

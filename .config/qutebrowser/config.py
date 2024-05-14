@@ -28,7 +28,7 @@ c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt',
                                     ]
 
 # General
-c.content.javascript.enabled = False
+c.content.javascript.enabled = True
 c.content.javascript.clipboard = "access-paste"
 c.colors.webpage.darkmode.enabled = True
 c.fonts.default_size = "10pt"
