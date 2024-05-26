@@ -17,7 +17,14 @@ config.set('content.blocking.whitelist', [
     '*://*.reddit.com/r/qutebrowser/*',
     '*://*.reddit.com/r/Handwriting/*',
     '*://*.reddit.com/r/math/*',
+    '*://*.reddit.com/r/AskPhysics/*',
+    '*://*.reddit.com/r/linuxquestions/*',
+    '*://*.reddit.com/r/hyprland/*',
 ])
+
+config.set("input.mode_override", "passthrough", "https://onedrive.live.com/*")
+config.set("content.javascript.can_open_tabs_automatically", True, "https://onedrive.live.com/*")
+config.set("content.javascript.can_open_tabs_automatically", True, "https://www.microsoft365.com/*")
 
 # Adblock
 c.content.blocking.enabled = True
@@ -27,9 +34,13 @@ c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt',
                                     'https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/pornography-hosts',
                                     ]
 
-# General
+# Javascript
 c.content.javascript.enabled = True
 c.content.javascript.clipboard = "access-paste"
+config.set('content.javascript.enabled', False, 'wikipedia.org')
+config.set('content.javascript.enabled', False, 'genius.com')
+
+# General
 c.colors.webpage.darkmode.enabled = True
 c.fonts.default_size = "10pt"
 c.fonts.default_family = "JetBrainsMono Nerd Font"

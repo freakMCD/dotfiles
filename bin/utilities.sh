@@ -1,7 +1,7 @@
 #!/bin/bash
  
 calculator() {
-    calc
+    kalker
 }
 
 sync_android() {

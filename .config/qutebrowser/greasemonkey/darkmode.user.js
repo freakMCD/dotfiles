@@ -4,6 +4,7 @@
 // @match *://bancaporinternet.interbank.pe/*
 // @match *://web.whatsapp.com/*
 // @match *://artofproblemsolving.com/*
+// @match *://onedrive.live.com/*
 // ==/UserScript==
 
 const meta = document.createElement('meta');

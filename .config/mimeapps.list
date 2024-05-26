@@ -1,0 +1,5 @@
+
+[Default Applications]
+application/pdf=org.pwmt.zathura.desktop
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice-calc.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop

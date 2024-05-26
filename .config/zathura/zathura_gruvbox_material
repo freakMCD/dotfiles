@@ -19,8 +19,6 @@ set completion-bg               "#141617" # bg2
 set completion-fg               "#d4be98" # fg0
 set completion-group-bg         "#141617" # bg1
 set completion-group-fg         "#928374" # gray
-set completion-highlight-bg     "#7daea3" # blue
-set completion-highlight-fg     "#141617" # bg2
 
 # Define the color in index mode
 set index-bg                    "#141617" # bg2
@@ -34,8 +32,6 @@ set inputbar-fg                 "#d4be98" # fg0
 set statusbar-bg                "#141617" # bg2
 set statusbar-fg                "#d4be98" # fg0
 
-set highlight-color             "#d8a657" # yellow
-set highlight-active-color      "#e78a4e" # orange
 
 set default-bg                  "#000000" # bg3
 set default-fg                  "#000000" # fg1

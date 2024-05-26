@@ -39,6 +39,8 @@ bind = {
 	"i": "hint --first inputs",
     "I": "hint inputs",
     ## qutebrowser mappings
+    'Sd': 'bookmark-del'
+    'SD', 'quickmark-del'
 	'/': 'set statusbar.show always;; cmd-set-text /',
 	"/": "set statusbar.show always;; cmd-set-text /",
 	"J": "tab-prev",
