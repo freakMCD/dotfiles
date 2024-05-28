@@ -16,7 +16,7 @@ install_basics() {
 
     # Mpris and printer
     sudo pacman -S playerctl mpv-mpris simple-scan
-    yay mpd-mpris-bin hplip-plugin hplip
+    yay mpd-mpris-bin hplip-plugin hplip numbat
 
     # Enable services
     systemctl --user enable --now enable mpd-mpris
