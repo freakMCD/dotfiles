@@ -25,6 +25,7 @@ This repository contains my dotfiles and system configuration. Below is a summar
 **1. Install essential packages**
 ```bash
 # Configures Git to globally store authentication credentials
+sudo pacman -Syu git
 git config --global credential.helper "store --file ~/.local/share/git-credentials"
 
 # Install yadm
@@ -32,7 +33,7 @@ sudo pacman -Syu yadm
 cd ~
 yadm clone https://github.com/freakMCD/dotfiles.git 
 
-sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si
+sudo pacman -S --needed base-devel && git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si
 yay hyprland-git yambar-wayland
 sudo pacman -S libnotify fnott foot vifm qt6-wayland qutebrowser python-adblock
 ```

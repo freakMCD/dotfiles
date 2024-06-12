@@ -22,6 +22,7 @@ config.set('content.blocking.whitelist', [
     '*://*.reddit.com/r/hyprland/*',
     '*://*.reddit.com/r/bash/*',
     '*://*.reddit.com/r/archlinux/*',
+    '*://*.reddit.com/r/EngineeringStudents/*',
 ])
 
 config.set("input.mode_override", "passthrough", "https://onedrive.live.com/*")

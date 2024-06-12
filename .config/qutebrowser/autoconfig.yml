@@ -139,6 +139,8 @@ settings:
   content.notifications.enabled:
     https://www.bennish.net: true
     https://www.facebook.com: false
+  content.pdfjs:
+    global: true
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: false
   downloads.location.directory:
@@ -178,7 +180,7 @@ settings:
   tabs.position:
     global: left
   tabs.show:
-    global: switching
+    global: always
   tabs.show_switching_delay:
     global: 800
   tabs.title.alignment:
