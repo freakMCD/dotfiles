@@ -5,3 +5,4 @@ application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice-ca
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
 application/vnd.openxmlformats-officedocument.presentationml.presentation=libreoffice-impress.desktop
 image/jpeg=viewnior.desktop
+application/vnd.oasis.opendocument.graphics=libreoffice-draw.desktop
