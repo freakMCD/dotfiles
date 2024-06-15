@@ -31,6 +31,7 @@ set -a
     WINEPREFIX="/media/data/.wine"
     TMOUT=300
     XKB_DEFAULT_LAYOUT=es # For steam with gamescope
+    _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 set +a
 
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then

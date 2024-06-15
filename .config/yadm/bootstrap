@@ -19,7 +19,7 @@ install_basics() {
     yay mpd-mpris-bin hplip-plugin hplip numbat newsraft-git sane sane-airscan
 
     # Enable services
-    systemctl --user enable --now enable mpd-mpris
+    systemctl --user enable --now mpd-mpris
 }
 
 install_texlive_packages() {
