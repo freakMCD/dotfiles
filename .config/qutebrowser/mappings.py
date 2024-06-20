@@ -29,7 +29,7 @@ bind = {
 
 	leader + "js": "config-cycle content.javascript.enabled true false",
 	leader + "b": "config-cycle tabs.show switching always",
-	leader + leader: "config-cycle colors.webpage.darkmode.enabled true false",
+	leader + leader: "config-cycle colors.webpage.darkmode.enabled true false;; config-cycle content.user_stylesheets [] ['~/.config/qutebrowser/css/gruvbox-all-sites.css']",
 	leader + "v": "config-source ;; message-info 'qutebrowser reloaded'",
     ## mpv 
     lleader + "m": "hint videos userscript qute-mpv",
