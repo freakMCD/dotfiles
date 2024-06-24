@@ -63,6 +63,7 @@ settings:
     global: null
   content.desktop_capture:
     https://discord.com: true
+    https://meet.google.com: true
   content.fullscreen.window:
     global: true
   content.headers.user_agent:
@@ -134,6 +135,9 @@ settings:
   content.media.audio_capture:
     https://app.zoom.us: false
     https://discord.com: true
+    https://meet.google.com: true
+  content.media.audio_video_capture:
+    https://meet.google.com: true
   content.media.video_capture:
     https://app.zoom.us: false
   content.notifications.enabled:

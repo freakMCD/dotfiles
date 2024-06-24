@@ -2,7 +2,7 @@ Download Arch Linux ISO
 Create a live USB using "dd" command
 Boot up Arch linux from the live USB
 
-# Set the keyeboard layout
+# Set the keyboard layout
 loadkeys es
 
 # Check your Internet connection

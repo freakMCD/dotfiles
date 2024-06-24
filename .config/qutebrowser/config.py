@@ -24,6 +24,7 @@ config.set('content.blocking.whitelist', [
     '*://*.reddit.com/r/archlinux/*',
     '*://*.reddit.com/r/EngineeringStudents/*',
     '*://*.reddit.com/r/youtubedl/*',
+    '*://*.reddit.com/r/fossdroid/*',
 ])
 
 config.set("input.mode_override", "passthrough", "https://onedrive.live.com/*")
@@ -35,6 +36,9 @@ c.content.blocking.enabled = True
 c.content.blocking.method = "both"
 c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt',
                                     'https://easylist.to/easylist/easyprivacy.txt',
+                                    'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',
+                                    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt',
+                                    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt',
                                     'https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/pornography-hosts',
                                     ]
 
