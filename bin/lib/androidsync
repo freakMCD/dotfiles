@@ -1,7 +1,7 @@
 #!/bin/bash
 # Sync Files from Linux to Android
 
-FTP_SERVER="192.168.1.3"
+FTP_SERVER="192.168.1.6"
 FTP_PORT="2121"
 
 screenshots() {
@@ -17,6 +17,7 @@ music() {
    lftp -e "
    set ftp:ssl-allow false; set ftp:use-feat false; set ftp:use-mdtm off;
    open ftp://${FTP_SERVER}:${FTP_PORT};
+   login admin 1996;
    cd Music;
    mirror -R --parallel=8 --use-pget-n=8 --no-recursion --delete-first --ignore-time --no-perms -v;
    bye" || echo "Music sync failed!"
