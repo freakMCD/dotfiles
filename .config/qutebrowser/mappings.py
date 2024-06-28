@@ -36,9 +36,16 @@ bind = {
     lleader + "p": "hint --rapid videos spawn --userscript add-to-mpv-playlist {hint-url}",
     lleader + "f": "hint videos spawn --detach mpv {hint-url} --profile=fastYT",
 
+    ## qute-pass
+    'zl': 'spawn --userscript qute-pass',
+    'zul': 'spawn --userscript qute-pass --username-only',
+    'zpl': 'spawn --userscript qute-pass --password-only',
+    'zol': 'spawn --userscript qute-pass --otp-only',
+
     ## hints
 	"i": "hint --first inputs",
     "I": "hint inputs",
+
     ## qutebrowser mappings
     'Sd': 'bookmark-del'
     'SD', 'quickmark-del'

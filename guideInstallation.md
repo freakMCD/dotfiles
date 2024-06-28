@@ -14,7 +14,7 @@ timedatectl set-ntp true
 # Partition the Disks
 
     To list all available disk drives:
-        fdisk-l
+        fdisk -l
     Partition the drive
         fdisk /dev/sdX
     Create an EFI partition at the beginning of the disk. 
