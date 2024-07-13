@@ -37,7 +37,7 @@ settings:
         o: set statusbar.show always;; cmd-set-text -s :open
         q: null
   colors.webpage.darkmode.enabled:
-    global: true
+    global: false
   colors.webpage.darkmode.policy.images:
     global: never
   colors.webpage.darkmode.policy.page:
@@ -64,6 +64,7 @@ settings:
   content.desktop_capture:
     https://discord.com: true
     https://meet.google.com: true
+    https://meet.jit.si: true
   content.fullscreen.window:
     global: true
   content.headers.user_agent:
@@ -138,8 +139,10 @@ settings:
     https://meet.google.com: true
   content.media.audio_video_capture:
     https://meet.google.com: true
+    https://meet.jit.si: true
   content.media.video_capture:
     https://app.zoom.us: false
+    https://meet.google.com: true
   content.notifications.enabled:
     https://www.bennish.net: true
     https://www.facebook.com: false
@@ -148,8 +151,7 @@ settings:
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: false
   content.user_stylesheets:
-    global:
-    - ~/.config/qutebrowser/css/gruvbox-all-sites.css
+    global: []
   downloads.location.directory:
     global: ~/1erCICLO
   fonts.default_family:
@@ -187,7 +189,7 @@ settings:
   tabs.position:
     global: left
   tabs.show:
-    global: always
+    global: switching
   tabs.show_switching_delay:
     global: 800
   tabs.title.alignment:

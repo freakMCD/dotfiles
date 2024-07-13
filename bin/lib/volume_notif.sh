@@ -32,9 +32,9 @@ function mic_notification {
 	volume=$(wpctl get-volume @DEFAULT_SOURCE@ | awk '{print $3}')
 	
 	if [[ "$volume" == "[MUTED]" ]]; then
-		notify-send -r 2001 -t 0 -u low --hint=string:x-dunst-stack-tag:mic ""
+		notify-send -r 2001 -t 0 -u low --hint=string:x-dunst-stack-tag:mic "󰍭"
     else
-		notify-send -r 2001 -t 5000 -u low --hint=string:x-dunst-stack-tag:mic ""
+		notify-send -r 2001 -t 5000 -u low --hint=string:x-dunst-stack-tag:mic "󰍬"
     pw-cat --playback $audiovolumechange
 	fi
 }

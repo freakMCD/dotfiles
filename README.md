@@ -9,7 +9,7 @@ This repository contains my dotfiles and system configuration. Below is a summar
 * **StatusBar** : Yambar
 * **Terminal**: foot
 * **Notifications**: fnott
-* **Launcher**: fzf
+* **Launcher**: fuzzel
 * **File Manager**: vifm
 * **Text Editor**: neovim
 * **Music player** ncmpcpp + mpd + mpc

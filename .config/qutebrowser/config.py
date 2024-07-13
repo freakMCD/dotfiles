@@ -15,14 +15,12 @@ config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
 # Whitelist specific subdomain
 config.set('content.blocking.whitelist', [
     '*://*.reddit.com/r/qutebrowser/*',
-    '*://*.reddit.com/r/Handwriting/*',
     '*://*.reddit.com/r/math/*',
     '*://*.reddit.com/r/AskPhysics/*',
     '*://*.reddit.com/r/linuxquestions/*',
     '*://*.reddit.com/r/hyprland/*',
     '*://*.reddit.com/r/bash/*',
     '*://*.reddit.com/r/archlinux/*',
-    '*://*.reddit.com/r/EngineeringStudents/*',
     '*://*.reddit.com/r/youtubedl/*',
     '*://*.reddit.com/r/fossdroid/*',
 ])
@@ -67,6 +65,8 @@ c.url.searchengines = {
     "DEFAULT": "https://lite.duckduckgo.com/lite/?q={}",
     "yt": "https://invidious.privacyredirect.com/results?search_query={}",
 }
+
+c.qt.args = [ "enable-features=VaapiIgnoreDriverChecks",]
 
 with config.pattern("*://discord.com/*") as p:
     p.content.media.audio_video_capture = True

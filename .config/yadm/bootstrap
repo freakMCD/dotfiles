@@ -18,6 +18,9 @@ install_basics() {
     sudo pacman -S playerctl mpv-mpris simple-scan
     yay mpd-mpris-bin hplip-plugin hplip numbat newsraft-git sane sane-airscan
 
+    # Appimage
+    sudo pacman -S fuse
+
     # Enable services
     systemctl --user enable --now mpd-mpris
 }

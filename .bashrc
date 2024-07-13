@@ -8,7 +8,6 @@ if [ -f /etc/bashrc ]; then
 fi
 
 set -a
-HISTFILE="$XDG_STATE_HOME/bash/history"
 HISTCONTROL=ignoreboth
 LESSHISTFILE='-'
 PS1='\[\e[0;3;90m\][\[\e[0;3;31m\]\u \[\e[0;1;95m\]\W\[\e[0;3;90m\]] \[\e[0m\]'
