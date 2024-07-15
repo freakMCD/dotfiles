@@ -15,11 +15,11 @@ screenshots() {
 music() {
    cd ~/Music/2015-2022/
    lftp -e "
-   set ftp:ssl-allow false; set ftp:use-feat false; set ftp:use-mdtm off;
+   set net:timeout 5; set net:reconnect-interval-base 5; set net:max-retries 3; set net:connection-limit 1000
    open ftp://${FTP_SERVER}:${FTP_PORT};
    login admin 1996;
    cd Music;
-   mirror -R --parallel=8 --use-pget-n=8 --no-recursion --delete-first --ignore-time --no-perms -v;
+   mirror -R --parallel=8 --use-pget-n=8 --no-recursion --delete-first --ignore-time -v;
    bye" || echo "Music sync failed!"
 }
 

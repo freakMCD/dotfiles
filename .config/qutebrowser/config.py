@@ -23,6 +23,9 @@ config.set('content.blocking.whitelist', [
     '*://*.reddit.com/r/archlinux/*',
     '*://*.reddit.com/r/youtubedl/*',
     '*://*.reddit.com/r/fossdroid/*',
+    '*://*.reddit.com/r/linuxquestions/*',
+    '*://*.reddit.com/r/libreoffice/*',
+    '*://*.reddit.com/r/Android/*',
 ])
 
 config.set("input.mode_override", "passthrough", "https://onedrive.live.com/*")
