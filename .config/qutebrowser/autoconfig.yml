@@ -61,6 +61,20 @@ settings:
     global: '%Y-%m-%d %H:%M'
   content.blocking.adblock.lists:
     global: null
+  content.blocking.whitelist:
+    global:
+    - '*://*.reddit.com/r/qutebrowser/*'
+    - '*://*.reddit.com/r/math/*'
+    - '*://*.reddit.com/r/AskPhysics/*'
+    - '*://*.reddit.com/r/linuxquestions/*'
+    - '*://*.reddit.com/r/hyprland/*'
+    - '*://*.reddit.com/r/bash/*'
+    - '*://*.reddit.com/r/archlinux/*'
+    - '*://*.reddit.com/r/youtubedl/*'
+    - '*://*.reddit.com/r/fossdroid/*'
+    - '*://*.reddit.com/r/linuxquestions/*'
+    - '*://*.reddit.com/r/libreoffice/*'
+    - '*://*.reddit.com/r/Android/*'
   content.desktop_capture:
     https://discord.com: true
     https://meet.google.com: true

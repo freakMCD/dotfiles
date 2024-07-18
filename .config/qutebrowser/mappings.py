@@ -28,6 +28,7 @@ bind = {
     "gW": "open -t https://web.whatsapp.com",
 
 	leader + "js": "config-cycle content.javascript.enabled true false",
+    leader + "a": "config set content.blocking.whitelist+='*://*.reddit.com/*'",
 	leader + "b": "config-cycle tabs.show switching always",
 	leader + leader: "config-cycle colors.webpage.darkmode.enabled true false;; config-cycle content.user_stylesheets [] ['~/.config/qutebrowser/css/gruvbox-all-sites.css']",
 	leader + "v": "config-source ;; message-info 'qutebrowser reloaded'",
