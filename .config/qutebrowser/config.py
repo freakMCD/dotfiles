@@ -26,6 +26,7 @@ config.set('content.blocking.whitelist', [
     '*://*.reddit.com/r/linuxquestions/*',
     '*://*.reddit.com/r/libreoffice/*',
     '*://*.reddit.com/r/Android/*',
+    '*://*.reddit.com/r/geogebra/*',
 ])
 
 config.set("input.mode_override", "passthrough", "https://onedrive.live.com/*")

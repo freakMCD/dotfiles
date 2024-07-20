@@ -11,13 +11,13 @@ extract_youtube_url() {
 
 case $QUTE_URL in
     *youtube.com/shorts/*)
-        mpv --volume=35 --loop-file=inf "$QUTE_URL" &>/dev/null &exit
+        mpv --loop-file=inf "$QUTE_URL" &>/dev/null &exit
         ;;
     *duckduckgo.com/l/?uddg=*)
         original_url=$(extract_youtube_url "$QUTE_URL")
-        mpv --volume=35 "$original_url" &>/dev/null &exit
+        mpv "$original_url" &>/dev/null &exit
         ;;
 	*)
-        mpv --volume=35 "$QUTE_URL" &>/dev/null &exit
+        mpv "$QUTE_URL" &>/dev/null &exit
         ;;
 esac

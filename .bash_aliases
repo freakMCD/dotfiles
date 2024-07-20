@@ -7,6 +7,7 @@ alias rclone="rclone -P"
 alias curl='curl -O'
 alias df='df -h'
 alias winplot='~/bin/winplot.sh &exit'
+alias avidemux='QT_QPA_PLATFORM=xcb ~/bin/avidemux_2.8.1.appImage &exit'
 
 alias steam='gamescope -r 60 -o 24 -F fsr -e -- steamlx'
 alias hdsteam='gamescope -h 1080 -e -- steamlx'
