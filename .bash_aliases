@@ -15,6 +15,7 @@ alias nocapsteam='gamescope -F fsr -e -- steamlx'
 
 alias sortmusic='cd ~/Music/2015-2022 && stat --format="%W %n" * | sort -nr'
 alias mymusic='mpv --shuffle --volume=67 --save-position-on-quit=no "https://www.youtube.com/playlist?list=PL4CmunqMOJjLhWvgQUXWvewHEOoPAVAkt"'
+alias updmusic='cd ~/Music/2015-2022/ && yt-dlp https://www.youtube.com/playlist?list=PL4CmunqMOJjJXFgLuLfi_Ga9vwQBUtx_L && puddletag .'
 alias mp3dl='yt-dlp --restrict-filenames --extract-audio --audio-format mp3 --no-playlist'
 alias litedlp="yt-dlp -f 'bestvideo[height<=720]+bestaudio/best'"
 

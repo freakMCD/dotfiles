@@ -41,7 +41,7 @@ set render-loading-fg           "#d4be98" # fg0
 
 # Recolor book content's color
 # Vibrant Theme with Warm Colors
-set recolor-lightcolor          "#5f5a50" # Slightly more vibrant background color
+set recolor-lightcolor          "#6f6a60" # Slightly more vibrant background color
 set recolor-darkcolor           "#000000" # Slightly more vibrant text color
 set recolor                     "true"
 set recolor-keephue             true      # keep original color

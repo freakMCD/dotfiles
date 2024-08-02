@@ -8,7 +8,7 @@ screenshots() {
    cd ~/MediaHub/screenshots/
    lftp ftp://${FTP_SERVER}:${FTP_PORT} -e "
    cd Pictures;
-   mirror -R --use-pget-n=5 --parallel=5 --delete-first --only-missing --no-recursion --no-perms;
+   mirror -R --no-recursion --use-pget-n=5 --parallel=5 --delete-first --only-missing --no-recursion;
    bye" || echo "Screenshots sync failed!"
 }
 
@@ -18,8 +18,7 @@ music() {
    set net:timeout 5; set net:reconnect-interval-base 5; set net:max-retries 3; set net:connection-limit 1000
    open ftp://${FTP_SERVER}:${FTP_PORT};
    login admin 1996;
-   cd Music;
-   mirror -R --parallel=8 --use-pget-n=8 --no-recursion --delete-first --ignore-time -v;
+   mirror -R --parallel=8 --use-pget-n=8 --no-recursion --delete-first --ignore-time --exclude .thumbnails -v;
    bye" || echo "Music sync failed!"
 }
 

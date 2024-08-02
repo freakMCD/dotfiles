@@ -6,3 +6,4 @@ application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoff
 application/vnd.openxmlformats-officedocument.presentationml.presentation=libreoffice-impress.desktop
 image/jpeg=viewnior.desktop
 application/vnd.oasis.opendocument.graphics=libreoffice-draw.desktop
+image/png=viewnior.desktop

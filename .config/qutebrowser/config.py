@@ -27,6 +27,7 @@ config.set('content.blocking.whitelist', [
     '*://*.reddit.com/r/libreoffice/*',
     '*://*.reddit.com/r/Android/*',
     '*://*.reddit.com/r/geogebra/*',
+    '*://*.facebook.com/*',
 ])
 
 config.set("input.mode_override", "passthrough", "https://onedrive.live.com/*")
@@ -57,7 +58,7 @@ c.fonts.default_family = "JetBrainsMono Nerd Font"
 c.completion.shrink = True
 c.completion.open_categories = ["quickmarks", "bookmarks", "searchengines"]
 c.content.fullscreen.window = True
-c.content.webgl = False
+c.content.webgl = True
 
 # Tabs
 c.session.lazy_restore = True
