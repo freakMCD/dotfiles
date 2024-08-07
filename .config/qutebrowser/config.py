@@ -27,6 +27,8 @@ config.set('content.blocking.whitelist', [
     '*://*.reddit.com/r/libreoffice/*',
     '*://*.reddit.com/r/Android/*',
     '*://*.reddit.com/r/geogebra/*',
+    '*://*.reddit.com/r/fonts/*',
+    '*://*.reddit.com/r/linux/*',
     '*://*.facebook.com/*',
 ])
 
