@@ -17,7 +17,7 @@ mpvplaycontrol() {
 
 getFullscreenCoord() {
     local coords=()
-    local expected_values=(20 320 620)
+    local expected_values=(20 520 1020)
 
     for line in "$@"; do
         # Extract the coord

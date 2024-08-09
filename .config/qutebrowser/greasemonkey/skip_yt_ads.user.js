@@ -5,7 +5,7 @@
 // @include *.youtube.com/*
 // ==/UserScript==
 
-document.addEventListener('load', () => {
+/*document.addEventListener('load', () => {
     const btn = document.querySelector('.videoAdUiSkipButton,.ytp-ad-skip-button-modern')
     if (btn) {
         btn.click()
@@ -14,4 +14,4 @@ document.addEventListener('load', () => {
     if (ad) {
         document.querySelector('video').currentTime = 9999999999;
     }
-}, true);
+}, true);*/
