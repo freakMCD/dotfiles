@@ -1,8 +1,6 @@
 # Key mappings
-# 'Leader' key binding -- for general personal maps
-leader = "<Space>"
-# 'LocalLeader' key binding -- intended for 'in-page' personal maps
-lleader = ","
+# 'Leader' and 'Local Leader' for general personal maps and <in-page> maps
+leader, lleader = "<Space>", ","
 
 c.hints.chars = "qweasdzxc"
 config.bind('f', 'mode-leave', mode='hint')
@@ -58,8 +56,8 @@ bind = {
 	"k": "scroll-px 0 -200",
 	"l": "scroll-px 100 0",
 }
-for a, b in bind.items():
-    config.bind(a, b)
+for key, command in bind.items():
+    config.bind(key, command)
 
 config.bind('o', 'set statusbar.show always;; cmd-set-text -s :open')
 config.bind('O', 'set statusbar.show always;; cmd-set-text -s :open -t')
@@ -70,15 +68,11 @@ config.bind('<Alt>', 'command-accept;; set statusbar.show in-mode', mode='comman
 config.bind('<Ctrl-SHIFT-Z>', 'mode-leave', mode='passthrough')
 
 config.set("input.mode_override", "passthrough", "docs.google.com")
-config.bind('<Alt-1>', 'tab-focus 1', mode='passthrough')
-config.bind('<Alt-2>', 'tab-focus 2', mode='passthrough')
-config.bind('<Alt-3>', 'tab-focus 3', mode='passthrough')
-config.bind('<Alt-4>', 'tab-focus 4', mode='passthrough')
-config.bind('<Alt-5>', 'tab-focus 5', mode='passthrough')
-config.bind('<Alt-6>', 'tab-focus 6', mode='passthrough')
-config.bind('<Alt-7>', 'tab-focus 7', mode='passthrough')
-config.bind('<Alt-8>', 'tab-focus 8', mode='passthrough')
-config.bind('<Alt-9>', 'tab-focus 9', mode='passthrough')
 
+for i in range(1, 10):
+    config.bind(f'<Alt-{i}>', f'tab-focus {i}', mode='passthrough')
+   
+config.bind('<Alt-Left>', 'back', mode='passthrough')
+config.bind('<Alt-Right>', 'forward', mode='passthrough')
 config.unbind("q", mode="normal")
 

@@ -11,7 +11,7 @@ event_openwindow() {
         mpv)
             clients=$(hyprctl clients -j)
             ((mpv_count++))
-            height=$((20 + ($mpv_count - 1) * 500))
+            height=$((600 - ($mpv_count - 1) * 500))
             hyprctl --batch "dispatch movewindowpixel exact 1138 $height,address:0x$WINDOWADDRESS"
             addresses+=( "$WINDOWADDRESS" )
             mpvplaycontrol "0x$WINDOWADDRESS" "$clients"
@@ -41,7 +41,7 @@ event_closewindow() {
 
 	        # Adjust window positions if there are remaining windows
             for ((i = 0; i < ${#addresses[@]}; i++)); do
-                height=$((20 + $i * 500))
+                height=$((600 - $i * 500))
                 hyprctl dispatch movewindowpixel exact 1138 "$height",address:"0x${addresses[$i]}"
             done
         fi

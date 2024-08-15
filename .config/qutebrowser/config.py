@@ -12,25 +12,14 @@ c.content.autoplay = False
 c.content.notifications.enabled = False
 config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
 
-# Whitelist specific subdomain
-config.set('content.blocking.whitelist', [
-    '*://*.reddit.com/r/qutebrowser/*',
-    '*://*.reddit.com/r/math/*',
-    '*://*.reddit.com/r/AskPhysics/*',
-    '*://*.reddit.com/r/linuxquestions/*',
-    '*://*.reddit.com/r/hyprland/*',
-    '*://*.reddit.com/r/bash/*',
-    '*://*.reddit.com/r/archlinux/*',
-    '*://*.reddit.com/r/youtubedl/*',
-    '*://*.reddit.com/r/fossdroid/*',
-    '*://*.reddit.com/r/linuxquestions/*',
-    '*://*.reddit.com/r/libreoffice/*',
-    '*://*.reddit.com/r/Android/*',
-    '*://*.reddit.com/r/geogebra/*',
-    '*://*.reddit.com/r/fonts/*',
-    '*://*.reddit.com/r/linux/*',
-    '*://*.facebook.com/*',
-])
+# Define keywords and subdomains
+keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'youtubedl', 'fossdroid', 'libreoffice', 'Android', 'geogebra', 'fonts', 'linux', 'bboy', 'horror']
+base_url = '*://*.reddit.com/r/'
+
+# Generate the whitelist based on the keywords
+whitelist = [f'{base_url}{keyword}/*' for keyword in keywords]
+# Set the whitelist in the config
+config.set('content.blocking.whitelist', whitelist)
 
 config.set("input.mode_override", "passthrough", "https://onedrive.live.com/*")
 config.set("content.javascript.can_open_tabs_automatically", True, "https://onedrive.live.com/*")
