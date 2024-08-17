@@ -13,7 +13,7 @@ c.content.notifications.enabled = False
 config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
 
 # Define keywords and subdomains
-keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'youtubedl', 'fossdroid', 'libreoffice', 'Android', 'geogebra', 'fonts', 'linux', 'bboy', 'horror']
+keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'youtubedl', 'fossdroid', 'libreoffice', 'Android', 'geogebra', 'fonts', 'linux', 'bboy', 'horror', 'wayland']
 base_url = '*://*.reddit.com/r/'
 
 # Generate the whitelist based on the keywords
@@ -50,6 +50,7 @@ c.completion.shrink = True
 c.completion.open_categories = ["quickmarks", "bookmarks", "searchengines"]
 c.content.fullscreen.window = True
 c.content.webgl = True
+c.messages.timeout = 2000
 
 # Tabs
 c.session.lazy_restore = True

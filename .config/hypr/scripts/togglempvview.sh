@@ -1,33 +1,39 @@
 #!/bin/bash
 
-# Find the addresses and positions of the active (non-hidden) mpv windows
-addresses_positions=$(hyprctl clients -j | jq -r '.[] | select(.class=="mpv" and .fullscreen != "true") | "\(.address) \(.at | @csv)"')
-if [[ -z $addresses_positions ]];then
-    exit
-fi
+[ "$#" -ne 2 ] && { echo "Usage: $0 x_coord y_coord"; exit 1; }
 
-# Toggle x-coordinates based on addresses_positions
-toggle_x_coordinates() {
-    local address="$1"
-    local current_position="$2"
+clients=$(hyprctl clients -j)
+target_address=$(jq -r --argjson x "$1" --argjson y "$2" '
+    .[] | select(.class == "mpv" and (
+      (($x == 0 and (.at[0] == 0 or .at[0] == -460)) or 
+       ($x == 1440 and (.at[0] == 1440 or .at[0] == 1910))) and .at[1] == $y)) | .address' <<< "$clients")
 
-    case "$current_position" in
-        "1138,"*)
-            new_position="${current_position/1138,/1916 }"
-            ;;
-        "1916,"*)
-            new_position="${current_position/1916,/1138 }"
-            ;;
-    esac
+# Exit if no target address is found
+[ -z "$target_address" ] && exit
 
-    if [ -n "$new_position" ]; then
-        hyprctl_commands+="dispatch movewindowpixel exact $new_position,address:$address;"
-    fi
-}
+# Determine the actual x_coord of the matched window
+current_x_coord=$(jq -r --arg address "$target_address" '
+    .[] | select(.address == $address) | .at[0]' <<< "$clients")
 
-# Iterate over each address and position
-while read -r address position; do
-    toggle_x_coordinates "$address" "$position"
-done <<< "$addresses_positions"
-hyprctl --batch ""$hyprctl_commands""
+# Toggle the x-coordinate based on its current value
+case "$current_x_coord" in
+    "0")
+        new_x_coord="-460"
+        ;;
+    "-460")
+        new_x_coord="0"
+        ;;
+    "1440")
+        new_x_coord="1910"
+        ;;
+    "1910")
+        new_x_coord="1440"
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+
+# Build and execute the command to move the window
+hyprctl --batch "dispatch movewindowpixel exact ${new_x_coord} $2,address:${target_address}"
 

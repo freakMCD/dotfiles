@@ -26,7 +26,7 @@ bright_green = "#a9b665"
 bright_yellow = "#d8a657"
 bright_blue = "#7daea3"
 bright_purple = "#d3869b"
-bright_aqua = "#89b482"
+bright_aqua = "#66bb66"
 bright_gray = "#7c6f64"
 bright_orange = "#e78a4e"
 
@@ -35,7 +35,7 @@ dark_green = "#32361a"
 dark_yellow = "#e1bb7e"
 dark_blue = "#0d3138"
 dark_purple = "#b16286"
-dark_aqua = "#333e34"
+dark_aqua = "#333b63"
 dark_gray = "#e2d3ba"
 dark_orange = "#fe8019"
 
@@ -202,7 +202,7 @@ c.colors.statusbar.normal.fg = fg2
 c.colors.statusbar.normal.bg = bg0
 
 # Foreground color of the statusbar in insert mode.
-c.colors.statusbar.insert.fg = fg0
+c.colors.statusbar.insert.fg = fg1
 
 # Background color of the statusbar in insert mode.
 c.colors.statusbar.insert.bg = dark_aqua

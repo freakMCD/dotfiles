@@ -59,20 +59,23 @@ bind = {
 for key, command in bind.items():
     config.bind(key, command)
 
-config.bind('o', 'set statusbar.show always;; cmd-set-text -s :open')
-config.bind('O', 'set statusbar.show always;; cmd-set-text -s :open -t')
-config.bind(':', 'set statusbar.show always;; cmd-set-text :')
-config.bind('<Escape>', 'mode-enter normal;; set statusbar.show in-mode', mode='command')
-config.bind('<Return>', 'command-accept;; set statusbar.show in-mode', mode='command')
-config.bind('<Alt>', 'command-accept;; set statusbar.show in-mode', mode='command')
+#config.bind('o', 'set statusbar.show always;; cmd-set-text -s :open')
+#config.bind('O', 'set statusbar.show always;; cmd-set-text -s :open -t')
+#config.bind(':', 'set statusbar.show always;; cmd-set-text :')
+#config.bind('<Escape>', 'mode-enter normal;; set statusbar.show in-mode', mode='command')
+#config.bind('<Return>', 'command-accept;; set statusbar.show in-mode', mode='command')
+#config.bind('<Alt>', 'command-accept;; set statusbar.show in-mode', mode='command')
 config.bind('<Ctrl-SHIFT-Z>', 'mode-leave', mode='passthrough')
 
 config.set("input.mode_override", "passthrough", "docs.google.com")
+config.set("input.mode_override", "passthrough", "wolfreealpha.on.fleek.co")
 
 for i in range(1, 10):
     config.bind(f'<Alt-{i}>', f'tab-focus {i}', mode='passthrough')
    
 config.bind('<Alt-Left>', 'back', mode='passthrough')
 config.bind('<Alt-Right>', 'forward', mode='passthrough')
+config.bind('<O>', 'cmd-set-text -s :open', mode='passthrough')
+config.bind('<Shift-O>', 'cmd-set-text -s :open -t', mode='passthrough')
 config.unbind("q", mode="normal")
 
