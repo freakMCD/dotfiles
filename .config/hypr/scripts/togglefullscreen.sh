@@ -29,7 +29,7 @@ fi
 if [[ -n "$fullscreen_address" ]]; then
     # Check if the fullscreen window is an mpv window
     if jq -e --arg address "$fullscreen_address" '.[] | select(.address == $address and .class == "mpv")' <<< "$clients" >/dev/null; then
-        hyprctl --batch "dispatch fullscreen address:$fullscreen_address; dispatch pin address:$fullscreen_address; setprop address:$fullscreen_address nofocus 1"
+        hyprctl --batch "dispatch fullscreen address:$fullscreen_address; dispatch pin address:$fullscreen_address; dispatch focuscurrentorlast; setprop address:$fullscreen_address nofocus 1"
     else
         hyprctl --batch "dispatch fullscreen address:$fullscreen_address"
     fi
