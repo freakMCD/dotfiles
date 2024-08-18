@@ -14,16 +14,16 @@ export PATH
 
 set -a
     source ~/.local/share/linuxfedora
+    XDG_CONFIG_HOME="$HOME/.config"
+    XDG_CACHE_HOME="$HOME/.cache"
+    XDG_DATA_HOME="$HOME/.local/share"
+    XDG_STATE_HOME="$HOME/.local/state"
 
     if [ ! -d "$XDG_STATE_HOME/bash" ]; then
       mkdir -p "$XDG_STATE_HOME/bash"
     fi
     HISTFILE="$XDG_STATE_HOME/bash/history"
 
-    XDG_CONFIG_HOME="$HOME/.config"
-    XDG_CACHE_HOME="$HOME/.cache"
-    XDG_DATA_HOME="$HOME/.local/share"
-    XDG_STATE_HOME="$HOME/.local/state"
     CARGO_HOME="$HOME/.local/share/.cargo/"
 
     EDITOR='nvim'
