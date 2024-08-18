@@ -4,8 +4,8 @@ mpvplaycontrol() {
     while read -r address pid; do 
         if [[ "$address" == "$1" ]]; then
             target_pid="$pid"
-        else
-            echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
+#        else
+ #           echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
         fi
     done <<< "$(jq -r '.[] | select(.class == "mpv") | "\(.address) \(.pid)"' <<< "$2")"
     
@@ -18,6 +18,8 @@ mpvplaycontrol() {
 clients=$(hyprctl clients -j)
 # If there isn't any mpv window, exits the script
 jq -e '.[] | select(.class == "mpv")' <<< "$clients" >/dev/null || exit
+
+
 
 target_address=$(jq -r --argjson x_coord "$1" --argjson y_coord "$2" '.[] | select(.class == "mpv" and .at[0] == $x_coord and .at[1] == $y_coord) | .address' <<< "$clients")
 fullscreen_address=$(hyprctl activewindow -j | jq -r 'select(.fullscreen == 2) | .address')

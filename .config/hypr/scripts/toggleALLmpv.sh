@@ -13,10 +13,10 @@ toggle_x_coordinates() {
 
     case "$current_position" in
         "0,"*)
-            new_position="${current_position/0,/-460 }"
+            new_position="${current_position/0,/-290 }"
             ;;
-        "-460,"*)
-            new_position="${current_position/-460,/0 }"
+        "-290,"*)
+            new_position="${current_position/-290,/0 }"
             ;;
         "1620,"*)
             new_position="${current_position/1620,/1910 }"
