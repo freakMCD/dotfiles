@@ -56,7 +56,7 @@ event_closewindow() {
         if [[ -n ${addresses[@]} ]]; then
             # Check if the activewindow is MPV and fullscreen
 			window_info=$(hyprctl activewindow -j)
-			if jq -e '.fullscreen == true and .class == "mpv"' <<< "$window_info" >/dev/null; then
+			if jq -e '.fullscreen == 2 and .class == "mpv"' <<< "$window_info" >/dev/null; then
 			    address=$(jq -r '.address' <<< "$window_info")
 			    hyprctl --batch "dispatch fullscreen; dispatch pin address:$address; dispatch focuscurrentorlast; setprop address:$address nofocus 1"
 			fi	
@@ -69,7 +69,7 @@ event_closewindow() {
                         y=35
                         ;;
                     1)
-                        x=1440
+                        x=1620
                         y=35
                         ;;
                     2)
@@ -77,7 +77,7 @@ event_closewindow() {
                         y=810
                         ;;
                     3)
-                        x=1440
+                        x=1620
                         y=810
                         ;;
                 esac
