@@ -6,7 +6,7 @@ clients=$(hyprctl clients -j)
 target_address=$(jq -r --argjson x "$1" --argjson y "$2" '
     .[] | select(.class == "mpv" and (
       (($x == 0 and (.at[0] == 0 or .at[0] == -460)) or 
-       ($x == 1440 and (.at[0] == 1440 or .at[0] == 1910))) and .at[1] == $y)) | .address' <<< "$clients")
+       ($x == 1620 and (.at[0] == 1620 or .at[0] == 1910))) and .at[1] == $y)) | .address' <<< "$clients")
 
 # Exit if no target address is found
 [ -z "$target_address" ] && exit
@@ -23,11 +23,11 @@ case "$current_x_coord" in
     "-460")
         new_x_coord="0"
         ;;
-    "1440")
+    "1620")
         new_x_coord="1910"
         ;;
     "1910")
-        new_x_coord="1440"
+        new_x_coord="1620"
         ;;
     *)
         exit 1

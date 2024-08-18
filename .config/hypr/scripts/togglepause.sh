@@ -22,7 +22,7 @@ clients=$(hyprctl clients -j)
 target_address=$(jq -r --argjson x_coord "$1" --argjson y_coord "$2" '
     .[] | select(.class == "mpv" and 
     ((($x_coord == 0 and (.at[0] == 0 or .at[0] == -460)) or 
-      ($x_coord == 1440 and (.at[0] == 1440 or .at[0] == 1910))) and (.at[1] == $y_coord))
+      ($x_coord == 1620 and (.at[0] == 1620 or .at[0] == 1910))) and (.at[1] == $y_coord))
     ) | .address' <<< "$clients")
 
 if [[ -z "$target_address" ]];then

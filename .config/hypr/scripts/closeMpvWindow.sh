@@ -11,7 +11,7 @@ for pair in "${addresses_positions[@]}"; do
     # Check if the y_coord matches and then check x_coord alternatives
     if [ "$y_coord" -eq "$2" ] && (
         ([ "$1" -eq 0 ] && ([ "$x_coord" -eq 0 ] || [ "$x_coord" -eq -460 ])) ||
-        ([ "$1" -eq 1440 ] && ([ "$x_coord" -eq 1440 ] || [ "$x_coord" -eq 1910 ]))
+        ([ "$1" -eq 1620 ] && ([ "$x_coord" -eq 1620 ] || [ "$x_coord" -eq 1910 ]))
     ); then
         target_address=$address
         break

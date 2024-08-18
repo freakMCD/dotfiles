@@ -18,11 +18,11 @@ toggle_x_coordinates() {
         "-460,"*)
             new_position="${current_position/-460,/0 }"
             ;;
-        "1440,"*)
-            new_position="${current_position/1440,/1910 }"
+        "1620,"*)
+            new_position="${current_position/1620,/1910 }"
             ;;
         "1910,"*)
-            new_position="${current_position/1910,/1440 }"
+            new_position="${current_position/1910,/1620 }"
             ;;
     esac
 
