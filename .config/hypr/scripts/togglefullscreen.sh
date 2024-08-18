@@ -32,11 +32,10 @@ if [[ -n "$fullscreen_address" ]]; then
         hyprctl --batch "dispatch fullscreen address:$fullscreen_address; dispatch pin address:$fullscreen_address; dispatch focuscurrentorlast; setprop address:$fullscreen_address nofocus 1"
         [ -z "$target_address" ] && target_address=$(jq -r --argjson x_coord "$1" --argjson y_coord "$2" '.[] | select(.class == "mpv" and .at[0] == $x_coord and .at[1] == $y_coord) | .address' <<< "$(hyprctl clients -j)")
     else
-       hyprctl --batch "dispatch fullscreen address:$fullscreen_address"
+       hypr_cmd+="dispatch fullscreen address:$fullscreen_address;"
     fi
 
 fi
-
 if [[ "$target_address" != "$fullscreen_address" && -n "$target_address" ]]; then
    hypr_cmd+="setprop address:$target_address nofocus 0; dispatch focuswindow address:$target_address; dispatch pin address:$target_address; dispatch fullscreen"
     [ -n "$hypr_cmd" ] && hyprctl --batch "$hypr_cmd"
