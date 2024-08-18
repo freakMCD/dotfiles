@@ -11,7 +11,7 @@ add_url_to_playlist() {
 # Get the target mpv instance based on y-coordinate
 get_mpv_instance_by_ycoord() {
     local x_coord="0"
-    local y_coord="40"
+    local y_coord="35"
     local target_pid
 
     local mpv_instances=$(hyprctl clients -j | jq -r '[.[] | select(.class == "mpv" and .at[0] == '"$x_coord"' and .at[1] == '"$y_coord"')] | .[]')
