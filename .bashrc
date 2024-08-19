@@ -65,3 +65,25 @@ if [ -x "$(command -v fzf)" ]; then
 fi
 
 
+# Options for fzf alias selection
+FZF_ALIAS_OPTS=${FZF_ALIAS_OPTS:-"--preview-window up:3:hidden:wrap"}
+
+# Function to select an alias and insert it into the command line
+fzf_alias() {
+    local selection
+    # Use sed with column to display aliases in a formatted way
+    if selection=$(alias |
+                       sed 's/alias \([^=]*\)=\(.*\)/\1\t\2/' |
+                       column -t -s $'\t' |
+                       FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS $FZF_ALIAS_OPTS" fzf --preview "echo {2..}" --query="$READLINE_LINE" |
+                       awk '{ print $1 }'); then
+        # Insert the selected alias into the command line
+        READLINE_LINE="$selection"
+        READLINE_POINT=${#READLINE_LINE}
+        # Refresh the command line manually
+        reset
+    fi
+}
+
+# Bind the fzf_alias function to a key combination (e.g., Ctrl-a)
+bind -x '"\C-a": fzf_alias'

@@ -9,10 +9,7 @@ mapfile -t addresses_positions < <(jq -r '.[] | select(.class == "mpv") | "\(.ad
 for pair in "${addresses_positions[@]}"; do
     read -r address x_coord y_coord <<< "$pair"
     # Check if the y_coord matches and then check x_coord alternatives
-    if [ "$y_coord" -eq "$2" ] && (
-        ([ "$1" -eq 0 ] && ([ "$x_coord" -eq 0 ] || [ "$x_coord" -eq -460 ])) ||
-        ([ "$1" -eq 1620 ] && ([ "$x_coord" -eq 1620 ] || [ "$x_coord" -eq 1910 ]))
-    ); then
+    if [[ "$x_coord" -eq "$1" && "$y_coord" -eq "$2" ]]; then
         target_address=$address
         break
     fi
