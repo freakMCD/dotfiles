@@ -1,4 +1,5 @@
 #!/bin/bash
+source ./variables.sh
 mpv_socket_dir="/tmp/mpvSockets"
 
 mpvplaycontrol() {

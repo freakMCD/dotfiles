@@ -75,7 +75,5 @@ for i in range(1, 10):
    
 config.bind('<Alt-Left>', 'back', mode='passthrough')
 config.bind('<Alt-Right>', 'forward', mode='passthrough')
-config.bind('<O>', 'cmd-set-text -s :open', mode='passthrough')
-config.bind('<Shift-O>', 'cmd-set-text -s :open -t', mode='passthrough')
 config.unbind("q", mode="normal")
 

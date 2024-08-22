@@ -1,3 +1,6 @@
+source ~/.config/hypr/scripts/variables.sh
+
+
 mpv_socket_dir="/tmp/mpvSockets"
 
 mpvplaycontrol() {
@@ -6,34 +9,38 @@ mpvplaycontrol() {
     done <<< "$(jq -r '.[] | select(.class == "mpv" and .address != "'"$1"'" ) | "\(.address) \(.pid)"' <<< "$2")"
 }
 
+assign_coordinates() {
+    case $1 in
+        1)
+            x="$x1_coord"
+            y="$y1_coord"
+            ;;
+        2)
+            x="$x2_coord"
+            y="$y2_coord"
+            ;;
+        3)
+            x="$x3_coord"
+            y="$y3_coord"
+            ;;
+        4)
+            x="$x4_coord"
+            y="$y4_coord"
+            ;;
+        *)
+            # More than 4 mpv windows, just stack them
+            x=0
+            y=$((1080 + ($1 - 4) * 100))  # Stacking additional windows below the 3rd window
+            ;;
+    esac
+}
+
 event_openwindow() {
     case "$WINDOWCLASS" in
         mpv)
             clients=$(hyprctl clients -j)
             ((mpv_count++))
-            case $mpv_count in
-            1)
-                x=0
-                y=35
-                ;;
-            2)
-                x=1620
-                y=35
-                ;;
-            3)
-                x=0
-                y=810
-                ;;
-            4)
-                x=1620
-                y=810
-                ;;
-            *)
-                # More than 4 mpv windows, just stack them
-                x=0
-                y=$((1080 + ($mpv_count - 4) * 100))  # Stacking additional windows below the 3rd window
-                ;;
-            esac
+            assign_coordinates "$mpv_count"
             hyprctl --batch "dispatch movewindowpixel exact $x $y,address:0x$WINDOWADDRESS"
             addresses+=( "$WINDOWADDRESS" )
             mpvplaycontrol "0x$WINDOWADDRESS" "$clients"
@@ -63,25 +70,7 @@ event_closewindow() {
 
 	        # Adjust window positions if there are remaining windows
             for ((i = 0; i < ${#addresses[@]}; i++)); do
-                case $i in
-                    0)
-                        x=0
-                        y=35
-                        ;;
-                    1)
-                        x=1620
-                        y=35
-                        ;;
-                    2)
-                        x=0
-                        y=810
-                        ;;
-                    3)
-                        x=1620
-                        y=810
-                        ;;
-                esac
-
+                assign_coordinates "$((i+1))"
                 hyprctl dispatch movewindowpixel exact $x "$y",address:"0x${addresses[$i]}"
             done
         fi
