@@ -169,8 +169,6 @@ settings:
     - ~/.config/qutebrowser/css/gruvbox-all-sites.css
   content.webgl:
     global: true
-  downloads.location.directory:
-    global: ~/1erCICLO
   fonts.default_family:
     global: JetBrainsMono Nerd Font
   fonts.default_size:

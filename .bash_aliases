@@ -8,10 +8,10 @@ alias curl='curl -O'
 alias df='df -h'
 alias winplot='~/bin/winplot.sh &exit'
 alias avidemux='QT_QPA_PLATFORM=xcb ~/bin/avidemux_2.8.1.appImage &exit'
+alias stm='~/bin/steam &exit'
+alias scarab='GDK_BACKEND=x11 ~/Downloads/Programs/linux/Scarab'
+alias r2mod='GDK_BACKEND=x11 ~/Downloads/ebkr-r2modman-3.1.49/r2modman-3.1.49.AppImage &exit'
 
-alias steam='gamescope -r 60 -o 24 -F fsr -e -- steamlx'
-alias hdsteam='gamescope -h 1080 -e -- steamlx'
-alias nocapsteam='gamescope -F fsr -e -- steamlx'
 
 alias sortmusic='cd ~/Music/2015-2022 && stat --format="%W %n" * | sort -nr'
 alias mymusic='mpv --shuffle --volume=67 --save-position-on-quit=no "https://www.youtube.com/playlist?list=PL4CmunqMOJjLhWvgQUXWvewHEOoPAVAkt"'
