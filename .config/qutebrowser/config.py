@@ -13,7 +13,7 @@ c.content.notifications.enabled = False
 config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
 
 # Define keywords and subdomains
-keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'youtubedl', 'fossdroid', 'libreoffice', 'Android', 'geogebra', 'fonts', 'linux', 'bboy', 'horror', 'wayland', 'DataHoarder', 'singing', 'yambar', 'swaywm']
+keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'youtubedl', 'fossdroid', 'libreoffice', 'Android', 'geogebra', 'fonts', 'linux', 'bboy', 'horror', 'wayland', 'DataHoarder', 'singing', 'yambar']
 base_url = '*://*.reddit.com/r/'
 
 # Generate the whitelist based on the keywords
