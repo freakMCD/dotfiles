@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Avidemux
+Exec=env QT_QPA_PLATFORM=xcb /home/edwin/Downloads/AppImage/avidemux_2.8.1.appImage
+Icon=/home/edwin/.local/share/applications/icons/avidemux-icon.png
+Type=Application
+Categories=Utility;
