@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./variables.sh
+source ~/.config/hypr/scripts/variables.sh
 mpv_socket_dir="/tmp/mpvSockets"
 
 mpvplaycontrol() {
@@ -22,8 +22,8 @@ clients=$(hyprctl clients -j)
 # Adjust the filter to match x and y coordinates with alternatives
 target_address=$(jq -r --argjson x_coord "$1" --argjson y_coord "$2" '
     .[] | select(.class == "mpv" and 
-    ((($x_coord == 0 and (.at[0] == 0 or .at[0] == -290)) or 
-      ($x_coord == 1620 and (.at[0] == 1620 or .at[0] == 1910))) and (.at[1] == $y_coord))
+    ((($x_coord == 0 and (.at[0] == 0 or .at[0] == '"$((x1_coord-1910))"')) or 
+      ($x_coord == '$x1_coord' and (.at[0] == '$x1_coord' or .at[0] == 1910))) and (.at[1] == $y_coord))
     ) | .address' <<< "$clients")
 
 if [[ -z "$target_address" ]];then

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source ~/.config/hypr/scripts/variables.sh
 # Find the addresses and positions of the active (non-hidden) mpv windows
 addresses_positions=$(hyprctl clients -j | jq -r '.[] | select(.class=="mpv" and .fullscreen != "true") | "\(.address) \(.at | @csv)"')
 if [[ -z $addresses_positions ]];then
@@ -13,16 +14,16 @@ toggle_x_coordinates() {
 
     case "$current_position" in
         "0,"*)
-            new_position="${current_position/0,/-290 }"
+            new_position="${current_position/0,/$(($x1_coord-1910)) }"
             ;;
-        "-290,"*)
-            new_position="${current_position/-290,/0 }"
+        "$(($x1_coord-1910)),"*)
+            new_position="${current_position/$(($x1_coord-1910)),/0 }"
             ;;
-        "1620,"*)
-            new_position="${current_position/1620,/1910 }"
+        "$x1_coord,"*)
+            new_position="${current_position/$x1_coord,/1910 }"
             ;;
         "1910,"*)
-            new_position="${current_position/1910,/1620 }"
+            new_position="${current_position/1910,/$x1_coord }"
             ;;
     esac
 

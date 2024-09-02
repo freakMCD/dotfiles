@@ -1,12 +1,13 @@
 #!/bin/bash
 
+source ~/.config/hypr/scripts/variables.sh
 [ "$#" -ne 2 ] && { echo "Usage: $0 x_coord y_coord"; exit 1; }
 
 clients=$(hyprctl clients -j)
 target_address=$(jq -r --argjson x "$1" --argjson y "$2" '
     .[] | select(.class == "mpv" and (
-      (($x == 0 and (.at[0] == 0 or .at[0] == -290)) or 
-       ($x == 1620 and (.at[0] == 1620 or .at[0] == 1910))) and .at[1] == $y)) | .address' <<< "$clients")
+      (($x == 0 and (.at[0] == 0 or .at[0] == -374)) or 
+       ($x == 1536 and (.at[0] == 1536 or .at[0] == 1910))) and .at[1] == $y)) | .address' <<< "$clients")
 
 # Exit if no target address is found
 [ -z "$target_address" ] && exit
@@ -18,16 +19,16 @@ current_x_coord=$(jq -r --arg address "$target_address" '
 # Toggle the x-coordinate based on its current value
 case "$current_x_coord" in
     "0")
-        new_x_coord="-290"
+        new_x_coord="$(($x1_coord-1910))"
         ;;
-    "-290")
+    "$(($x1_coord-1910))")
         new_x_coord="0"
         ;;
-    "1620")
+    "$x1_coord")
         new_x_coord="1910"
         ;;
     "1910")
-        new_x_coord="1620"
+        new_x_coord="$x1_coord"
         ;;
     *)
         exit 1
