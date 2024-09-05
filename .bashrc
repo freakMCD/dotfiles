@@ -10,7 +10,8 @@ fi
 set -a
 HISTCONTROL=ignoreboth
 LESSHISTFILE='-'
-PS1='\[\e[0;3;90m\][\[\e[0;3;31m\]\u \[\e[0;1;95m\]\W\[\e[0;3;90m\]] \[\e[0m\]'
+
+PS1='\[\e[38;2;102;92;84m\][\[\e[38;2;251;73;52m\]\u \[\e[38;2;184;187;38m\]\W\[\e[38;2;102;92;84m\]] \[\e[0m\]'
 PS4='Line ${LINENO}: '
 set +a
 

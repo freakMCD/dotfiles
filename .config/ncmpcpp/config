@@ -12,4 +12,4 @@ follow_now_playing_lyrics = no
 startup_screen = playlist
 jump_to_now_playing_song_at_start = yes
 media_library_albums_split_by_date = no
-lyrics_fetchers = tekstowo, musixmatch, metrolyrics, zeneszoveg, justsomelyrics,  internet, plyrics, jahlyrics, sing365 
+lyrics_fetchers = genius, tekstowo, plyrics, justsomelyrics, jahlyrics, zeneszoveg, internet

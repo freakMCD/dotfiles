@@ -20,7 +20,7 @@ set color-list-section blue bold
 set color-list-section-unread red bold italic
 
 # Within the feeds comprising a section
-set color-list-feed green
+set color-list-feed cyan
 set color-list-feed-unread magenta italic
 
 # Individual posts
