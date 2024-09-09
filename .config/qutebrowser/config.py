@@ -36,6 +36,9 @@ c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt',
                                     'https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/pornography-hosts',
                                     ]
 
+# Keybinding to temporarily allow Facebook when using hints
+config.bind('af', 'config-list-add content.blocking.whitelist *.facebook.com;; hint links;;cmd-later 10000 config-list-remove content.blocking.whitelist *.facebook.com')
+
 # Javascript
 c.content.javascript.enabled = True
 c.content.javascript.clipboard = "access-paste"
@@ -68,3 +71,5 @@ c.qt.args = [ "enable-features=VaapiIgnoreDriverChecks",]
 with config.pattern("*://discord.com/*") as p:
     p.content.media.audio_video_capture = True
     p.content.autoplay = True
+
+

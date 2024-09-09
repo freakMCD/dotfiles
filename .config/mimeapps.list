@@ -8,6 +8,7 @@ application/vnd.oasis.opendocument.graphics=libreoffice-draw.desktop
 image/png=viewnior.desktop
 x-scheme-handler/tonsite=org.telegram.desktop.desktop
 x-scheme-handler/ror2mm=r2modman.desktop
+text/plain=nvim.desktop
 
 [Added Associations]
 x-scheme-handler/tonsite=org.telegram.desktop.desktop;
