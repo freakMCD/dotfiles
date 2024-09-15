@@ -177,6 +177,8 @@ settings:
     - ~/.config/qutebrowser/css/gruvbox-all-sites.css
   content.webgl:
     global: true
+  downloads.prevent_mixed_content:
+    global: true
   fonts.default_family:
     global: JetBrainsMono Nerd Font
   fonts.default_size:

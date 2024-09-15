@@ -13,7 +13,7 @@ c.content.notifications.enabled = False
 config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
 
 # Define keywords and subdomains
-keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'youtubedl', 'fossdroid', 'libreoffice', 'Android', 'geogebra', 'fonts', 'linux', 'bboy', 'horror', 'wayland', 'DataHoarder', 'singing', 'yambar']
+keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'youtubedl', 'libreoffice', 'geogebra', 'linux', 'wayland', 'Steam']
 base_url = '*://*.reddit.com/r/'
 
 # Generate the whitelist based on the keywords
@@ -71,5 +71,5 @@ c.qt.args = [ "enable-features=VaapiIgnoreDriverChecks",]
 with config.pattern("*://discord.com/*") as p:
     p.content.media.audio_video_capture = True
     p.content.autoplay = True
-
+c.downloads.location.directory = "~/2doCiclo/UNIDAD1/"
 
