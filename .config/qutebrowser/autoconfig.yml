@@ -71,18 +71,11 @@ settings:
     - '*://*.reddit.com/r/bash/*'
     - '*://*.reddit.com/r/archlinux/*'
     - '*://*.reddit.com/r/youtubedl/*'
-    - '*://*.reddit.com/r/fossdroid/*'
     - '*://*.reddit.com/r/libreoffice/*'
-    - '*://*.reddit.com/r/Android/*'
     - '*://*.reddit.com/r/geogebra/*'
-    - '*://*.reddit.com/r/fonts/*'
     - '*://*.reddit.com/r/linux/*'
-    - '*://*.reddit.com/r/bboy/*'
-    - '*://*.reddit.com/r/horror/*'
     - '*://*.reddit.com/r/wayland/*'
-    - '*://*.reddit.com/r/DataHoarder/*'
-    - '*://*.reddit.com/r/singing/*'
-    - '*://*.reddit.com/r/yambar/*'
+    - '*://*.reddit.com/r/Steam/*'
   content.desktop_capture:
     https://discord.com: true
     https://meet.google.com: true

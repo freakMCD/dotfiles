@@ -3,7 +3,7 @@
 newsraft="footclient --app-id=newsraftsilent newsraft"
 retry_count=10
 ping_target="google.com"
-retry_interval=30
+retry_interval=35
 
 sleep 3
 
