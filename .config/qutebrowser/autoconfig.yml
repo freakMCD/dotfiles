@@ -76,6 +76,7 @@ settings:
     - '*://*.reddit.com/r/linux/*'
     - '*://*.reddit.com/r/wayland/*'
     - '*://*.reddit.com/r/Steam/*'
+    - '*://*.reddit.com/r/utadahikaru/*'
   content.desktop_capture:
     https://discord.com: true
     https://meet.google.com: true
@@ -180,6 +181,10 @@ settings:
     global: 16
   hints.chars:
     global: asdghzxcvn
+  hints.leave_on_load:
+    global: true
+  input.insert_mode.auto_load:
+    global: false
   prompt.radius:
     global: 8
   qt.chromium.experimental_web_platform_features:

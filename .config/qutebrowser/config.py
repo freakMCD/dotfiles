@@ -13,7 +13,7 @@ c.content.notifications.enabled = False
 config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
 
 # Define keywords and subdomains
-keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'youtubedl', 'libreoffice', 'geogebra', 'linux', 'wayland', 'Steam']
+keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'youtubedl', 'libreoffice', 'geogebra', 'linux', 'wayland', 'Steam', 'LearnJapanese']
 base_url = '*://*.reddit.com/r/'
 
 # Generate the whitelist based on the keywords
@@ -63,7 +63,7 @@ c.tabs.max_width = 200
 
 c.url.searchengines = {
     "DEFAULT": "https://lite.duckduckgo.com/lite/?q={}",
-    "yt": "https://invidious.privacyredirect.com/results?search_query={}",
+    "yt": "https://farside.link/https://www.youtube.com/results?search_query={}",
 }
 
 c.qt.args = [ "enable-features=VaapiIgnoreDriverChecks",]

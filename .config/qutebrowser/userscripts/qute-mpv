@@ -10,9 +10,6 @@ extract_youtube_url() {
 }
 
 case $QUTE_URL in
-    *youtube.com/shorts/*)
-        mpv --loop-file=inf "$QUTE_URL" &>/dev/null &exit
-        ;;
     *duckduckgo.com/l/?uddg=*)
         original_url=$(extract_youtube_url "$QUTE_URL")
         mpv "$original_url" &>/dev/null &exit
