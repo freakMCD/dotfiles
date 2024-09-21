@@ -14,16 +14,16 @@ toggle_x_coordinates() {
 
     case "$current_position" in
         "0,"*)
-            new_position="${current_position/0,/$(($x1_coord-1910)) }"
+            new_position="${current_position/0,/$(($x1_coord-1914)) }"
             ;;
-        "$(($x1_coord-1910)),"*)
-            new_position="${current_position/$(($x1_coord-1910)),/0 }"
+        "$(($x1_coord-1914)),"*)
+            new_position="${current_position/$(($x1_coord-1914)),/0 }"
             ;;
         "$x1_coord,"*)
-            new_position="${current_position/$x1_coord,/1910 }"
+            new_position="${current_position/$x1_coord,/1914 }"
             ;;
-        "1910,"*)
-            new_position="${current_position/1910,/$x1_coord }"
+        "1914,"*)
+            new_position="${current_position/1914,/$x1_coord }"
             ;;
     esac
 
