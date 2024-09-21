@@ -173,6 +173,7 @@ local set = vim.opt
 
 -- Set setions
 vim.g.mapleader = ','
+set.swapfile = false
 set.confirm = true
 set.history = 1000
 set.ignorecase = true

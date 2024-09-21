@@ -19,6 +19,9 @@ settings:
         ',p': hint --rapid videos spawn --userscript add-to-mpv-playlist {hint-url}
         /: set statusbar.show always;; cmd-set-text /
         ':': 'set statusbar.show always;; cmd-set-text :'
+        <Space><Space>: config-cycle colors.webpage.darkmode.enabled true false;;
+          config-cycle content.user_stylesheets [] ['~/.config/qutebrowser/css/gruvbox-all-sites.css']
+        <Space>a: config set content.blocking.whitelist+='*://*.reddit.com/*'
         <Space>b: config-cycle tabs.show switching always
         <Space>js: config-cycle content.javascript.enabled true false
         <Space>v: config-source ;; message-info 'qutebrowser reloaded'
@@ -26,6 +29,9 @@ settings:
         J: tab-prev
         K: tab-next
         O: set statusbar.show always;; cmd-set-text -s :open -t
+        Sd: bookmark-delSD
+        af: config-list-add content.blocking.whitelist *.facebook.com;; hint links;;cmd-later
+          10000 config-list-remove content.blocking.whitelist *.facebook.com
         gD: open -t https://discord.com/channels/@me
         gW: open -t https://web.whatsapp.com
         gd: open https://discord.com/channels/@me
@@ -36,6 +42,24 @@ settings:
         l: scroll-px 100 0
         o: set statusbar.show always;; cmd-set-text -s :open
         q: null
+        quickmark-del/: set statusbar.show always;; cmd-set-text /
+        zl: spawn --userscript qute-pass
+        zol: spawn --userscript qute-pass --otp-only
+        zpl: spawn --userscript qute-pass --password-only
+        zul: spawn --userscript qute-pass --username-only
+      passthrough:
+        <Alt+1>: tab-focus 1
+        <Alt+2>: tab-focus 2
+        <Alt+3>: tab-focus 3
+        <Alt+4>: tab-focus 4
+        <Alt+5>: tab-focus 5
+        <Alt+6>: tab-focus 6
+        <Alt+7>: tab-focus 7
+        <Alt+8>: tab-focus 8
+        <Alt+9>: tab-focus 9
+        <Alt+Left>: back
+        <Alt+Right>: forward
+        <Ctrl+Shift+z>: mode-leave
   colors.webpage.darkmode.enabled:
     global: true
   colors.webpage.darkmode.policy.images:
