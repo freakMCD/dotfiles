@@ -15,6 +15,11 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     'vifm/vifm.vim',
     'lervag/vimtex',
+    'andymass/vim-matchup',
+    { 
+        'nvim-treesitter/nvim-treesitter',
+        build = ':TSUpdate',
+    },
     'nvim-lualine/lualine.nvim', dependencies = {'kyazdani42/nvim-web-devicons' },
 
 	{
@@ -38,6 +43,7 @@ require("lazy").setup({
      'L3MON4D3/LuaSnip',
      'saadparwaiz1/cmp_luasnip',
      'rafamadriz/friendly-snippets',
+     'evesdropper/luasnip-latex-snippets.nvim',
 	},
    },
    
@@ -52,60 +58,21 @@ require('lualine').setup {
     theme = 'gruvbox'
   }
 }
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = {"c", "python", "vim"},
+}
 
--- Luasnip Tab completion related config 
-local has_words_before = function()
-  unpack = unpack or table.unpack
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
 
+require ('plugins/LuaSnip')
 -- Set up nvim-cmp.
 vim.opt.completeopt = "menu,menuone,noselect"
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
 local cmp = require('cmp')
-local luasnip = require('luasnip')
-local kind_icons = {
-  Text = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "ﴯ",
-  Interface = "",
-  Module = "",
-  Property = "ﰠ",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = ""
-}
 local select_opts = {behavior = cmp.SelectBehavior.Select}
 
 cmp.setup({
-
-    formatting = {
-	  format = function(entry, vim_item)
-	    -- Kind icons
-	    vim_item.kind = string.format(' %s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-	   	return vim_item
-	  end
-	},
-    
     snippet = {   -- REQUIRED
       expand = function(args) 
         require('luasnip').lsp_expand(args.body) 
@@ -121,58 +88,20 @@ cmp.setup({
       ['<C-e>'] = cmp.mapping.abort(),
       ['<C-y>'] = cmp.mapping.confirm({select = true}),
       ['<CR>'] = cmp.mapping.confirm({select = false}),
-
-    -- Snippets
-	  ['<C-f>'] = cmp.mapping(function(fallback)
-	    if luasnip.jumpable(1) then
-	      luasnip.jump(1)
-	    else
-	      fallback()
-	    end
-	  end, {'i', 's'}),
-
-	  ['<C-b>'] = cmp.mapping(function(fallback)
-	    if luasnip.jumpable(-1) then
-	      luasnip.jump(-1)
-	    else
-	      fallback()
-	    end
-	  end, {'i', 's'}),
-
-    -- Completion with tab
-	  ['<Tab>'] = cmp.mapping(function(fallback)
-	    local col = vim.fn.col('.') - 1
-	  
-	    if cmp.visible() then
-	      cmp.select_next_item(select_opts)
-	    elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-	      fallback()
-	    else
-	      cmp.complete()
-	    end
-	  end, {'i', 's'}),
-  
-	  ['<S-Tab>'] = cmp.mapping(function(fallback)
-	    if cmp.visible() then
-	      cmp.select_prev_item(select_opts)
-	    else
-	      fallback()
-	    end
-	  end, {'i', 's'}),
-   },
-
+    },
     sources = {
       { name = 'path'},
-      { name = 'nvim_lsp', keyword_length = 1},
       { name = 'buffer', keyword_length = 3},
-      { name = 'luasnip', keyword_length = 2}, -- For luasnip users.
+      { name = 'luasnip', keyword_length = 0}, -- For luasnip users.
     },
 })
 
+
 local set = vim.opt
 
--- Set setions
+-- Set sections
 vim.g.mapleader = ','
+set.clipboard = 'unnamedplus'
 set.swapfile = false
 set.confirm = true
 set.history = 1000
@@ -192,6 +121,9 @@ set.wrap = true
 set.linebreak = true
 set.showbreak = '▸'  -- You can change this to any character you prefer
 set.breakindent = true
+set.conceallevel = 2
+vim.g.tex_fold_enabled = 0
+
 vim.cmd[[ 
     highlight Normal ctermbg=NONE guibg=NONE
     filetype plugin indent on
@@ -201,13 +133,23 @@ vim.keymap.set("n", "<c-P>",
   "<cmd>lua require('fzf-lua').files({ cmd = vim.env.FZF_DEFAULT_COMMAND })<CR>", { silent = true })
 
 -- Vimtex
-set.conceallevel = 1
+vim.g.matchup_override_vimtex = 1 -- vim-matchup
+vim.g.matchup_matchparen_deferred = 1 -- vim-matchup
 vim.g.vimtex_view_method = 'zathura'
-vim.g.vimtex_quickfix_mode = 0
+vim.g.vimtex_quickfix_open_on_warning = 0  
+vim.g.vimtex_imaps_enabled = 0
+vim.g.vimtex_view_automatic = 0
 vim.g.vimtex_compiler_latexmk = {
-  out_dir = 'build'
+  aux_dir = 'auxfiles',
+  out_dir = 'pdffiles',
+  options = {
+        '-shell-escape',
+        '-verbose',
+        '-file-line-error',
+        '-interaction=nonstopmode',
+        '-synctex=1'
+    }
 }
-
 vim.keymap.set('x', '<C-r>', '"hy:s/<C-r>h/')
 
 vim.api.nvim_set_keymap('n', '<C-t>', ':tabnew<CR>', { noremap = true, silent = true })

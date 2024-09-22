@@ -7,7 +7,7 @@ clients=$(hyprctl clients -j)
 target_address=$(jq -r --argjson x "$1" --argjson y "$2" '
     .[] | select(.class == "mpv" and (
       (($x == 0 and (.at[0] == 0 or .at[0] == -374)) or 
-       ($x == '$x1_coord' and (.at[0] == '$x1_coord' or .at[0] == 1910))) and .at[1] == $y)) | .address' <<< "$clients")
+       ($x == '$x1_coord' and (.at[0] == '$x1_coord' or .at[0] == 1918))) and .at[1] == $y)) | .address' <<< "$clients")
 
 # Exit if no target address is found
 [ -z "$target_address" ] && exit
@@ -19,15 +19,15 @@ current_x_coord=$(jq -r --arg address "$target_address" '
 # Toggle the x-coordinate based on its current value
 case "$current_x_coord" in
     "0")
-        new_x_coord="$(($x1_coord-1910))"
+        new_x_coord="$(($x1_coord-1918))"
         ;;
-    "$(($x1_coord-1910))")
+    "$(($x1_coord-1918))")
         new_x_coord="0"
         ;;
     "$x1_coord")
-        new_x_coord="1910"
+        new_x_coord="1918"
         ;;
-    "1910")
+    "1918")
         new_x_coord="$x1_coord"
         ;;
     *)

@@ -34,3 +34,6 @@ optimization convex https://pubmed.ncbi.nlm.nih.gov/37299829/
 nixconf https://github.com/vimjoyer/nixconf
 must books https://math.stackexchange.com/questions/94827/what-books-must-every-math-undergraduate-read
 companions to rudin https://math.stackexchange.com/questions/2786/companions-to-rudin
+Cambridge Notes https://dec41.user.srcf.net/notes/
+guide Latex https://ejmastnak.com/tutorials/vim-latex/intro/
+dotfiles latex https://github.com/ejmastnak/dotfiles/tree/main/config/nvim/LuaSnip/tex

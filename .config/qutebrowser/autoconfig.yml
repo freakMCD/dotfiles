@@ -94,13 +94,14 @@ settings:
     - '*://*.reddit.com/r/hyprland/*'
     - '*://*.reddit.com/r/bash/*'
     - '*://*.reddit.com/r/archlinux/*'
-    - '*://*.reddit.com/r/youtubedl/*'
     - '*://*.reddit.com/r/libreoffice/*'
     - '*://*.reddit.com/r/geogebra/*'
     - '*://*.reddit.com/r/linux/*'
     - '*://*.reddit.com/r/wayland/*'
     - '*://*.reddit.com/r/Steam/*'
-    - '*://*.reddit.com/r/utadahikaru/*'
+    - '*://*.reddit.com/r/LearnJapanese/*'
+    - '*://*.reddit.com/r/japanesemusic/*'
+    - '*://*.reddit.com/r/neovim/*'
   content.desktop_capture:
     https://discord.com: true
     https://meet.google.com: true

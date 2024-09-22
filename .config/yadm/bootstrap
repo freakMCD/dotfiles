@@ -27,7 +27,7 @@ install_basics() {
 
 install_texlive_packages() {
     # texlive bits
-    sudo pacman -S install texlive-mathscience texlive-binextra
+    yay texlive-meta
 }
 
 enable_services () {
