@@ -100,8 +100,8 @@ settings:
     - '*://*.reddit.com/r/wayland/*'
     - '*://*.reddit.com/r/Steam/*'
     - '*://*.reddit.com/r/LearnJapanese/*'
-    - '*://*.reddit.com/r/japanesemusic/*'
     - '*://*.reddit.com/r/neovim/*'
+    - '*://*.reddit.com/r/LaTeX/*'
   content.desktop_capture:
     https://discord.com: true
     https://meet.google.com: true

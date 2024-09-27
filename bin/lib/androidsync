@@ -18,7 +18,7 @@ music() {
    set net:timeout 5; set net:reconnect-interval-base 5; set net:max-retries 3; set net:connection-limit 1000
    open ftp://${FTP_SERVER}:${FTP_PORT};
    login admin 1996;
-   mirror -R -p --parallel=8 --use-pget-n=8 --no-recursion --delete-first --ignore-time --exclude .thumbnails -v;
+   mirror -R -p --parallel=8 --use-pget-n=8 --no-recursion --delete-first --ignore-time --only-newer --exclude .thumbnails -v;
    bye" || echo "Music sync failed!"
 }
 

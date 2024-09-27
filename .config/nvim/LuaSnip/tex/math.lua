@@ -154,7 +154,7 @@ return
   -- VECTOR, i.e. \vec
   s({trig = "([^%a])vv", wordTrig = false, regTrig = true, snippetType="autosnippet"},
     fmta(
-      "<>\\vec{<>}",
+      "<>\\vv{<>}",
       {
         f( function(_, snip) return snip.captures[1] end ),
         d(1, get_visual),
