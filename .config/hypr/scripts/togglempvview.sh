@@ -6,8 +6,8 @@ source ~/.config/hypr/scripts/variables.sh
 clients=$(hyprctl clients -j)
 target_address=$(jq -r --argjson x "$1" --argjson y "$2" '
     .[] | select(.class == "mpv" and (
-      (($x == 0 and (.at[0] == 0 or .at[0] == -374)) or 
-       ($x == '$x1_coord' and (.at[0] == '$x1_coord' or .at[0] == 1918))) and .at[1] == $y)) | .address' <<< "$clients")
+      (($x == 0 and (.at[0] == 0 or .at[0] == -448)) or 
+       ($x == 1470 and (.at[0] == 1470 or .at[0] == 1918))) and .at[1] == $y)) | .address' <<< "$clients")
 
 # Exit if no target address is found
 [ -z "$target_address" ] && exit
