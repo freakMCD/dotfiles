@@ -9,6 +9,10 @@ image/png=viewnior.desktop
 x-scheme-handler/tonsite=org.telegram.desktop.desktop
 x-scheme-handler/ror2mm=r2modman.desktop
 text/plain=nvim.desktop
+application/vnd.oasis.opendocument.spreadsheet=libreoffice-calc.desktop
+text/x-tex=nvim.desktop
+application/javascript=nvim.desktop
+text/x-lua=nvim.desktop
 
 [Added Associations]
 x-scheme-handler/tonsite=org.telegram.desktop.desktop;

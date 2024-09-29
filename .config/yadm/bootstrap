@@ -27,7 +27,7 @@ install_basics() {
 
 install_texlive_packages() {
     # texlive bits
-    yay texlive-meta
+    yay texlive-meta texlive-langspanish
 }
 
 enable_services () {
