@@ -102,6 +102,7 @@ settings:
     - '*://*.reddit.com/r/LearnJapanese/*'
     - '*://*.reddit.com/r/neovim/*'
     - '*://*.reddit.com/r/LaTeX/*'
+    - '*://*.reddit.com/r/japanesemusic/*'
   content.desktop_capture:
     https://discord.com: true
     https://meet.google.com: true
