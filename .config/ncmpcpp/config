@@ -13,3 +13,4 @@ startup_screen = playlist
 jump_to_now_playing_song_at_start = yes
 media_library_albums_split_by_date = no
 lyrics_fetchers = genius, tekstowo, plyrics, justsomelyrics, jahlyrics, zeneszoveg, internet
+allow_for_physical_item_deletion=yes
