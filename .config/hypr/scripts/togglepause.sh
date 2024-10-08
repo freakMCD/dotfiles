@@ -1,15 +1,17 @@
 #!/bin/bash
 source ~/.config/hypr/scripts/variables.sh
+source ~/.config/hypr/scripts/mpv_addresses
 mpv_socket_dir="/tmp/mpvSockets"
 
 mpvplaycontrol() {
+    clients=$(hyprctl clients -j)
     while read -r address pid; do 
         if [[ "$address" == "$1" ]]; then
             target_pid="$pid"
   #      else
 #            echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
         fi
-    done <<< "$(jq -r '.[] | select(.class == "mpv") | "\(.address) \(.pid)"' <<< "$2")"
+    done <<< "$(jq -r '.[] | select(.class == "mpv") | "\(.address) \(.pid)"' <<< "$clients")"
     
     if [ -n "$target_pid" ]; then
             sleep 0.1
@@ -17,18 +19,14 @@ mpvplaycontrol() {
     fi
 }
 
-clients=$(hyprctl clients -j)
+# Match the appropriate mpv address based on the argument
+mpv_variable="mpv_$1"
+# Use indirect expansion to get the address dynamically
+target_address=${!mpv_variable}
 
-# Adjust the filter to match x and y coordinates with alternatives
-target_address=$(jq -r --argjson x_coord "$1" --argjson y_coord "$2" '
-    .[] | select(.class == "mpv" and 
-    ((($x_coord == 0 and (.at[0] == 0 or .at[0] == '"$((x1_coord-1918))"')) or 
-      ($x_coord == '$x1_coord' and (.at[0] == '$x1_coord' or .at[0] == 1918))) and (.at[1] == $y_coord))
-    ) | .address' <<< "$clients")
-
-if [[ -z "$target_address" ]];then
-    exit
+if [[ -z "$target_address" ]]; then
+    exit 1
 fi
 
-mpvplaycontrol "$target_address" "$clients"
+mpvplaycontrol "$target_address"
 

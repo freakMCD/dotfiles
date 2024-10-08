@@ -1,7 +1,7 @@
 source ~/.config/hypr/scripts/variables.sh
 
-
 mpv_socket_dir="/tmp/mpvSockets"
+mpv_addresses_file=~/.config/hypr/scripts/mpv_addresses
 
 mpvplaycontrol() {
     while read -r address pid; do 
@@ -41,6 +41,9 @@ event_openwindow() {
             clients=$(hyprctl clients -j)
             ((mpv_count++))
             assign_coordinates "$mpv_count"
+
+            echo "mpv_$mpv_count=0x$WINDOWADDRESS" >> "$mpv_addresses_file"
+
             hyprctl --batch "dispatch movewindowpixel exact $x $y,address:0x$WINDOWADDRESS"
             addresses+=( "$WINDOWADDRESS" )
             mpvplaycontrol "0x$WINDOWADDRESS" "$clients"
@@ -69,8 +72,10 @@ event_closewindow() {
 			fi	
 
 	        # Adjust window positions if there are remaining windows
+            : > "$mpv_addresses_file"  # Clear the file
             for ((i = 0; i < ${#addresses[@]}; i++)); do
                 assign_coordinates "$((i+1))"
+                echo "mpv_$((i+1))=0x${addresses[$i]}" >> "$mpv_addresses_file"
                 hyprctl dispatch movewindowpixel exact $x "$y",address:"0x${addresses[$i]}"
             done
         fi

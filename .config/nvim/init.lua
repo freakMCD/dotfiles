@@ -13,7 +13,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    'vifm/vifm.vim',
     'lervag/vimtex',
     'andymass/vim-matchup', 
     { 
@@ -21,17 +20,6 @@ require("lazy").setup({
         build = ':TSUpdate',
     },
     'nvim-lualine/lualine.nvim', dependencies = {'kyazdani42/nvim-web-devicons' },
-
-	{
-	  "ibhagwan/fzf-lua",
-	  -- optional for icon support
-	  dependencies = { "nvim-tree/nvim-web-devicons" },
-	  config = function()
-	    -- calling `setup` is optional for customization
-	    require("fzf-lua").setup({})
-	  end
-	},
-
    {
     'hrsh7th/nvim-cmp', 
     -- load cmp on InsertEnter
@@ -42,8 +30,6 @@ require("lazy").setup({
      --LuaSnip
      'L3MON4D3/LuaSnip',
      'saadparwaiz1/cmp_luasnip',
-     'rafamadriz/friendly-snippets',
-     'evesdropper/luasnip-latex-snippets.nvim',
 	},
    },
    
@@ -130,15 +116,11 @@ set.wrap = true
 set.linebreak = true
 set.showbreak = '▸'  -- You can change this to any character you prefer
 set.breakindent = true
-vim.g.tex_fold_enabled = 0
 
 vim.cmd[[ 
     highlight Normal ctermbg=NONE guibg=NONE
     filetype plugin indent on
 ]]
-
-vim.keymap.set("n", "<c-P>",
-  "<cmd>lua require('fzf-lua').files({ cmd = vim.env.FZF_DEFAULT_COMMAND })<CR>", { silent = true })
 
 -- matchup & Vimtex
 vim.g.matchup_matchparen_deferred = 1 -- vim-matchup
