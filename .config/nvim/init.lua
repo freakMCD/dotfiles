@@ -14,13 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     'lervag/vimtex',
-    'andymass/vim-matchup', 
-    { 
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate',
-    },
     'nvim-lualine/lualine.nvim', dependencies = {'kyazdani42/nvim-web-devicons' },
-   {
+    {
     'hrsh7th/nvim-cmp', 
     -- load cmp on InsertEnter
     event = "InsertEnter",
@@ -43,9 +38,6 @@ require('lualine').setup {
   options = {
     theme = 'gruvbox'
   }
-}
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"c", "python", "vim"},
 }
 
 require ('plugins/LuaSnip')
@@ -121,13 +113,6 @@ vim.cmd[[
     highlight Normal ctermbg=NONE guibg=NONE
     filetype plugin indent on
 ]]
-
--- matchup & Vimtex
-vim.g.matchup_matchparen_deferred = 1 -- vim-matchup
-vim.g.matchup_matchparen_deferred_show_delay = 100
-vim.g.matchup_override_vimtex = 1
-vim.g.matchup_matchparen_hi_surround_always=1
-vim.g.matchup_delim_start_plaintext = 0
 
 vim.g.vimtex_view_method = 'zathura'
 vim.g.vimtex_syntax_conceal_disable = 1

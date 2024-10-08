@@ -75,9 +75,10 @@ event_closewindow() {
             : > "$mpv_addresses_file"  # Clear the file
             for ((i = 0; i < ${#addresses[@]}; i++)); do
                 assign_coordinates "$((i+1))"
-                echo "mpv_$((i+1))=0x${addresses[$i]}" >> "$mpv_addresses_file"
+                output+=("mpv_$((i + 1))=0x${addresses[$i]}")
                 hyprctl dispatch movewindowpixel exact $x "$y",address:"0x${addresses[$i]}"
             done
+            printf "%s\n" "${output[@]}" >> "$mpv_addresses_file"
         fi
     else
         return 1
