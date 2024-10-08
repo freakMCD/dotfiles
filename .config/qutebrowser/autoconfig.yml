@@ -103,7 +103,8 @@ settings:
     - '*://*.reddit.com/r/neovim/*'
     - '*://*.reddit.com/r/LaTeX/*'
     - '*://*.reddit.com/r/Artcore/*'
-    - '*://*.reddit.com/r/GDragon/*'
+    - '*://*.reddit.com/r/japanesemusic/*'
+    - '*://*.reddit.com/r/PostHardcore/*'
   content.desktop_capture:
     https://discord.com: true
     https://meet.google.com: true

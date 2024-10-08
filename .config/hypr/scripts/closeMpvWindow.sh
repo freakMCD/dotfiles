@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+source ~/.config/hypr/scripts/variables.sh
 
 clients=$(hyprctl clients -j)
 
@@ -10,8 +11,8 @@ for pair in "${addresses_positions[@]}"; do
     read -r address x_coord y_coord <<< "$pair"
     # Check if the y_coord matches and then check x_coord alternatives
     if [ "$y_coord" -eq "$2" ] && { 
-        ([ "$1" -eq 0 ] && { [ "$x_coord" -eq "$1" ] || [ "$x_coord" -eq -448 ]; }) || 
-        ([ "$1" -eq 1470 ] && { [ "$x_coord" -eq "$1" ] || [ "$x_coord" -eq 1918 ]; });
+        ([ "$1" -eq 0 ] && { [ "$x_coord" -eq 0 ] || [ "$x_coord" -eq $((x1_coord-1918)) ]; }) || 
+        ([ "$1" -eq "$x1_coord" ] && { [ "$x_coord" -eq "$x1_coord" ] || [ "$x_coord" -eq 1918 ]; });
     }; then        target_address=$address
         break
     fi
