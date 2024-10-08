@@ -12,7 +12,7 @@ add_url_to_playlist() {
 get_mpv_instance_by_ycoord() {
     local target_pid
 
-    local mpv_instances=$(hyprctl clients -j | jq -r '[.[] | select(.class == "mpv" and (.at[0] == 1470 or .at[0] ==1918) and .at[1] == 0)] | .[]')
+    local mpv_instances=$(hyprctl clients -j | jq -r '[.[] | select(.class == "mpv" and (.at[0] == 1353 or .at[0] ==1920) and .at[1] == 0)] | .[]')
 
     if [[ -n "$mpv_instances" ]]; then
         target_pid=$(jq -r '.pid' <<< "$mpv_instances")

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 source ~/.config/hypr/scripts/variables.sh
-source ~/.config/hypr/scripts/mpv_addresses
+source /tmp/mpv_addresses
 
 clients=$(hyprctl clients -j)
 

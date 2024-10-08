@@ -1,7 +1,7 @@
 source ~/.config/hypr/scripts/variables.sh
 
 mpv_socket_dir="/tmp/mpvSockets"
-mpv_addresses_file=~/.config/hypr/scripts/mpv_addresses
+mpv_addresses_file=/tmp/mpv_addresses
 
 mpvplaycontrol() {
     while read -r address pid; do 
