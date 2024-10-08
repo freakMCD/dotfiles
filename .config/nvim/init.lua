@@ -27,7 +27,9 @@ require("lazy").setup({
      'saadparwaiz1/cmp_luasnip',
 	},
    },
-   
+
+    'neovim/nvim-lspconfig',
+    'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp,  
     {"morhetz/gruvbox", priority = 1000 },
    
 })
@@ -46,6 +48,7 @@ vim.opt.completeopt = "menu,menuone,noselect"
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
+require'lspconfig'.texlab.setup{}
 local cmp = require('cmp')
 local select_opts = {behavior = cmp.SelectBehavior.Select}
 
@@ -78,8 +81,9 @@ cmp.setup({
         },
  
      sources = {
+       { name = 'nvim_lsp'},
        { name = 'path'},
-       { name = 'buffer', keyword_length = 3},
+       { name = 'buffer', keyword_length = 2},
      },
 })
 
@@ -115,9 +119,8 @@ vim.cmd[[
 ]]
 
 vim.g.vimtex_view_method = 'zathura'
-vim.g.vimtex_syntax_conceal_disable = 1
 vim.g.vimtex_quickfix_open_on_warning = 0  
-vim.g.vimtex_quickfix_autoclose_after_keystrokes = 10
+vim.g.vimtex_quickfix_autoclose_after_keystrokes = 5
 vim.g.vimtex_imaps_enabled = 0
 vim.g.vimtex_delim_stopline = 50
 vim.g.vimtex_compiler_latexmk = {
