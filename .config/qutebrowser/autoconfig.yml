@@ -232,7 +232,7 @@ settings:
   qt.workarounds.disable_accelerated_2d_canvas:
     global: never
   statusbar.show:
-    global: in-mode
+    global: always
   tabs.favicons.show:
     global: always
   tabs.max_width:

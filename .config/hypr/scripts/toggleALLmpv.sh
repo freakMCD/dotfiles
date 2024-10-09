@@ -14,7 +14,7 @@ toggle_x_coordinates() {
 
     case "$current_position" in
         "0,"*)
-            new_position="${current_position/0,/$(($x1_coord-1918)) }"
+            new_position="${current_position/0,/$(($x1_coord-1920)) }"
             ;;
         "$(($x1_coord-1920)),"*)
             new_position="${current_position/$(($x1_coord-1920)),/0 }"

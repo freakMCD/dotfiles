@@ -9,8 +9,8 @@ alias df='df -h'
 alias compresspdf='gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf input.pdf'
 
 alias sortmusic='cd ~/Music/2015-2022 && stat --format="%W %n" * | sort -nr'
-alias mymusic='mpv --shuffle --volume=67 --save-position-on-quit=no "https://www.youtube.com/playlist?list=PL4CmunqMOJjLhWvgQUXWvewHEOoPAVAkt"'
-alias updmusic='cd ~/Music/2015-2022/ && yt-dlp https://www.youtube.com/playlist?list=PL4CmunqMOJjJXFgLuLfi_Ga9vwQBUtx_L && puddletag .'
+alias mymusic='mpv --shuffle --volume=67 --save-position-on-quit=no "https://www.youtube.com/playlist?list=PL4CmunqMOJjLhWvgQUXWvewHEOoPAVAkt" '
+alias updmusic='cd ~/Music/2015-2022/ && yt-dlp https://www.youtube.com/playlist?list=PL4CmunqMOJjJXFgLuLfi_Ga9vwQBUtx_L https://www.youtube.com/playlist?list=PLvoJm-S4aIszxXQGYbZNJEZFRP1SSbw0X && puddletag .'
 alias mp3dl='yt-dlp --restrict-filenames --extract-audio --audio-format mp3 --no-playlist'
 alias litedlp="yt-dlp -f 'bestvideo[height<=720]+bestaudio/best'"
 
