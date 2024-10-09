@@ -3,8 +3,6 @@ set -e
 source ~/.config/hypr/scripts/variables.sh
 source /tmp/mpv_addresses
 
-clients=$(hyprctl clients -j)
-
 # Match the appropriate mpv address based on the argument
 mpv_variable="mpv_$1"
 # Use indirect expansion to get the address dynamically

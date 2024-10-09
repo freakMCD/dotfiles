@@ -2,13 +2,13 @@
 source ~/.config/hypr/scripts/variables.sh
 source /tmp/mpv_addresses
 
-clients=$(hyprctl clients -j)
-
 # Match the appropriate mpv address based on the argument
 mpv_variable="mpv_$1"
 target_address=${!mpv_variable}
 
 [ -z "$target_address" ] && exit
+
+clients=$(hyprctl clients -j)
 
 # Determine the actual x_coord of the matched window
 current_x_coord=$(jq -r --arg address "$target_address" '
