@@ -104,7 +104,9 @@ settings:
     - '*://*.reddit.com/r/LaTeX/*'
     - '*://*.reddit.com/r/Artcore/*'
     - '*://*.reddit.com/r/japanesemusic/*'
-    - '*://*.reddit.com/r/PostHardcore/*'
+    - '*://*.reddit.com/r/bodyweightfitness/*'
+    - '*://*.reddit.com/r/Grimdawn/*'
+    - '*://*.reddit.com/r/CrossCode/*'
   content.desktop_capture:
     https://discord.com: true
     https://meet.google.com: true
@@ -232,7 +234,7 @@ settings:
   qt.workarounds.disable_accelerated_2d_canvas:
     global: never
   statusbar.show:
-    global: always
+    global: in-mode
   tabs.favicons.show:
     global: always
   tabs.max_width:

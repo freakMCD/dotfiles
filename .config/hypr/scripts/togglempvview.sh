@@ -16,16 +16,16 @@ current_x_coord=$(jq -r --arg address "$target_address" '
 
 # Toggle the x-coordinate based on its current value
 case "$current_x_coord" in
-    "0")
+    "$x_offset")
         new_x_coord=$((-$mpv_width))
         ;;
-    "$(($x1_coord-1920))")
+    "$l_hidden")
         new_x_coord=$mpv_width
         ;;
     "$x1_coord")
         new_x_coord="$mpv_width"
         ;;
-    "1920")
+    "$r_hidden")
         new_x_coord=$((-$mpv_width))
         ;;
     *)

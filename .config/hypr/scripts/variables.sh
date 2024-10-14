@@ -1,17 +1,22 @@
 # mpv size
-mpv_width=567
-mpv_height=378
+mpv_width=681
+mpv_height=454
 
+x_offset=-30
+y_offset=0
+
+l_hidden=$(($x_offset-$mpv_width))
+r_hidden=$((1920-$x_offset))
 # mpv coords
-x1_coord=$((1920-$mpv_width))
-y1_coord=0
+x1_coord=$((1920-$x_offset-$mpv_width))
+y1_coord=$y_offset
 
-x2_coord="$x1_coord"
-y2_coord=$((1080-$mpv_height))
+x2_coord=$x1_coord
+y2_coord=$((1080-$y_offset-$mpv_height))
 
-x3_coord=0
-y3_coord="$y2_coord"
+x3_coord=$x_offset
+y3_coord=$y2_coord
 
-x4_coord=0
-y4_coord=0
+x4_coord=$x3_coord
+y4_coord=$y1_coord
 

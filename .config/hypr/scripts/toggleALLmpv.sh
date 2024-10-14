@@ -13,17 +13,17 @@ toggle_x_coordinates() {
     local current_position="$2"
 
     case "$current_position" in
-        "0,"*)
-            new_position="${current_position/0,/$(($x1_coord-1920)) }"
+        "$x_offset,"*)
+            new_position="${current_position/$x_offset,/$l_hidden }"
             ;;
-        "$(($x1_coord-1920)),"*)
-            new_position="${current_position/$(($x1_coord-1920)),/0 }"
+        "$l_hidden,"*)
+            new_position="${current_position/$l_hidden,/$x_offset }"
             ;;
         "$x1_coord,"*)
-            new_position="${current_position/$x1_coord,/1920 }"
+            new_position="${current_position/$x1_coord,/$r_hidden }"
             ;;
-        "1920,"*)
-            new_position="${current_position/1920,/$x1_coord }"
+        "$r_hidden,"*)
+            new_position="${current_position/$r_hidden,/$x1_coord }"
             ;;
     esac
 
