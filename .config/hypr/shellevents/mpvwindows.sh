@@ -58,10 +58,11 @@ event_closewindow() {
         for i in "${!addresses[@]}"; do
             if [[ "${addresses[$i]}" == "$WINDOWADDRESS" ]]; then
                 unset "addresses[$i]"
+                addresses=("${addresses[@]}")
                 ((mpv_count--))
+                break
             fi
         done
-        addresses=("${addresses[@]}")
 
         if [[ -n ${addresses[@]} ]]; then
             # Check if the activewindow is MPV and fullscreen
@@ -73,6 +74,7 @@ event_closewindow() {
 
 	        # Adjust window positions if there are remaining windows
             : > "$mpv_addresses_file"  # Clear the file
+            output=()
             for ((i = 0; i < ${#addresses[@]}; i++)); do
                 assign_coordinates "$((i+1))"
                 output+=("mpv_$((i + 1))=0x${addresses[$i]}")
