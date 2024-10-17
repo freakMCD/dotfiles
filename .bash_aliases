@@ -1,16 +1,16 @@
+# Hyprland
 alias shellevents="socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock  EXEC:'/home/edwin/.config/hypr/shellevents/shellevents /home/edwin/.config/hypr/shellevents/mpvwindows.sh',nofork"
 alias reloadevent="killall shellevents -USR1"
+# System
 alias aliasrc="nvim ~/.bash_aliases && source ~/.bash_aliases"
 alias bashrc="nvim ~/.bashrc && source ~/.bashrc"
 alias dus='du -h --max-depth=1 | sort -hr' # Disk Usage Sorted
-alias rclone="rclone -P"
-alias curl='curl -O'
 alias df='df -h'
-alias compresspdf='gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf input.pdf'
-
+alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+# Music
 alias sortmusic='cd ~/Music/2015-2022 && stat --format="%W %n" * | sort -nr'
 alias musicv='mpv --shuffle --volume=67 --save-position-on-quit=no "https://www.youtube.com/playlist?list=PL-EkZZikQIQUZ0Gqm5Gc-D6HoHpI4gdhE" '
-alias updmusic='cd ~/Music/2015-2022/ && yt-dlp https://www.youtube.com/playlist?list=PL4CmunqMOJjJXFgLuLfi_Ga9vwQBUtx_L https://www.youtube.com/playlist?list=PLvoJm-S4aIszxXQGYbZNJEZFRP1SSbw0X && puddletag .'
+alias updmusic='cd ~/Music/2015-2022/ && yt-dlp -a ~/bin/misc/playlists_urls && puddletag .'
 alias mp3dl='yt-dlp --restrict-filenames --extract-audio --audio-format mp3 --no-playlist'
 alias litedlp="yt-dlp -f 'bestvideo[height<=720]+bestaudio/best'"
 
@@ -19,7 +19,7 @@ alias gpg-list="gpg --list-secret-keys --keyid-format LONG"
 alias gpg-backup="gpg -o private.gpg --export-options backup --export-secret-keys"
 alias gpg-restore="gpg --import-options restore --import private.gpg"
 
-# Custom dnf alias
+# Pacman aliases
 alias pacu='sudo pacman -Syu' # Update the system
 alias paci='sudo pacman -S'
 alias pacr='sudo pacman -Rs'
@@ -29,7 +29,10 @@ alias pacinfo='pacman -Qi'
 alias pacorphans='pacman -Qtd'
 alias pacclean='sudo pacman -Sc'
 
-alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+# File management and compression
+alias rclone="rclone -P"
+alias compresspdf='gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf input.pdf'
+alias curl='curl -O'
 
 stage() {
     printf "First argument: yadm or git\nSecond argument: modified or deleted\n\n"

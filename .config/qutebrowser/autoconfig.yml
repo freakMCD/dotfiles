@@ -105,8 +105,7 @@ settings:
     - '*://*.reddit.com/r/Artcore/*'
     - '*://*.reddit.com/r/japanesemusic/*'
     - '*://*.reddit.com/r/bodyweightfitness/*'
-    - '*://*.reddit.com/r/Grimdawn/*'
-    - '*://*.reddit.com/r/CrossCode/*'
+    - '*://*.reddit.com/r/youtubedl/*'
   content.desktop_capture:
     https://discord.com: true
     https://meet.google.com: true
