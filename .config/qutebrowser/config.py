@@ -13,7 +13,7 @@ c.content.notifications.enabled = False
 config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
 
 # Define keywords and subdomains
-keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'libreoffice', 'geogebra', 'linux', 'wayland', 'Steam', 'LearnJapanese', 'neovim', 'LaTeX', 'Artcore', 'japanesemusic', 'bodyweightfitness','youtubedl']
+keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'libreoffice', 'geogebra', 'linux', 'wayland', 'Steam', 'LearnJapanese', 'neovim', 'LaTeX', 'Artcore', 'japanesemusic', 'bodyweightfitness','youtubedl', 'Grimdawn']
 base_url = '*://*.reddit.com/r/'
 
 # Generate the whitelist based on the keywords
@@ -38,7 +38,6 @@ c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt',
 
 # Keybinding to temporarily allow Facebook when using hints
 config.bind('af', 'config-list-add content.blocking.whitelist *.facebook.com;; hint links;;cmd-later 10000 config-list-remove content.blocking.whitelist *.facebook.com')
-config.bind('at', 'config-list-add content.blocking.whitelist *.twitch.tv;; hint links;;cmd-later 10000 config-list-remove content.blocking.whitelist *.twitch.tv')
 
 # Javascript
 c.content.javascript.enabled = True

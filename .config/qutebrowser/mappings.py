@@ -34,6 +34,7 @@ bind = {
     lleader + "m": "hint videos userscript qute-mpv",
     lleader + "p": "hint --rapid videos spawn --userscript add-to-mpv-playlist {hint-url}",
     lleader + "f": "hint videos spawn --detach mpv {hint-url} --profile=fastYT",
+    lleader + "F": "hint links spawn --detach mpv {hint-url}",
 
     ## qute-pass
     'zl': 'spawn --userscript qute-pass',

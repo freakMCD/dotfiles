@@ -36,5 +36,5 @@ toggle_x_coordinates() {
 while read -r address position; do
     toggle_x_coordinates "$address" "$position"
 done <<< "$addresses_positions"
-hyprctl --batch ""$hyprctl_commands""
+hyprctl --batch "$hyprctl_commands"
 
