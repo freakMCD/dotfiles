@@ -13,7 +13,7 @@ c.content.notifications.enabled = False
 config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
 
 # Define keywords and subdomains
-keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'libreoffice', 'geogebra', 'linux', 'wayland', 'Steam', 'LearnJapanese', 'neovim', 'LaTeX', 'Artcore', 'japanesemusic', 'bodyweightfitness','youtubedl', 'Grimdawn']
+keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'libreoffice', 'geogebra', 'linux', 'wayland', 'Steam', 'LearnJapanese', 'neovim', 'LaTeX', 'youtubedl']
 base_url = '*://*.reddit.com/r/'
 
 # Generate the whitelist based on the keywords
@@ -33,7 +33,7 @@ c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt',
                                     'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',
                                     'https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt',
                                     'https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt',
-                                    'https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/pornography-hosts',
+                                    'https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/pornography-hosts'
                                     ]
 
 # Keybinding to temporarily allow Facebook when using hints

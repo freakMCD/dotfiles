@@ -8,8 +8,8 @@ mpvplaycontrol() {
     while read -r address pid; do 
         if [[ "$address" == "$1" ]]; then
             target_pid="$pid"
-  #      else
-#            echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
+        else
+            echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
         fi
     done <<< "$(jq -r '.[] | select(.class == "mpv") | "\(.address) \(.pid)"' <<< "$clients")"
     

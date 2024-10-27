@@ -2,8 +2,8 @@
 mpv_width=681
 mpv_height=454
 
-x_offset=-50
-y_offset=0
+x_offset=-150
+y_offset=-100
 
 l_hidden=$(($x_offset-$mpv_width))
 r_hidden=$((1920-$x_offset))

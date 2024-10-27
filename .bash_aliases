@@ -56,4 +56,7 @@ fm()
     fi
     cd "$dst"
 }
-
+ttv()
+{
+    streamlink https://twitch.tv/"$@" best --player=mpv --twitch-proxy-playlist=https://eu.luminous.dev,https://lb-eu.cdn-perfprod.com &exit
+}

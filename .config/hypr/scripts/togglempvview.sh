@@ -6,6 +6,12 @@ source /tmp/mpv_addresses
 mpv_variable="mpv_$1"
 target_address=${!mpv_variable}
 
+mpvplaycontrol() {
+    while read -r address pid; do 
+        echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
+    done <<< "$(jq -r '.[] | select(.class == "mpv" and .address != "'"$1"'" ) | "\(.address) \(.pid)"' <<< "$2")"
+}
+
 [ -z "$target_address" ] && exit
 
 clients=$(hyprctl clients -j)
@@ -35,4 +41,7 @@ esac
 
 # Build and execute the command to move the window
 hyprctl --batch "dispatch movewindowpixel ${new_x_coord} 0,address:${target_address}"
+#if [[ $new_x_coord -ge 0 && $new_x_coord -le 1920 ]]; then
+ #   mpvplaycontrol "$target_address" "$clients"
+#fi
 
