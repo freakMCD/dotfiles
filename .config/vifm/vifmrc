@@ -9,7 +9,6 @@
 " ------------------------------------------------------------------------------
 
 
-
 " Command used to edit files in various contexts.  The default is vim.
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
@@ -443,6 +442,7 @@ filextype */
 
 " Start shell in current directory
 nnoremap s :shell<cr>
+nnoremap <Space> t<Down>
 
 " Display sorting dialog
 nnoremap S :sort<cr>

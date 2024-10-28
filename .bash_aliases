@@ -31,7 +31,7 @@ alias pacclean='sudo pacman -Sc'
 
 # File management and compression
 alias rclone="rclone -P"
-alias compresspdf='gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf input.pdf'
+alias compresspdf='gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dColorImageResolution=170 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf '
 alias curl='curl -O'
 
 stage() {
