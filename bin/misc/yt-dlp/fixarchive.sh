@@ -1,0 +1,17 @@
+#!/bin/bash
+
+archive_file=~/bin/misc/yt-dlp/2015-2020.txt
+music_directory=~/Music/2015-2022/
+output_file=~/Music/updated_2015-2020.txt
+
+# Generate a list of VIDEOIDs from your music files
+find "$music_directory" -type f -name '*???????????.m4a' -exec basename {} \; | sed -E 's/.*([A-Za-z0-9_-]{11})\.m4a$/\1/' > music_ids.txt
+
+# Remove lines from 2015-2020.txt based on music_ids.txt
+grep -f music_ids.txt "$archive_file" > "$output_file"
+
+# Optionally, overwrite the original 2015-2020.txt file with the updated content
+mv "$output_file" "$archive_file"
+
+# Cleaning
+rm music_ids.txt
