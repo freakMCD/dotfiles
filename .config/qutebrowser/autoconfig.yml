@@ -105,6 +105,8 @@ settings:
     - '*://*.reddit.com/r/neovim/*'
     - '*://*.reddit.com/r/LaTeX/*'
     - '*://*.reddit.com/r/youtubedl/*'
+    - '*://*.reddit.com/r/DataHoarder/*'
+    - '*://*.reddit.com/r/Crystar_Game/*'
   content.desktop_capture:
     https://discord.com: true
     https://meet.google.com: true
