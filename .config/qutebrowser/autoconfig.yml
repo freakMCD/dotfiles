@@ -86,7 +86,13 @@ settings:
   completion.timestamp_format:
     global: '%Y-%m-%d %H:%M'
   content.blocking.adblock.lists:
-    global: null
+    global:
+    - https://easylist.to/easylist/easylist.txt
+    - https://easylist.to/easylist/easyprivacy.txt
+    - https://secure.fanboy.co.nz/fanboy-cookiemonster.txt
+    - https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt
+    - https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt
+    - https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/pornography-hosts
   content.blocking.whitelist:
     global:
     - '*://*.reddit.com/r/qutebrowser/*'
@@ -106,7 +112,7 @@ settings:
     - '*://*.reddit.com/r/LaTeX/*'
     - '*://*.reddit.com/r/youtubedl/*'
     - '*://*.reddit.com/r/DataHoarder/*'
-    - '*://*.reddit.com/r/Crystar_Game/*'
+    - '*://*.reddit.com/r/GreaseMonkey/*'
   content.desktop_capture:
     https://discord.com: true
     https://meet.google.com: true
