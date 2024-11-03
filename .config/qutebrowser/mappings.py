@@ -26,7 +26,6 @@ bind = {
     "gW": "open -t https://web.whatsapp.com",
 
 	leader + "js": "config-cycle content.javascript.enabled true false",
-    leader + "a": "config set content.blocking.whitelist+='*://*.reddit.com/*'",
 	leader + "b": "config-cycle tabs.show switching always",
 	leader + leader: "config-cycle colors.webpage.darkmode.enabled true false;; config-cycle content.user_stylesheets [] ['~/.config/qutebrowser/css/gruvbox-all-sites.css']",
 	leader + "v": "config-source ;; message-info 'qutebrowser reloaded'",
@@ -66,10 +65,6 @@ for key, command in bind.items():
 #config.bind('<Escape>', 'mode-enter normal;; set statusbar.show in-mode', mode='command')
 #config.bind('<Return>', 'command-accept;; set statusbar.show in-mode', mode='command')
 #config.bind('<Alt>', 'command-accept;; set statusbar.show in-mode', mode='command')
-config.bind('<Ctrl-SHIFT-Z>', 'mode-leave', mode='passthrough')
-
-config.set("input.mode_override", "passthrough", "docs.google.com")
-config.set("input.mode_override", "passthrough", "wolfreealpha.on.fleek.co")
 
 for i in range(1, 10):
     config.bind(f'<Alt-{i}>', f'tab-focus {i}', mode='passthrough')
