@@ -51,8 +51,8 @@ bind = {
     'SD', 'quickmark-del'
 	'/': 'set statusbar.show always;; cmd-set-text /',
 	"/": "set statusbar.show always;; cmd-set-text /",
-	"J": "tab-prev",
-	"K": "tab-next",
+	"J": "tab-next",
+	"K": "tab-prev",
 	"j": "scroll-px 0 200",
 	"k": "scroll-px 0 -200",
 	"l": "scroll-px 100 0",

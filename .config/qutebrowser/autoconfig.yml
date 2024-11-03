@@ -16,6 +16,7 @@ settings:
       hint:
         f: mode-leave
       normal:
+        ',F': hint links spawn --detach mpv {hint-url}
         ',f': hint videos spawn --detach mpv {hint-url} --profile=fastYT
         ',m': hint videos userscript qute-mpv
         ',p': hint --rapid videos spawn --userscript add-to-mpv-playlist {hint-url}
@@ -32,6 +33,8 @@ settings:
         K: tab-next
         O: set statusbar.show always;; cmd-set-text -s :open -t
         Sd: bookmark-delSD
+        aF: config-list-add content.blocking.whitelist *.facebook.com;; hint links;;cmd-later
+          10000 config-list-remove content.blocking.whitelist *.facebook.com
         af: config-list-add content.blocking.whitelist *.facebook.com;; hint links;;cmd-later
           10000 config-list-remove content.blocking.whitelist *.facebook.com
         gD: open -t https://discord.com/channels/@me
@@ -63,7 +66,7 @@ settings:
         <Alt+Right>: forward
         <Ctrl+Shift+z>: mode-leave
   colors.webpage.darkmode.enabled:
-    global: true
+    global: false
   colors.webpage.darkmode.policy.images:
     global: never
   colors.webpage.darkmode.policy.page:
@@ -95,24 +98,8 @@ settings:
     - https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/pornography-hosts
   content.blocking.whitelist:
     global:
-    - '*://*.reddit.com/r/qutebrowser/*'
-    - '*://*.reddit.com/r/math/*'
-    - '*://*.reddit.com/r/AskPhysics/*'
-    - '*://*.reddit.com/r/linuxquestions/*'
-    - '*://*.reddit.com/r/hyprland/*'
-    - '*://*.reddit.com/r/bash/*'
-    - '*://*.reddit.com/r/archlinux/*'
-    - '*://*.reddit.com/r/libreoffice/*'
-    - '*://*.reddit.com/r/geogebra/*'
-    - '*://*.reddit.com/r/linux/*'
-    - '*://*.reddit.com/r/wayland/*'
-    - '*://*.reddit.com/r/Steam/*'
-    - '*://*.reddit.com/r/LearnJapanese/*'
-    - '*://*.reddit.com/r/neovim/*'
-    - '*://*.reddit.com/r/LaTeX/*'
-    - '*://*.reddit.com/r/youtubedl/*'
-    - '*://*.reddit.com/r/DataHoarder/*'
-    - '*://*.reddit.com/r/GreaseMonkey/*'
+    - '*://web.whatsapp.com/*'
+    - '*://*.whatsapp.net/*'
   content.desktop_capture:
     https://discord.com: true
     https://meet.google.com: true
@@ -203,8 +190,7 @@ settings:
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: false
   content.user_stylesheets:
-    global:
-    - ~/.config/qutebrowser/css/gruvbox-all-sites.css
+    global: []
   content.webgl:
     global: true
   downloads.prevent_mixed_content:
@@ -241,6 +227,10 @@ settings:
     global: never
   statusbar.show:
     global: in-mode
+  tabs.background:
+    global: true
+  tabs.close_mouse_button:
+    global: middle
   tabs.favicons.show:
     global: always
   tabs.max_width:

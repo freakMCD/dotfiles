@@ -12,18 +12,13 @@ c.content.autoplay = False
 c.content.notifications.enabled = False
 config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
 
-# Define keywords and subdomains
-keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'libreoffice', 'geogebra', 'linux', 'wayland', 'Steam', 'LearnJapanese', 'neovim', 'LaTeX', 'youtubedl', 'DataHoarder', 'GreaseMonkey']
-base_url = '*://*.reddit.com/r/'
-
-# Generate the whitelist based on the keywords
-whitelist = [f'{base_url}{keyword}/*' for keyword in keywords]
+# Add WhatsApp domains to the whitelist
+whitelist = [
+    '*://web.whatsapp.com/*',
+    '*://*.whatsapp.net/*'
+]
 # Set the whitelist in the config
 config.set('content.blocking.whitelist', whitelist)
-
-config.set("input.mode_override", "passthrough", "https://onedrive.live.com/*")
-config.set("content.javascript.can_open_tabs_automatically", True, "https://onedrive.live.com/*")
-config.set("content.javascript.can_open_tabs_automatically", True, "https://www.microsoft365.com/*")
 
 # Adblock
 c.content.blocking.enabled = True
@@ -34,12 +29,9 @@ c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt',
                                     'https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt',
                                     'https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt',
                                     ]
-c.content.blocking.hosts.lists = ['https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/pornography-hosts',
+c.content.blocking.hosts.lists = [
+        'http://sbc.io/hosts/alternates/porn-social-only/hosts',
                                     ]
-
-# Keybinding to temporarily allow Facebook when using hints
-config.bind('af', 'config-list-add content.blocking.whitelist *.facebook.com;; hint links;;cmd-later 10000 config-list-remove content.blocking.whitelist *.facebook.com')
-
 # Javascript
 c.content.javascript.enabled = True
 c.content.javascript.clipboard = "access-paste"
@@ -59,7 +51,7 @@ c.messages.timeout = 2000
 # Tabs
 c.session.lazy_restore = True
 c.tabs.show = "multiple"
-c.tabs.position = "top"
+c.tabs.position = "left"
 c.tabs.max_width = 200
 
 c.url.searchengines = {

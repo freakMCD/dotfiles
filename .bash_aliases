@@ -7,6 +7,7 @@ alias bashrc="nvim ~/.bashrc && source ~/.bashrc"
 alias dus='du -h --max-depth=1 | sort -hr' # Disk Usage Sorted
 alias df='df -h'
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias fc-list='fc-list --format="%{family[0]}\n" | sort | uniq'
 # Music
 alias sortmusic='cd ~/Music/2015-2022 && stat --format="%W %n" * | sort -nr'
 alias musicv='mpv --shuffle --volume=67 --save-position-on-quit=no "https://www.youtube.com/playlist?list=PL-EkZZikQIQUZ0Gqm5Gc-D6HoHpI4gdhE" '
@@ -55,8 +56,4 @@ fm()
         return 1
     fi
     cd "$dst"
-}
-ttv()
-{
-    streamlink https://twitch.tv/"$@" best --player=mpv --twitch-proxy-playlist=https://eu.luminous.dev,https://lb-eu.cdn-perfprod.com &exit
 }

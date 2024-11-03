@@ -33,7 +33,7 @@ bright_orange = "#e78a4e"
 dark_red = "#3c1f1e"
 dark_green = "#32361a"
 dark_yellow = "#e1bb7e"
-dark_blue = "#0d3138"
+dark_blue = "#088bb8"
 dark_purple = "#b16286"
 dark_aqua = "#333b63"
 dark_gray = "#e2d3ba"
@@ -272,7 +272,7 @@ c.colors.statusbar.url.warn.fg = bright_purple
 c.colors.tabs.bar.bg = bg0
 
 # Color gradient start for the tab indicator.
-c.colors.tabs.indicator.start = bright_blue
+c.colors.tabs.indicator.start = dark_blue
 
 # Color gradient end for the tab indicator.
 c.colors.tabs.indicator.stop = bright_aqua
