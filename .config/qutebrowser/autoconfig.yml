@@ -73,7 +73,7 @@ settings:
         <Alt+Right>: forward
         <Ctrl+Shift+z>: mode-leave
   colors.webpage.darkmode.enabled:
-    global: true
+    global: false
   colors.webpage.darkmode.policy.images:
     global: never
   colors.webpage.darkmode.policy.page:
@@ -197,8 +197,7 @@ settings:
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: false
   content.user_stylesheets:
-    global:
-    - ~/.config/qutebrowser/css/gruvbox-all-sites.css
+    global: []
   content.webgl:
     global: true
   downloads.prevent_mixed_content:

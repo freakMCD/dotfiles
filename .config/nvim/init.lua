@@ -49,6 +49,7 @@ vim.opt.completeopt = "menu,menuone,noselect"
 require("luasnip.loaders.from_vscode").lazy_load()
 
 require'lspconfig'.texlab.setup{}
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local has_words_before = function()
   unpack = unpack or table.unpack

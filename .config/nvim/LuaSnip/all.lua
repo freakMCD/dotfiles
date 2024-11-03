@@ -32,7 +32,7 @@ rec_table = function ()
 	return sn(nil, {
 		c(1, {
 			t({""}),
-			sn(nil, {t{"\\\\",""} ,d(1,table_node, {ai[1]}), d(2, rec_table, {ai[1]})})
+			sn(nil, {i(1),t{"\\\\",""} ,d(1,table_node, {ai[1]}), d(2, rec_table, {ai[1]})})
 		}),
 	});
 end

@@ -11,9 +11,11 @@ local fmta = require("luasnip.extras.fmt").fmta
 local rep = require("luasnip.extras").rep
 
 ls.config.set_config({
-history=false,
+history=true,
 enable_autosnippets = true,
 store_selection_keys = '<Tab>',
+updateevents = "TextChanged,TextChangedI",
+delete_check_events = "TextChanged",
 })
 
 
