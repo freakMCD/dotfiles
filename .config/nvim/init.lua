@@ -132,7 +132,6 @@ local set = vim.opt
 
 -- Set sections
 vim.g.mapleader = " "
-set.clipboard = 'unnamedplus'
 set.swapfile = false
 set.confirm = true
 set.history = 1000
@@ -186,18 +185,4 @@ vim.g.vimtex_quickfix_ignore_filters = {
 vim.keymap.set('x', '<C-r>', '"hy:s/<C-r>h/')
 
 vim.api.nvim_set_keymap('n', '<C-t>', ':tabnew<CR>', { noremap = true, silent = true })
-
--- Copy to clipboard
-vim.api.nvim_set_keymap('v', '<leader>y', '"+y', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>Y', '"+yg_', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>Y', '"+yg_', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>y', '"+y', { noremap = true })
-
--- Paste from clipboard
-vim.api.nvim_set_keymap('n', '<leader>p', '"+p', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>P', '"+P', { noremap = true })
-vim.api.nvim_set_keymap('v', '<leader>p', '"+p', { noremap = true })
-vim.api.nvim_set_keymap('v', '<leader>P', '"+P', { noremap = true })
-
-
 

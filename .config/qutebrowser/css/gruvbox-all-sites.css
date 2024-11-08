@@ -18,6 +18,133 @@
     --mantle:   #1d2021;
 }
 
+/* REMOVE COMMENTS */
+/* YouTube */
+#watch-comment-panel,
+#watch-comments-core,
+#watch-discussion,
+#comments-test-iframe,
+ytm-comment-section-renderer,
+ytm-comments-entry-point-header-renderer,
+ytd-comments,
+ytd-comment-thread-renderer,
+ytd-comment-renderer,
+ytd-comments-entry-point-header-renderer,
+[section-identifier="comment-item-section"],
+
+
+/* *** Generic *** */
+body [data-test-id*="comment" i],
+body [id*=commentaires i],
+body [class*=commentaires i],
+.all-comments,
+.article-comments,
+.articleComments,
+.btn-comments,
+.com_text,
+.comment_area,
+.comment_count,
+.comment-button,
+.comment-container,
+.comment-list,
+.comment-section,
+.comment,
+.Comment,
+.commentBox,
+.commentBoxStyle,
+.commenting-wrapper,
+.commentlist,
+.commentsarea,
+.comments__container,
+.comments_area,
+.comments-area,
+.comments-container,
+.comments-list,
+.comments-pane,
+.comments-section,
+.comments-wrap,
+.comments:not(code),
+.Comments:not(code),
+.commentsApp,
+.commentsContainer,
+.commentsList,
+.CommentsList,
+.commentText,
+.commenttxt,
+.commentwrapper,
+.discussionContainer,
+.icon-comments,
+.Opinions,
+.page-comments,
+.pagecomment,
+.pagecommentheader,
+.post-comment-list,
+.post-comment,
+.post-comments,
+.reacties,
+.section-comment,
+.user_comment,
+.widget-comments,
+.widget_recent_comments,
+#article-comments,
+#articleComments,
+#blogComments,
+#box_comment,
+#cmtWrapper,
+#comentarios,
+#comment_container,
+#comment_entries,
+#comment_form,
+#comment-container,
+#comment-list,
+#comment-section,
+#commentblock,
+#commentbox,
+#commentcontainer,
+#commentlist,
+#commentList,
+#commentlisting,
+#comments_box,
+#comments_container,
+#comments_pane,
+#comments-app-container,
+#comments-component,
+#comments-container,
+#comments-count,
+#comments-frame,
+#comments-list,
+#comments-panel,
+#comments-wrapper,
+#comments:not(code),
+#Comments:not(code),
+#commentsBox,
+#commentscontainer,
+#commentsContainer,
+#commentsDiv,
+#commentwrapper,
+#post-comments,
+#reacties,
+#show-comments-container,
+#user_commeent_section,
+#user-comments
+{
+	display: none !important;
+}
+
+
+
+/* *** Exceptions *** */
+
+/*
+ * Some pages use a comments class on the top level element,
+ * blocking the whole page. Weird.
+ */
+html.comments, body.comments,
+html.Comments, body.Comments,
+html#comments, body#comments,
+html#Comments, body#Comments,
+
+/* Style */
 .setting{
     background-color: var(--mantle) !important;
 }
