@@ -1,6 +1,5 @@
 // ==UserScript==
 // @name        Website Redirect
-// @match       *://*.facebook.com/*
 // @match       *://*.youtube.com/*
 // @grant       none
 // @run-at      document-start

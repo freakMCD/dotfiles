@@ -13,9 +13,7 @@ local rep = require("luasnip.extras").rep
 ls.config.set_config({
 history=true,
 enable_autosnippets = true,
-store_selection_keys = '<Tab>',
-updateevents = "TextChanged,TextChangedI",
-delete_check_events = "TextChanged",
+region_check_events="CursorHold,InsertLeave",
 })
 
 
@@ -23,16 +21,12 @@ delete_check_events = "TextChanged",
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/LuaSnip/"})
 vim.keymap.set('n', '<leader>l', '<Cmd>lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/LuaSnip/"})<CR>')
 
+vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
 
-local ls = require("luasnip")
-vim.keymap.set({ "i", "s" }, "<C-l>", function()
-  if ls.choice_active() then
-    ls.change_choice(1)
-  end
-end)
-vim.keymap.set({ "i", "s" }, "<C-h>", function()
-  if ls.choice_active() then
- ls.change_choice(-1)
- end
-end)
-
+vim.keymap.set({"i", "s"}, "<C-E>", function()
+	if ls.choice_active() then
+		ls.change_choice(1)
+	end
+end, {silent = true})

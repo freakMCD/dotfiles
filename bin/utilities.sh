@@ -1,7 +1,7 @@
 #!/bin/bash
  
 calculator() {
-    numbat
+    kalker
 }
 
 sync_android() {

@@ -32,6 +32,10 @@ ytd-comment-renderer,
 ytd-comments-entry-point-header-renderer,
 [section-identifier="comment-item-section"],
 
+/* GitHub */
+.inline-comments,
+#all_commit_comments,
+.gist-content a[name="comments"] + div,
 
 /* *** Generic *** */
 body [data-test-id*="comment" i],
@@ -131,18 +135,15 @@ body [class*=commentaires i],
 	display: none !important;
 }
 
+.pull-request-tab-content .comment,
+#discussion_bucket .comment,
+.pull-request-tab-content .inline-comments
+{
+	display: table-row !important;
+}
 
 
-/* *** Exceptions *** */
 
-/*
- * Some pages use a comments class on the top level element,
- * blocking the whole page. Weird.
- */
-html.comments, body.comments,
-html.Comments, body.Comments,
-html#comments, body#comments,
-html#Comments, body#Comments,
 
 /* Style */
 .setting{
