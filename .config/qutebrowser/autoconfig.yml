@@ -117,6 +117,8 @@ settings:
     global: Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko)
       {qt_key}/{qt_version} {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}
     onedrive.live.com: Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0
+  content.images:
+    global: true
   content.javascript.enabled:
     '*://*.accounts.google.com/*': true
     '*://*.anilist.co/*': true
