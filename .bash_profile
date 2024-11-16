@@ -29,7 +29,6 @@ set -a
     EDITOR='nvim'
     VISUAL='nvim'
     MANPAGER='nvim +Man!'
-    BROWSER="qutebrowser"
 
     PASSWORD_STORE_DIR="/home/edwin/.PrivateHub/password-store/"
     GNUPGHOME="$XDG_DATA_HOME/gnupg"
