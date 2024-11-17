@@ -68,7 +68,9 @@ return{
 	}),
 	s("tab", fmt([[
 	\begin{{tabular}}{{{}}}
+    \toprule
 	{}
+    \bottomrule
 	\end{{tabular}}
 	]], {i(1, "c"), d(2, tab, {1}, {
 		user_args = {

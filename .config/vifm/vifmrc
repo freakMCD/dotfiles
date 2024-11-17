@@ -525,6 +525,7 @@ nnoremap <a-o> :sync %c<cr>
 nnoremap <c-u> <c-w>x
 
 nnoremap gh :cd ~<CR>
+nnoremap gm :cd /mnt<CR>
 " Open a new tab with Ctrl+t
 nnoremap <silent> <C-t> :tabnew<CR>
 

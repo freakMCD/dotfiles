@@ -11,7 +11,6 @@ alias fc-list='fc-list --format="%{family[0]}\n" | sort | uniq'
 # Music
 alias sortmusic='cd ~/Music/2015-2022 && stat --format="%W %n" * | sort -nr'
 alias musicv='mpv --shuffle --volume=67 --save-position-on-quit=no "https://www.youtube.com/playlist?list=PL-EkZZikQIQUZ0Gqm5Gc-D6HoHpI4gdhE" '
-alias updmusic='cd ~/Music/2015-2022/ && yt-dlp -a ~/bin/misc/yt-dlp/playlists_urls'
 alias mp3dl='yt-dlp --restrict-filenames --extract-audio --audio-format mp3 --no-playlist'
 alias litedlp="yt-dlp -f 'bestvideo[height<=720]+bestaudio/best'"
 

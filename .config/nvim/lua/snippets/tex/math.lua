@@ -196,7 +196,7 @@ return
     {condition = tex.in_mathzone}
   ),
   -- FRACTION
-  s({trig = "([^%a])fr", wordTrig = false, regTrig = true, snippetType="autosnippet"},
+  s({trig = "([^%a])ff", wordTrig = false, regTrig = true, snippetType="autosnippet"},
     fmta(
       "<>\\frac{<>}{<>}",
       {

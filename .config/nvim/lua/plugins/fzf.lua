@@ -6,4 +6,4 @@ require'fzf-lua'.setup {
 }
 
 
-vim.keymap.set("n", "<c-P>", function() require('fzf-lua').files({ cmd = vim.env.FZF_DEFAULT_COMMAND } ) end, { desc = "Fzf Files" })
+vim.keymap.set("n", "<c-P>", function() require('fzf-lua').files({ cmd = vim.env.FZF_DEFAULT_COMMAND, cmd="~" } ) end, { desc = "Fzf Files" })
