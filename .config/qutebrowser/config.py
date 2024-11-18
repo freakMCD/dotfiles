@@ -15,7 +15,9 @@ config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
 # Add WhatsApp domains to the whitelist
 whitelist = [
     '*://web.whatsapp.com/*',
-    '*://*.whatsapp.net/*'
+    '*://*.whatsapp.net/*',
+    '*://*.youtube.com/watch?v=*',
+    '*://*.youtube.com/playlist?list=PL*',
 ]
 # Set the whitelist in the config
 config.set('content.blocking.whitelist', whitelist)
@@ -56,7 +58,6 @@ c.tabs.max_width = 200
 
 c.url.searchengines = {
     "DEFAULT": "https://lite.duckduckgo.com/lite/?q={}",
-    "yt": "https://farside.link/https://www.youtube.com/results?search_query={}",
 }
 
 c.qt.args = [ "enable-features=VaapiIgnoreDriverChecks",]
