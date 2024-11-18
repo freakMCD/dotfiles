@@ -1,4 +1,4 @@
-" vim: filetype=vifm :
+" vim: filetype=vim :
 " Sample configuration file for vifm (last updated: 3 April, 2023)
 " You can edit this file by hand.
 " The " character at the beginning of a line comments out the line.
@@ -102,17 +102,24 @@ colorscheme iceberg Default-256 Default
 highlight Win cterm=none ctermfg=white ctermbg=none
 
 
-
 " ------------------------------------------------------------------------------
 " Bookmarks
 " ------------------------------------------------------------------------------
 
 " :mark mark /full/directory/path [filename]
+autocmd DirEnter ~/Downloads,~/MediaHub/scrceenshots setlocal sort=-mtime
+autocmd DirEnter ~/Music/2015-2022/ setlocal sort=-ctime
 
-mark b ~/bin/
-mark c ~/.config/
-mark m ~/Documents/Education/PDFs/
-mark h ~/
+mark d ~/Downloads/
+nnoremap gh :cd ~<CR>
+nnoremap gm :cd /mnt<CR>
+bmark! ~/2doCiclo/ 1 
+bmark! /mnt/8dbef5d9-f65d-42fe-9788-1af81ed3d908/Movies/ movies
+bmark! ~/.local/share/applications/ .desktop 
+bmark! ~/2doCiclo/Trabajos/ 1 
+bmark! ~/2doCiclo/practicas/ 1 
+bmark! ~/Music/2015-2022/ music 
+nnoremap b :bmgo<space>
 
 " ------------------------------------------------------------------------------
 " Commands
@@ -524,8 +531,6 @@ nnoremap <a-o> :sync %c<cr>
 " Swap panes
 nnoremap <c-u> <c-w>x
 
-nnoremap gh :cd ~<CR>
-nnoremap gm :cd /mnt<CR>
 " Open a new tab with Ctrl+t
 nnoremap <silent> <C-t> :tabnew<CR>
 

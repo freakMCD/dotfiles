@@ -25,6 +25,7 @@ local options = {
 	-- scrolloff = 8,                           -- is one of my fav
 	sidescrolloff = 8,
 	spellang = en_us,
+    title = true,
 }
 
 vim.opt.fillchars = vim.opt.fillchars + "eob: "
@@ -37,5 +38,3 @@ vim.opt.shortmess:append("c")
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
-
-

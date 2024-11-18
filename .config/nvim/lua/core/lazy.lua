@@ -44,7 +44,6 @@ require("lazy").setup({
     'nvim-lualine/lualine.nvim', 
     dependencies = 'kyazdani42/nvim-web-devicons',
 },
-
 {   "morhetz/gruvbox", 
     priority = 1000 
 },
@@ -54,6 +53,23 @@ require("lazy").setup({
     'lervag/vimtex',
     ft = "tex",
 },
+
+{
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function () 
+      local configs = require("nvim-treesitter.configs")
+
+      configs.setup({
+          ensure_installed = { "c", "lua", "vim", "vimdoc", "python", "bash" },
+          sync_install = false,
+          highlight = { enable = true },
+          indent = { enable = true },  
+        highlight={        
+        disable ={"latex"},
+        },
+        })
+    end
+},
+
 })
-
-

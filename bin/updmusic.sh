@@ -1,4 +1,7 @@
 #!/bin/bash
+
+trap "echo 'Script interrupted. Exiting...'; exit" SIGINT
+
 cd ~/Music/2015-2022/
 
 # Define a list of URLs and their respective artists
@@ -28,5 +31,5 @@ default_filter="duration>300 & duration<1500"
 for url in "${!playlists[@]}"; do
     artist="${playlists[$url]}"
     filter="${filters[$artist]:-$default_filter}"
-    yt-dlp --parse-metadata " $artist: %(artist)s" --match-filter "$filter" "$url"
+    yt-dlp --parse-metadata " $artist: %(meta_artist)s" --match-filter "$filter" "$url"
 done
