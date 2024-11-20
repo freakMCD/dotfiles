@@ -22,7 +22,6 @@ bind = {
     "gW": "open -t https://web.whatsapp.com",
 
 	leader + "js": "config-cycle content.javascript.enabled true false",
-	leader + "b": "config-cycle tabs.show switching always",
 	leader + leader: "config-cycle colors.webpage.darkmode.enabled true false;; config-cycle content.user_stylesheets [] ['~/.config/qutebrowser/css/gruvbox-all-sites.css']",
 	leader + "v": "config-source ;; message-info 'qutebrowser reloaded'",
     ## mpv 
@@ -42,12 +41,8 @@ bind = {
     "I": "hint inputs",
 
     ## qutebrowser mappings
-    'Sd': 'bookmark-del'
-    'SD', 'quickmark-del'
-	'/': 'set statusbar.show always;; cmd-set-text /',
-	"/": "set statusbar.show always;; cmd-set-text /",
-	"J": "tab-next",
-	"K": "tab-prev",
+    'xD': "cmd-set-text bookmark-del",
+    'xd': "cmd-set-text quickmark-del",
 	"j": "scroll-px 0 200",
 	"k": "scroll-px 0 -200",
 	"l": "scroll-px 100 0",
@@ -61,4 +56,3 @@ for i in range(1, 10):
 config.bind('<Alt-Left>', 'back', mode='passthrough')
 config.bind('<Alt-Right>', 'forward', mode='passthrough')
 config.unbind("q", mode="normal")
-

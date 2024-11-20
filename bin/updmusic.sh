@@ -11,17 +11,17 @@ declare -A playlists=(
     ["https://www.youtube.com/playlist?list=PLjYilp-bySE1qwXLKHWZZcHbqWaetqyaM"]="Feryquitous"
     ["https://www.youtube.com/playlist?list=PLcP7SWneqXTRFZzISG8AN_59_0ahOI9pf"]="Sakuzyo"
     ["https://www.youtube.com/playlist?list=PLjYilp-bySE3Elmd73Irfp6_qSk0jwaRj"]="xi"
-    ["https://www.youtube.com/playlist?list=PL-sgowJ2PZIdMPtUu03nTjNyqK9_WawlA"]="Ado"
     ["https://www.youtube.com/playlist?list=PLBkOG5FFNCKyNGndvIS1GmwmDlKdKLQCc"]="Sennzai"
     ["https://www.youtube.com/playlist?list=PLBkOG5FFNCKzEDtbnzUNvJ3o2EtfCiUFt"]="Seraph"
     ["https://www.youtube.com/playlist?list=PLBkOG5FFNCKzEoPnekVRex2J5UEKKi_Bh"]="Ether"
     ["https://www.youtube.com/playlist?list=PLBkOG5FFNCKzA_SfGWFeV0YJais2TVTe9"]="Suzuka Yumi"
     ["https://www.youtube.com/playlist?list=PLNv9SARzk_JYaL6MXCJym1PvtCWlaexcw"]="Fujii Kaze"
+    ["https://www.youtube.com/playlist?list=PLehPR0Z83CK5NLdMOLxEeTaTkxENI7yCf"]="IU"
 )
 
 # Define custom match-filters using playlist URLs as keys
 declare -A filters=(
-    ["Fujii Kaze"]="duration>240 & duration<1500"
+    ["Fujii Kaze"]="duration>245 & duration<1500"
 )
 
 # Default filter for URLs not listed in the filters array
