@@ -58,29 +58,33 @@ event_closewindow() {
         for i in "${!addresses[@]}"; do
             if [[ "${addresses[$i]}" == "$WINDOWADDRESS" ]]; then
                 unset "addresses[$i]"
-                addresses=("${addresses[@]}")
+                addresses=("${addresses[@]}")  # Re-index the array
                 ((mpv_count--))
                 break
             fi
         done
 
-        if [[ -n ${addresses[@]} ]]; then
-            # Check if the activewindow is MPV and fullscreen
-			window_info=$(hyprctl activewindow -j)
-			if jq -e '.fullscreen == 2 and .class == "mpv"' <<< "$window_info" >/dev/null; then
-			    address=$(jq -r '.address' <<< "$window_info")
-			    hyprctl --batch "dispatch fullscreen; dispatch pin address:$address; dispatch focuscurrentorlast; setprop address:$address nofocus 1"
-			fi	
+        # Handle cases based on the number of remaining addresses
+        if [[ ${#addresses[@]} -gt 0 ]]; then
+            # Check if the active window is MPV and fullscreen
+            window_info=$(hyprctl activewindow -j)
+            if jq -e '.fullscreen == 2 and .class == "mpv"' <<< "$window_info" >/dev/null; then
+                address=$(jq -r '.address' <<< "$window_info")
+                hyprctl --batch "dispatch fullscreen; dispatch pin address:$address; dispatch focuscurrentorlast; setprop address:$address nofocus 1"
+            fi
 
-	        # Adjust window positions if there are remaining windows
+            # Adjust window positions if there are remaining windows
             : > "$mpv_addresses_file"  # Clear the file
             output=()
             for ((i = 0; i < ${#addresses[@]}; i++)); do
-                assign_coordinates "$((i+1))"
+                assign_coordinates "$((i + 1))"
                 output+=("mpv_$((i + 1))=0x${addresses[$i]}")
                 hyprctl dispatch movewindowpixel exact "$x $y", address:"0x${addresses[$i]}"
             done
             printf "%s\n" "${output[@]}" >> "$mpv_addresses_file"
+        else
+            # No addresses left, clear the file
+            : > "$mpv_addresses_file"
         fi
     else
         return 1

@@ -52,7 +52,3 @@ for key, command in bind.items():
 
 for i in range(1, 10):
     config.bind(f'<Alt-{i}>', f'tab-focus {i}', mode='passthrough')
-   
-config.bind('<Alt-Left>', 'back', mode='passthrough')
-config.bind('<Alt-Right>', 'forward', mode='passthrough')
-config.unbind("q", mode="normal")

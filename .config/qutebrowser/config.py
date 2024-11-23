@@ -9,6 +9,7 @@ c.content.user_stylesheets = ["~/.config/qutebrowser/css/gruvbox-all-sites.css"]
 config.source('mappings.py')
 config.source('gruvbox.py')
 
+c.auto_save.session = False
 c.content.autoplay = False
 c.content.notifications.enabled = False
 config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
@@ -19,6 +20,8 @@ whitelist = [
     '*://*.whatsapp.net/*',
     '*://*.youtube.com/watch?v=*',
     '*://*.youtube.com/playlist?list=PL*',
+    '*://*.youtube.com/s/*',
+    '*://*.youtube.com/feed/playlists',
 ]
 
 config.set('content.blocking.whitelist', whitelist)
@@ -63,7 +66,8 @@ c.url.default_page = "https://lite.duckduckgo.com"
 c.qt.args = [ "enable-features=VaapiIgnoreDriverChecks",]
 
 with config.pattern("*://discord.com/*") as p:
-    p.content.media.audio_video_capture = True
     p.content.autoplay = True
+    p.content.desktop_capture = True
+    p.content.media.audio_capture = True
 c.downloads.location.directory = "~/2doCiclo/"
 

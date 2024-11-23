@@ -7,7 +7,6 @@ cd ~/Music/2015-2022/
 # Define a list of URLs and their respective artists
 declare -A playlists=(
     ["https://www.youtube.com/playlist?list=PLvoJm-S4aIsz8zZy2vAGl2SOQ8USlGLVo"]="Yo Kaze"
-    ["https://www.youtube.com/playlist?list=PLFn7Hmwztb-eHrNwDNNH2gjtbcNpSa3L3"]="Laur"
     ["https://www.youtube.com/playlist?list=PLjYilp-bySE1qwXLKHWZZcHbqWaetqyaM"]="Feryquitous"
     ["https://www.youtube.com/playlist?list=PLcP7SWneqXTRFZzISG8AN_59_0ahOI9pf"]="Sakuzyo"
     ["https://www.youtube.com/playlist?list=PLjYilp-bySE3Elmd73Irfp6_qSk0jwaRj"]="xi"
@@ -16,7 +15,7 @@ declare -A playlists=(
     ["https://www.youtube.com/playlist?list=PLBkOG5FFNCKzEoPnekVRex2J5UEKKi_Bh"]="Ether"
     ["https://www.youtube.com/playlist?list=PLBkOG5FFNCKzA_SfGWFeV0YJais2TVTe9"]="Suzuka Yumi"
     ["https://www.youtube.com/playlist?list=PLNv9SARzk_JYaL6MXCJym1PvtCWlaexcw"]="Fujii Kaze"
-    ["https://www.youtube.com/playlist?list=PLehPR0Z83CK5NLdMOLxEeTaTkxENI7yCf"]="IU"
+    ["https://www.youtube.com/playlist?list=PLBO2h-GzDvIabo1P-nofvIyRVdVkYqM1c"]="HARDCORE TANO*C - IRREGULAR NATION"
 )
 
 # Define custom match-filters using playlist URLs as keys
