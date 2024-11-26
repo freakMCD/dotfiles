@@ -70,7 +70,7 @@ event_closewindow() {
             window_info=$(hyprctl activewindow -j)
             if jq -e '.fullscreen == 2 and .class == "mpv"' <<< "$window_info" >/dev/null; then
                 address=$(jq -r '.address' <<< "$window_info")
-                hyprctl --batch "dispatch fullscreen; dispatch pin address:$address; dispatch focuscurrentorlast; setprop address:$address nofocus 1"
+                hyprctl --batch "dispatch fullscreen; dispatch focuscurrentorlast; setprop address:$address nofocus 1"
             fi
 
             # Adjust window positions if there are remaining windows

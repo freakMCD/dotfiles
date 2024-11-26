@@ -26,18 +26,18 @@ clients=$(hyprctl clients -j)
 fullscreen_address=$(hyprctl activewindow -j | jq -r 'select(.fullscreen == 2) | .address')
 if [[ -n "$fullscreen_address" ]]; then
     if [[ $fullscreen_address == $target_address ]]; then
-       hyprctl --batch "dispatch fullscreen address:$target_address; dispatch pin address:$target_address;dispatch focuscurrentorlast; setprop address:$target_address nofocus 1"
+       hyprctl --batch "dispatch fullscreen address:$target_address; dispatch focuscurrentorlast; setprop address:$target_address nofocus 1"
        exit
     else
         # Check if the fullscreen window is an mpv window
         if jq -e --arg address "$fullscreen_address" '.[] | select(.address == $address and .class == "mpv")' <<< "$clients" >/dev/null; then
-            hypr_cmd+="dispatch fullscreen address:$fullscreen_address; dispatch pin address:$fullscreen_address; dispatch focuscurrentorlast; setprop address:$fullscreen_address nofocus 1;"
+            hypr_cmd+="dispatch fullscreen address:$fullscreen_address; dispatch focuscurrentorlast; setprop address:$fullscreen_address nofocus 1;"
         else
            hypr_cmd+="dispatch fullscreen address:$target_address;"
         fi
     fi
 
 fi
-hypr_cmd+="setprop address:$target_address nofocus 0; dispatch focuswindow address:$target_address; dispatch pin address:$target_address; dispatch fullscreen"
+hypr_cmd+="setprop address:$target_address nofocus 0; dispatch focuswindow address:$target_address; dispatch fullscreen"
 hyprctl --batch "$hypr_cmd"
 mpvplaycontrol "$target_address" "$clients"

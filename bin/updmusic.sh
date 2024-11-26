@@ -13,22 +13,15 @@ declare -A playlists=(
     ["https://www.youtube.com/playlist?list=PLBkOG5FFNCKyNGndvIS1GmwmDlKdKLQCc"]="Sennzai"
     ["https://www.youtube.com/playlist?list=PLBkOG5FFNCKzEDtbnzUNvJ3o2EtfCiUFt"]="Seraph"
     ["https://www.youtube.com/playlist?list=PLBkOG5FFNCKzEoPnekVRex2J5UEKKi_Bh"]="Ether"
-    ["https://www.youtube.com/playlist?list=PLBkOG5FFNCKzA_SfGWFeV0YJais2TVTe9"]="Suzuka Yumi"
-    ["https://www.youtube.com/playlist?list=PLNv9SARzk_JYaL6MXCJym1PvtCWlaexcw"]="Fujii Kaze"
+    ["https://www.youtube.com/playlist?list=PLBkOG5FFNCKzA_SfGWFeV0YJais2TVTe9"]="Suzuha Yumi"
     ["https://www.youtube.com/playlist?list=PLBO2h-GzDvIabo1P-nofvIyRVdVkYqM1c"]="HARDCORE TANO*C - IRREGULAR NATION"
 )
 
-# Define custom match-filters using playlist URLs as keys
-declare -A filters=(
-    ["Fujii Kaze"]="duration>245 & duration<1500"
-)
-
-# Default filter for URLs not listed in the filters array
-default_filter="duration>300 & duration<1500"
+# Default filter
+filter="duration>300 & duration<1500"
 
 # Loop through playlists and download with correct artist
 for url in "${!playlists[@]}"; do
     artist="${playlists[$url]}"
-    filter="${filters[$artist]:-$default_filter}"
     yt-dlp --parse-metadata " $artist: %(meta_artist)s" --match-filter "$filter" "$url"
 done
