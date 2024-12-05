@@ -1,9 +1,9 @@
 # mpv size
-mpv_width=480
-mpv_height=320
+mpv_width=720
+mpv_height=425
 
 x_offset=-90
-y_offset=45
+y_offset=19
 
 l_hidden=$(($x_offset-$mpv_width))
 r_hidden=$((1920-$x_offset))

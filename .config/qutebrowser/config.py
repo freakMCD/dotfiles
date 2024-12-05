@@ -9,6 +9,7 @@ c.content.user_stylesheets = ["~/.config/qutebrowser/css/gruvbox-all-sites.css"]
 config.source('mappings.py')
 config.source('gruvbox.py')
 
+c.statusbar.padding = {"bottom": 0, "left": 0, "right": 0, "top": 0}
 c.auto_save.session = False
 c.content.autoplay = False
 c.content.notifications.enabled = False

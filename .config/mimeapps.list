@@ -15,6 +15,7 @@ application/javascript=nvim.desktop
 text/x-lua=nvim.desktop
 video/webm=mpv.desktop
 text/html=qutebrowser.desktop
+image/vnd.djvu=org.pwmt.zathura-pdf-mupdf.desktop
 
 [Added Associations]
 x-scheme-handler/tonsite=org.telegram.desktop.desktop;
