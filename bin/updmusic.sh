@@ -6,18 +6,15 @@ cd ~/Music/2015-2022/
 
 # Define a list of URLs and their respective artists
 declare -A playlists=(
-    ["https://www.youtube.com/playlist?list=PLvoJm-S4aIsz8zZy2vAGl2SOQ8USlGLVo"]="Yo Kaze"
-    ["https://www.youtube.com/playlist?list=PLjYilp-bySE1qwXLKHWZZcHbqWaetqyaM"]="Feryquitous"
-    ["https://www.youtube.com/playlist?list=PLcP7SWneqXTRFZzISG8AN_59_0ahOI9pf"]="Sakuzyo"
-    ["https://www.youtube.com/playlist?list=PLBkOG5FFNCKyNGndvIS1GmwmDlKdKLQCc"]="Sennzai"
-    ["https://www.youtube.com/playlist?list=PLBkOG5FFNCKzEDtbnzUNvJ3o2EtfCiUFt"]="Seraph"
-    ["https://www.youtube.com/playlist?list=PLBkOG5FFNCKzA_SfGWFeV0YJais2TVTe9"]="Suzuha Yumi"
     ["https://www.youtube.com/playlist?list=PLehPR0Z83CK5NLdMOLxEeTaTkxENI7yCf"]="IU"
+    ["https://www.youtube.com/playlist?list=PLPKUmrgeihqyK8ub4qD4q9PqcWwNBDWQv"]="Laur"
+    ["https://www.youtube.com/playlist?list=PLcP7SWneqXTRFZzISG8AN_59_0ahOI9pf"]="Sakuzyo"
+    ["https://www.youtube.com/playlist?list=PLvoJm-S4aIsz8zZy2vAGl2SOQ8USlGLVo"]="Yo Kaze"
 )
 
 # Define filters
 default_filter="duration>300 & duration<1500"
-common_filter="duration>230 & duration<1500"
+common_filter="duration>200 & duration<1500"
 
 # Artists using the common filter
 common_filter_artists=("IU")

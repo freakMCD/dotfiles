@@ -69,6 +69,6 @@ bar:
                     ~carrier: {empty: {}}
                     carrier:
                       map:
-                        default: {string: {text: offline, foreground: e78a4eff}}
+                        default: {string: {text: down, foreground: e78a4eff}}
                         conditions:
-                          state == up && ipv4 != "": {string: {text: online, foreground: 89b482ff}}
+                          state == up && ipv4 != "": {string: {text: up, foreground: 89b482ff}}
