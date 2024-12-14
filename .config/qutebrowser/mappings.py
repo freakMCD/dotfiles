@@ -26,6 +26,7 @@ bind = {
 	leader + "v": "config-source ;; message-info 'qutebrowser reloaded'",
     ## mpv 
     lleader + "m": "hint videos userscript qute-mpv",
+    lleader + "M": "spawn --detach mpv {url}",
     lleader + "f": "hint videos spawn --detach mpv {hint-url} --profile=fastYT",
     lleader + "F": "hint links spawn --detach mpv {hint-url}",
 
