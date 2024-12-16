@@ -39,6 +39,13 @@ set -a
     _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 set +a
 
-#if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
- # exec Hyprland
-#fi
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+  echo "Press 's' within 2 seconds to skip launching Hyprland and go to the TTY."
+  read -t 2 -n 1 key
+  if [ "${key}" = "s" ]; then
+    echo "Skipping Hyprland launch. You are now in the TTY."
+  else
+    exec Hyprland
+  fi
+fi
+
