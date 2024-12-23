@@ -16,6 +16,8 @@ declare -A playlists=(
     ["https://www.youtube.com/playlist?list=PLC0ZU22UbRa-deDEiJQnHn6TjrEADPuwH"]="HARDCORE TANO*C"
     ["https://www.youtube.com/playlist?list=PLC0ZU22UbRa-U3ZdFoSeBnAsVa8pzqmDH"]="Epic/Orquestral"
     ["https://www.youtube.com/playlist?list=PLC0ZU22UbRa8VccdFAM_mnfG_zVx3iiXi"]="Camellia"
+    ["https://www.youtube.com/playlist?list=PLXiMxkfLzOG-boTdTnX44YjRFBqLGtotI"]="BIGBANG"
+    ["https://www.youtube.com/playlist?list=PLC0ZU22UbRa8drknhw_W5j87JOTF_UW85"]="Esther Favs"
 )
 
 # Define filters

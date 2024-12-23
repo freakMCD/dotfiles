@@ -22,6 +22,8 @@ c.qt.args = [ "enable-features=VaapiIgnoreDriverChecks",]
 c.session.lazy_restore = True
 c.statusbar.padding = {"bottom": 0, "left": 0, "right": 0, "top": 0}
 c.tabs.show = "never"
+c.statusbar.show = "in-mode"
+
 
 # Colors
 c.colors.webpage.darkmode.enabled = True

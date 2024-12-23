@@ -1,5 +1,4 @@
 // ==UserScript==
-// @match *://*.steampowered.com/*
 // @match *://*.google.com/maps/*
 // @match *://bancaporinternet.interbank.pe/*
 // @match *://web.whatsapp.com/*

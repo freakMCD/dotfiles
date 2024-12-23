@@ -35,7 +35,6 @@ set -a
     TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
     WINEPREFIX="/media/data/.wine"
     TMOUT=300
-    XKB_DEFAULT_LAYOUT=es # For steam with gamescope
     _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 set +a
 
