@@ -1,5 +1,5 @@
 # Define keywords and subdomains
-keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'libreoffice', 'geogebra', 'linux', 'wayland', 'Steam', 'LearnJapanese', 'neovim', 'LaTeX', 'youtubedl', 'DataHoarder', 'GreaseMonkey']
+keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'archlinux', 'libreoffice', 'geogebra', 'linux', 'wayland', 'Steam', 'LearnJapanese', 'neovim', 'LaTeX', 'youtubedl', 'DataHoarder', 'mpv', 'GreaseMonkey']
 base_url = '*://*.reddit.com/r/'
 whitelist = [f'{base_url}{keyword}/*' for keyword in keywords]
 # Add WhatsApp domains to the whitelist

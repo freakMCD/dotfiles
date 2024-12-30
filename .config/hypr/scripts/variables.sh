@@ -1,6 +1,6 @@
 # mpv size
-mpv_width=360
-mpv_height=225
+mpv_width=720
+mpv_height=450
 
 x_offset=-19
 y_offset=0

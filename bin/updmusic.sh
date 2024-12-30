@@ -14,9 +14,8 @@ declare -A playlists=(
     ["https://www.youtube.com/playlist?list=PLehPR0Z83CK5NLdMOLxEeTaTkxENI7yCf"]="IU"
     ["https://www.youtube.com/playlist?list=PLvoJm-S4aIsyku-i5SCMlYd5mcQqzh3FK"]="Yo Kaze"
     ["https://www.youtube.com/playlist?list=PLC0ZU22UbRa-deDEiJQnHn6TjrEADPuwH"]="HARDCORE TANO*C"
-    ["https://www.youtube.com/playlist?list=PLC0ZU22UbRa-U3ZdFoSeBnAsVa8pzqmDH"]="Epic/Orquestral"
     ["https://www.youtube.com/playlist?list=PLC0ZU22UbRa8VccdFAM_mnfG_zVx3iiXi"]="Camellia"
-    ["https://www.youtube.com/playlist?list=PLXiMxkfLzOG-boTdTnX44YjRFBqLGtotI"]="BIGBANG"
+    ["https://www.youtube.com/playlist?list=PLE_RVPOSunYPwgW6xC_mHzua8Zjj2Ny2E"]="BIGBANG"
     ["https://www.youtube.com/playlist?list=PLC0ZU22UbRa8drknhw_W5j87JOTF_UW85"]="Esther Favs"
 )
 

@@ -9,7 +9,6 @@ config.source('mappings.py')
 config.source('gruvbox.py')
 config.source('blocklist.py')
 config.source('websites.py')
-
 # General
 c.auto_save.session = False
 c.downloads.location.directory = "~/2doCiclo/"
@@ -28,6 +27,7 @@ c.statusbar.show = "in-mode"
 # Colors
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.preferred_color_scheme = "dark"
+c.colors.webpage.darkmode.policy.images = "never"
 
 # Content
 c.content.autoplay = False
