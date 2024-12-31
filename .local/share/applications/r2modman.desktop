@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=R2ModMan
-Exec=env GDK_BACKEND=x11 /home/edwin/Downloads/ebkr-r2modman-3.1.52/r2modman-3.1.54.AppImage
-Icon=/home/edwin/.local/share/applications/icons/r2modman-icon.png
-Type=Application
-Categories=Utility;
-MimeType=x-scheme-handler/ror2mm;

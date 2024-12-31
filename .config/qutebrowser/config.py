@@ -11,7 +11,7 @@ config.source('blocklist.py')
 config.source('websites.py')
 # General
 c.auto_save.session = False
-c.downloads.location.directory = "~/2doCiclo/"
+c.downloads.location.directory = "~/MathCareer/"
 c.fonts.default_size = "10pt"
 c.fonts.default_family = "JetBrainsMono Nerd Font"
 c.completion.shrink = True
