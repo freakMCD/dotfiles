@@ -1,8 +1,7 @@
 ncmpcpp_directory = ~/.config/ncmpcpp
 
-lyrics_directory = ~/Music/2015-2022/lyrics
-
-mpd_music_dir = ~/Music/2015-2022
+mpd_music_dir = ~/Music/
+lyrics_directory = ~/Music/lyrics
 
 mpd_host = localhost
 song_columns_list_format = "(40)[4]{ar} (55)[8]{t} (5)[7]{l}"

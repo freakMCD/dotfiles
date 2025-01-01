@@ -1,8 +1,8 @@
 #!/bin/bash
 
-archive_file=~/bin/misc/yt-dlp/2015-2020.txt
-music_directory=~/Music/2015-2022/
-output_file=~/Music/updated_2015-2020.txt
+archive_file=~/bin/misc/yt-dlp/yt_songs.txt
+music_directory=~/Music/
+output_file=~/Music/updated_yt_songs.txt
 
 # Generate a list of VIDEOIDs from your music files
 find "$music_directory" -type f -name '*???????????.m4a' -exec basename {} \; | sed -E 's/.*([A-Za-z0-9_-]{11})\.m4a$/\1/' > music_ids.txt

@@ -9,7 +9,7 @@ alias df='df -h'
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias fc-list='fc-list --format="%{family[0]}\n" | sort | uniq'
 # Music
-alias sortmusic='cd ~/Music/2015-2022 && stat --format="%W %n" * | sort -nr'
+alias sortmusic='cd ~/Music/ && stat --format="%W %n" * | sort -nr'
 alias mp3dl='yt-dlp --restrict-filenames --extract-audio --audio-format mp3 --no-playlist'
 alias litedlp="yt-dlp -f 'bestvideo[height<=720]+bestaudio/best'"
 

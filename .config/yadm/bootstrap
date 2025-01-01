@@ -7,12 +7,12 @@ install_sound_system() {
 
 install_basics() {
     # Basics
-    sudo pacman -S swayimg swaybg webp-pixbuf-loader grim slurp wl-clipboard wf-recorder lftp wev w3m unarchiver udiskie \
+    sudo pacman -S swayimg swaybg webp-pixbuf-loader grim slurp wl-clipboard wf-recorder lftp wev unarchiver udiskie \
     fd fzf fuzzel mpd mpc mpv pass ncmpcpp neomutt neovim \
     isync msmtp rclone yt-dlp zathura zathura-djvu zathura-pdf-poppler \
     adobe-source-han-sans-otc-fonts sound-theme-freedesktop qt5-wayland python-tldextract 
 
-    yay xdg-desktop-portal-hyprland-git puddletag perl-mime-encwords
+    yay qt5ct xdg-desktop-portal-hyprland-git puddletag perl-mime-encwords
 
     # Mpris and printer
     sudo pacman -S playerctl mpv-mpris simple-scan
@@ -54,6 +54,7 @@ usage() {
 
 if [ $# -lt 1 ]
 then
+    yadm sparse-checkout set --no-cone '/*' '!LICENSE'
     usage
     exit 1
 fi

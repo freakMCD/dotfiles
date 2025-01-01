@@ -108,7 +108,7 @@ highlight Win cterm=none ctermfg=white ctermbg=none
 
 " :mark mark /full/directory/path [filename]
 autocmd DirEnter ~/Downloads,~/MediaHub/scrceenshots setlocal sort=-mtime
-autocmd DirEnter ~/Music/2015-2022/ setlocal sort=-ctime
+autocmd DirEnter ~/Music/ setlocal sort=-ctime
 
 mark d ~/Downloads/
 nnoremap gh :cd ~<CR>
@@ -118,7 +118,6 @@ bmark! /mnt/8dbef5d9-f65d-42fe-9788-1af81ed3d908/Movies/ movies
 bmark! ~/.local/share/applications/ .desktop 
 bmark! ~/2doCiclo/Trabajos/ 1 
 bmark! ~/2doCiclo/practicas/ 1 
-bmark! ~/Music/2015-2022/ music 
 nnoremap b :bmgo<space>
 
 " ------------------------------------------------------------------------------

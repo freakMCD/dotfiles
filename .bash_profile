@@ -22,6 +22,8 @@ set -a
     if [ ! -d "$XDG_STATE_HOME/bash" ]; then
       mkdir -p "$XDG_STATE_HOME/bash"
     fi
+
+    W3M_DIR="$XDG_STATE_HOME/w3m"
     HISTFILE="$XDG_STATE_HOME/bash/history"
 
     CARGO_HOME="$HOME/.local/share/.cargo/"

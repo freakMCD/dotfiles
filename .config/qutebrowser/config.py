@@ -4,14 +4,14 @@ from urllib.request import urlopen
 # load your autoconfig, use this, if the rest of your config is empty!
 config.load_autoconfig(False)
 
-c.content.user_stylesheets = ["~/.config/qutebrowser/css/gruvbox-all-sites.css"]
+c.content.user_stylesheets = ["/home/edwin/.config/qutebrowser/css/gruvbox-all-sites.css"]
 config.source('mappings.py')
 config.source('gruvbox.py')
 config.source('blocklist.py')
 config.source('websites.py')
 # General
 c.auto_save.session = False
-c.downloads.location.directory = "~/MathCareer/"
+c.downloads.location.directory = "/home/edwin/MathCareer/"
 c.fonts.default_size = "10pt"
 c.fonts.default_family = "JetBrainsMono Nerd Font"
 c.completion.shrink = True
