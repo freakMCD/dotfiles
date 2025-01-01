@@ -54,7 +54,7 @@ usage() {
 
 if [ $# -lt 1 ]
 then
-    yadm sparse-checkout set --no-cone '/*' '!LICENSE'
+    yadm sparse-checkout set --no-cone '/*' 'README.md' '!LICENSE'
     usage
     exit 1
 fi

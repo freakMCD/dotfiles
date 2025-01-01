@@ -2,3 +2,5 @@
 	helper = store
 [pull]
 	rebase = true
+[yadm]
+	auto-private-dirs = false

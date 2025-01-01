@@ -4,7 +4,8 @@
 ```bash
 # Configures Git to globally store authentication credentials
 sudo pacman -Syu git
-git config --global credential.helper "store --file ~/.local/share/git-credentials"
+touch ~/.config/git/config
+git config --global credential.helper "store --file ~/.config/git/git-credentials"
 
 # Install yadm
 sudo pacman -Syu yadm
