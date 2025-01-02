@@ -12,7 +12,7 @@ install_basics() {
     isync msmtp rclone yt-dlp zathura zathura-djvu zathura-pdf-poppler \
     adobe-source-han-sans-otc-fonts sound-theme-freedesktop qt5-wayland python-tldextract 
 
-    yay qt5ct xdg-desktop-portal-hyprland-git puddletag perl-mime-encwords
+    yay qt5ct xdg-desktop-portal-hyprland-git puddletag perl-mime-encwords ttf-aller
 
     # Mpris and printer
     sudo pacman -S playerctl mpv-mpris simple-scan

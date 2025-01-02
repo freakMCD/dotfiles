@@ -13,6 +13,7 @@ bind q navigate-back
 set menu-item-entry-format " %u │ %o"
 set menu-explore-item-entry-format " %u │ %-20.20O │ %o"
 set status-placeholder "tab:explore  d:read  f:flag  n:next-unread  p:next-important (Shift+key for opposite)"
+set sections-menu-paramount-explore
 
 # Colors
 # Section listing
