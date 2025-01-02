@@ -39,19 +39,19 @@ return
     ),
     s({trig="all", snippetType="autosnippet"},
       {
-        t("\\text{ for all } "),
+        t("\\forall "),
       },
       {condition = tex.in_mathzone}
     ),
     s({trig="and", snippetType="autosnippet"},
       {
-        t("\\quad \\text{and} \\quad"),
+        t("\\quad \\text{y} \\quad"),
       },
       {condition = tex.in_mathzone}
     ),
     s({trig="forall", snippetType="autosnippet"},
       {
-        t("\\text{ for all } "),
+        t("\\text{ para todo } "),
       },
       {condition = tex.in_mathzone}
     ),

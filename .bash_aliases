@@ -29,7 +29,7 @@ alias pacorphans='pacman -Qtd'
 alias pacclean='sudo pacman -Sc'
 
 # File management and compression
-alias rclone="rclone -P"
+alias rclone="rclone -P --transfers 45 --checkers 65"
 alias compresspdf='gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dColorImageResolution=170 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf '
 alias curl='curl -O'
 
