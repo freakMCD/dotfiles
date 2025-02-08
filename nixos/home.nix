@@ -19,6 +19,11 @@
     enable = true;
     };
 
+  programs.git = {
+    enable = true;
+    extraConfig.credential.helper = "libsecret";
+  };
+
   programs.ncmpcpp = {
     enable = true;
     settings = {
