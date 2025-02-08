@@ -22,6 +22,8 @@
   programs.git = {
     enable = true;
     extraConfig.credential.helper = "store";
+    userEmail = "vastagox@gmail.com";
+    userName = "Alex";
   };
 
   programs.ncmpcpp = {
