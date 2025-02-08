@@ -1,0 +1,1843 @@
+/* Mocha */
+:root {
+    --rosewater:#d8a657;
+    --pink:     #442e2d;
+    --mauve:    #e78a4e;
+    --red:      #ea6962;
+    --maroon:   #473c29;
+    --teal:     #89b482;
+    --sky:      #a9b665;
+    --blue:     #7daea3;
+    --lavender: #89b482; 
+    --text:     #d4be98;
+    --subtext1: #ddc7a1;
+    --surface2: #7c6f64;
+    --surface1: #32302f;
+    --surface0: #282828;
+    --base:     #0F0F0F;
+    --mantle:   #1d2021;
+}
+
+/* GitHub */
+.inline-comments,
+#all_commit_comments,
+.gist-content a[name="comments"] + div,
+
+/* *** Generic *** */
+body [data-test-id*="comment" i],
+body [id*=commentaires i],
+body [class*=commentaires i],
+.all-comments,
+.article-comments,
+.articleComments,
+.btn-comments,
+.com_text,
+.comment_area,
+.comment_count,
+.comment-button,
+.comment-container,
+.comment-list,
+.comment-section,
+.Comment,
+.commentBox,
+.commentBoxStyle,
+.commenting-wrapper,
+.commentlist,
+.comments__container,
+.comments_area,
+.comments-area,
+.comments-container,
+.comments-list,
+.comments-pane,
+.comments-section,
+.comments-wrap,
+.comments:not(code),
+.Comments:not(code),
+.commentsApp,
+.commentsContainer,
+.commentsList,
+.CommentsList,
+.commentText,
+.commenttxt,
+.commentwrapper,
+.discussionContainer,
+.icon-comments,
+.Opinions,
+.page-comments,
+.pagecomment,
+.pagecommentheader,
+.post-comment-list,
+.post-comment,
+.post-comments,
+.reacties,
+.section-comment,
+.user_comment,
+.widget-comments,
+.widget_recent_comments,
+#article-comments,
+#articleComments,
+#blogComments,
+#box_comment,
+#cmtWrapper,
+#comentarios,
+#comment_container,
+#comment_entries,
+#comment_form,
+#comment-container,
+#comment-list,
+#comment-section,
+#commentblock,
+#commentbox,
+#commentcontainer,
+#commentlist,
+#commentList,
+#commentlisting,
+#comments_box,
+#comments_container,
+#comments_pane,
+#comments-app-container,
+#comments-component,
+#comments-container,
+#comments-count,
+#comments-frame,
+#comments-list,
+#comments-panel,
+#comments-wrapper,
+#comments:not(code),
+#Comments:not(code),
+#commentsBox,
+#commentscontainer,
+#commentsContainer,
+#commentsDiv,
+#commentwrapper,
+#post-comments,
+#reacties,
+#show-comments-container,
+#user_commeent_section,
+{
+	display: none !important;
+}
+
+.pull-request-tab-content .comment,
+#discussion_bucket .comment,
+.pull-request-tab-content .inline-comments
+{
+	display: table-row !important;
+}
+
+/* Style */
+.setting{
+    background-color: var(--mantle) !important;
+}
+header {
+    background-color: var(--surface0) !important;
+}
+
+* {
+  border-color: var(--surface0) !important;
+}
+a {
+  color: var(--blue) !important;
+}
+a:visited {
+  color: var(--mauve) !important;
+}
+body {
+  background-color: var(--base) !important;
+  color: var(--text) !important;
+}
+html {
+  background-color: var(--base) !important;
+}
+input,
+textarea {
+  background-color: var(--mantle) !important;
+  color: var(--text) !important;
+}
+blockquote,
+pre {
+  background-color: var(--mantle) !important;
+  color: var(--text) !important;
+}
+.post-actions {
+  background-color: var(--mantle) !important;
+}
+.textarea-wrapper {
+  background-color: var(--base) !important;
+  color: var(--text) !important;
+}
+.search--adv {
+  background-color: var(--mantle) !important;
+}
+.search__autocomplete > .acp-wrap {
+  background-color: var(--base) !important;
+}
+.search__autocomplete > .acp-wrap > .acp--highlight {
+  background-color: var(--mantle) !important;
+  color: var(--subtext1) !important;
+}
+.search__autocomplete > .acp-wrap strong {
+  color: var(--subtext1) !important;
+}
+.site-wrapper > #header_wrapper {
+  background-color: var(--base) !important;
+}
+.site-wrapper > #header_wrapper > #header {
+  background-color: var(--base) !important;
+}
+.search--header {
+  background-color: var(--mantle) !important;
+}
+.zci {
+  background-color: var(--mantle) !important;
+  color: var(--text) !important;
+}
+.tile--info {
+  background-color: var(--base) !important;
+}
+.tile--info__expand {
+  background-color: var(--surface2) !important;
+}
+.tile--c {
+  background-color: var(--surface2) !important;
+  color: var(--subtext1) !important;
+}
+.module__text {
+  color: var(--text) !important;
+}
+.about-info-box__heading {
+  color: var(--lavender) !important;
+}
+.result.highlight {
+  background-color: var(--mantle) !important;
+}
+.result__snippet {
+  color: var(--text) !important;
+}
+.result__snippet b {
+  color: var(--lavender) !important;
+}
+.btn--top {
+  background-color: var(--mantle) !important;
+  color: var(--text) !important;
+}
+.btn--top:hover {
+  background-color: var(--surface2) !important;
+}
+.result--sep--hr:before {
+  background-color: var(--surface2) !important;
+}
+* {
+  border-color: var(--mantle) !important;
+}
+.news .alert .pull-info {
+  background-color: var(--surface1) !important;
+}
+.link-gray-dark,
+.text-gray-dark {
+  color: var(--text) !important;
+}
+.bg-white {
+  background-color: var(--base) !important;
+}
+.border {
+  border-color: var(--surface0) !important;
+}
+.breadcrumb .repo-root.js-repo-root a {
+  color: var(--blue) !important;
+}
+.breadcrumb strong.final-path {
+  color: var(--text) !important;
+}
+button.ajax-pagination-btn {
+  background-color: var(--mantle) !important;
+  color: var(--lavender) !important;
+}
+button.ajax-pagination-btn:hover {
+  background-color: var(--surface2) !important;
+}
+.comment-reactions .btn-link {
+  color: var(--text) !important;
+}
+.comment-reactions .user-has-reacted {
+  background-color: var(--mantle) !important;
+}
+.text-gray-dark {
+  color: var(--text) !important;
+}
+.contrib-number {
+  color: var(--lavender) !important;
+}
+.counter {
+  background-color: var(--surface0) !important;
+  color: var(--lavender) !important;
+}
+.diffstat-bar {
+  color: var(--text) !important;
+}
+.file-header {
+  background-color: var(--mantle) !important;
+}
+.file-history-tease .participation {
+  background-color: var(--base) !important;
+  color: var(--text) !important;
+}
+.file-history-tease .participation .quickstat strong {
+  color: var(--text) !important;
+}
+.file-history-tease .participation a {
+  color: var(--surface2) !important;
+}
+.file-history-tease .author a {
+  color: var(--text) !important;
+}
+.file-history-tease-header {
+  background-color: var(--mantle) !important;
+}
+.file-info-divider {
+  background-color: var(--surface2) !important;
+}
+.file-wrap {
+  color: var(--text) !important;
+}
+.file-wrap * {
+  background-color: transparent !important;
+}
+.filter-bar {
+  background-color: var(--surface1) !important;
+}
+a.filter-item,
+.filter-item {
+  color: var(--text) !important;
+}
+a.filter-item.selected,
+.filter-item.selected {
+  background-color: var(--mantle) !important;
+  color: var(--lavender) !important;
+}
+a.filter-item:hover,
+.filter-item:hover {
+  background-color: var(--surface2) !important;
+  color: var(--lavender) !important;
+}
+.flash {
+  background-color: var(--mantle) !important;
+  color: var(--lavender) !important;
+}
+.gh-header {
+  background-color: var(--base) !important;
+}
+.gh-header-number {
+  color: var(--surface2) !important;
+}
+.ellipsis-expander,
+.hidden-text-expander a {
+  background-color: var(--mantle) !important;
+}
+.issue-meta {
+  color: var(--surface2) !important;
+}
+.issues-listing a {
+  color: var(--text) !important;
+}
+.muted-link {
+  color: var(--text) !important;
+}
+.new-user-avatar-cta {
+  background-color: var(--mantle) !important;
+  border-color: var(--surface2) !important;
+  color: var(--lavender) !important;
+}
+.overall-summary {
+  border-color: var(--surface2) !important;
+}
+.pinned-repo-item.border {
+  border-color: var(--surface2) !important;
+}
+.progress-bar {
+  background-color: var(--surface2) !important;
+}
+.simple-box {
+  background-color: var(--mantle) !important;
+}
+.social-count {
+  background-color: var(--mantle) !important;
+  border-color: var(--surface2) !important;
+  color: var(--lavender) !important;
+}
+.scope-badge {
+  background-color: var(--surface2) !important;
+  color: var(--lavender) !important;
+}
+.stats-switcher-wrapper {
+  background-color: var(--base) !important;
+}
+.stats-switcher-wrapper .numbers-summary li a {
+  color: var(--text) !important;
+}
+.table-list-header-toggle .btn-link {
+  color: var(--surface2) !important;
+}
+.table-list-header-toggle .btn-link.selected {
+  color: var(--text) !important;
+}
+.text-emphasized {
+  color: var(--lavender) !important;
+}
+.text-diff-added {
+  color: var(--sky) !important;
+}
+.text-diff-deleted {
+  color: var(--red) !important;
+}
+.avatar,
+.timeline-comment-avatar {
+  filter: opacity(75%);
+}
+.blob-code {
+  background-color: var(--base) !important;
+  color: var(--text) !important;
+}
+.blob-code-addition {
+  background-color: rgba(166,227,161,0.15) !important;
+}
+.blob-code-addition .x {
+  background-color: rgba(166,227,161,0.3) !important;
+  color: var(--text) !important;
+}
+.blob-code-deletion {
+  background-color: rgba(243,139,168,0.15) !important;
+}
+.blob-code-deletion .x {
+  background-color: rgba(243,139,168,0.3) !important;
+  color: var(--text) !important;
+}
+.blob-code-hunk {
+  background-color: var(--mantle) !important;
+  border-color: var(--surface2) !important;
+}
+.blob-code-inner {
+  color: var(--text) !important;
+}
+.blob-num {
+  background-color: var(--base) !important;
+  color: var(--surface2) !important;
+}
+.file {
+  color: var(--text) !important;
+}
+.form-control {
+  background-color: var(--mantle) !important;
+  border-color: var(--surface2) !important;
+}
+.pl-c {
+  color: var(--surface2) !important;
+}
+.pl-c1 {
+  color: var(--blue) !important;
+}
+.pl-e {
+  color: var(--surface1) !important;
+}
+.pl-en {
+  color: var(--blue) !important;
+}
+.pl-k {
+  color: var(--sky) !important;
+  font-weight: bold !important;
+}
+.pl-pds {
+  color: var(--teal) !important;
+}
+.pl-s {
+  color: var(--teal) !important;
+}
+.pl-smi {
+  color: var(--text) !important;
+}
+.pl-v {
+  color: var(--sky) !important;
+  font-weight: bold !important;
+}
+.pl-mi1 {
+  color: var(--sky) !important;
+  background-color: transparent !important;
+}
+.pl-md {
+  color: var(--red) !important;
+  background-color: transparent !important;
+}
+.border-bottom,
+.border-top {
+  border-color: var(--mantle) !important;
+}
+.boxed-group * {
+  border-color: var(--surface2) !important;
+}
+.boxed-group article {
+  background-color: var(--base) !important;
+  color: var(--text) !important;
+}
+.boxed-group > h3 {
+  background-color: var(--surface0) !important;
+  color: var(--lavender) !important;
+}
+.more-repos {
+  background-color: var(--surface0) !important;
+  box-shadow: inset 0 1px 0 var(--surface2) !important;
+}
+.boxed-group-inner {
+  background-color: var(--base) !important;
+}
+.branch-action-body {
+  background-color: var(--mantle) !important;
+  border-color: var(--surface2) !important;
+}
+.branch-action-body div {
+  border-color: var(--surface2) !important;
+}
+.branch-action-state-clean .branch-action-icon {
+  background-color: var(--sky) !important;
+}
+.branch-action-state-dirty .branch-action-icon,
+.branch-action-state-unstable .branch-action-icon,
+.branch-action-state-unknown .branch-action-icon {
+  background-color: var(--surface1) !important;
+  color: #fff !important;
+}
+.text-shadow-light,
+.branch-group-name,
+.branch-summary {
+  color: var(--text) !important;
+  text-shadow: none !important;
+}
+.branch-a-b-count .meter {
+  background-color: var(--surface1) !important;
+}
+.more-branches,
+.branch-group-heading,
+.branch-infobar,
+.branch-name {
+  border-color: var(--surface2) !important;
+  background-color: var(--mantle) !important;
+}
+.State,
+.State:visited {
+  color: #fff !important;
+}
+.State--red {
+  background-color: var(--red) !important;
+  color: var(--base) !important;
+}
+.State--green {
+  background-color: var(--sky) !important;
+  color: var(--base) !important;
+}
+.select-menu-filters {
+  background-color: var(--surface1) !important;
+  color: var(--lavender) !important;
+}
+.js-select-menu-tab {
+  background-color: var(--surface0) !important;
+  color: var(--lavender) !important;
+}
+.select-menu-tabs a.selected,
+.select-menu-tab-nav.selected {
+  background-color: var(--surface2) !important;
+  color: var(--base) !important;
+}
+.signed-commit-header {
+  background-color: var(--base) !important;
+}
+.build-status-item {
+  background-color: var(--surface0) !important;
+  color: var(--lavender) !important;
+}
+.build-status-item .build-status-details {
+  color: var(--blue) !important;
+}
+.capped-card h3 {
+  background-color: var(--surface0) !important;
+}
+.capped-card h3 a {
+  color: var(--lavender) !important;
+}
+.capped-card-content {
+  background-color: var(--base) !important;
+}
+.capped-list th {
+  background-color: var(--surface1) !important;
+  color: var(--lavender) !important;
+}
+.capped-list tr:nth-child(2n) {
+  background-color: var(--mantle) !important;
+}
+.commit,
+.commit-meta,
+.commit-icon .octicon,
+.commit-group-title .octicon-git-commit {
+  background-color: var(--base) !important;
+}
+.commit *,
+.commit-meta *,
+.commit-icon .octicon *,
+.commit-group-title .octicon-git-commit * {
+  border-color: var(--surface2) !important;
+}
+.commit-author {
+  color: var(--text) !important;
+}
+.commit-author-section {
+  color: var(--text) !important;
+}
+.commit-meta {
+  color: var(--surface2) !important;
+}
+.commit-meta .sha-block {
+  color: var(--surface2) !important;
+}
+.commit-meta .sha-block .sha {
+  color: var(--text) !important;
+}
+.commit-ref,
+code.commit-sha {
+  background-color: var(--mantle) !important;
+  color: var(--lavender) !important;
+}
+.commit-ref .user,
+code.commit-sha .user {
+  color: var(--teal) !important;
+}
+.commit-branches *,
+.commit-tease,
+.commit-title {
+  background-color: rgba(185,255,255,0.2) !important;
+  border: none !important;
+}
+.commit-branches * *,
+.commit-tease *,
+.commit-title * {
+  color: var(--lavender) !important;
+}
+.commit-tease-contributors {
+  background-color: var(--mantle) !important;
+}
+div.commit-branches,
+div.commit.full-commit p.commit-title,
+qul.branches-list {
+  background-color: var(--mantle) !important;
+  color: var(--lavender) !important;
+}
+div.commit-branches *,
+div.commit.full-commit p.commit-title *,
+qul.branches-list * {
+  background-color: var(--mantle) !important;
+  color: var(--lavender) !important;
+}
+.commit-meta {
+  background-color: var(--mantle) !important;
+  color: var(--text) !important;
+}
+.commits-listing:before {
+  background-color: var(--mantle) !important;
+}
+.full-commit {
+  background-color: var(--mantle) !important;
+  border-color: var(--surface2) !important;
+}
+.full-commit * {
+  text-shadow: none !important;
+}
+.commit-desc pre {
+  background-color: transparent !important;
+  color: var(--text) !important;
+}
+.commit.table-list-item {
+  border-color: var(--mantle) !important;
+}
+.commit-meta.commit-author-section {
+  background-color: transparent !important;
+  color: var(--text) !important;
+}
+.table-list-cell .commit-title {
+  background-color: transparent !important;
+  color: var(--text) !important;
+}
+.completeness-indicator-success {
+  background-color: var(--sky) !important;
+}
+.completeness-indicator-problem {
+  background-color: var(--surface1) !important;
+  color: #fff !important;
+}
+.copyable-terminal {
+  background-color: var(--mantle) !important;
+}
+.blankslate {
+  background-color: var(--mantle) !important;
+  color: var(--lavender) !important;
+}
+.comment-form-head.tabnav {
+  background-color: var(--base) !important;
+}
+.conversation-list-heading .inner {
+  background-color: var(--base) !important;
+}
+.discussion-item-closed .discussion-item-icon {
+  background-color: var(--red) !important;
+  color: var(--lavender) !important;
+}
+.discussion-item-icon {
+  background-color: var(--surface2) !important;
+  color: var(--lavender) !important;
+}
+.discussion-item-icon.octicon {
+  color: var(--lavender) !important;
+}
+.discussion-item-entity,
+.discussion-item .renamed-was,
+.discussion-item .renamed-is {
+  color: var(--lavender) !important;
+}
+.discussion-timeline:before {
+  background-color: var(--surface0) !important;
+}
+.discussion-timeline-actions {
+  background-color: var(--base) !important;
+}
+.drag-and-drop {
+  background-color: var(--mantle) !important;
+}
+.new-discussion-timeline .closed-banner {
+  background-color: var(--surface0) !important;
+  border-color: var(--base) !important;
+}
+.timeline-comment {
+  background-color: var(--base) !important;
+  border-color: var(--surface2) !important;
+}
+.timeline-comment-header {
+  background-color: var(--mantle) !important;
+}
+.timeline-comment-wrapper {
+  border-color: var(--base) !important;
+}
+.donut-chart > .pending {
+  fill: var(--surface1) !important;
+}
+.dropdown-divider {
+  background-color: var(--surface0) !important;
+}
+.dropdown-item {
+  color: var(--text) !important;
+}
+.dropdown-item:hover {
+  background-color: var(--surface2) !important;
+  color: var(--lavender) !important;
+}
+.dropdown-menu {
+  background-color: var(--surface0) !important;
+  color: var(--lavender) !important;
+  border-color: var(--surface0) !important;
+}
+.files * {
+  color: var(--text) !important;
+}
+.files tbody tr {
+  border-color: var(--mantle) !important;
+}
+.files tbody tr:nth-child(even) {
+  background-color: #2c2c2c !important;
+}
+.files tbody tr:nth-child(odd) {
+  background-color: var(--base) !important;
+}
+.files tbody tr:hover * {
+  background-color: var(--surface0) !important;
+}
+.btn {
+  background-image: linear-gradient(to bottom, var(--surface2), var(--mantle)) !important;
+  border-color: var(--surface2) !important;
+  color: var(--lavender) !important;
+}
+.btn:hover {
+  background-color: var(--surface1) !important;
+}
+.btn-primary,
+.issues-listing .btn-primary {
+  background-color: var(--sky) !important;
+  background-image: linear-gradient(var(--sky), #4c4c0d) !important;
+  color: #000 !important;
+  filter: opacity(62.5%);
+}
+.entry-title a {
+  color: var(--blue) !important;
+}
+.Header {
+  background-color: var(--surface1) !important;
+  border-bottom-color: var(--surface2) !important;
+}
+.Header a {
+  color: var(--lavender) !important;
+}
+.lang {
+  color: var(--lavender) !important;
+}
+.reponav-item,
+.pagehead-tabs-item {
+  background-color: var(--mantle) !important;
+  border-color: transparent !important;
+  color: var(--text) !important;
+}
+.reponav-item:visited,
+.pagehead-tabs-item:visited {
+  color: var(--text) !important;
+}
+.reponav-item.selected,
+.pagehead-tabs-item.selected {
+  background-color: var(--base) !important;
+  border-color: var(--red) var(--surface0) transparent !important;
+}
+.site-footer-links * {
+  color: var(--text) !important;
+}
+.Box-row--focus-gray.navigation-focus {
+  background-color: var(--surface1) !important;
+  color: var(--lavender) !important;
+}
+.js-directory-link {
+  color: var(--blue) !important;
+}
+.js-site-search-form input,
+.js-chromeless-input-container {
+  background-color: var(--base) !important;
+  border-color: var(--surface2) !important;
+}
+a.label {
+  color: #000 !important;
+  filter: opacity(75%);
+}
+.notifications-list a {
+  color: var(--text) !important;
+}
+.notifications-list li {
+  background-color: var(--base) !important;
+}
+.octicon-repo {
+  color: var(--lavender) !important;
+}
+.type-icon-state-closed {
+  color: rgba(255,34,23,0.65) !important;
+}
+.type-icon-state-merged {
+  color: var(--mauve) !important;
+}
+.type-icon-state-open {
+  color: rgba(212,211,18,0.65) !important;
+}
+.octicon-alert {
+  color: #fff !important;
+}
+.octicon-x {
+  color: var(--red) !important;
+}
+.octicon-check {
+  color: var(--sky) !important;
+}
+.octicon-primitive-dot {
+  color: var(--surface1) !important;
+}
+.octicon-clippy {
+  color: var(--lavender) !important;
+}
+.octicon-diff {
+  color: #fff !important;
+}
+.octicon-markdown {
+  color: var(--surface2) !important;
+}
+.orghead {
+  background-color: var(--mantle) !important;
+  border-color: var(--surface0) !important;
+  border-bottom: 0px !important;
+  color: var(--lavender) !important;
+}
+.org-name {
+  color: var(--lavender) !important;
+}
+.pagehead.orghead {
+  background-color: var(--mantle) !important;
+}
+.outline-box-highlighted {
+  background-color: var(--mantle) !important;
+  color: var(--lavender) !important;
+}
+.pagination .current {
+  background-color: var(--surface2) !important;
+  color: var(--lavender) !important;
+}
+.pagination .disabled {
+  background-color: var(--mantle) !important;
+  color: var(--surface2) !important;
+}
+.pagination .disabled:hover {
+  background-color: var(--mantle) !important;
+}
+.pagination .gap {
+  background-color: var(--mantle) !important;
+  color: var(--surface2) !important;
+}
+.pagination a {
+  background-color: var(--mantle) !important;
+  border-color: var(--base) !important;
+  color: var(--text) !important;
+}
+.pagination a:hover {
+  background-color: var(--surface2) !important;
+  color: var(--base) !important;
+}
+.empty-cell,
+.diffbar {
+  background-color: var(--base) !important;
+}
+.merge-status-item {
+  background-color: var(--surface0) !important;
+}
+.merge-message {
+  background-color: var(--surface1) !important;
+}
+.pr-toolbar {
+  background-color: var(--base) !important;
+}
+.review-thread-reply {
+  background-color: var(--mantle) !important;
+}
+.review-thread-reply .inline-comment-form {
+  background-color: var(--base) !important;
+}
+.merged.octicon,
+.octicon-git-merge {
+  color: var(--mauve) !important;
+}
+.uploaded-files {
+  background-color: var(--base) !important;
+}
+.upload-progress {
+  background-color: var(--mantle) !important;
+  box-shadow: 1px 0px 0px var(--mantle) inset;
+}
+#readme .plain {
+  background-color: var(--base) !important;
+}
+.markdown-body,
+.markdown-body table * {
+  background-color: var(--base) !important;
+  border-color: var(--surface0) !important;
+  color: var(--text) !important;
+}
+.markdown-body a,
+.markdown-body table * a {
+  color: var(--blue) !important;
+}
+.markdown-body code,
+.markdown-body table * code,
+.markdown-body pre,
+.markdown-body table * pre {
+  background-color: var(--mantle) !important;
+}
+.markdown-body hr,
+.markdown-body table * hr {
+  background-color: var(--surface2) !important;
+}
+.markdown-body img,
+.markdown-body table * img {
+  background-color: var(--base) !important;
+}
+.task-list-item.hovered {
+  background-color: var(--mantle) !important;
+}
+.range-editor {
+  background-color: var(--mantle) !important;
+}
+.compare-pr-placeholder {
+  background-color: var(--surface1) !important;
+}
+ul.comparison-list > li.title {
+  background-color: var(--surface0) !important;
+}
+ul.comparison-list {
+  background-color: var(--surface1) !important;
+}
+.repository-description {
+  color: var(--text) !important;
+}
+.repository-meta .edit-repository-meta label {
+  color: var(--text) !important;
+}
+.pagehead.repohead {
+  background-color: var(--mantle) !important;
+}
+.repository-content .RecentBranches {
+  background-color: var(--mantle) !important;
+  border-color: var(--surface0) !important;
+}
+.repohead-details-container a {
+  color: var(--text) !important;
+}
+.select-menu-modal {
+  border-color: var(--text) !important;
+}
+.select-menu-modal * {
+  color: var(--text) !important;
+}
+.select-menu-header,
+.select-menu-header * {
+  background-color: var(--mantle) !important;
+  color: var(--lavender) !important;
+  text-shadow: none !important;
+}
+.select-menu-item {
+  background-color: var(--base) !important;
+}
+.select-menu-item.navigation-focus,
+.select-menu-item.navigation-focus.selected,
+.select-menu-item.navigation-focus.select-menu-action,
+.select-menu-item-text.navigation-focus {
+  background-color: var(--surface2) !important;
+  color: var(--lavender) !important;
+}
+.repository-sidebar {
+  background-color: var(--base) !important;
+}
+.thread-subscription-status {
+  background-color: var(--base) !important;
+}
+.sunken-menu {
+  background-image: linear-gradient(to right, var(--mantle) 0%, var(--base) 8px) !important;
+  box-shadow: 1px 0px 0px var(--mantle) inset;
+}
+.sunken-menu:before {
+  background-image: linear-gradient(var(--base), transparent) !important;
+}
+.sunken-menu:after {
+  background-image: linear-gradient(transparent, var(--base)) !important;
+}
+.sunken-menu-item {
+  border-color: var(--base) !important;
+}
+.sunken-menu-item.selected {
+  background-color: var(--base) !important;
+  border-color: var(--surface0) !important;
+  color: var(--lavender) !important;
+}
+.sunken-menu-item.selected:after {
+  background-color: var(--maroon) !important;
+}
+.sunken-menu-separator:before {
+  background-image: linear-gradient(to right, var(--mantle) 70%, var(--base) 100%) !important;
+}
+.state {
+  color: var(--lavender) !important;
+}
+.state-closed {
+  background-color: var(--red) !important;
+}
+.state-open {
+  background-color: var(--sky) !important;
+}
+.subnav-item {
+  color: var(--text) !important;
+}
+.subnav-item:hover {
+  background-color: var(--surface1) !important;
+}
+.subnav-item:visited {
+  color: var(--text) !important;
+}
+.subnav-item.selected {
+  background-color: var(--mantle) !important;
+}
+.subnav-links a:hover {
+  background-color: var(--mantle) !important;
+}
+.subnav-search input {
+  border-color: var(--surface2) !important;
+}
+.right .tabnav-extra {
+  color: var(--surface2) !important;
+}
+a.tabnav-tab,
+.tabnav-tab {
+  border-color: transparent !important;
+  color: var(--surface2) !important;
+}
+a.tabnav-tab.selected,
+.tabnav-tab.selected {
+  background-color: var(--base) !important;
+  background-image: linear-gradient(var(--mantle), var(--base)) !important;
+  border-color: var(--surface0) !important;
+  color: var(--lavender) !important;
+}
+.table-list tr,
+.table-list li {
+  background-color: var(--base) !important;
+}
+.table-list tr:hover,
+.table-list li:hover {
+  background-color: var(--surface0) !important;
+}
+.table-list-header {
+  background-color: var(--mantle) !important;
+}
+.text-pending {
+  color: var(--surface1) !important;
+}
+.text-pending .octicon-primitive-dot {
+  color: var(--surface1) !important;
+}
+.text-red {
+  color: var(--red) !important;
+}
+.timeline-commits .commit-meta {
+  background-color: var(--base) !important;
+}
+.timeline-commits .commit-meta .commit-id {
+  color: var(--surface2) !important;
+}
+.topic-tag.topic-tag-link {
+  background-color: var(--mantle) !important;
+  color: var(--text) !important;
+}
+.underline-nav-item {
+  color: var(--text) !important;
+}
+.underline-nav-item.selected {
+  border-bottom-color: var(--red) !important;
+  color: var(--text) !important;
+}
+.user-profile-nav {
+  background-color: var(--mantle) !important;
+  border-color: var(--surface0) !important;
+}
+.user-profile-sticky-bar:after {
+  background-color: var(--mantle) !important;
+  border-color: var(--surface0) !important;
+}
+.graphs .area {
+  fill: var(--sky);
+}
+.summary-stats li .num {
+  color: var(--lavender) !important;
+}
+.viz {
+  background-color: var(--surface1) !important;
+}
+.facebox-popup {
+  color: var(--text) !important;
+  background-color: var(--base) !important;
+}
+.facebox-popup .octicon {
+  color: #fff !important;
+}
+.facebox-popup .owner-select-target {
+  color: var(--text) !important;
+  background-color: var(--mantle) !important;
+}
+.facebox-popup .owner-select-target:hover {
+  background-color: var(--surface2) !important;
+}
+.suggester {
+  background-color: var(--surface0) !important;
+}
+.suggester li.navigation-focus {
+  background-color: var(--surface2) !important;
+}
+.menu {
+  background-color: var(--mantle) !important;
+}
+.menu-item.selected {
+  background-color: var(--surface0) !important;
+}
+.menu-item:hover {
+  background-color: var(--surface2) !important;
+}
+.Box {
+  background-color: var(--base) !important;
+}
+.Box-header {
+  background-color: var(--mantle) !important;
+}
+svg > * text {
+  color: var(--text) !important;
+  fill: var(--text) !important;
+}
+.insertions {
+  color: var(--sky) !important;
+}
+.deletions {
+  color: var(--red) !important;
+}
+.sfbgg {
+  background-color: var(--mantle) !important;
+}
+.sbib_a {
+  background: linear-gradient(to bottom, var(--mantle), var(--base)) !important;
+}
+input#lst-ib,
+#sb_ifc0.sbib_b,
+#gs_taif0 {
+  background: transparent !important;
+}
+#lst-ib,
+.sbsb_a {
+  background-color: var(--base) !important;
+}
+.kpbb {
+  background-image: linear-gradient(to bottom, #67afb2, var(--blue)) !important;
+}
+#hdtbSum {
+  background-color: var(--base) !important;
+}
+#hdtbMenus.hdtb-td-o {
+  background-color: var(--base) !important;
+}
+#hdtb-tls.hdtb-tl {
+  background-image: linear-gradient(to bottom, var(--base), var(--mantle)) !important;
+}
+#hdtb-tls.hdtb-tl.hdtb-tl-sel {
+  background-image: linear-gradient(to bottom, var(--mantle), var(--base)) !important;
+}
+#abar_button_opt.ab_button {
+  background: linear-gradient(to bottom, var(--base), var(--mantle)) !important;
+}
+#appbar {
+  background-color: var(--base) !important;
+}
+cite {
+  color: var(--sky) !important;
+}
+.ab_dropdown {
+  background-color: var(--base) !important;
+}
+div.crp {
+  background-color: var(--base) !important;
+}
+#fbar {
+  background-color: var(--mantle) !important;
+}
+tr.Even {
+  background-color: var(--mantle) !important;
+}
+.BigQuote {
+  background-color: var(--mantle) !important;
+  color: var(--maroon) !important;
+}
+.Cat1HL {
+  background-color: var(--surface2) !important;
+  color: var(--lavender) !important;
+}
+.Cat2HL {
+  background-color: var(--surface0) !important;
+}
+.Cat3HL {
+  background-color: var(--surface1) !important;
+}
+.FeatureByline {
+  background-color: var(--mantle) !important;
+  border: none !important;
+}
+.Headline {
+  background-color: var(--surface0) !important;
+}
+.QuotedText {
+  color: var(--mauve) !important;
+}
+DIV.GAByline {
+  background-color: var(--mantle) !important;
+  border: none !important;
+}
+table.OddEven tr:nth-child(even) {
+  background-color: #2c2c2c !important;
+}
+table.OddEven tr:nth-child(odd) {
+  background-color: var(--base) !important;
+}
+DIV.CommentBox {
+  border-color: var(--mantle) !important;
+}
+DIV.CommentBox P.CommentTitle {
+  background-color: var(--surface0) !important;
+}
+#menu,
+.topnav-container {
+  background-color: var(--mantle) !important;
+}
+.navmenu ul {
+  background-color: var(--mantle) !important;
+}
+body * {
+  border-color: var(--surface0) !important;
+}
+#content {
+  background-color: var(--base) !important;
+  color: var(--text) !important;
+}
+#mw-head,
+#mw-panel {
+  background-color: var(--mantle) !important;
+  color: var(--lavender) !important;
+}
+#mw-head div.portal,
+#mw-panel div.portal {
+  background-image: none !important;
+}
+#mw-head {
+  background-color: var(--mantle) !important;
+  background-image: linear-gradient(to bottom, var(--base), var(--mantle)) !important;
+}
+#mw-panel,
+#p-logo {
+  background-image: linear-gradient(to right, var(--base), var(--mantle)) !important;
+}
+div.vectorTabs {
+  background-image: linear-gradient(to bottom, var(--base), var(--mantle)) !important;
+}
+div.vectorTabs ul {
+  background-image: linear-gradient(to bottom, var(--base), var(--mantle)) !important;
+}
+div.vectorTabs ul li {
+  background-color: var(--mantle) !important;
+  background-image: none !important;
+  padding: 0px 1px 0px 1px !important;
+}
+div.vectorTabs span {
+  background-color: var(--mantle) !important;
+  background-image: linear-gradient(to bottom, var(--base), var(--mantle)) !important;
+}
+div.vectorTabs li.selected,
+div.vectorTabs li.selected span {
+  background-color: transparent !important;
+  background-image: linear-gradient(to bottom, var(--mantle), var(--base)) !important;
+}
+.mw-wiki-logo {
+  filter: opacity(50%);
+}
+div#simpleSearch #searchInput {
+  background-color: var(--base) !important;
+  padding: 0.05em 0px 0.2em 0.2em !important;
+}
+.ambox,
+.infobox,
+#toc,
+#toctitle,
+.toclevel-1 {
+  background-color: var(--mantle) !important;
+  border-color: var(--surface0) !important;
+  color: var(--lavender) !important;
+}
+.catlinks {
+  background-color: var(--mantle) !important;
+  border-color: var(--surface0) !important;
+  color: var(--lavender) !important;
+}
+.navbox {
+  background-color: var(--mantle) !important;
+  border-color: var(--surface0) !important;
+  color: var(--lavender) !important;
+}
+.navbox .th,
+.navbox .navbox-title {
+  background-color: var(--surface0) !important;
+}
+.navbox-abovebelow,
+th.navbox-group,
+.navbox-subgroup,
+.navbox-title {
+  background-color: var(--surface1) !important;
+}
+.navbox-even {
+  background-color: var(--base) !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  border-color: var(--surface0) !important;
+  color: var(--lavender) !important;
+}
+code {
+  background-color: var(--surface0) !important;
+  border-color: var(--surface0) !important;
+  color: var(--lavender) !important;
+}
+div.thumbinner {
+  background-color: var(--mantle) !important;
+  border-color: var(--surface0) !important;
+}
+img {
+  filter: opacity(75%);
+}
+img.thumbimage {
+  border-color: var(--surface0) !important;
+}
+.mw-body .external {
+  opacity: 0.5 !important;
+}
+table.wikitable {
+  background-color: var(--base) !important;
+  border-color: var(--surface0) !important;
+  color: var(--text) !important;
+}
+table.wikitable > * > tr > th {
+  background-color: var(--mantle) !important;
+}
+table {
+  background-color: var(--base) !important;
+}
+#hnmain > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table,
+#hnmain > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table {
+  background-color: var(--maroon) !important;
+}
+#hnmain > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) a,
+#hnmain > tbody:nth-child(1) > tr:nth-child(1) a {
+  color: #000 !important;
+}
+#hnmain > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2),
+#hnmain > tbody:nth-child(1) > tr:nth-child(2) {
+  background-color: var(--base) !important;
+}
+#hnmain > tbody:nth-child(1) > tr:nth-child(2) {
+  background-color: var(--base) !important;
+}
+.title a {
+  color: var(--text) !important;
+}
+.title a:visited {
+  color: var(--surface2) !important;
+}
+a.storylink {
+  color: var(--lavender) !important;
+  font-weight: bold;
+}
+.sitestr {
+  color: var(--blue) !important;
+}
+#hnmain > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(1) {
+  background-color: var(--base) !important;
+}
+#hnmain .comhead {
+  color: var(--lavender) !important;
+}
+#hnmain .c00 {
+  color: var(--text) !important;
+}
+#hnmain a.hnuser {
+  color: var(--surface1) !important;
+}
+#hnmain span.age a {
+  color: var(--surface2) !important;
+}
+.cdd {
+  color: rgba(255,34,23,0.65) !important;
+}
+.comment i {
+  color: var(--mauve) !important;
+}
+#hnmain > tbody:nth-child(1) > tr:nth-child(4) {
+  background-color: var(--base) !important;
+}
+#hnmain > tbody:nth-child(1) > tr:nth-child(4) > td:nth-child(1) > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) {
+  background-color: var(--maroon) !important;
+}
+div#page div#header {
+  background-color: var(--base) !important;
+}
+div#page div#header a {
+  color: var(--mauve) !important;
+}
+.post {
+  background-color: var(--base) !important;
+}
+.post * {
+  overflow: auto !important;
+}
+.post h2 {
+  background-color: var(--mantle) !important;
+}
+.post h2 a {
+  color: var(--lavender) !important;
+}
+.post div.entry {
+  background-color: var(--base) !important;
+  color: var(--text) !important;
+}
+.post div.entry blockquote {
+  background-color: var(--mantle) !important;
+}
+.post div.entry kbd {
+  background-color: var(--mantle) !important;
+  border-color: var(--surface2) !important;
+  box-shadow: none !important;
+  color: var(--lavender) !important;
+  text-shadow: 0px 1px 0px #000 !important;
+}
+.post pre.mode-line {
+  overflow: visible !important;
+}
+#sr-header-area {
+  background-color: var(--mantle) !important;
+}
+#sr-header-area .srdrop .selected {
+  color: var(--text) !important;
+}
+#sr-header-area #sr-more-link {
+  background-color: var(--mantle) !important;
+}
+.link.promotedlink.promoted {
+  background-color: var(--mantle) !important;
+}
+.link .usertext .md {
+  background-color: var(--mantle) !important;
+}
+.linkinfo {
+  background-color: var(--mantle) !important;
+}
+.linklisting .odd {
+  background-color: var(--mantle) !important;
+}
+.thing .title {
+  color: var(--text) !important;
+}
+div.md {
+  color: var(--text) !important;
+}
+body.comment {
+  background-color: var(--base) !important;
+}
+.commentarea > .usertext {
+  background-color: var(--base) !important;
+}
+.commentarea .menuarea {
+  background-color: var(--base) !important;
+}
+.comments-page .panestack-title {
+  background-color: var(--base) !important;
+}
+.listing-chooser {
+  background-color: var(--base) !important;
+}
+.listing-chooser .intro {
+  background-color: var(--surface2) !important;
+  color: var(--lavender) !important;
+}
+.listing-chooser .grippy {
+  background-color: var(--base) !important;
+}
+.listing-chooser .grippy:after {
+  border-right: none !important;
+}
+.listing-chooser li {
+  background-color: var(--mantle) !important;
+}
+.listing-chooser li.selected {
+  background-color: var(--surface2) !important;
+  box-shadow: none;
+}
+.listing-chooser li a {
+  color: var(--text) !important;
+}
+.listing-chooser li a .description {
+  color: var(--lavender) !important;
+}
+.titlebox {
+  background-color: var(--mantle) !important;
+}
+.titlebox form.toggle {
+  background-color: var(--mantle) !important;
+  color: var(--text) !important;
+}
+.side .usertext-body .md {
+  background-color: var(--mantle) !important;
+}
+.side {
+  background-color: var(--mantle) !important;
+}
+.sidebox .spacer {
+  background-color: var(--mantle) !important;
+  color: var(--lavender) !important;
+}
+.tabmenu li a {
+  background-color: var(--mantle) !important;
+}
+#header-bottom-right {
+  background-color: var(--mantle) !important;
+}
+.morelink .nub {
+  background-color: var(--mantle) !important;
+}
+* {
+  border-color: var(--surface0) !important;
+}
+a {
+  color: var(--blue) !important;
+}
+a:visited {
+  color: var(--mauve) !important;
+}
+body {
+  background-color: var(--base) !important;
+  color: var(--text) !important;
+}
+html {
+  background-color: var(--base) !important;
+}
+
+tr:hover,
+blockquote,
+pre {
+  background-color: var(--mantle) !important;
+  color: var(--text) !important;
+}
+#toolMenu li {
+  background-color: var(--base) !important;
+}
+.navPanel,
+.navIntraTool {
+  background-color: var(--base) !important;
+}
+.instruction,
+.sakaiCopyrightInfo {
+  color: var(--text) !important;
+}
+.listHier th {
+  background-color: var(--surface0) !important;
+}
+ul.makeMenu {
+  background-color: var(--surface0) !important;
+  border: 1px solid var(--surface0) !important;
+}
+tr.external {
+  background-color: var(--surface0) !important;
+}
+hr {
+  background-color: var(--surface0) !important;
+  color: var(--surface0) !important;
+}
+.bounty-indicator,
+.bounty-indicator-tab {
+  background-color: var(--mauve) !important;
+}
+.bottom-notice {
+  background-color: var(--mantle) !important;
+}
+.comments-link {
+  color: var(--sky) !important;
+}
+.page-numbers {
+  background-color: var(--sky) !important;
+  color: var(--subtext1) !important;
+}
+.page-numbers.current {
+  background-color: var(--maroon) !important;
+  color: var(--base) !important;
+}
+.post-menu a {
+  color: var(--mauve) !important;
+}
+.question-status {
+  background-color: var(--mantle) !important;
+}
+.bg-black-050 {
+  background-color: transparent !important;
+}
+.val-info {
+  background-color: transparent !important;
+  color: var(--text) !important;
+}
+.s-label {
+  color: var(--text) !important;
+}
+pre code {
+  background-color: var(--mantle) !important;
+  color: var(--lavender) !important;
+}
+pre code .atn {
+  color: var(--blue) !important;
+}
+pre code .atv {
+  color: var(--teal) !important;
+}
+pre code .com {
+  color: var(--surface2) !important;
+}
+pre code .kwd {
+  color: var(--sky) !important;
+}
+pre code .lit {
+  color: var(--pink) !important;
+}
+pre code .pln,
+pre code .pun {
+  color: var(--text) !important;
+}
+pre code .str {
+  color: var(--teal) !important;
+}
+pre code .tag {
+  color: var(--sky) !important;
+}
+pre code .typ {
+  color: var(--surface1) !important;
+}
+#footer {
+  background-color: var(--surface1) !important;
+  color: var(--text) !important;
+}
+#footer #footer-sites th {
+  color: var(--lavender) !important;
+}
+.top-footer-links a {
+  color: var(--sky) !important;
+}
+.so-header {
+  background-color: var(--surface0) !important;
+  color: var(--lavender) !important;
+}
+.so-header a {
+  color: var(--sky) !important;
+}
+.so-header .navigation .-list .-item :hover {
+  background-color: var(--sky) !important;
+  color: var(--rosewater) !important;
+}
+.topbar-dialog {
+  background-color: var(--base) !important;
+  box-shadow: var(--surface2) 5px 5px 5px;
+}
+.topbar-dialog .current-site-container {
+  background-color: var(--base) !important;
+}
+.topbar-dialog .header {
+  background-color: var(--mantle) !important;
+}
+.topbar-dialog .header a {
+  color: var(--lavender) !important;
+}
+.topbar-dialog .site-link {
+  color: var(--lavender) !important;
+}
+#header {
+  background-color: var(--surface0) !important;
+}
+#question-header .question-hyperlink {
+  color: var(--lavender) !important;
+}
+#hlogo a {
+  filter: opacity(75%);
+}
+.new-post-activity {
+  background-color: var(--mantle) !important;
+}
+.tagged-interesting {
+  background-color: var(--surface0) !important;
+}
+div.answered-accepted {
+  background-color: var(--sky) !important;
+  color: var(--subtext1) !important;
+}
+div.answered-accepted .mini-counts {
+  background-color: var(--sky) !important;
+  color: var(--subtext1) !important;
+}
+.answered .mini-counts span {
+  color: var(--sky) !important;
+}
+.unanswered .mini-counts span {
+  color: var(--text) !important;
+}
+#hot-network-questions a {
+  color: var(--teal) !important;
+}
+#hot-network-questions h4 a.js-gps-track {
+  color: var(--lavender) !important;
+}
+#sidebar .community-bulletin .bulletin-item-content a {
+  color: var(--lavender) !important;
+}
+#sidebar .module.community-bulletin {
+  background-color: var(--mantle) !important;
+  color: var(--lavender) !important;
+}
+#sidebar .question-hyperlink {
+  color: var(--teal) !important;
+}
+.newuser {
+  background-color: var(--mantle) !important;
+  color: var(--lavender) !important;
+}
+.label-key {
+  color: var(--text) !important;
+}
+.label-key b {
+  color: var(--lavender) !important;
+}
+#h-chat-link {
+  color: var(--lavender) !important;
+}
+.ad502-room {
+  background-color: var(--mantle) !important;
+  box-shadow: var(--surface2) 0px 1px 3px;
+  color: var(--lavender) !important;
+}
+#tabs a {
+  background-color: transparent !important;
+  background-image: linear-gradient(to bottom, var(--base), var(--mantle));
+  color: var(--lavender) !important;
+}
+#tabs a.youarehere {
+  background-image: linear-gradient(to bottom, var(--maroon), var(--base));
+  color: var(--rosewater) !important;
+}
+.post-tag {
+  background-color: var(--surface2) !important;
+  color: var(--base) !important;
+}
+.post-tag::before {
+  background-color: var(--base) !important;
+}
+a.comment-user.owner {
+  background-color: var(--sky) !important;
+  color: var(--subtext1) !important;
+}
+.post-signature {
+  background-color: var(--mantle) !important;
+  color: var(--lavender) !important;
+}
+.post-signature a {
+  color: var(--teal) !important;
+}
+.post-signature.owner .user-info .user-details a {
+  color: var(--sky) !important;
+}
+.post-signature span.relativetime {
+  color: var(--lavender) !important;
+}
+.vote {
+  background-color: var(--mantle) !important;
+}
+.vote .star-off {
+  filter: opacity(75%);
+}
+.vote .star-on {
+  filter: opacity(50%) !important;
+}
+.vote .vote-down-off,
+.vote .vote-up-off {
+  filter: opacity(50%);
+}
+.answer-votes {
+  background-color: var(--surface2) !important;
+  color: var(--base) !important;
+}

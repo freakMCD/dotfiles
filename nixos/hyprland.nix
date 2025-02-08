@@ -255,19 +255,6 @@ in
               "opacity 1 1, class:(^(org.pwmt.zathura))"
               "size ${var.width} ${var.height}, class:(^(mpv))"
             ];
-
         };
-    };
-
-    programs.wpaperd = {
-        enable = true;
-        settings = {
-            default = {
-                path = "$HOME/.config/hypr/wallpapers";
-                duration = "60m";
-                sorting = "random";
-            };
-        };
-
     };
 }

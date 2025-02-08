@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for song in ./*.m4a; do
+      ffmpeg -y -i "$song" -map 0 -c copy -metadata comment=\"\" -metadata description=\"\" temp.m4a;
+      cp -r temp.m4a "$song";
+      rm -rf temp.m4a;
+  done

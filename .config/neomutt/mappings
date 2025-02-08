@@ -1,0 +1,64 @@
+# vim: filetype=neomuttrc
+#
+# General rebindings
+# unbinding x and i because only one key is enough
+bind generic,compose,attach,pager,index i noop    
+bind generic,compose,attach,pager,index x noop    
+                                                  
+# binding q for exiting all menus                 
+bind generic,compose,attach,pager q exit          
+                                                  
+# Navigation
+# ----------------------------------------------------
+bind generic             z         noop
+bind index,pager,attach  b         noop
+bind index,pager,attach  g         noop
+bind index,pager         s         noop
+bind generic,pager       t         noop
+
+bind generic,index,pager \Cf       next-page
+bind generic,index,pager \Cb       previous-page
+
+# Go to folder...
+macro index,pager gi "<change-folder>=INBOX<enter>" "go to Inbox"
+macro index,pager gd "<change-folder>=[Gmail]/Destacados<enter>" "go to Destacados"
+macro index,pager ge "<change-folder>=[Gmail]/Enviados<enter>" "go to Enviados"
+macro index,pager gs "<change-folder>=[Gmail]/Spam<enter>" "go to Spam"
+macro index,pager gp "<change-folder>=[Gmail]/Papelera<enter>" "go to Papelera"
+macro index,pager gh "<change-folder>=Github<enter>" "go to =Github"
+macro index,pager gb "<change-folder>=Interbank<enter>" "go to =Interbank"
+macro index,pager gf "<change-folder>?"                   "open mailbox..."
+
+# Saner copy/move dialogs / Send mail
+macro index c "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index m "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+bind index,pager         C         mail
+
+# synchronization settings ['s' to sync]
+macro index S "<shell-escape>systemctl --user start mbsync.service &<enter>" "sync email"
+
+## Make quick html view macro
+bind index,pager o  noop        ## Unbinds V from version
+macro index,pager o "<tag-prefix>N<previous-entry><view-attachments><search>html<enter><view-mailcap><exit>"
+
+# Actions
+# ----------------------------------------------------
+bind  index,pager    a   group-reply
+bind  generic        tt  tag-entry
+bind  pager          tt  tag-message
+macro index,pager    gx  "<pipe-message>urlview<Enter>"                                   "call urlview to extract URLs out of a message"
+macro attach,compose gx  "<pipe-entry>urlview<Enter>"                                     "call urlview to extract URLs out of a message"
+
+# Command Line
+# ----------------------------------------------------
+bind editor \Cp history-up
+bind editor \Cn history-down
+
+# sidebar
+bind index,pager \Ck sidebar-prev
+bind index,pager \Cj sidebar-next
+bind index,pager \Cl sidebar-open
+
+macro index A \
+    "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" \
+    "mark all new as read"

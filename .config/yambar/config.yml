@@ -1,0 +1,74 @@
+bar:
+ location: top
+ margin: 10
+ spacing: 12
+ font: JetBrainsMono Nerd Font Mono:pixelsize=12px:style=bold
+ 
+ height: 18
+ background: 000000ff
+ left:
+   - clock:
+       date-format: "%a"
+       content:
+         - string: {text: "{date} ", foreground: d8a657ff}
+         - string: {text: "{time}"}
+   - mem:
+       poll-interval: 3000
+       content:
+         - string: {text: "RAM ", foreground: d8a657ff}
+         - string: {text: "{used:mb} MB"}
+   - cpu:
+       poll-interval: 3000
+       content:
+         map:
+           conditions:
+             id < 0:
+               - string: 
+                  text: "CPU "
+                  foreground: d8a657ff
+               - string:
+                  text: "{cpu}%"
+ center:
+   - script:
+       path: /run/current-system/sw/bin/playerctl
+       args:
+         - "--follow"
+         - "-i"
+         - "chromium"
+         - "metadata"
+         - "-f"
+         - |
+           status|string|{{status}}
+           playerName|string|{{playerName}}
+           artist|string|{{artist}}
+           title|string|{{title}}
+       content:
+         map:
+           conditions:
+             status == Paused:
+              map:
+                default: {string: {text: "{artist} - {title}", foreground: FF6F6199}}
+                conditions:
+                  playerName == "mpd": {string: {text: ""}}
+                  playerName == "mpv": {string: {text: "{title}", foreground: 83a59899}}
+             status == Playing:
+              map:
+                default: {string: {text: "{artist} - {title}", foreground: FF6F61FF}}
+                conditions:
+                  playerName == "mpd": {string: {text: "{artist} - {title}", foreground: 8ec07cff}}
+                  playerName == "mpv": {string: {text: "{title}", foreground: 83a598FF}}
+ right:
+    - network:
+        content:
+          map:
+            default: {empty: {}}
+            conditions:
+              name == enp34s0:
+                map:
+                  conditions:
+                    ~carrier: {empty: {}}
+                    carrier:
+                      map:
+                        default: {string: {text: down, foreground: e78a4eff}}
+                        conditions:
+                          state == up && ipv4 != "": {string: {text: up, foreground: 89b482ff}}

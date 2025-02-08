@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Prompt user for input
+echo "Download part of an online video with yt-dlp & ffmpeg"
+read -p "Enter URL here: " URL
+read -p "Enter START_TIME (hh:mm:ss): " START
+read -p "Enter DURATION (in seconds): " DURATION
+read -p "Enter FILENAME: " FILENAME
+
+# Validate input format for START_TIME
+if ! [[ $START =~ ^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$ ]]; then
+    echo "Error: START_TIME must be in the format hh:mm:ss"
+    exit 1
+fi
+
+# Validate input for DURATION
+if ! [[ $DURATION =~ ^[0-9]+$ ]]; then
+    echo "Error: DURATION must be a positive integer"
+    exit 1
+fi
+
+# Download and process video
+ffmpeg "$(yt-dlp -g "$URL" | sed "s/.*/-ss $START -i &/")" -t "$DURATION" -s '1280x720' "$FILENAME.mp4"
+
+# Prompt to continue
+read -p "Press Enter to continue"

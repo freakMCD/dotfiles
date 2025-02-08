@@ -120,7 +120,7 @@
       TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var";
       };
     shellAliases = {
-      rebuild="sudo nixos-rebuild switch --flake $HOME/.config/nixos#nixos";
+      rebuild="sudo nixos-rebuild switch --flake $HOME/nixos#nixos";
       hyprevents="socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock  EXEC:'shellevents',nofork";
       reloadevent="pkill -USR1 shellevents";
       dus="du -h --max-depth=1 | sort -hr";
