@@ -21,7 +21,7 @@
 
   programs.git = {
     enable = true;
-    extraConfig.credential.helper = "libsecret";
+    extraConfig.credential.helper = "store";
   };
 
   programs.ncmpcpp = {
