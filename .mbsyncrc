@@ -8,8 +8,8 @@
 # "[Gmail]/Importantes"
 
 IMAPStore gmail-remote
+TLSType IMAPS
 Host imap.gmail.com
-SSLType IMAPS
 User vastagox@gmail.com
 PassCmd "PASSWORD_STORE_DIR=~/.PrivateHub/password-store/ pass gmailapp/vastagox"
 CertificateFile /etc/ssl/certs/ca-certificates.crt
@@ -26,7 +26,6 @@ Patterns INBOX "[Gmail]/Destacados" "[Gmail]/Enviados" "[Gmail]/Papelera" "Githu
 Create Both
 Expunge Both
 SyncState *
-
 
 Channel spam
 Far :gmail-remote:

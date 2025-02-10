@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 source ~/.local/share/linuxfedora
 
 [ ! -r ~/.mbsyncrc ] && exit 0

@@ -1,24 +1,4 @@
 {
-  home.stateVersion = "24.11";
-  home.sessionPath = [
-    "$HOME/bin"
-  ];
-
-  services.mpd = {
-    enable = true;
-    musicDirectory = "/home/edwin/Music/2024/";
-    extraConfig = ''
-        audio_output {
-          type "pipewire"
-          name "My PipeWire Output"
-        }
-    '';
-  };
-
-  services.mpd-mpris = {
-    enable = true;
-    };
-
   programs.git = {
     enable = true;
     extraConfig.credential.helper = "store";
@@ -26,64 +6,6 @@
     userName = "Alex";
   };
 
-  programs.ncmpcpp = {
-    enable = true;
-    settings = {
-      lyrics_directory = "~/Music/lyrics";
-      mpd_crossfade_time = 5;
-      allow_for_physical_item_deletion = "yes";
-      };
-    };
-
-  programs.foot = {
-      enable = true;
-      server.enable = true;
-      settings = {
-          main = {
-              term = "foot";
-              font = "JetBrainsMono Nerd Font Mono:pixelsize=14";
-              workers = 0;
-          };
-          colors = {
-              alpha = 0.94;
-              background = "120000";
-              foreground = "fbf1c7";
-              regular0="282828";
-              regular1="fb4934";
-              regular2="b8bb26";
-              regular3="fabd2f";
-              regular4="83a598";
-              regular5="d3869b";
-              regular6="8ec07c";
-              regular7="d5c4a1";
-          };
-      };
-  };
-  services.fnott = {
-      enable = true;
-      settings = {
-          main = {
-              max-width = 300;
-              default-timeout = 10;
-              idle-timeout = 300;
-              summary-font = "JetBrainsMono Nerd Font:weight=bold:size=12";
-              body-font = "JetBrainsMono Nerd Font:size=11";
-              layer = "overlay";
-              progress-bar-height = 5;
-              padding-vertical = 5;
-              padding-horizontal = 10;
-              edge-margin-vertical = 24;
-              edge-margin-horizontal = 24;
-              background = "111111FF";
-              border-color = "888888FF";
-              summary-format = "%s";
-              body-format = "%b";
-              title-format = "";
-              play-sound = "paplay --volume=35000 \${filename}";
-          };
-      };
-  };
-  xdg.enable = true;
   programs.bash = {
     enable = true;
     historyFile = "$XDG_STATE_HOME/bash/history";
@@ -110,6 +32,11 @@
       mpv() {
           nohup mpv "$@" &>/dev/null & disown; exit
       }
+
+      ttv()
+      {
+          nohup streamlink https://twitch.tv/"$@" --title "{title} [{author}]" --player=mpv --twitch-proxy-playlist=https://eu.luminous.dev,https://lb-eu.cdn-perfprod.com best &>/dev/null & disown; exit
+      }
       '';
     initExtra = ''
       source ~/.local/share/linuxfedora
@@ -126,15 +53,13 @@
       TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var";
       };
     shellAliases = {
-      rebuild="sudo nixos-rebuild switch --flake $HOME/nixos#nixos";
-      hyprevents="socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock  EXEC:'shellevents',nofork";
-      reloadevent="pkill -USR1 shellevents";
-      dus="du -h --max-depth=1 | sort -hr";
+      rebuild="sudo nixos-rebuild switch --flake $HOME/nix-config#edwin";
       df="df -h";
+      dus="du -h --max-depth=1 | sort -hr";
+      mp3dl=''yt-dlp --restrict-filenames --extract-audio --audio-format mp3 "https://www.youtube.com/playlist?list=WL" --cookies-from-browser firefox:~/opt/firefox/.mozilla/firefox'';
+      litedlp="yt-dlp -f 'bestvideo[height<=720]+bestaudio/best'";
       fc-list=''fc-list --format="%{family[0]}\n" | sort | uniq'';
       sortmusic=''cd ~/Music/ && stat --format="%W %n" * | sort -nr'';
-      mp3dl="yt-dlp --restrict-filenames --extract-audio --audio-format mp3 --no-playlist";
-      litedlp="yt-dlp -f 'bestvideo[height<=720]+bestaudio/best'";
 
       gpg-list="gpg --list-secret-keys --keyid-format LONG";
       gpg-backup="gpg -o private.gpg --export-options backup --export-secret-keys";
@@ -171,5 +96,39 @@
         sort_dir_first = true;
       };
     };
+  };
+
+  programs.ncmpcpp = {
+    enable = true;
+    settings = {
+      lyrics_directory = "~/Music/lyrics";
+      mpd_crossfade_time = 5;
+      allow_for_physical_item_deletion = "yes";
+      };
+  };
+
+  programs.foot = {
+      enable = true;
+      server.enable = true;
+      settings = {
+          main = {
+              term = "foot";
+              font = "JetBrainsMono Nerd Font Mono:pixelsize=14";
+              workers = 0;
+          };
+          colors = {
+              alpha = 0.94;
+              background = "120000";
+              foreground = "fbf1c7";
+              regular0="282828";
+              regular1="fb4934";
+              regular2="b8bb26";
+              regular3="fabd2f";
+              regular4="83a598";
+              regular5="d3869b";
+              regular6="8ec07c";
+              regular7="d5c4a1";
+          };
+      };
   };
 }

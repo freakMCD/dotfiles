@@ -17,7 +17,7 @@ c.fonts.default_family = "JetBrainsMono Nerd Font"
 c.completion.shrink = True
 c.completion.open_categories = ["quickmarks", "bookmarks", "searchengines"]
 c.messages.timeout = 2000
-c.qt.args = [ "enable-features=VaapiIgnoreDriverChecks","disable-features=FFmpegAllowLists"]
+c.qt.args = [ "disable-logging", "enable-gpu-rasterization", "ignore-gpu-blocklist", "enable-features=VaapiVideoDecodeLinuxGL","disable-features=FFmpegAllowLists"]
 c.session.lazy_restore = True
 c.statusbar.padding = {"bottom": 0, "left": 0, "right": 0, "top": 0}
 c.statusbar.show = "in-mode"

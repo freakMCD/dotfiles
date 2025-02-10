@@ -3,10 +3,10 @@ let
   screen = { width = 1920; height = 1080; };
 
   # mpv window dimensions
-  mpv = { width = 400; height = 300; };
+  mpv = { width = 600; height = 450; };
 
   # Offsets
-  offset = { x = 30; y = 30; };
+  offset = { x = 25; y = 25; };
 
   # mpv coordinates
   x1 = screen.width - offset.x - mpv.width;

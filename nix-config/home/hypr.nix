@@ -31,9 +31,7 @@ in
             exec-once = [
               "yambar"
               "fnott"
-              "mpc add / & mpc random on"
               "udiskie"
-              "socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock  EXEC:'shellevents',nofork"
             ];
 
             general = {
@@ -204,10 +202,10 @@ in
 
 # Volume notifications
             binde = [
-              "MOD5, up, exec, $HOME/bin/lib/volume_notif.sh up"
-              "MOD5, down, exec, $HOME/bin/lib/volume_notif.sh down"
-              "MOD5, delete, exec, $HOME/bin/lib/volume_notif.sh mute"
-              "$mod, delete, exec, $HOME/bin/lib/volume_notif.sh mic"
+              "MOD5, up, exec, $HOME/nix-config/scripts/volume_notif up"
+              "MOD5, down, exec, $HOME/nix-config/scripts/volume_notif down"
+              "MOD5, delete, exec, $HOME/nix-config/scripts/volume_notif mute"
+              "$mod, delete, exec, $HOME/nix-config/scripts/volume_notif mic"
             ];
             bindm =[
               "$mod, mouse:272, movewindow"  
@@ -221,8 +219,8 @@ in
             "special:neomutt, on-created-empty: ${terminal} --app-id=neomutt neomutt"
             "special:newsraft, on-created-empty: ${terminal} --app-id=newsraftsilent newsraft"
             "special:kalker, on-created-empty: ${terminal} --app-id=kalker kalker"
-            "special:androidsync, on-created-empty: ${terminal} --app-id=androidsync $HOME/bin/lib/androidsync"
-            "special:openfile, on-created-empty: ${terminal} --app-id=openfile $HOME/bin/open_file.sh"
+            "special:androidsync, on-created-empty: ${terminal} --app-id=androidsync $HOME/nix-config/scripts/androidsync"
+            "special:openfile, on-created-empty: ${terminal} --app-id=openfile open_file"
             "special:whatsapp, on-created-empty: ${terminal} --app-id=whatsapp nchat"
           ];
 

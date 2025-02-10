@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Sync Files from Linux to Android
 
 FTP_SERVER="192.168.1.35"

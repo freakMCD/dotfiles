@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 audiovolumechange="/home/edwin/Music/freedesktop/audio-volume-change.oga"
 
 function get_volume {

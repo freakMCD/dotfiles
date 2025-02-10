@@ -1,5 +1,5 @@
 {
-  description = "A simple NixOS flake";
+  description = "My freaky nix flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -12,12 +12,11 @@
   };
 
   outputs = { nixpkgs, home-manager, fastanime, ... }@inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.edwin = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
-        ./configuration.nix
-        ./autologin.nix
+        ./system
         home-manager.nixosModules.home-manager {
             home-manager = {
                 useGlobalPkgs = true;
@@ -25,9 +24,7 @@
                 users.edwin = 
                 {
                   imports = [ 
-                    ./home.nix
-                    ./hyprland.nix
-                    ./shell-scripts.nix
+                    ./home
                     ];
                   };
             };
