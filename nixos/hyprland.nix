@@ -33,9 +33,7 @@ in
               "fnott"
               "mpc add / & mpc random on"
               "udiskie"
-              "fcitx5"
               "socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock  EXEC:'shellevents',nofork"
-              "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
             ];
 
             general = {
@@ -217,7 +215,7 @@ in
             ];
 
           workspace = [
-            "special:fastanime, on-created-empty: ${terminal} --app-id=fastanime fakehome.sh \"fastanime anilist\""
+            "special:fastanime, on-created-empty: ${terminal} --app-id=fastanime fakehome \"fastanime anilist\""
             "special:trans, on-created-empty: ${terminal} --app-id=trans trans -b -I :es"
             "special:transI, on-created-empty: ${terminal} --app-id=transI trans -b -I :@es"
             "special:neomutt, on-created-empty: ${terminal} --app-id=neomutt neomutt"

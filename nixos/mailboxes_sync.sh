@@ -1,4 +1,5 @@
-# Script from: https://github.com/jpmenil/dotfiles/blob/master/bin/mailboxes_sync.sh
+#!/usr/bin/env bash
+source ~/.local/share/linuxfedora
 
 [ ! -r ~/.mbsyncrc ] && exit 0
 

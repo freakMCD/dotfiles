@@ -1,11 +1,4 @@
 #!/usr/bin/env bash
-# This script unlocks the pass tomb, if any, and then usess fzf to find
-# passwords and copy, show, delete, rename and duplicate them, as well as
-# to add or generate new passwords, and synchronize them (with git).
-# Dependencies: fd, fzf, pass
-# Optional dependencies: git, pass-tomb
-# 
-# MIT License, Copyright © [2022] Mathieu Laparie <mlaparie [at] disr [dot] it>
 
 store="$HOME/.PrivateHub/password-store/"
 swapfile="/swap/swapfile" # Set path to any swapfile not listed in /etc/fstab

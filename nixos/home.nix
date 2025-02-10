@@ -93,13 +93,7 @@
       "cd"
       "exit"
       ];
-    initExtra = ''
-      source ~/.local/share/linuxfedora
-
-      export PS1="\n\[\e[38;2;102;92;84m\][\[\e[38;2;251;73;52m\]\u \[\e[38;2;184;187;38m\]\W\[\e[38;2;102;92;84m\]] \[\e[0m\]"
-
-      export PS4='Line ''${LINENO}: '
-
+      bashrcExtra = ''
       fe() {
         IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
         [[ -n "$files" ]] && $EDITOR "''${files[@]}"
@@ -114,8 +108,13 @@
       }
 
       mpv() {
-          nohup mpv "$@" &>/dev/null & exit
+          nohup mpv "$@" &>/dev/null & disown; exit
       }
+      '';
+    initExtra = ''
+      source ~/.local/share/linuxfedora
+      export PS1="\[\e[38;2;102;92;84m\][\[\e[38;2;251;73;52m\]\u \[\e[38;2;184;187;38m\]\W\[\e[38;2;102;92;84m\]] \[\e[0m\]"
+      export PS4='Line ''${LINENO}: '
       '';
     sessionVariables = {
       W3M_DIR="$XDG_STATE_HOME/w3m";

@@ -3,6 +3,11 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { inputs, system, config, pkgs, ... }:
+let
+  perlEnv = pkgs.perl.withPackages (p: with p; [
+    MIMEEncWords
+  ]);
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -61,11 +66,14 @@ services.pipewire = {
       qutebrowser firefox w3m neovim zathura kalker
       foot fnott fuzzel
       curl rclone
-      neomutt msmtp isync newsraft
-      mpv mpvScripts.mpris socat playerctl yt-dlp mpd mpd-mpris mpc ncmpcpp
+      neomutt msmtp newsraft
+      mpv mpvScripts.mpris playerctl yt-dlp mpd mpd-mpris mpc ncmpcpp
       yazi udiskie fd fzf libnotify
-      wev wl-clipboard jq wpaperd grim slurp wf-recorder yambar
+      wev wl-clipboard wpaperd grim slurp wf-recorder yambar qbittorrent streamlink
+      translate-shell
       inputs.fastanime.packages.${pkgs.system}.default
+      isync
+      perlEnv
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -95,7 +103,29 @@ services.pipewire = {
     material-symbols
   ];
 
+  systemd.user.services.mailsync = {
+    enable = true;
+    description = "Mailboxes sync";
+    path = [pkgs.procps pkgs.pass pkgs.isync pkgs.perl pkgs.libnotify];
+    environment = {
+      GNUPGHOME="%h/.local/share/gnupg";
+      PERL5LIB = "${perlEnv}/lib/perl5/site_perl";
+    };
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "%h/nixos/mailboxes_sync.sh";
+    };
+    wantedBy = [ "user.target" ];
+  };
 
+  systemd.user.timers.mailsync = {
+  wantedBy = [ "timers.target" ];
+    timerConfig = {
+    OnBootSec= "1m";
+    OnUnitActiveSec="5m";
+    Unit="mailsync.service";
+    };
+  };
 
   # List services that you want to enable:
   # Enable the OpenSSH daemon.

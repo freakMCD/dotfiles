@@ -35,7 +35,7 @@ macro index m "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 bind index,pager         C         mail
 
 # synchronization settings ['s' to sync]
-macro index S "<shell-escape>systemctl --user start mbsync.service &<enter>" "sync email"
+macro index S "<shell-escape>systemctl --user start mailsync.service &<enter>" "sync email"
 
 ## Make quick html view macro
 bind index,pager o  noop        ## Unbinds V from version

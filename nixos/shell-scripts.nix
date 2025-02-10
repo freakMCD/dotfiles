@@ -4,6 +4,7 @@ var = import ./variables.nix;
 in
 {
     home.packages = with pkgs; [
+      jq socat
       (writeShellScriptBin "shellevents" ''
         PFS=$IFS
 
@@ -244,6 +245,14 @@ event_closewindow() {
         fi
 
         mpvplaycontrol "$target_address"
-              '')
+        '')
+
+        (writeShellScriptBin "fakehome" ''
+         BIN=$1
+          export HOME="''${HOME}/opt/$(basename "$BIN")"
+          [ -d "$HOME" ] || mkdir -p "$HOME"
+          # run
+          ''${BIN}
+          '')
     ];
   }
