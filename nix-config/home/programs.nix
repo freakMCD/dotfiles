@@ -131,4 +131,22 @@
           };
       };
   };
+
+  programs.zathura = {
+    enable = true;
+    options = {
+      adjust-open = "width";
+      scroll-step = 50;
+      selection-clipboard = "clipboard";
+      selection-notification = false;
+      show-recent = 20;
+      recolor-lightcolor = "rgba(245,200,150,0.75)" ;
+      recolor-darkcolor = "#000000";
+      recolor = true;
+      recolor-keephue = true;
+      default-bg = "rgba(0,0,0,7)";
+      default-fg = "#000000";
+      render-loading = true;
+    };
+  };
 }

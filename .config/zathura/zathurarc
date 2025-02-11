@@ -1,6 +1,0 @@
-include zathura_gruvbox_material
-set adjust-open width
-set scroll-step 50
-set selection-clipboard clipboard
-set selection-notification false
-set show-recent 20
