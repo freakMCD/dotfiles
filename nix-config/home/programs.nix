@@ -54,6 +54,7 @@
       };
     shellAliases = {
       rebuild="sudo nixos-rebuild switch --flake $HOME/nix-config#edwin";
+      retest="sudo nixos-rebuild test --flake $HOME/nix-config#edwin";
       df="df -h";
       dus="du -h --max-depth=1 | sort -hr";
       mp3dl=''yt-dlp --restrict-filenames --extract-audio --audio-format mp3 "https://www.youtube.com/playlist?list=WL" --cookies-from-browser firefox:~/opt/firefox/.mozilla/firefox'';
@@ -73,6 +74,7 @@
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
+    enableFishIntegration= true;
     defaultCommand = "fd -t f -H -L -E '{*[Cc]ache,*.git,.local,opt,auxfiles,nixos*}' ";
     fileWidgetCommand = "fd -t f -H -L -E '{*[Cc]ache,*.git,.local,opt,auxfiles,nixos*}' "; 
     changeDirWidgetCommand = "fd -t d -H -L -E '{*[Cc]ache,*.git,.local,opt,auxfiles,nixos*}' ";

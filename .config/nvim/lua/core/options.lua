@@ -44,7 +44,7 @@ function GetIndicators()
 	return warn_string .. error_string
 end
 function GetRulerIcon()
-	local icon = vim.bo.modified and "" or ""
+	local icon = vim.bo.modified and " " or " "
 	return "%#CustomRulerSeparator#%#CustomRulerIcon#" .. icon .. " "
 end
 vim.opt.rulerformat = "%40(%=%{%v:lua.GetIndicators()%}%{%v:lua.GetRulerIcon()%}%#CustomRulerFile# %t %)"

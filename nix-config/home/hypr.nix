@@ -26,6 +26,7 @@ in
               HYPRCURSOR_THEME = "Future-Cyan-Hyprcursor_Theme";
               HYPRCURSOR_SIZE = 32;
               XCURSOR_SIZE = 16;
+              QT_XCB_GL_INTEGRATION = "xcb_egl";
             };
 
             exec-once = [

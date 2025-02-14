@@ -79,13 +79,13 @@
         event_openwindow() {
             case "$WINDOWCLASS" in
                 mpv)
+                    for ((i = 0; i < ''${#addresses[@]}; i++)); do
+                        hide_others+="dispatch setprop address:"0x''${addresses[$i]}" alphainactive ${var.low};"
+                    done
+
                     clients=$(hyprctl clients -j)
                     ((mpv_count++))
                     assign_coordinates "$mpv_count"
-
-                    for ((i = 0; i < ''${#addresses[@]}; i++)); do
-                        hide_others="dispatch setprop address:"0x''${addresses[$i]}" alphainactive ${var.low};"
-                    done
                     addresses+=( "$WINDOWADDRESS" )
 
                     mpvplaycontrol "0x$WINDOWADDRESS" "$clients"

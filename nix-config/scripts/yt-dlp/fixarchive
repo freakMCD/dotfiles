@@ -1,19 +1,16 @@
 #!/usr/bin/env bash
 
-workingdir="$(realpath $(dirname "$0"))"
+set -euo pipefail  # Strict error handling
 
+workingdir="$(realpath "$(dirname "$0")")"
 archive_file="$workingdir/yt_songs.txt"
-music_dir="$HOME/Music"
-output_file="$music_dir/updated_yt_songs.txt"
+music_dir="$HOME/Music/2024"
 
-# Generate a list of VIDEOIDs from your music files
-find "$music_dir" -type f -name '*???????????.m4a' -exec basename {} \; | sed -E 's/.*([A-Za-z0-9_-]{11})\.m4a$/\1/' > music_ids.txt
+echo "Updating $archive_file with video IDs from $music_dir"
 
-# Remove lines from yt_songs.txt based on music_ids.txt
-grep -f music_ids.txt "$archive_file" > "$output_file"
+# Extract YouTube video IDs and store them in yt_songs.txt
+find "$music_dir" -type f -name '*.m4a' -printf 'youtube %f\n' | \
+    sed -E 's/.*([A-Za-z0-9_-]{11})\.m4a$/youtube \1/' | \
+    sort -u > "$archive_file"
 
-# Optionally, overwrite the original 2015-2020.txt file with the updated content
-mv "$output_file" "$archive_file"
-
-# Cleaning
-rm music_ids.txt
+echo "Updated $archive_file with new video IDs."

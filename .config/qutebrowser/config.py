@@ -9,11 +9,10 @@ config.source('mappings.py')
 config.source('gruvbox.py')
 config.source('blocklist.py')
 config.source('websites.py')
+
 # General
 c.auto_save.session = False
 c.downloads.location.directory = "/home/edwin/MathCareer/"
-c.fonts.default_size = "10pt"
-c.fonts.default_family = "JetBrainsMono Nerd Font"
 c.completion.shrink = True
 c.completion.open_categories = ["quickmarks", "bookmarks", "searchengines"]
 c.messages.timeout = 2000
@@ -21,7 +20,6 @@ c.qt.args = [ "disable-logging", "enable-gpu-rasterization", "ignore-gpu-blockli
 c.session.lazy_restore = True
 c.statusbar.padding = {"bottom": 0, "left": 0, "right": 0, "top": 0}
 c.statusbar.show = "in-mode"
-
 
 # Colors
 c.colors.webpage.darkmode.enabled = True
@@ -62,8 +60,8 @@ c.input.insert_mode.leave_on_load = True
 
 # Fonts
 c.fonts.default_size = "11pt"
+c.fonts.default_family = "Liberation Sans"
 c.fonts.tabs.selected = "10pt bold"
 c.fonts.tabs.unselected = "10pt default_family"
 c.fonts.web.size.minimum = 14
 c.fonts.web.size.default = 17
-c.fonts.default_family = "Liberation Sans"
