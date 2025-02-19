@@ -9,7 +9,7 @@ if ps -C mbsync > /dev/null; then
     exit 0
 fi
 
-mbsync gmail
+mbsync -c ~/nix-config/home/config/neomutt/.mbsyncrc gmail
 prefix="${HOME}/.local/share/email/gmail"
 
 for file in "$prefix"/*; do

@@ -14,7 +14,7 @@ declare -A chill=(
     ["https://www.youtube.com/playlist?list=PL1JxBieKp06LBAiOlziByhHyRwfMOLbDj"]="Babymetal"
     ["https://www.youtube.com/playlist?list=PL4CmunqMOJjLJngQzRR6tExqelkRKa0Vc"]="Classics"
     ["https://www.youtube.com/playlist?list=PL4CmunqMOJjL9ClFBPb9pjNun2GmL5Ll-"]="G-Dragon"
-    ["https://www.youtube.com/playlist?list=PLz6DOTcCHlPCqi3MXe0Qlu-IeMPmymss2"]="Ado"
+    ["https://www.youtube.com/playlist?list=PLnxYCI2LodNiEhtP4kTqIeuGPZBsxJZ7s"]="Ado"
     ["https://www.youtube.com/playlist?list=PLpISYQjbY0iSMUfL58jij2ZjlkYYuLz9x"]="Phantom Siita"
 )
 
@@ -27,7 +27,7 @@ download_playlists() {
 
     echo -e "\e[1;32mDownloading $artist's playlist...\e[0m"
 
-    yt-dlp --quiet --progress --parse-metadata " $artist:%(meta_artist)s" --match-filters "$filter & title!~='(?i)\blive\b'" \
+    yt-dlp --quiet --progress --parse-metadata " $artist: %(meta_artist)s" --match-filters "$filter & title!~='(?i)\blive\b'" \
            -o "$dir/%(title)s_%(id)s.%(ext)s" "$url"
     done
 }

@@ -51,14 +51,6 @@ in
     material-symbols
   ];
 
-  xdg.mime.defaultApplications = {
-    "text/html" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/about" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
-  };
-
   environment.variables = {
     GNUPGHOME="$HOME/.local/share/gnupg";
     PASSWORD_STORE_DIR="$HOME/.PrivateHub/password-store/";

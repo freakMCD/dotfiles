@@ -3,14 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    home-manager.url = "github:nix-community/home-manager/";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    fastanime = {
-      url = "github:Benex254/fastanime";
+    home-manager = {
+      url = "github:nix-community/home-manager/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    yt-x = {
-      url = "github:Benexl/yt-x";
+    fastanime = {
+      url = "github:Benex254/fastanime";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

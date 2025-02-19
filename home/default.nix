@@ -9,7 +9,7 @@
 
   xdg.configFile =
   let
-    dotfiles = config.lib.file.mkOutOfStoreSymlink "/home/edwin/nix-config/home/config/";
+    dotfiles = config.lib.file.mkOutOfStoreSymlink "/home/edwin/nix/home/config/";
   in
   {
     "nvim".source = "${dotfiles}/nvim";

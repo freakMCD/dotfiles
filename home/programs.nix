@@ -6,14 +6,20 @@
     userName = "Alex";
   };
 
-  programs.fzf = {
+  programs.fzf = 
+  let
+    command="--color=always . /mnt/DATA ~/nix";
+  in
+  {
     enable = true;
     enableFishIntegration = true;
-    defaultCommand = "fd -t f -H -L -E '{*[Cc]ache,*.git,.local,opt,auxfiles,nixos*}' ";
-    fileWidgetCommand = "fd -t f -H -L -E '{*[Cc]ache,*.git,.local,opt,auxfiles,nixos*}' "; 
-    changeDirWidgetCommand = "fd -t d -H -L -E '{*[Cc]ache,*.git,.local,opt,auxfiles,nixos*}' ";
+    defaultCommand = "fd -t f ${command}";
+    fileWidgetCommand = "fd -t f ${command}";
+    changeDirWidgetCommand = "fd -t d ${command}";
+    fileWidgetOptions = ["--delimiter / --with-nth 4.."];
     defaultOptions = [
-      "--height 60%" 
+      "--preview 'bat --style=numbers --color=always --line-range=:100 {}'"
+      "--ansi --height 60% --reverse" 
       "--color=bg+:#32302f,spinner:#e2d3ba,hl:#ef938e" 
       "--color=fg:#e2d3ba,header:#ef938e,info:#e1acbb,pointer:#e2d3ba"
       "--color=marker:#e2d3ba,fg+:#e2d3ba,prompt:#e1acbb,hl+:#ef938e"
@@ -28,7 +34,7 @@
         enabled = false;
       };
       manager = {
-        show_hidden = true;
+        show_hidden = false;
         sort_dir_first = true;
       };
     };

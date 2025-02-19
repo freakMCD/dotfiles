@@ -10,8 +10,8 @@ in
       foot fnott fuzzel
       curl rclone
       neomutt msmtp newsraft
-      mpv mpvScripts.mpris playerctl yt-dlp mpd mpd-mpris mpc ncmpcpp streamlink
-      yazi udiskie fd fzf libnotify
+      nomacs mpv mpvScripts.mpris playerctl yt-dlp mpd mpd-mpris mpc ncmpcpp streamlink
+      yazi udiskie bat fd fzf libnotify
       wev wl-clipboard wpaperd grim slurp wf-recorder yambar qbittorrent
       translate-shell
       chafa inputs.fastanime.packages.${system}.default

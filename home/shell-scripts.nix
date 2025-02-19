@@ -130,14 +130,14 @@ in
 
         (writeShellScriptBin "fakehome" ''
          BIN=$1
-          export HOME="''${HOME}/opt/$(basename "$BIN")"
+          export HOME="''${HOME}/.opt/$(basename "$BIN")"
           [ -d "$HOME" ] || mkdir -p "$HOME"
           # run
           ''${BIN}
         '')
 
         (writeShellScriptBin "open_file" ''
-          selected_file=$(fzf)
+          selected_file=$(fzf --delimiter / --with-nth 4..)
 
           # Open the selected file using nohup and redirect output to nohup.out
           nohup xdg-open "$selected_file" >/dev/null 2>&1 &

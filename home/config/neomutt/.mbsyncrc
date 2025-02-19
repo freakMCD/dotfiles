@@ -1,0 +1,37 @@
+# Gmail mailboxes:
+# "[Gmail]/Todos"
+# "[Gmail]/Drafts"
+# "[Gmail]/Enviados"
+# "[Gmail]/Spam"
+# "[Gmail]/Destacados"
+# "[Gmail]/Papelera"
+# "[Gmail]/Importantes"
+
+IMAPStore gmail-remote
+TLSType IMAPS
+Host imap.gmail.com
+User vastagox@gmail.com
+PassCmd "PASSWORD_STORE_DIR=~/.PrivateHub/password-store/ pass gmailapp/vastagox"
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore gmail-local
+Path ~/.local/share/email/gmail/
+INBOX ~/.local/share/email/gmail/INBOX
+Subfolders Verbatim
+
+Channel gmail
+Far :gmail-remote:
+Near :gmail-local:
+Patterns INBOX "[Gmail]/Destacados" "[Gmail]/Enviados" "[Gmail]/Papelera" "Github" "Interbank"
+Create Both
+Expunge Both
+SyncState *
+
+Channel spam
+Far :gmail-remote:
+Near :gmail-local:
+Patterns "[Gmail]/Spam"
+Create Both
+Expunge Both
+SyncState *
+
