@@ -4,6 +4,7 @@ in
 {
 # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
+      home-manager
       gcc
       gnupg pass yadm
       qutebrowser firefox w3m neovim zathura kalker
@@ -58,7 +59,7 @@ in
     };
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "%h/nix-config/scripts/mailboxes_sync";
+      ExecStart = "%h/nix/scripts/mailboxes_sync";
     };
     wantedBy = [ "user.target" ];
   };

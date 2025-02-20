@@ -60,16 +60,16 @@
           };
           colors = {
               alpha = 0.94;
-              background = "120000";
+              background = "100b0b";
               foreground = "fbf1c7";
-              regular0="282828";
-              regular1="fb4934";
-              regular2="b8bb26";
-              regular3="fabd2f";
-              regular4="83a598";
-              regular5="d3869b";
-              regular6="8ec07c";
-              regular7="d5c4a1";
+              regular0   = "282828";
+              regular1   = "fb4934";
+              regular2   = "b8bb26";
+              regular3   = "fabd2f";
+              regular4   = "83a598";
+              regular5   = "d3869b";
+              regular6   = "8ec07c";
+              regular7   = "d5c4a1";
           };
       };
   };

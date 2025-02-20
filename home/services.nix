@@ -1,6 +1,8 @@
 {pkgs, ...}:
 
 {
+  home.username = "edwin";
+  home.homeDirectory = "/home/edwin/";
   home.stateVersion = "24.11";
   home.sessionPath = [
     "$HOME/bin"

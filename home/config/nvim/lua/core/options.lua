@@ -35,6 +35,7 @@ vim.cmd[[
     highlight Normal ctermbg=NONE guibg=NONE
     highlight LineNr guibg=NONE
 ]]
+vim.g.gruvbox_contrast_dark = 'hard'
 
 function GetIndicators()
 	local counts = vim.diagnostic.count()

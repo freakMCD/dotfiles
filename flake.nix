@@ -14,23 +14,20 @@
   };
 
   outputs = { nixpkgs, home-manager, fastanime, ... }@inputs: {
+    homeConfigurations.edwin = home-manager.lib.homeManagerConfiguration {
+     pkgs = import nixpkgs {
+        system = "x86_64-linux";
+     };
+     modules = [
+        ./home
+     ];
+    };
+
     nixosConfigurations.edwin = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
         ./system
-        home-manager.nixosModules.home-manager {
-            home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.edwin = 
-                {
-                  imports = [ 
-                    ./home
-                    ];
-                  };
-            };
-        }
       ];
     };
   };

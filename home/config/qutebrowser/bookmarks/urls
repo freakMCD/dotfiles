@@ -20,3 +20,4 @@ https://search.nixos.org/packages NixOS Search - Packages
 https://search.nixos.org/options NixOS Search - Options
 https://www.reddit.com/r/youtubedl/wiki/howdoidownloadpartsofavideo howdoidownloadpartsofavideo - youtubedl
 https://github.com/fish-shell/fish-shell/wiki/Shell-Translation-Dictionary Shell Translation Dictionary · fish-shell/fish-shell Wiki
+https://git.sr.ht/~pkulak/nix/tree/main/item/home/default.nix#L45 ~pkulak/nix (main): home/default.nix - sourcehut git

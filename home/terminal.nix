@@ -40,8 +40,9 @@
       end
     '';
     shellAbbrs = {
-      rebuild = "sudo nixos-rebuild switch --flake $HOME/nix#edwin";
-      retest = "sudo nixos-rebuild test --flake $HOME/nix#edwin";
+      rebuild = "sudo nixos-rebuild --flake $HOME/nix#edwin switch";
+      retest = "sudo nixos-rebuild --flake $HOME/nix#edwin test";
+      reconfig = "home-manager switch --flake $HOME/nix#edwin";
       df="df -h";
       dus="du -h --max-depth=1 | sort -hr";
       mp3dl=''yt-dlp --restrict-filenames --extract-audio --audio-format mp3 "https://www.youtube.com/playlist?list=WL" --cookies-from-browser firefox:~/opt/firefox/.mozilla/firefox'';
