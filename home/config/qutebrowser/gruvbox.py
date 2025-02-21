@@ -5,35 +5,34 @@
 #   Base16 qutebrowser template by theova and Daniel Mulford
 #   Gruvbox dark, hard scheme by Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
 
+black = "#100000"
 bg0 = "#0F0F0F"
 bg1 = "#1d2021"
 bg2 = "#282828"
-bg3 = "#32302f"
-bg4 = "#504945"
+bg3 = "#323836"
+bg4 = "#7c6f64"
 
-fg0 = "#d4be98"
-fg1 = "#ddc7a1"
+fg0 = "#fbf1c7"
+fg1 = "#ebdbb2"
 fg2 = "#d5c4a1"
 fg3 = "#bdae93"
 fg4 = "#a89984"
 
-bright_red = "#ea6962"
-bright_green = "#a9b665"
-bright_yellow = "#d8a657"
-bright_blue = "#7daea3"
-bright_purple = "#d3869b"
-bright_aqua = "#66bb66"
-bright_gray = "#7c6f64"
-bright_orange = "#e78a4e"
+red = "#cc241d"
+green = "#98971a"
+yellow = "#d79921"
+blue = "#458588"
+magenta = "#b16286"
+cyan = "#689d6a"
+orange = "#d65d0e"
 
-dark_red = "#3c1f1e"
-dark_green = "#32361a"
-dark_yellow = "#e1bb7e"
-dark_blue = "#088bb8"
-dark_purple = "#b16286"
-dark_aqua = "#333b63"
-dark_gray = "#e2d3ba"
-dark_orange = "#fe8019"
+bright_red = "#fb4934"
+bright_green = "#b8bb26"
+bright_yellow = "#fabd2f"
+bright_blue = "#83a598"
+bright_magenta = "#d3869b"
+bright_aqua = "#8ec07c"
+bright_orange = "#fe8019"
 
 
 ### Completion
@@ -161,7 +160,7 @@ c.colors.messages.error.border = c.colors.messages.error.bg
 c.colors.messages.warning.fg = bg0
 
 # Background color of a warning message.
-c.colors.messages.warning.bg = bright_purple
+c.colors.messages.warning.bg = bright_magenta
 
 # Border color of a warning message.
 c.colors.messages.warning.border = c.colors.messages.warning.bg
@@ -198,19 +197,19 @@ c.colors.statusbar.normal.fg = fg2
 c.colors.statusbar.normal.bg = bg0
 
 # Foreground color of the statusbar in insert mode.
-c.colors.statusbar.insert.fg = fg1
+c.colors.statusbar.insert.fg = fg0
 
 # Background color of the statusbar in insert mode.
-c.colors.statusbar.insert.bg = dark_aqua
+c.colors.statusbar.insert.bg = cyan
 
 # Foreground color of the statusbar in passthrough mode.
 c.colors.statusbar.passthrough.fg = fg0
 
 # Background color of the statusbar in passthrough mode.
-c.colors.statusbar.passthrough.bg = dark_blue
+c.colors.statusbar.passthrough.bg = blue
 
 # Foreground color of the statusbar in private browsing mode.
-c.colors.statusbar.private.fg = bright_purple
+c.colors.statusbar.private.fg = bright_magenta
 
 # Background color of the statusbar in private browsing mode.
 c.colors.statusbar.private.bg = bg0
@@ -231,13 +230,13 @@ c.colors.statusbar.command.private.bg = c.colors.statusbar.command.bg
 c.colors.statusbar.caret.fg = bg0
 
 # Background color of the statusbar in caret mode.
-c.colors.statusbar.caret.bg = dark_purple
+c.colors.statusbar.caret.bg = magenta
 
 # Foreground color of the statusbar in caret mode with a selection.
 c.colors.statusbar.caret.selection.fg = c.colors.statusbar.caret.fg
 
 # Background color of the statusbar in caret mode with a selection.
-c.colors.statusbar.caret.selection.bg = bright_purple
+c.colors.statusbar.caret.selection.bg = bright_magenta
 
 # Background color of the progress bar.
 c.colors.statusbar.progress.bg = bright_blue
@@ -246,7 +245,7 @@ c.colors.statusbar.progress.bg = bright_blue
 c.colors.statusbar.url.fg = fg4
 
 # Foreground color of the URL in the statusbar on error.
-c.colors.statusbar.url.error.fg = dark_red
+c.colors.statusbar.url.error.fg = red
 
 # Foreground color of the URL in the statusbar for hovered links.
 c.colors.statusbar.url.hover.fg = bright_orange
@@ -260,7 +259,7 @@ c.colors.statusbar.url.success.http.fg = bright_red
 c.colors.statusbar.url.success.https.fg = fg0
 
 # Foreground color of the URL in the statusbar when there's a warning.
-c.colors.statusbar.url.warn.fg = bright_purple
+c.colors.statusbar.url.warn.fg = bright_magenta
 
 ### tabs
 
@@ -268,7 +267,7 @@ c.colors.statusbar.url.warn.fg = bright_purple
 c.colors.tabs.bar.bg = bg0
 
 # Color gradient start for the tab indicator.
-c.colors.tabs.indicator.start = dark_blue
+c.colors.tabs.indicator.start = blue
 
 # Color gradient end for the tab indicator.
 c.colors.tabs.indicator.stop = bright_aqua
@@ -301,29 +300,26 @@ c.colors.tabs.selected.even.fg = c.colors.tabs.selected.odd.fg
 c.colors.tabs.selected.even.bg = bg0
 
 # Background color of pinned unselected even tabs.
-c.colors.tabs.pinned.even.bg = dark_gray
+c.colors.tabs.pinned.even.bg = black
 
 # Foreground color of pinned unselected even tabs.
-c.colors.tabs.pinned.even.fg = bg2
+c.colors.tabs.pinned.even.fg = fg0
 
 # Background color of pinned unselected odd tabs.
-c.colors.tabs.pinned.odd.bg = dark_gray
+c.colors.tabs.pinned.odd.bg = black
 
 # Foreground color of pinned unselected odd tabs.
 c.colors.tabs.pinned.odd.fg = c.colors.tabs.pinned.even.fg
 
 # Background color of pinned selected even tabs.
-c.colors.tabs.pinned.selected.even.bg = bg0
+c.colors.tabs.pinned.selected.even.bg = black
 
 # Foreground color of pinned selected even tabs.
-c.colors.tabs.pinned.selected.even.fg = c.colors.tabs.selected.odd.fg
+c.colors.tabs.pinned.selected.even.fg = fg0
 
 # Background color of pinned selected odd tabs.
 c.colors.tabs.pinned.selected.odd.bg = c.colors.tabs.pinned.selected.even.bg
 
 # Foreground color of pinned selected odd tabs.
-c.colors.tabs.pinned.selected.odd.fg = c.colors.tabs.selected.odd.fg
+c.colors.tabs.pinned.selected.odd.fg = c.colors.tabs.pinned.selected.odd.fg
 
-# Background color for webpages if unset (or empty to use the theme's
-# color).
-# c.colors.webpage.bg = bg4

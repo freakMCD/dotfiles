@@ -17,7 +17,7 @@
     "fastanime/config.ini".source = "${dotfiles}/fastanime/config.ini";
     "neomutt".source = "${dotfiles}/neomutt";
     "qutebrowser".source = "${dotfiles}/qutebrowser";
-    "newsraft".source = ./config/newsraft;
+    "newsraft".source = "${dotfiles}/newsraft";
     "yambar".source = ./config/yambar;
   };
 }

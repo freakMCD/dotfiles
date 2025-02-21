@@ -19,6 +19,7 @@ in
       isync
       perlEnv
       texlab texlive.combined.scheme-medium
+      hyprpicker
   ];
 
   programs = {

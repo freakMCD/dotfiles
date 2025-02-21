@@ -1,1 +1,10 @@
-/home/edwin/.PrivateHub/feeds
+# vim: set nowrap :
+#
+@ News < reload-period 1440
+https://codeberg.org/newsraft/newsraft/releases.rss
+https://codeberg.org/dnkl/yambar/releases.rss
+
+@ Media < reload-period 720
+https://www.webtoons.com/en/supernatural/im-the-grim-reaper/rss?title_no=1697
+https://www.youtube.com/feeds/videos.xml?playlist_id=PLhO3J4aB-4mhHpN7t6frJnhfBrmv9duSU
+https://www.reddit.com/message/unread/.rss?feed=ede8055c02cabf620f8ce731830e80e85a8e9a36&user=freakMCD

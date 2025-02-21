@@ -221,10 +221,6 @@ in
             "special:whatsapp, on-created-empty: ${terminal} --app-id=whatsapp nchat"
           ];
 
-          windowrule = [
-            "workspace special:newsraft silent, newsraftsilent"
-          ];
-
             windowrulev2 = [
               "float, class:^(floating|mpv)$"
               "float,class:(^(org-geogebra-desktop)),title:(Algebra)"
