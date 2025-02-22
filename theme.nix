@@ -1,0 +1,39 @@
+{ lib, config, ... }:
+
+{
+  options.colors = lib.mkOption {
+    type = lib.types.attrs;
+    description = "Theme configuration including color palette.";
+  };
+
+  config = {
+    colors = {
+      bg0            = "090000";
+      bg1            = "0F0F0F";
+      bg2            = "1d2021";
+      bg3            = "282828";
+      bg4            = "32302f";
+      gray           = "928374";
+      
+      muted_white    = "bdae93";
+      red            = "cc241d";
+      green          = "98971a";
+      yellow         = "d79921";
+      blue           = "458588";
+      magenta        = "b16286";
+      cyan           = "689d6a";
+      white          = "d5c4a1";
+
+      b_red     = "fb4934";
+      b_green   = "b8bb26";
+      b_yellow  = "fabd2f";
+      b_blue    = "83a598";
+      b_magenta = "d3869b";
+      b_cyan    = "8ec07c";
+      b_white   = "a89984";
+
+      orange         = "d65d0e";
+      b_orange  = "fe8019";
+    };
+  };
+}

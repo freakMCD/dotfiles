@@ -1,3 +1,4 @@
+{config, ...}:
 {
   programs.git = {
     enable = true;
@@ -20,9 +21,6 @@
     defaultOptions = [
       "--preview 'bat --style=numbers --color=always --line-range=:100 {}'"
       "--ansi --height 60% --reverse" 
-      "--color=bg+:#32302f,spinner:#e2d3ba,hl:#ef938e" 
-      "--color=fg:#e2d3ba,header:#ef938e,info:#e1acbb,pointer:#e2d3ba"
-      "--color=marker:#e2d3ba,fg+:#e2d3ba,prompt:#e1acbb,hl+:#ef938e"
       ];
     };
 
@@ -60,24 +58,24 @@
           };
           colors = {
               alpha = 0.94;
-              background = "090000";
-              foreground = "fbf1c7";
-              regular0   = "282828";
-              regular1   = "cc241d";
-              regular2   = "98971a";
-              regular3   = "d79921";
-              regular4   = "458588";
-              regular5   = "b16286";
-              regular6   = "689d6a";
-              regular7   = "a89984";
-              bright0 = "928374";
-              bright1 = "fb4934";
-              bright2 = "b8bb26";
-              bright3 = "fabd2f";
-              bright4 = "83a598";
-              bright5 = "d3869b";
-              bright6 = "8ec07c";
-              bright7 = "ebdbb2";
+              background = config.colors.bg0;
+              foreground = config.colors.white;
+              regular0   = config.colors.bg1 ;
+              regular1   = config.colors.red ;
+              regular2   = config.colors.green ;
+              regular3   = config.colors.yellow ;
+              regular4   = config.colors.blue ;
+              regular5   = config.colors.magenta ;
+              regular6   = config.colors.cyan ;
+              regular7   = config.colors.white ;
+              bright0 = config.colors.gray;
+              bright1 = config.colors.b_red;
+              bright2 = config.colors.b_green;
+              bright3 = config.colors.b_yellow;
+              bright4 = config.colors.b_blue;
+              bright5 = config.colors.b_magenta;
+              bright6 = config.colors.b_cyan;
+              bright7 = config.colors.b_white;
           };
       };
   };

@@ -4,9 +4,10 @@ from urllib.request import urlopen
 # load your autoconfig, use this, if the rest of your config is empty!
 config.load_autoconfig(False)
 
-c.content.user_stylesheets = ["/home/edwin/.config/qutebrowser/css/gruvbox-all-sites.css"]
+c.content.user_stylesheets = ["/home/edwin/.config/qutebrowser/css/gruvbox.css"]
+
 config.source('mappings.py')
-config.source('gruvbox.py')
+config.source('colors.py')
 config.source('blocklist.py')
 config.source('websites.py')
 
