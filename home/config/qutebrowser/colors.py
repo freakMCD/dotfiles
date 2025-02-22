@@ -1,1 +1,1 @@
-/nix/store/ab9rgn4cf5r990xzkgwl2zxd521x5jyk-home-manager-files/.config/qutebrowser/colors.py
+/nix/store/gi6q16d9842w18n76gd28qf15z9skwf5-home-manager-files/.config/qutebrowser/colors.py

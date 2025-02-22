@@ -45,23 +45,23 @@
       
       /* --- Links --- */
       a {
-        color: var(--bright_cyan) !important;
+        color: var(--bright-cyan) !important;
         text-decoration: none;
       }
       
       a:visited {
-        color: var(--bright_magenta) !important;
+        color: var(--bright-magenta) !important;
       }
       
       a:hover {
-        color: var(--bright_yellow) !important;
+        color: var(--bright-yellow) !important;
         text-decoration: underline;
       }
       
       /* --- Code Blocks --- */
       code, pre {
         background-color: var(--bg2) !important;
-        color: var(--bright_cyan) !important;
+        color: var(--bright-cyan) !important;
       }
       pre code {
         background: none !important;
@@ -70,7 +70,7 @@
       
       /* --- Tables --- */
       table {
-        color: var(--bright_white) !important;
+        color: var(--bright-white) !important;
         border-collapse: collapse !important;
       }
       th {
@@ -94,12 +94,12 @@
       }
       
       /* --- Headings --- */
-      h1 { color: var(--bright_yellow) !important; }
-      h2 { color: var(--bright_orange) !important; }
-      h3 { color: var(--bright_red) !important; }
-      h4 { color: var(--bright_blue) !important; }
-      h5 { color: var(--bright_magenta) !important; }
-      h6 { color: var(--bright_cyan) !important; }
+      h1 { color: var(--bright-yellow) !important; }
+      h2 { color: var(--bright-orange) !important; }
+      h3 { color: var(--bright-red) !important; }
+      h4 { color: var(--bright-blue) !important; }
+      h5 { color: var(--bright-magenta) !important; }
+      h6 { color: var(--bright-cyan) !important; }
       
       /* --- Buttons --- */
       button {
@@ -109,7 +109,7 @@
       
       button:hover {
         background-color: var(--bg2) !important;
-        color: var(--bright_yellow) !important;
+        color: var(--bright-yellow) !important;
       }
       
       /* ================================================= */
@@ -122,7 +122,7 @@
         background: var(--bg0) !important;
       }
       ytd-guide-entry-renderer[active] {
-        background-color: var(--bright_orange) !important;
+        background-color: var(--bright-orange) !important;
         color: var(--white) !important; /* Ensure text is readable */
       }
       ytd-guide-entry-renderer:not([active]):hover {
@@ -143,7 +143,7 @@
         border-radius: 20px;
       }
       .tagline {
-        color: var(--bright_white) !important;
+        color: var(--bright-white) !important;
       }
       
       /* ===== Github ===== */
