@@ -1,6 +1,6 @@
 {config, ...}:
 {
-  home.file.".config/qutebrowser/colors.py".text = ''
+  home.file.".config/qutebrowser/colors.py".text = /* python */''
     bg0 = "#${config.colors.bg0}"
     bg1 = "#${config.colors.bg1}"
     bg2 = "#${config.colors.bg2}"
@@ -63,8 +63,8 @@
     
     ### Hints
     c.colors.hints.fg = 'rgb(0,0,0)'
-    c.colors.hints.bg = 'rgba(250, 191, 47, 200)'  # bright_yellow
-    c.colors.hints.match.fg = bg4
+    c.colors.hints.bg = bright_yellow
+    c.colors.hints.match.fg = red
     
     ### Keyhint widget
     c.colors.keyhint.fg = bright_white
@@ -115,9 +115,9 @@
     
     ### tabs
     c.colors.tabs.bar.bg = bg1
-    c.colors.tabs.indicator.start = blue
-    c.colors.tabs.indicator.stop = bright_cyan
-    c.colors.tabs.indicator.error = bright_red
+    c.colors.tabs.indicator.start = yellow
+    c.colors.tabs.indicator.stop = bright_blue
+    c.colors.tabs.indicator.error = red
     c.colors.tabs.odd.fg = white
     c.colors.tabs.odd.bg = bg3
     c.colors.tabs.even.fg = c.colors.tabs.odd.fg

@@ -13,9 +13,22 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  {   "morhetz/gruvbox", 
-      priority = 1000 
-  },
+{
+   "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function () 
+      local configs = require("nvim-treesitter.configs")
+
+      configs.setup({
+          ensure_installed = { "c", "lua", "html", "css", "fish", "bash", "python", "nix" },
+          sync_install = false,
+          highlight = { enable = true },
+          indent = { enable = true },  
+        })
+	end
+},
+{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true} ,
+
   {
   'hrsh7th/nvim-cmp', 
   -- load cmp on InsertEnter
@@ -60,3 +73,24 @@ require("lazy").setup({
     end
 }
 })
+
+require("gruvbox").setup({
+  italic = {
+    strings = false,
+    emphasis = true,
+    comments = true,
+    operators = false,
+    folds = true,
+  },
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "hard", -- can be "hard", "soft" or empty string
+})
+vim.cmd[[ 
+    colorscheme gruvbox
+    highlight Normal ctermbg=NONE guibg=NONE
+]]

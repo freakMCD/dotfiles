@@ -53,7 +53,7 @@
       settings = {
           main = {
               term = "foot";
-              font = "JetBrainsMono Nerd Font Mono:pixelsize=14";
+              font = "JetBrainsMono Nerd Font Mono:size=12";
               workers = 0;
           };
           colors = {

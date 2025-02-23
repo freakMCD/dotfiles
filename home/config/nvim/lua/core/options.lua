@@ -1,4 +1,5 @@
 local options = {
+  breakindent = true,
 	expandtab = true, -- convert tabs to spaces
 	shiftwidth = 2, -- the number of spaces inserted for each indentation
 	tabstop = 2, -- insert 2 spaces for a tab
@@ -29,13 +30,6 @@ vim.opt.shortmess:append("c")
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
-
-vim.cmd[[ 
-    colorscheme gruvbox
-    highlight Normal ctermbg=NONE guibg=NONE
-    highlight LineNr guibg=NONE
-]]
-vim.g.gruvbox_contrast_dark = 'hard'
 
 function GetIndicators()
 	local counts = vim.diagnostic.count()

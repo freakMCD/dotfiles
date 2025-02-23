@@ -14,14 +14,14 @@ let
 in builtins.mapAttrs (_name: toString) {
   inherit (mpv) width height;  # Makes mpv_width available as width
   inherit x1 y1;  # Makes mpv_width available as width
-  high = 0.5;
+  high = 0.35;
   low = 0;
 
   x2 = x1;
   y2 = 0;
 
   x3 = 0;
-  y3 = x1;
+  y3 = 0;
 
   x4 = 0;
   y4 = y1;

@@ -1,1 +1,0 @@
-/nix/store/gi6q16d9842w18n76gd28qf15z9skwf5-home-manager-files/.config/qutebrowser/colors.py
