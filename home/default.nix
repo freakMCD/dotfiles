@@ -5,6 +5,7 @@
     ./programs.nix
     ./shell-scripts.nix
     ./terminal.nix
+    ./mpv.nix
   ];
 
   xdg.configFile =
@@ -13,7 +14,6 @@
   in
   {
     "nvim".source = "${dotfiles}/nvim";
-    "mpv".source = "${dotfiles}/mpv";
     "fastanime/config.ini".source = "${dotfiles}/fastanime/config.ini";
     "neomutt".source = "${dotfiles}/neomutt";
     "qutebrowser".source = "${dotfiles}/qutebrowser";

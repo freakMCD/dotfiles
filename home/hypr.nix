@@ -35,13 +35,12 @@ in
             ];
 
             general = {
-              gaps_in = 0;
-              gaps_out = -1;
-              gaps_workspaces = 0;
-              border_size = 1;
+              gaps_in = 5;
+              gaps_out = 0;
+              border_size = 2;
 
               allow_tearing = false;
-              "col.active_border" = "rgba(ff4500ee) rgba(ff6347ee) 135deg";
+              "col.active_border" = "rgba(225,225,0,1) rgba(0,225,0,1) 45deg";
               "col.inactive_border" = "rgba(595959aa)";
               "snap:enabled" = 1;
             };
@@ -51,8 +50,14 @@ in
             };
 
             decoration = {
-              rounding_power = 4;
-              "shadow:enabled" = 0;
+              rounding = 15;
+              shadow = {
+                range = 200; 
+                render_power = 4;
+                color = "rgba(0,225,0,0.85)";
+                offset = "0 0";
+                scale = 0.9;
+              };
               blur = {
                 enabled = false;
               };
@@ -77,13 +82,15 @@ in
             };
 
             animations = {
-                enabled = true;
-                animation = [
-                    "windows, 1, 3, default"
+              enabled = true;
+              bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+              animation = [
+                    "windows, 1, 3, myBezier"
+                    "windowsOut, 1, 6, default, popin 80%"
+                    "border, 1, 6, default"
+                    "fade, 1, 3, default"
                     "workspaces, 1, 2, default"
-                    "windowsMove, 1, 1, default"
-                    "border, 0"
-                ];
+              ];
             };
 
             group = {
@@ -235,7 +242,6 @@ in
               "group,class:(org.qutebrowser.qutebrowser)"
 # mpv
               "pin, class:(^(mpv))"
-              "rounding 100, class:(^(mpv))"
               "nofocus, class:(^(mpv))"
               "noborder, class:(^(mpv))"
               "opacity 0.96 0.96, class:.*"

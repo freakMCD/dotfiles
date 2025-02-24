@@ -73,7 +73,7 @@
             set -a addresses "$WINDOWADDRESS"
 
             hyprctl --batch "dispatch movewindowpixel exact $x $y, address:0x$WINDOWADDRESS"
-            echo "mpv_$mpv_count=0x$WINDOWADDRESS" >> "$mpv_addresses_file"
+            echo "set mpv$mpv_count 0x$WINDOWADDRESS" >> "$mpv_addresses_file"
         end
     end
 
@@ -87,20 +87,18 @@
             set addresses $new_addresses
             set mpv_count (math $mpv_count - 1)
 
-            # Handle cases based on the number of remaining addresses
             echo -n "" > $mpv_addresses_file
             if test (count $addresses) -gt 0
                 set output
                 for i in (seq (count $addresses))
                   switch (math "$i")
-                      case 1; notify-send "$i"; set x ${var.x1}; set y ${var.y1}
-                      case 2; notify-send "$i";set x ${var.x2}; set y ${var.y2}
-                      case 3; notify-send "$i";set x ${var.x3}; set y ${var.y3}
-                      case 4; notify-send "$i";set x ${var.x4}; set y ${var.y4}
+                      case 1; set x ${var.x1}; set y ${var.y1}
+                      case 2; set x ${var.x2}; set y ${var.y2}
+                      case 3; set x ${var.x3}; set y ${var.y3}
+                      case 4; set x ${var.x4}; set y ${var.y4}
              case '*'; set x 0; set y (math "1080 + ($argv[1] - 4) * 100")
                   end
-                  set output "mpv_$i=0x$addresses[$i]"
-                  printf "%s\n" $output >> $mpv_addresses_file
+                  echo "set mpv$i 0x$addresses[$i]" >> $mpv_addresses_file
                   hyprctl dispatch movewindowpixel exact "$x $y", address:"0x$addresses[$i]"
                 end
             end
