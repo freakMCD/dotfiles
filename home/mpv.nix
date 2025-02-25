@@ -4,10 +4,10 @@
     enable = true;
     config = {
       hwdec = "auto-safe";
-      profile ="gpu-hq";
       gpu-context = "wayland";
       keep-open = true;
       save-position-on-quit = true;
+      watch-later-options = "start";
       force-window = true;
       screenshot-directory = "~/MediaHub/screenshots/mpv";
 

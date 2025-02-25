@@ -1,10 +1,11 @@
 channel:
-  url: "https://mangareader.to/one-piece-3"
+  url: "https://mangafire.to/manga/one-piecee.dkw"
 selectors:
   items:
-    selector: "#en-chapters > li"
+    selector: ".list-body .scroll-sm .item"
   title:
-    selector: "a > .name"
+    selector: "a"
+    attr: "title"
   link:
     selector: "a"
     extractor: href

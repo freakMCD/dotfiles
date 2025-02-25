@@ -5,9 +5,19 @@ https://codeberg.org/newsraft/newsraft/releases.rss
 https://codeberg.org/dnkl/yambar/releases.rss
 
 @ Youtube < reload-period 720
-https://www.youtube.com/feeds/videos.xml?channel_id=UCw5fOoT2b54zDMwgWkvIHrA  
-https://www.youtube.com/feeds/videos.xml?channel_id=UCGwu0nbY2wSkW8N-cghnLpA "Jaiden Animations" < item-rule title NOT LIKE '%Storyboard vs Animation%'
 
-@ Manga < reload-period 720
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULF5uNya42ayhsRnZOR3mO6NA "Insym Videos"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCw5fOoT2b54zDMwgWkvIHrA "BlueSR"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCEYGHOLgKlLMDNrGCno3oJA "fireb0rn"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFGwu0nbY2wSkW8N-cghnLpA "Jaiden Animations"
+
+@ Manga
 $(html2rss feed ~/nix/scripts/rss/onepiece.yml) "One Piece"
+
+@ Twitch < reload-period 60
+https://twitchrss.appspot.com/vodonly/blue_sr_
+https://twitchrss.appspot.com/vodonly/scottybvb
+https://twitchrss.appspot.com/vodonly/lep19
+
+
 

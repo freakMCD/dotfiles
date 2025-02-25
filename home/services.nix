@@ -58,6 +58,17 @@
     set addresses
     set mpv_count 0
 
+    function cycleMute
+      set clients_json (hyprctl clients -j)
+      set target_pid (echo $clients_json | jq -r --arg addr "0x$WINDOWADDRESS" '.[] | select(.class=="mpv" and .address==$addr) | .pid')
+
+      if test -n "$target_pid"
+         for pid in (echo $clients_json | jq -r --arg target "0x$WINDOWADDRESS" '.[] | select(.class=="mpv" and .address != $target) | .pid')
+           echo '{"command":["set_property","mute",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
+         end
+      end
+    end
+
     function event_openwindow
         if test "$WINDOWCLASS" = "mpv"
             set mpv_count (math $mpv_count + 1)
@@ -74,6 +85,8 @@
 
             hyprctl --batch "dispatch movewindowpixel exact $x $y, address:0x$WINDOWADDRESS"
             echo "set mpv$mpv_count 0x$WINDOWADDRESS" >> "$mpv_addresses_file"
+            notify-send xd2
+            cycleMute
         end
     end
 

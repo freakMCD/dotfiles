@@ -187,6 +187,11 @@ in
               "SHIFT,KP_Next,exec,togglePAUSE 3"
               "SHIFT,KP_Left,exec,togglePAUSE 4"
 
+              "ALT,KP_End,exec,toggleMUTE 1"
+              "ALT,KP_Down,exec,toggleMUTE 2"
+              "ALT,KP_Next,exec,toggleMUTE 3"
+              "ALT,KP_Left,exec,toggleMUTE 4"
+
               "CTRL,KP_End,exec,closeMpvWindow 1"
               "CTRL,KP_Down,exec,closeMpvWindow 2"
               "CTRL,KP_Next,exec,closeMpvWindow 3"
