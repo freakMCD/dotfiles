@@ -19,8 +19,8 @@
         system = "x86_64-linux";
      };
      modules = [
-        ./home
         ./theme.nix
+        ./home
         ./theme
      ];
     };

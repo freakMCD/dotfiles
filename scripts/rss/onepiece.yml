@@ -1,0 +1,10 @@
+channel:
+  url: "https://mangareader.to/one-piece-3"
+selectors:
+  items:
+    selector: "#en-chapters > li"
+  title:
+    selector: "a > .name"
+  link:
+    selector: "a"
+    extractor: href

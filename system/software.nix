@@ -4,22 +4,17 @@ in
 {
 # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-      home-manager
-      gcc
-      gnupg pass yadm
-      qutebrowser firefox w3m neovim zathura kalker
-      foot fnott fuzzel
-      curl rclone
-      neomutt msmtp newsraft
+      home-manager pass yadm gnupg ffmpeg
+      gcc bundix perlEnv
+      qutebrowser firefox w3m 
+      neovim zathura kalker
+      foot fnott fuzzel curl rclone yazi udiskie bat fd fzf libnotify
+      neomutt msmtp isync newsraft
       nomacs mpv mpvScripts.mpris playerctl yt-dlp mpd mpd-mpris mpc ncmpcpp streamlink
-      yazi udiskie bat fd fzf libnotify
-      wev wl-clipboard wpaperd grim slurp wf-recorder yambar qbittorrent
-      translate-shell
+      wev wl-clipboard wpaperd grim slurp wf-recorder qbittorrent translate-shell
       chafa inputs.fastanime.packages.${system}.default
-      isync
-      perlEnv
       texlab texlive.combined.scheme-medium
-      hyprpicker
+      hyprpicker yambar
   ];
 
   programs = {

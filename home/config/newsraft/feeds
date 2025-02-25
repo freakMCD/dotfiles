@@ -4,6 +4,10 @@
 https://codeberg.org/newsraft/newsraft/releases.rss
 https://codeberg.org/dnkl/yambar/releases.rss
 
-@ Media < reload-period 720
-https://www.webtoons.com/en/supernatural/im-the-grim-reaper/rss?title_no=1697
-https://www.reddit.com/message/unread/.rss?feed=ede8055c02cabf620f8ce731830e80e85a8e9a36&user=freakMCD
+@ Youtube < reload-period 720
+https://www.youtube.com/feeds/videos.xml?channel_id=UCw5fOoT2b54zDMwgWkvIHrA  
+https://www.youtube.com/feeds/videos.xml?channel_id=UCGwu0nbY2wSkW8N-cghnLpA "Jaiden Animations" < item-rule title NOT LIKE '%Storyboard vs Animation%'
+
+@ Manga < reload-period 720
+$(html2rss feed ~/nix/scripts/rss/onepiece.yml) "One Piece"
+

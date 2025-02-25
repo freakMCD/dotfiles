@@ -59,6 +59,7 @@ in
     BROWSER="qutebrowser";
     EDITOR="nvim";	
     MANPAGER="nvim +Man!";
+    BUNDLE_FORCE_RUBY_PLATFORM = "true";
   };
 
   system.stateVersion = "24.11"; # Did you read the comment?

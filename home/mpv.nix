@@ -14,7 +14,9 @@
       ## OSD ##
       osd-on-seek="msg-bar";
       osd-font-size = 20;
+      osd-outline-size = 1.4;
       osd-color="${config.colors.b_red}";
+      osd-status-msg="\${time-pos} ~ \${demuxer-cache-duration}";
 
       ## Languages ##
       slang="eng,en,enUS,en-US,spa,es";
@@ -54,7 +56,7 @@
     };
 
     scripts = with pkgs; [
-        (pkgs.mpvScripts.buildLua {
+        (mpvScripts.buildLua {
            pname = "mpv-sockets";
            version = "1.0";
 
@@ -75,7 +77,7 @@
            };
         })
 
-        (pkgs.mpvScripts.buildLua {
+        (mpvScripts.buildLua {
           pname = "mpv-simple-history";
           version = "1.0";
 
@@ -85,17 +87,18 @@
             rev = "48d68283cea47ff8e904decc9003b3abc3e2123e";
             sha256 = "sha256-95CAKjBRELX2f7oWSHFWJnI0mikAoxhfUphe9k51Qf4=";
           };
-          passthru.updateScript = unstableGitUpdater {};
 
+          passthru.updateScript = unstableGitUpdater {};
           scriptPath = "scripts/SimpleHistory.lua";
+
           meta = {
             description = "Stores whatever you open in a history file and abuses it with features!";
             homepage = "https://github.com/Eisa01/mpv-scripts";
             license = lib.licenses.mit;
           };
         })
-        pkgs.mpvScripts.mpv-playlistmanager
-        pkgs.mpvScripts.seekTo
+        mpvScripts.mpv-playlistmanager
+        mpvScripts.seekTo
     ];
   };
 }
