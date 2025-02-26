@@ -9,6 +9,7 @@ if ps -C mbsync > /dev/null; then
     exit 0
 fi
 
+touch ~/.config/neomutt/.mailsynclast
 mbsync -c ~/nix/home/config/neomutt/.mbsyncrc gmail
 prefix="${HOME}/.local/share/email/gmail"
 
@@ -31,9 +32,3 @@ for file in "$prefix"/*; do
         fi
     fi
 done
-
-# Update access time of a marker file
-touch ~/.config/neomutt/.mailsynclast
-
-
-

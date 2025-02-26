@@ -7,13 +7,50 @@ let
   perlEnv = pkgs.perl.withPackages (p: with p; [
     MIMEEncWords
   ]);
+  defaultNameservers = [
+    "9.9.9.9"
+    "9.9.9.10"
+    "9.9.9.11"
+    "2620:fe::9"
+    "2620:fe::10"
+    "2620:fe::11"
+  ];
 in
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true;
+  networking = {
+    useDHCP = false;
+    nameservers = defaultNameservers;
+    networkmanager = {
+      enable = true;
+      dns = "systemd-resolved";
+    };
+  };
+
+  services.resolved = {
+    enable = true;
+    extraConfig = ''
+      MulticastDNS=no # This is handled by Avahi.
+    '';
+    domains = ["~."];
+    fallbackDns = defaultNameservers;
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      domain = true;
+      hinfo = true;
+      userServices = true;
+      workstation = true;
+    };
+  };
+
   time.timeZone = "America/Lima";
   i18n.defaultLocale = "en_US.UTF-8";
 

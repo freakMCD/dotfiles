@@ -31,8 +31,7 @@
       sub-spacing=0.5;
 
       ## Streaming ##
-      ytdl-format = "[height<=1080][vcodec!=av01]";
-      ytdl-raw-options = "format-sort=+size,";
+      ytdl-format = "bv*[height<=1080][vcodec!=av01]+ba/b[height<=1080]";
       demuxer-max-bytes = "500M";
       demuxer-max-back-bytes="500MiB";
       force-seekable= true;
@@ -113,6 +112,7 @@
         })
         mpvScripts.mpv-playlistmanager
         mpvScripts.seekTo
+        mpvScripts.mpris
     ];
   };
 }

@@ -20,7 +20,7 @@
     fileWidgetOptions = ["--delimiter / --with-nth 4.."];
     defaultOptions = [
       "--preview 'bat --style=numbers --color=always --line-range=:100 {}'"
-      "--ansi --height 60% --reverse" 
+      "--ansi --height 60% --reverse --inline-info --color=16" 
       ];
     };
 
@@ -57,7 +57,7 @@
               workers = 0;
           };
           colors = {
-              alpha = 0.94;
+              alpha = 0.92;
               background = config.colors.bg0;
               foreground = config.colors.white;
               regular0   = config.colors.bg1 ;
@@ -95,6 +95,24 @@
       default-bg = "rgba(0,0,0,7)";
       default-fg = "#000000";
       render-loading = true;
+    };
+  };
+  programs.fuzzel = {
+    enable = true;
+    settings = {
+      main = {
+        font = "JetBrainsMono Nerd Font Mono:size=18";
+        terminal = "footclient -e";
+        lines = 20;
+        width = 40;
+        tabs = 4;
+        horizontal-pad = 8;
+        vertical-pad = 8;
+        inner-pad = 4;
+      };
+      colors = {
+        background = "${config.colors.bg1}da";
+      };
     };
   };
 }

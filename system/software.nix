@@ -7,11 +7,11 @@ in
       home-manager pass yadm gnupg ffmpeg
       gcc bundix perlEnv
       qutebrowser firefox w3m 
-      neovim zathura kalker
-      foot fnott fuzzel curl rclone yazi udiskie bat fd fzf libnotify
+      neovim kalker
+      curl rclone udiskie bat fd libnotify
       neomutt msmtp isync newsraft
-      nomacs mpv mpvScripts.mpris playerctl yt-dlp mpd mpd-mpris mpc ncmpcpp streamlink
-      wev wl-clipboard wpaperd grim slurp wf-recorder qbittorrent translate-shell
+      nomacs playerctl yt-dlp mpc streamlink
+      wev wl-clipboard grim slurp wf-recorder qbittorrent translate-shell
       chafa inputs.fastanime.packages.${system}.default
       texlab texlive.combined.scheme-medium
       hyprpicker yambar
@@ -20,7 +20,6 @@ in
   programs = {
     hyprland.enable = true;
     fish.enable = true;
-    git.enable = true;
     gnupg.agent = {
       enable = true;
       };
@@ -34,14 +33,6 @@ in
       '';
     };
   };
-
-  nixpkgs.overlays = [
-    (self: super: {
-      mpv = super.mpv.override {
-        scripts = [ self.mpvScripts.mpris ];
-      };
-    })
-  ];
 
   services.udisks2.enable = true;
 

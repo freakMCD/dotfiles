@@ -30,7 +30,6 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./system
-        ./theme.nix
       ];
     };
   };

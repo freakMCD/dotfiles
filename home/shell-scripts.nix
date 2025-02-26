@@ -18,9 +18,12 @@ in
   (writers.writeFishBin "toggleFS" ''
     source /tmp/mpv_addresses
     set mpv_socket_dir "/tmp/mpvSockets"
-
     set name_target "mpv$argv[1]" 
+
     set target_address $$name_target
+    if test -z $target_address
+      exit 1
+    end
 
     set clients (hyprctl clients -j)
     set monitors_json (hyprctl monitors -j)

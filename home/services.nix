@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{pkgs, config, ...}:
 
 {
   home.username = "edwin";
@@ -34,17 +34,24 @@
           idle-timeout = 300;
           summary-font = "JetBrainsMono Nerd Font:weight=bold:size=12";
           body-font = "JetBrainsMono Nerd Font:size=11";
+          title-font = "JetBrainsMono Nerd Font:size=16";
           layer = "overlay";
           progress-bar-height = 5;
-          padding-vertical = 5;
+          padding-vertical = 10;
           padding-horizontal = 10;
           edge-margin-vertical = 24;
           edge-margin-horizontal = 24;
-          background = "111111FF";
-          border-color = "888888FF";
+          background = "${config.colors.bg1}ff";
+          title-format = "";
           summary-format = "%s";
           body-format = "%b";
-          title-format = "";
+
+          title-color = "${config.colors.yellow}ff";
+          summary-color = "${config.colors.blue}ff";
+          border-color = "${config.colors.bg3}ff";
+          body-color = "${config.colors.white}ff";
+          border-size = 2;
+
           play-sound = "paplay --volume=35000 \${filename}";
       };
   };
