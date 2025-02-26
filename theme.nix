@@ -14,6 +14,9 @@
       bg3            = "282828";
       bg4            = "32302f";
       gray           = "928374";
+
+      fg0            = "fbf1c7";
+      fg1            = "ebdbb2";
       
       muted_white    = "bdae93";
       red            = "cc241d";

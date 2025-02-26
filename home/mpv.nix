@@ -13,8 +13,9 @@
       ## OSD ##
       osd-on-seek="msg-bar";
       osd-font-size = 20;
-      osd-outline-size = 1.4;
-      osd-color="#${config.colors.b_red}";
+      osd-outline-size = 1.5;
+      osd-color="#${config.colors.fg1}";
+      osd-outline-color = "#${config.colors.bg1}";
       osd-status-msg="\${time-pos} ~ \${demuxer-cache-duration}";
 
       ## Languages ##
@@ -62,6 +63,9 @@
       };
       playlistmanager = {
         playlist_display_timeout = 10;
+      };
+      stats = {
+        font_size = 7;
       };
     };
 

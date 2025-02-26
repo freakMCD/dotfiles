@@ -41,6 +41,7 @@ c.colors.webpage.darkmode.threshold.foreground = 110
 # Content
 c.content.autoplay = False
 c.content.notifications.enabled = False
+c.content.geolocation               = False
 c.content.blocking.enabled = True
 c.content.blocking.method = "both"
 c.content.fullscreen.window = True
