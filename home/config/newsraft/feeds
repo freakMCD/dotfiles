@@ -11,13 +11,14 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCw5fOoT2b54zDMwgWkvIHrA "Bl
 https://www.youtube.com/feeds/videos.xml?channel_id=UCEYGHOLgKlLMDNrGCno3oJA "fireb0rn"
 https://www.youtube.com/feeds/videos.xml?playlist_id=UULFGwu0nbY2wSkW8N-cghnLpA "Jaiden Animations"
 
-@ Manga
+@ Manga < reload-period 1440
 $(html2rss feed ~/nix/scripts/rss/onepiece.yml) "One Piece"
 
 @ Twitch < reload-period 60
 https://twitchrss.appspot.com/vodonly/blue_sr_
 https://twitchrss.appspot.com/vodonly/scottybvb
 https://twitchrss.appspot.com/vodonly/lep19
+https://twitchrss.appspot.com/vodonly/priidik_
 
 
 

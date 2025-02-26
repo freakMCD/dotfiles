@@ -3,9 +3,8 @@
   programs.mpv = {
     enable = true;
     config = {
-      hwdec = "auto-safe";
+      hwdec = "auto";
       gpu-context = "wayland";
-      keep-open = true;
       save-position-on-quit = true;
       watch-later-options = "start";
       force-window = true;
@@ -15,7 +14,7 @@
       osd-on-seek="msg-bar";
       osd-font-size = 20;
       osd-outline-size = 1.4;
-      osd-color="${config.colors.b_red}";
+      osd-color="#${config.colors.b_red}";
       osd-status-msg="\${time-pos} ~ \${demuxer-cache-duration}";
 
       ## Languages ##
@@ -31,10 +30,21 @@
       sub-spacing=0.5;
 
       ## Streaming ##
-      ytdl-raw-options="format-sort='res:1080,+size'";
+      ytdl-format = "[height<=1080][vcodec!=av01]";
+      ytdl-raw-options = "format-sort=+size,";
       demuxer-max-bytes = "500M";
       demuxer-max-back-bytes="500MiB";
       force-seekable= true;
+    };
+
+    profiles = {
+      "not fullscreen" = {
+        profile-restore = "copy";
+        profile-cond = "(osd_width < 1280)";
+        video-zoom = 0.42;
+        sub-font-size = 29;
+      };
+      "fastYT" = { ytdl-format="22/18/17/bv+ba";};
     };
 
     bindings = {

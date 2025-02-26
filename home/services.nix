@@ -85,7 +85,6 @@
 
             hyprctl --batch "dispatch movewindowpixel exact $x $y, address:0x$WINDOWADDRESS"
             echo "set mpv$mpv_count 0x$WINDOWADDRESS" >> "$mpv_addresses_file"
-            notify-send xd2
             cycleMute
         end
     end

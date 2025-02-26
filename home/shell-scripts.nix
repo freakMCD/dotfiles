@@ -12,20 +12,30 @@ in
     if test -n "$$target_address"
       hyprctl dispatch closewindow address:$$target_address
     end
-
     ''
   )
 
   (writers.writeFishBin "toggleFS" ''
     source /tmp/mpv_addresses
+    set mpv_socket_dir "/tmp/mpvSockets"
+
     set name_target "mpv$argv[1]" 
     set target_address $$name_target
-    set mpv_socket_dir "/tmp/mpvSockets"
-    
-    # Cache JSON outputs from hyprctl
+
     set clients (hyprctl clients -j)
     set monitors_json (hyprctl monitors -j)
-    
+  
+      function cyclePause
+        set target_pid (echo $clients | jq -r --arg addr "$target_address" '.[] | select(.class=="mpv" and .address==$addr) | .pid')
+        if test -n "$target_pid"
+          echo '{"command":["set_property","pause",false]}'\n'{"command":["set_property","mute",false]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid"
+
+            for pid in (echo $clients | jq -r --arg target "$target_address" '.[] | select(.class=="mpv" and .address != $target) | .pid')
+              echo '{"command":["set_property","mute",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
+            end
+        end
+      end
+
     # Extract workspace details from monitors JSON
     set active_workspace (echo $monitors_json | jq -r '.[].activeWorkspace.name')
     set target_workspace (echo $clients | jq -r --arg addr "$target_address" '
@@ -61,8 +71,8 @@ in
             hyprctl dispatch setprop address:$another_fullscreen nofocus 1
         end
         set cmds "$cmds dispatch setprop address:$target_address nofocus 0; dispatch focuswindow address:$target_address; dispatch fullscreen;"
+        cyclePause
     end
-
     hyprctl --batch "$cmds"
     '')
 
@@ -98,7 +108,7 @@ in
 
         if test -n "$target_pid"
             echo '{"command":["cycle","mute"]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid"
-            
+            sleep 0.1
             # If the target was muted (now is unmuted), adjust mutes.
             set pause_state (echo '{"command":["get_property","mute"]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid" | jq -r '.data')
             if test "$pause_state" = "false"
