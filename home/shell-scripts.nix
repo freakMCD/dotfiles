@@ -79,54 +79,44 @@ in
     hyprctl --batch "$cmds"
     '')
 
-    (writers.writeFishBin "togglePAUSE" ''
+    (writers.writeFishBin "toggleSTATE" ''
       source /tmp/mpv_addresses
       set mpv_socket_dir "/tmp/mpvSockets"
 
-      function cyclePause
+      function cycleState
         set clients_json (hyprctl clients -j)
         set target_pid (echo $clients_json | jq -r --arg addr "$target_address" '.[] | select(.class=="mpv" and .address==$addr) | .pid')
 
         if test -n "$target_pid"
-            echo '{"command":["cycle","pause"]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid"
+          switch $state
+            case pause
+              echo '{"command":["cycle","pause"]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid"
+
+            case mute
+              echo '{"command":["cycle","mute"]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid"
+              sleep 0.1
+              # If the target was muted (now is unmuted), adjust mutes.
+              set pause_state (echo '{"command":["get_property","mute"]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid" | jq -r '.data')
+              if test "$pause_state" = "false"
+                  for pid in (echo $clients_json | jq -r --arg target "$target_address" '.[] | select(.class=="mpv" and .address != $target) | .pid')
+                    echo '{"command":["set_property","mute",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
+                  end
+              end
+            case '*'
+              echo "unknown state :$state"
+          end
         end
       end
 
-      set name_target "mpv$argv[1]" 
+      set name_target "mpv$argv[2]" 
       set target_address $$name_target
 
-      if test -n "$target_address"
-        cyclePause
-      end
-      ''
-    )
-
-    (writers.writeFishBin "toggleMUTE" ''
-      source /tmp/mpv_addresses
-      set mpv_socket_dir "/tmp/mpvSockets"
-
-      function cycleMute
-        set clients_json (hyprctl clients -j)
-        set target_pid (echo $clients_json | jq -r --arg addr "$target_address" '.[] | select(.class=="mpv" and .address==$addr) | .pid')
-
-        if test -n "$target_pid"
-            echo '{"command":["cycle","mute"]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid"
-            sleep 0.1
-            # If the target was muted (now is unmuted), adjust mutes.
-            set pause_state (echo '{"command":["get_property","mute"]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid" | jq -r '.data')
-            if test "$pause_state" = "false"
-                for pid in (echo $clients_json | jq -r --arg target "$target_address" '.[] | select(.class=="mpv" and .address != $target) | .pid')
-                  echo '{"command":["set_property","mute",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
-                end
-            end
-        end
-      end
-
-      set name_target "mpv$argv[1]" 
-      set target_address $$name_target
-
-      if test -n "$target_address"
-        cycleMute
+      if test -n "$target_address" -a (count $argv) -ge 2
+        set state $argv[1]
+        cycleState
+      else 
+        echo "Usage: unified_mpv_control <instance-number> <pause|mute>"
+        exit 1
       end
       ''
     )

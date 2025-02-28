@@ -1,5 +1,5 @@
 # Define keywords and subdomains
-keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'libreoffice', 'geogebra', 'wayland', 'Steam', 'neovim', 'LaTeX', 'youtubedl', 'mpv', 'GreaseMonkey','rclone','commandline','NixOS','linux','archlinux','fishshell','Nix', 'linux4noobs','vim','learnpython']
+keywords = ['qutebrowser', 'math', 'AskPhysics', 'linuxquestions', 'hyprland', 'bash', 'libreoffice', 'geogebra', 'wayland', 'Steam', 'neovim', 'LaTeX', 'youtubedl', 'mpv', 'GreaseMonkey','rclone','commandline','NixOS','linux','archlinux','fishshell','Nix', 'linux4noobs','vim','learnpython','bodyweightfitness','degoogle']
 base_url = '*://*.reddit.com/r/'
 
 whitelist = [f'{base_url}{keyword}/*' for keyword in keywords]

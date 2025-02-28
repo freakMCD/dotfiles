@@ -20,7 +20,7 @@ bind generic,index,pager \Cf       next-page
 bind generic,index,pager \Cb       previous-page
 
 # Go to folder...
-macro index,pager gi "<change-folder>=INBOX<enter>" "go to Inbox"
+macro index,pager gg "<change-folder>=INBOX<enter>" "go to Inbox"
 macro index,pager gd "<change-folder>=[Gmail]/Destacados<enter>" "go to Destacados"
 macro index,pager ge "<change-folder>=[Gmail]/Enviados<enter>" "go to Enviados"
 macro index,pager gs "<change-folder>=[Gmail]/Spam<enter>" "go to Spam"

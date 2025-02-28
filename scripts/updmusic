@@ -10,14 +10,13 @@ mkdir -p "$dir"
 declare -A chill=(
     ["https://www.youtube.com/playlist?list=PL4CmunqMOJjKi1Mtlc3N5pedFJ5UgFobk"]="The Hall"
     ["https://www.youtube.com/playlist?list=PL4CmunqMOJjLJngQzRR6tExqelkRKa0Vc"]="Classics"
-    ["https://www.youtube.com/playlist?list=PL4CmunqMOJjIkStqqrywj_o2whWaO9uRQ"]="Echo\: 2"
     ["https://www.youtube.com/playlist?list=PL4CmunqMOJjKzuolIfgHg8V9YmAfzFJF2"]="Melodic Alchemy"
 
     ["https://www.youtube.com/playlist?list=PLf07F-mOry4_rJPuq0Km1I78Q6HMCujMO"]="Reol"
     ["https://www.youtube.com/playlist?list=PL1JxBieKp06LBAiOlziByhHyRwfMOLbDj"]="Babymetal"
     ["https://www.youtube.com/playlist?list=PL4CmunqMOJjL9ClFBPb9pjNun2GmL5Ll-"]="G-Dragon"
     ["https://www.youtube.com/playlist?list=PLnxYCI2LodNiEhtP4kTqIeuGPZBsxJZ7s"]="Ado"
-    ["https://www.youtube.com/playlist?list=PLpISYQjbY0iSMUfL58jij2ZjlkYYuLz9x"]="Phantom Siita"
+    ["https://www.youtube.com/playlist?list=PLUXthWEuMhTa7jaiH88BcZLDeH6Clv8Yg"]="Phantom Siita"
 )
 
 download_playlists() {

@@ -1,23 +1,32 @@
 # vim: set nowrap :
 #
 @ News < reload-period 1440
+https://bandito.re/13b14305-cba7-4fd1-92b6-d5a424169984.atom
+https://gitlab.com/nitrohorse/search-engines-compare/-/commits/master?format=atom
 https://codeberg.org/newsraft/newsraft/releases.rss
 https://codeberg.org/dnkl/yambar/releases.rss
 
-@ Youtube < reload-period 720
+@ Math < reload-period 1440
+https://terrytao.wordpress.com/feed/ "Terence Tao Blog"
+https://www.ams.org/rss/conm.rss
+https://www.ams.org/rss/mathmoments.rss
+https://mathvoices.ams.org/teachingandlearning/feed/
+https://mathvoices.ams.org/mathmedia/feed/
+https://mathvoices.ams.org/featurecolumn/feed/
 
-https://www.youtube.com/feeds/videos.xml?playlist_id=UULF5uNya42ayhsRnZOR3mO6NA "Insym Videos"
+@ Manga
+https://w37.onepiece-manga-online.net/feed
+
+@ Videos < reload-period 960
+https://twitchrss.appspot.com/vodonly/hollowknightcommunity
+https://twitchrss.appspot.com/vodonly/emilyywang
+https://twitchrss.appspot.com/vodonly/priidik_
+https://twitchrss.appspot.com/vodonly/insym
+https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "GOT_Extras" < item-rule title LIKE '%NARUTO%'
 https://www.youtube.com/feeds/videos.xml?channel_id=UCw5fOoT2b54zDMwgWkvIHrA "BlueSR"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCEYGHOLgKlLMDNrGCno3oJA "fireb0rn"
 https://www.youtube.com/feeds/videos.xml?playlist_id=UULFGwu0nbY2wSkW8N-cghnLpA "Jaiden Animations"
 
-@ Manga < reload-period 1440
-$(html2rss feed ~/nix/scripts/rss/onepiece.yml) "One Piece"
 
-@ Twitch < reload-period 60
-https://twitchrss.appspot.com/vodonly/blue_sr_
-https://twitchrss.appspot.com/vodonly/scottybvb
-https://twitchrss.appspot.com/vodonly/lep19
 
 
 

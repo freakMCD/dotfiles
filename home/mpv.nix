@@ -48,6 +48,7 @@
     };
 
     bindings = {
+      "ESC" = "ignore";
       "WHEEL_UP" = "ignore";
       "WHEEL_DOWN" = "ignore";
       "Shift+Ctrl+S" = "script-binding toggle-seeker";

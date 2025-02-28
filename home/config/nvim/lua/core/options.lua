@@ -25,7 +25,7 @@ local options = {
 }
 
 vim.opt.fillchars:append({ eob = " ", stl = " " })
-vim.opt.shortmess:append("c")
+vim.opt.shortmess:append("csCFSW")
 
 for k, v in pairs(options) do
 	vim.opt[k] = v

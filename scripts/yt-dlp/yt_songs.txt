@@ -9,7 +9,6 @@ youtube 2gAdSYraDWU
 youtube 2jqHK5buQMs
 youtube 2oTr_gP-7u0
 youtube 2PRQUliCCIU
-youtube 2Y2bNKE2KbU
 youtube 2zgyAkiOlik
 youtube 3BFTio5296w
 youtube 3HuyRf6tV4E
@@ -50,7 +49,6 @@ youtube 7OoYmgGhjk0
 youtube 7V3jqsIe8c0
 youtube 81IZf1_D8So
 youtube _87mpz7-5a8
-youtube 8LhWRqcAdFU
 youtube 8PiCsyCexRA
 youtube 8wSVvvBPmek
 youtube 94a4oW7HRa4
@@ -81,11 +79,9 @@ youtube bUCF97_ah40
 youtube Bvaptx9ndeQ
 youtube Bz5SF_-NvGQ
 youtube C0ppulkmXPw
-youtube c3Oa9XiJ_DU
 youtube C7YQq-nup3A
 youtube cf79KuVTB_U
 youtube -CFoZ-DJZ3c
-youtube CquvkZNrj3U
 youtube CraoDWqIWE8
 youtube CVxMTl6cUSE
 youtube CZMR2dZvOzA
@@ -104,10 +100,8 @@ youtube DTnzjTOzVys
 youtube dxp9w9Ggehc
 youtube _dXV2vyJoYc
 youtube DxyIFUdcipY
-youtube e6k4h_hpCH0
 youtube eDodRQkdtL0
 youtube eHTeP9QQ_fs
-youtube ElWhuHTkbik
 youtube epv4UVrq6rQ
 youtube EQJ-oWRNApY
 youtube eRhg7qPLeN8
@@ -135,7 +129,6 @@ youtube gB9P0kpc1O4
 youtube GcRLTIxgAAw
 youtube gh87sZtbYTA
 youtube ghw5x27Z-Nw
-youtube GKlfi1PLlrE
 youtube gL0C3CUBqJw
 youtube gnUDvKEdke8
 youtube gYCTXzOTnXg
@@ -194,7 +187,6 @@ youtube l7MaKmKJqoc
 youtube L8h54pmOz-0
 youtube lDK9QqIzhwk
 youtube lhg9bYNLvOg
-youtube LJT60DbmjHY
 youtube ljUtuoFt-8c
 youtube LMj9_tDSZkA
 youtube LNO0qUwh5hs
@@ -205,7 +197,6 @@ youtube lYo4jUqGqAQ
 youtube lz4YVXt8vjs
 youtube lzyDD8bMDKs
 youtube M3rWGzTl8UU
-youtube mbMp__rzZ6U
 youtube Mgd-rPsrdQo
 youtube M_I6tASrnwk
 youtube MkKMWRsQh28
@@ -214,7 +205,6 @@ youtube mna21GKCaSU
 youtube mOYNyQQlbMA
 youtube mp2-w15SXms
 youtube MqSvRh6kXxU
-youtube msCAKVaoZzA
 youtube Mtfkq7doqWw
 youtube mUdyVeXcV8A
 youtube mUUtfrADbj4
@@ -257,9 +247,7 @@ youtube pWhxKUIAXa4
 youtube PXDq27OxTkc
 youtube pyTEyQncbK4
 youtube q0T7Ex7MkLM
-youtube Q2dkzGTMORk
 youtube Qb8q4ijHk_M
-youtube QcD0BKIR0RQ
 youtube QfAOdrR_6UU
 youtube qFZJFtf0_fY
 youtube qhmrt3ZNgcs
@@ -362,7 +350,6 @@ youtube Y3NEryab8GU
 youtube Y8pLTT7jfYw
 youtube yaGJ0EZlcQY
 youtube YAKXTbuL6uI
-youtube yGg7cVbHGNw
 youtube y-uygIYKFhc
 youtube ywoyAdPEyTg
 youtube z0CRuddyiC4
@@ -379,3 +366,10 @@ youtube zVWMnRxI41g
 youtube Z-WdGYi9Pv4
 youtube zySlbZ8JVAM
 youtube zz723Sc3vak
+youtube ElWhuHTkbik
+youtube GKlfi1PLlrE
+youtube msCAKVaoZzA
+youtube Q2dkzGTMORk
+youtube 8LhWRqcAdFU
+youtube LJT60DbmjHY
+youtube 2Y2bNKE2KbU

@@ -34,12 +34,12 @@ in
       ];
 
       general = {
-        gaps_in = 5;
+        gaps_in = 0;
         gaps_out = 0;
-        border_size = 2;
+        border_size = 1;
 
         allow_tearing = false;
-        "col.active_border" = "rgba(225,225,0,1) rgba(0,225,0,1) 45deg";
+        "col.active_border" = "rgba(ff4500ee) rgba(ff6347ee) 135deg";
         "col.inactive_border" = "rgba(595959aa)";
         "snap:enabled" = 1;
       };
@@ -49,14 +49,6 @@ in
       };
 
       decoration = {
-        rounding = 15;
-        shadow = {
-          range = 200; 
-          render_power = 4;
-          color = "rgba(0,225,0,0.85)";
-          offset = "0 0";
-          scale = 0.9;
-        };
         blur = {
           enabled = false;
         };
@@ -181,15 +173,15 @@ in
         ",KP_Next,exec,toggleFS 3"
         ",KP_Left,exec,toggleFS 4"
 
-        "SHIFT,KP_End,exec,togglePAUSE 1"
-        "SHIFT,KP_Down,exec,togglePAUSE 2"
-        "SHIFT,KP_Next,exec,togglePAUSE 3"
-        "SHIFT,KP_Left,exec,togglePAUSE 4"
+        "SHIFT,KP_End,exec,toggleSTATE pause 1"
+        "SHIFT,KP_Down,exec,toggleSTATE pause 2"
+        "SHIFT,KP_Next,exec,toggleSTATE pause 3"
+        "SHIFT,KP_Left,exec,toggleSTATE pause 4"
 
-        "ALT,KP_End,exec,toggleMUTE 1"
-        "ALT,KP_Down,exec,toggleMUTE 2"
-        "ALT,KP_Next,exec,toggleMUTE 3"
-        "ALT,KP_Left,exec,toggleMUTE 4"
+        "ALT,KP_End,exec,toggleSTATE mute 1"
+        "ALT,KP_Down,exec,toggleSTATE mute 2"
+        "ALT,KP_Next,exec,toggleSTATE mute 3"
+        "ALT,KP_Left,exec,toggleSTATE mute 4"
 
         "CTRL,KP_End,exec,closeMpvWindow 1"
         "CTRL,KP_Down,exec,closeMpvWindow 2"
@@ -248,6 +240,7 @@ in
         "pin, class:(^(mpv))"
         "nofocus, class:(^(mpv))"
         "noborder, class:(^(mpv))"
+        "rounding ${var.rounding}, class:(^(mpv))"
         "opacity 1 ${var.high}, class:(^(mpv))"
         "opacity 1 1 0.97, class:(^(${terminal}))"
         "opacity 1 1, class:(^(org.pwmt.zathura))"

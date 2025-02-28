@@ -4,6 +4,5 @@
     ./configuration.nix
     ./autologin.nix
     ./software.nix
-    ./ruby
     ];
 }

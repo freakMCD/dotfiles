@@ -112,6 +112,7 @@
       };
       colors = {
         background = "${config.colors.bg1}da";
+        selection = "${config.colors.bg3}ff";
       };
     };
   };
