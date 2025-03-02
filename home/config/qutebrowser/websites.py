@@ -4,9 +4,9 @@ config.set('content.javascript.enabled', False, 'genius.com')
 config.set('content.javascript.enabled', False, '*.fandom.com')
 
 c.url.searchengines = {
-    "DEFAULT": "https://www.mojeek.com/search?q={}&hp=minimal&qss=Brave,Startpage",
+    "DEFAULT": "https://www.mojeek.com/search?q={}&qsba=1&qss=Brave,Startpage&hp=minimal&foc=Custom",
     "!i": "https://www.mojeek.com/search?q={}&fmt=images",
-    "!gh": "https://github.com/search?q={}",
+    "!gh": "https://github.com/search?q={}&type=code",
     "!yt": "https://www.youtube.com/results?search_query={}",
     "!arxiv": "https://arxiv.org/search/?query={}&searchtype=all",
     "!wolfram": "https://www.wolframalpha.com/input/?i={}",

@@ -27,6 +27,10 @@ in
       enable = true;
       dns = "systemd-resolved";
     };
+    stevenblack = {
+      enable = true;
+      block = ["fakenews" "social" "porn"];
+    };
   };
 
   services.resolved = {

@@ -3,7 +3,7 @@ local options = {
 	expandtab = true, -- convert tabs to spaces
 	shiftwidth = 2, -- the number of spaces inserted for each indentation
 	tabstop = 2, -- insert 2 spaces for a tab
-    softtabstop = 2,
+  softtabstop = 2,
 	backup = false, -- creates a backup file
 	completeopt = { "menuone", "noselect" }, -- mostly just for cmp
 	pumheight = 10, -- pop up menu height
@@ -16,36 +16,55 @@ local options = {
 	timeoutlen = 1000, -- time to wait for a mapped sequence to complete (in milliseconds)
 	undofile = true, -- enable persistent undo
 	number = true, -- set numbered lines
-	laststatus = 0,
-	ruler = true,
-	signcolumn = "number", -- always show the sign column, otherwise it would shift the text each time
-	scrolloff = 8,                           -- is one of my fav
-	spellang = en_us,
-    title = true,
-}
+  scrolloff = 8,                           -- is one of my fav
+	spelllang = en_us,
+  title = true,
 
-vim.opt.fillchars:append({ eob = " ", stl = " " })
-vim.opt.shortmess:append("csCFSW")
+  -- Status bar
+	laststatus = 2,
+  ruler = false,
+  cmdheight = 0,
+  showcmdloc = "statusline",
+	signcolumn = "number",
+}
 
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
-function GetIndicators()
-	local counts = vim.diagnostic.count()
-	local errors = counts[vim.diagnostic.severity.ERROR] or 0
-	local warnings = counts[vim.diagnostic.severity.WARN] or 0
-	local warn_string = warnings > 0 and "%#DiagnosticWarn# " or "  "
-	local error_string = errors > 0 and "%#DiagnosticError# " or "  "
-	return warn_string .. error_string
-end
-function GetRulerIcon()
-	local icon = vim.bo.modified and " " or " "
-	return "%#CustomRulerSeparator#%#CustomRulerIcon#" .. icon .. " "
-end
-vim.opt.rulerformat = "%40(%=%{%v:lua.GetIndicators()%}%{%v:lua.GetRulerIcon()%}%#CustomRulerFile# %t %)"
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+local indicators = { error = 0, warn = 0 }
 
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("DiagnosticChanged", {
+    callback = function()
+        local counts = vim.diagnostic.count()
+        indicators.error = counts[vim.diagnostic.severity.ERROR] or 0
+        indicators.warn = counts[vim.diagnostic.severity.WARN] or 0
+    end,
+})
+
+function GetIndicators()
+    local warn_string = indicators.warn > 0 and "%#DiagnosticWarn# " or "  "
+    local error_string = indicators.error > 0 and "%#DiagnosticError# " or "  "
+    return warn_string .. error_string
+end
+function GetModifiedIcon()
+	local icon = vim.bo.modified and " " or " "
+	return icon
+end
+
+vim.opt.statusline = table.concat({
+    "%=",                         -- Right-align everything that follows
+    "%S ",
+    "%{v:lua.GetIndicators()}",   -- Show diagnostic indicators
+    "%{v:lua.GetModifiedIcon()}", -- Show modified/unmodified icon
+    " %t ",     -- Show the filename
+    "%r", -- Readonly flag
+    " %c ", -- Column number
+})
+
+autocmd("FileType", {
     pattern = { "sh", "nix" },
     callback = function()
         vim.opt_local.tabstop = 2
@@ -53,4 +72,19 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.softtabstop = 2
     end,
 })
+
+local group = augroup("vimrc_incsearch_highlight", { clear = true })
+
+autocmd("CmdlineEnter", {
+    pattern = { "/", "\\?" },
+    group = group,
+    command = "set hlsearch",
+})
+
+autocmd("CmdlineLeave", {
+    pattern = { "/", "\\?" },
+    group = group,
+    command = "set nohlsearch",
+})
+
 

@@ -5,16 +5,9 @@ leader, lleader = "<Space>", ","
 c.hints.chars = "qweasdzxc"
 config.bind('f', 'mode-leave', mode='hint')
 
-# Video link selectors
-video_selector = ', '.join([f'a[href*="{part}"]' for part in ['youtu', 'share/', 'watch?']])
-reddit_selectors = {
-    'all': ['.comments', '.expando-button', '.redditname', '.reply-button', '.next-button', '.md-container a[href]'],
-    'videos': [f'a[href^="https"][href*="{part}"]' for part in ['youtu', 'clips', 'gifv', 'redd.it']]
-}
-
 # Set selectors
+video_selector = ', '.join([f'a[href*="{part}"]' for part in ['youtu', 'share/', 'watch?']])
 config.set('hints.selectors', {'videos': [video_selector]}, pattern='*')
-config.set('hints.selectors', reddit_selectors, pattern='*://*.reddit.com/*')
 
 bind = {
     "gd": "open https://discord.com/channels/@me",

@@ -91,3 +91,5 @@ vim.cmd[[
     colorscheme gruvbox
     highlight Normal ctermbg=NONE guibg=NONE
 ]]
+vim.api.nvim_set_hl(0, "StatusLine", { bg = 'NvimDarkGray1', bold = true })
+vim.api.nvim_set_hl(0, "StatusLineNC", { bg = 'NvimDarkGray2' })

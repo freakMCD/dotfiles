@@ -14,15 +14,16 @@ https://mathvoices.ams.org/teachingandlearning/feed/
 https://mathvoices.ams.org/mathmedia/feed/
 https://mathvoices.ams.org/featurecolumn/feed/
 
+
 @ Manga
 https://w37.onepiece-manga-online.net/feed
 
-@ Videos < reload-period 960
+@ Videos < reload-period 1440
+https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw "3Blue1Brown"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCSju5G2aFaWMqn-_0YBtq5A "Stand-up Maths"
 https://twitchrss.appspot.com/vodonly/hollowknightcommunity
-https://twitchrss.appspot.com/vodonly/emilyywang
-https://twitchrss.appspot.com/vodonly/priidik_
-https://twitchrss.appspot.com/vodonly/insym
-https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "GOT_Extras" < item-rule title LIKE '%NARUTO%'
+https://twitchrss.appspot.com/vodonly/lep19
+https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "GOT_Extras"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCw5fOoT2b54zDMwgWkvIHrA "BlueSR"
 https://www.youtube.com/feeds/videos.xml?playlist_id=UULFGwu0nbY2wSkW8N-cghnLpA "Jaiden Animations"
 
