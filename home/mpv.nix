@@ -31,7 +31,7 @@
       sub-spacing=0.5;
 
       ## Streaming ##
-      ytdl-format = "bv[ext=webm][height<=1080]+ba[ext=webm]/b[height<=1080]";
+      ytdl-format = "bv[height<=1080][vcodec!^=av01]+ba/bv[height<=1080]/b[height<=1080]";
       demuxer-max-bytes = "500M";
       demuxer-max-back-bytes="500MiB";
       force-seekable= true;
@@ -42,7 +42,8 @@
         profile-restore = "copy";
         profile-cond = "(osd_width < 1280)";
         video-zoom = 0.42;
-        sub-font-size = 29;
+        sub-visibility = false;
+
       };
       "fastYT" = { ytdl-format="22/18/17/bv+ba";};
     };

@@ -10,7 +10,7 @@ in
       neovim kalker
       curl rclone udiskie bat fd libnotify
       neomutt msmtp isync newsraft
-      nomacs playerctl yt-dlp mpc streamlink
+      nomacs playerctl yt-dlp mpc
       wev wl-clipboard grim slurp wf-recorder qbittorrent translate-shell
       chafa inputs.fastanime.packages.${system}.default
       texlab texlive.combined.scheme-medium

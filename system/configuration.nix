@@ -31,6 +31,10 @@ in
       enable = true;
       block = ["fakenews" "social" "porn"];
     };
+    extraHosts = ''
+      0.0.0.0 twitch.tv www.twitch.tv
+      0.0.0.0 allkpop.com www.allkpop.com
+    '';
   };
 
   services.resolved = {

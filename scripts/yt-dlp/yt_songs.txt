@@ -9,6 +9,7 @@ youtube 2gAdSYraDWU
 youtube 2jqHK5buQMs
 youtube 2oTr_gP-7u0
 youtube 2PRQUliCCIU
+youtube 2Y2bNKE2KbU
 youtube 2zgyAkiOlik
 youtube 3BFTio5296w
 youtube 3HuyRf6tV4E
@@ -49,9 +50,9 @@ youtube 7OoYmgGhjk0
 youtube 7V3jqsIe8c0
 youtube 81IZf1_D8So
 youtube _87mpz7-5a8
+youtube 8LhWRqcAdFU
 youtube 8PiCsyCexRA
 youtube 8wSVvvBPmek
-youtube 94a4oW7HRa4
 youtube 94Fo2CEiTms
 youtube 99Oj7AFyS0E
 youtube 9a5Luy0h1Mg
@@ -102,12 +103,12 @@ youtube _dXV2vyJoYc
 youtube DxyIFUdcipY
 youtube eDodRQkdtL0
 youtube eHTeP9QQ_fs
+youtube ElWhuHTkbik
 youtube epv4UVrq6rQ
 youtube EQJ-oWRNApY
 youtube eRhg7qPLeN8
 youtube eVpDNd7Ckzo
 youtube f3vtwvZFSUs
-youtube F4yb0CBd4I4
 youtube F7i15Dpl_tc
 youtube F7XhEuRZJ2I
 youtube fEfvTTJNeAY
@@ -129,6 +130,7 @@ youtube gB9P0kpc1O4
 youtube GcRLTIxgAAw
 youtube gh87sZtbYTA
 youtube ghw5x27Z-Nw
+youtube GKlfi1PLlrE
 youtube gL0C3CUBqJw
 youtube gnUDvKEdke8
 youtube gYCTXzOTnXg
@@ -187,6 +189,7 @@ youtube l7MaKmKJqoc
 youtube L8h54pmOz-0
 youtube lDK9QqIzhwk
 youtube lhg9bYNLvOg
+youtube LJT60DbmjHY
 youtube ljUtuoFt-8c
 youtube LMj9_tDSZkA
 youtube LNO0qUwh5hs
@@ -205,6 +208,7 @@ youtube mna21GKCaSU
 youtube mOYNyQQlbMA
 youtube mp2-w15SXms
 youtube MqSvRh6kXxU
+youtube msCAKVaoZzA
 youtube Mtfkq7doqWw
 youtube mUdyVeXcV8A
 youtube mUUtfrADbj4
@@ -247,6 +251,7 @@ youtube pWhxKUIAXa4
 youtube PXDq27OxTkc
 youtube pyTEyQncbK4
 youtube q0T7Ex7MkLM
+youtube Q2dkzGTMORk
 youtube Qb8q4ijHk_M
 youtube QfAOdrR_6UU
 youtube qFZJFtf0_fY
@@ -256,7 +261,6 @@ youtube QqZFpoc59kc
 youtube qrinZzgOfBI
 youtube R14lGgHgVJM
 youtube R5SwRvAbpe8
-youtube RkjSfZ30GM4
 youtube RpxoX1Sqpyk
 youtube rqSUu6tR8sE
 youtube rrTMQweIUzs
@@ -271,7 +275,6 @@ youtube SfSotcoqj7g
 youtube Shjqdhc87Xw
 youtube SiULHyA2Z9c
 youtube Siz-xBfIqpg
-youtube sNfRKx7_cMc
 youtube sO4vI8P88NM
 youtube sPxXiXucYcM
 youtube SR89b0qqRAg
@@ -323,7 +326,6 @@ youtube Wbk3fYt_sA0
 youtube -wbvk8XKV0s
 youtube wCqpacYI6b0
 youtube weo6VlO6Oxc
-youtube wGnEPvcf8w8
 youtube WlTlUseVt7E
 youtube wMixp_5KTQE
 youtube WmZQFfypvhg
@@ -366,10 +368,3 @@ youtube zVWMnRxI41g
 youtube Z-WdGYi9Pv4
 youtube zySlbZ8JVAM
 youtube zz723Sc3vak
-youtube ElWhuHTkbik
-youtube GKlfi1PLlrE
-youtube msCAKVaoZzA
-youtube Q2dkzGTMORk
-youtube 8LhWRqcAdFU
-youtube LJT60DbmjHY
-youtube 2Y2bNKE2KbU

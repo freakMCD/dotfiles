@@ -201,7 +201,6 @@ in
         "$mod, KP_Next, togglespecialworkspace, newsraft"
         "$mod, KP_Left, togglespecialworkspace, kalker"
         "$mod, KP_Begin, togglespecialworkspace, androidsync"
-        "$mod, KP_Right, togglespecialworkspace, webcord"
         "$mod, O, togglespecialworkspace, openfile"
         "$mod, W, togglespecialworkspace, whatsapp"
         "$mod, R, exec, fuzzel"
@@ -228,7 +227,6 @@ in
         "special:kalker, on-created-empty: ${terminal} --app-id=kalker kalker"
         "special:androidsync, on-created-empty: ${terminal} --app-id=androidsync $HOME/nix/scripts/androidsync"
         "special:openfile, on-created-empty: ${terminal} --app-id=openfile open_file"
-        "special:webcord, on-created-empty: ${terminal} --app-id=webcord webcord"
       ];
 
       windowrulev2 = [
@@ -241,7 +239,7 @@ in
         "workspace 3,class:(libreoffice)"
         "workspace 4,class:(^(org-geogebra-desktop))"
         "workspace 5,class:(^(puddletag)$)"
-        "workspace 5,class:(^(webcord)$)"
+        "workspace 5,class:(^(WebCord)$)"
         "suppressevent maximize,class:^(libreoffice.*)$"
         "group,class:(org.qutebrowser.qutebrowser)"
 # 

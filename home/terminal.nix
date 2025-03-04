@@ -61,11 +61,6 @@
           nohup mpv $argv &>/dev/null & disown
           exit
       end
-
-      function ttv
-          nohup streamlink https://twitch.tv/"$argv" --title "{title} [{author}]" --player=mpv --twitch-proxy-playlist=https://eu.luminous.dev,https://lb-eu.cdn-perfprod.com best &>/dev/null & disown
-          exit
-      end
     '';
     shellAbbrs = {
       rebuild = "sudo nixos-rebuild --flake $HOME/nix#edwin switch";
