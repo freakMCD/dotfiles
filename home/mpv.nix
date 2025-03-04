@@ -31,7 +31,7 @@
       sub-spacing=0.5;
 
       ## Streaming ##
-      ytdl-format = "bv*[height<=1080][vcodec!=av01]+ba/b[height<=1080]";
+      ytdl-format = "bv[ext=webm][height<=1080]+ba[ext=webm]/b[height<=1080]";
       demuxer-max-bytes = "500M";
       demuxer-max-back-bytes="500MiB";
       force-seekable= true;

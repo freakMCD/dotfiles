@@ -19,7 +19,6 @@
     changeDirWidgetCommand = "fd -t d ${command}";
     fileWidgetOptions = ["--delimiter / --with-nth 4.."];
     defaultOptions = [
-      "--preview 'bat --style=numbers --color=always --line-range=:100 {}'"
       "--ansi --height 60% --reverse --inline-info --color=16" 
       ];
     };

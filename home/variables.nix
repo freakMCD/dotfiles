@@ -15,7 +15,7 @@ in builtins.mapAttrs (_name: toString) {
   inherit (mpv) width height;  # Makes mpv_width available as width
   inherit x1 y1;  # Makes mpv_width available as width
   rounding = 50;
-  high = 0.8;
+  high = 0.75;
   low = 0;
 
   x2 = x1;

@@ -14,7 +14,7 @@ in
       wev wl-clipboard grim slurp wf-recorder qbittorrent translate-shell
       chafa inputs.fastanime.packages.${system}.default
       texlab texlive.combined.scheme-medium
-      hyprpicker yambar
+      hyprpicker yambar webcord
   ];
 
   programs = {

@@ -10,9 +10,7 @@ video_selector = ', '.join([f'a[href*="{part}"]' for part in ['youtu', 'share/',
 config.set('hints.selectors', {'videos': [video_selector]}, pattern='*')
 
 bind = {
-    "gd": "open https://discord.com/channels/@me",
     "gw": "open https://web.whatsapp.com",
-    "gD": "open -t https://discord.com/channels/@me",
     "gW": "open -t https://web.whatsapp.com",
 
 	leader + "js": "config-cycle content.javascript.enabled true false",
