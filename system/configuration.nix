@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ system, pkgs, ... }:
+{ system, pkgs, lib, ... }:
 let
   perlEnv = pkgs.perl.withPackages (p: with p; [
     MIMEEncWords
@@ -19,6 +19,15 @@ in
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "hplip"
+    ];
+  hardware.sane = {
+    enable = true;
+    extraBackends = [pkgs.hplipWithPlugin ];
+  };
 
   networking = {
     useDHCP = false;
@@ -49,14 +58,6 @@ in
   services.avahi = {
     enable = true;
     nssmdns4 = true;
-    publish = {
-      enable = true;
-      addresses = true;
-      domain = true;
-      hinfo = true;
-      userServices = true;
-      workstation = true;
-    };
   };
 
   time.timeZone = "America/Lima";

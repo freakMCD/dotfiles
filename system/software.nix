@@ -4,7 +4,7 @@ in
 {
 # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-      home-manager pass yadm gnupg ffmpeg
+      home-manager pass yadm gnupg ffmpeg simple-scan
       gcc bundix perlEnv
       qutebrowser firefox w3m 
       neovim kalker
