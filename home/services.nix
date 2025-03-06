@@ -1,4 +1,4 @@
-{pkgs, config, ...}:
+{pkgs, lib, config, ...}:
 
 {
   home.username = "edwin";
@@ -62,68 +62,47 @@
   in pkgs.writers.writeFish "shellevents" ''
     set mpv_socket_dir "/tmp/mpvSockets"
     set mpv_addresses_file "/tmp/mpv_addresses"
-    set addresses
+    set mpv_addresses
     set mpv_count 0
+    set -g cmds
 
-    function cycleMute
-      set clients_json (hyprctl clients -j)
-      set target_pid (echo $clients_json | jq -r --arg addr "0x$WINDOWADDRESS" '.[] | select(.class=="mpv" and .address==$addr) | .pid')
+    set -g x_coords ${lib.concatStringsSep " " (map (i: var."x${toString i}") (lib.range 1 9))}
+    set -g y_coords ${lib.concatStringsSep " " (map (i: var."y${toString i}") (lib.range 1 9))}
 
-      if test -n "$target_pid"
-         for pid in (echo $clients_json | jq -r --arg target "0x$WINDOWADDRESS" '.[] | select(.class=="mpv" and .address != $target) | .pid')
-           echo '{"command":["set_property","mute",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
-         end
+    function cycle_pause
+      hyprctl clients -j | jq -r --arg target "0x$WINDOWADDRESS" '
+          .[] | select(.class=="mpv" and .address != $target) |
+          (.pid|tostring) + " " + .address
+      ' | while read pid address
+          # Use the variables directly
+          echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
+          set -a cmds "dispatch setprop address:$address alphainactive ${var.low};"
       end
     end
 
     function event_openwindow
-        if test "$WINDOWCLASS" = "mpv"
-            set mpv_count (math $mpv_count + 1)
+        test "$WINDOWCLASS" = "mpv" || return
+        set mpv_count (math $mpv_count + 1)
+        set -a mpv_addresses "$WINDOWADDRESS"
 
-            switch $mpv_count
-                case 1; set x ${var.x1}; set y ${var.y1}
-                case 2; set x ${var.x2}; set y ${var.y2}
-                case 3; set x ${var.x3}; set y ${var.y3}
-                case 4; set x ${var.x4}; set y ${var.y4}
-                case '*'; set x 0; set y (math "1080 + ($argv[1] - 4) * 100")
-            end
+        test $mpv_count -gt 1 && cycle_pause
 
-            set -a addresses "$WINDOWADDRESS"
-
-            hyprctl --batch "dispatch movewindowpixel exact $x $y, address:0x$WINDOWADDRESS"
-            echo "set mpv$mpv_count 0x$WINDOWADDRESS" >> "$mpv_addresses_file"
-            cycleMute
-        end
+        hyprctl --batch "$cmds dispatch movewindowpixel exact $x_coords[$mpv_count] $y_coords[$mpv_count], address:0x$WINDOWADDRESS"
+        echo "set mpv$mpv_count 0x$WINDOWADDRESS" >> "$mpv_addresses_file"
     end
 
     function event_closewindow
-        if contains $WINDOWADDRESS $addresses
-            for addr in $addresses
-                if test $addr != $WINDOWADDRESS
-                    set -a new_addresses $addr
-                end
-            end
-            set addresses $new_addresses
-            set mpv_count (math $mpv_count - 1)
+      set index (contains -i $WINDOWADDRESS $mpv_addresses)
+      test -n "$index" || return 1
 
-            echo -n "" > $mpv_addresses_file
-            if test (count $addresses) -gt 0
-                set output
-                for i in (seq (count $addresses))
-                  switch (math "$i")
-                      case 1; set x ${var.x1}; set y ${var.y1}
-                      case 2; set x ${var.x2}; set y ${var.y2}
-                      case 3; set x ${var.x3}; set y ${var.y3}
-                      case 4; set x ${var.x4}; set y ${var.y4}
-             case '*'; set x 0; set y (math "1080 + ($argv[1] - 4) * 100")
-                  end
-                  echo "set mpv$i 0x$addresses[$i]" >> $mpv_addresses_file
-                  hyprctl dispatch movewindowpixel exact "$x $y", address:"0x$addresses[$i]"
-                end
-            end
-        else
-            return 1
-        end
+      set -e mpv_addresses[$index]
+      set mpv_count (math $mpv_count - 1)
+
+      printf "" > $mpv_addresses_file
+      for i in (seq $mpv_count)
+        echo "set mpv$i 0x$mpv_addresses[$i]" >> $mpv_addresses_file
+        hyprctl dispatch movewindowpixel exact "$x_coords[$i] $y_coords[$i]", address:"0x$mpv_addresses[$i]"
+      end
     end
 
     while read event_data
@@ -136,7 +115,6 @@
         set WINDOWTITLE $fields[4]
 
         switch $event
-
             case "openwindow"; event_openwindow; echo "$event $fields"
             case "closewindow"; event_closewindow; echo "$event $fields"
         end

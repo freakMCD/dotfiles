@@ -162,11 +162,9 @@ in
         "$smod, k, movewindow, u"
         "$smod, j, movewindow, d"
 
-
-# wn
         "$mod, F12, exec, pkill -15 '(qutebrowser|zathura)'; hyprctl notify 0 5000 'rgb(ff0088)' '   Shutting down'; pw-cat -p /usr/share/sounds/freedesktop/stereo/service-logout.oga; sleep 3; shutdown now"
 
-#Twindowroup / toggle window group lock
+# Toggle windowgroup / toggle window group lock
         "$mod, U, moveoutofgroup"
         "$mod SHIFT, Y, lockactivegroup, toggle"
         "$mod, TAB, changegroupactive, f"
@@ -179,15 +177,10 @@ in
         ",KP_Next,exec,toggleFS 3"
         ",KP_Left,exec,toggleFS 4"
 
-        "SHIFT,KP_End,exec,toggleSTATE pause 1"
-        "SHIFT,KP_Down,exec,toggleSTATE pause 2"
-        "SHIFT,KP_Next,exec,toggleSTATE pause 3"
-        "SHIFT,KP_Left,exec,toggleSTATE pause 4"
-
-        "ALT,KP_End,exec,toggleSTATE mute 1"
-        "ALT,KP_Down,exec,toggleSTATE mute 2"
-        "ALT,KP_Next,exec,toggleSTATE mute 3"
-        "ALT,KP_Left,exec,toggleSTATE mute 4"
+        "SHIFT,KP_End,exec,togglePAUSE 1"
+        "SHIFT,KP_Down,exec,togglePAUSE 2"
+        "SHIFT,KP_Next,exec,togglePAUSE 3"
+        "SHIFT,KP_Left,exec,togglePAUSE 4"
 
         "CTRL,KP_End,exec,closeMpvWindow 1"
         "CTRL,KP_Down,exec,closeMpvWindow 2"
@@ -244,8 +237,9 @@ in
         "group,class:(org.qutebrowser.qutebrowser)"
 # 
         "pin, class:(^(mpv))"
+        "noanim, class:(^(mpv))"
         "nofocus, class:(^(mpv))"
-        "noborder, class:(^(mpv))"
+#        "noborder, class:(^(mpv))"
         "rounding ${var.rounding}, class:(^(mpv))"
         "opacity 1 ${var.high}, class:(^(mpv))"
         "opacity 1 1 0.97, class:(^(${terminal}))"

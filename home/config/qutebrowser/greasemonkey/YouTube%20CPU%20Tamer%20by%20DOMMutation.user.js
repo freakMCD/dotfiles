@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name                YouTube CPU Tamer by AnimationFrame
-// @name:ja             YouTube CPU Tamer by AnimationFrame
-// @name:zh-TW          YouTube CPU Tamer by AnimationFrame
+// @name                YouTube CPU Tamer by DOMMutation
+// @name:ja             YouTube CPU Tamer by DOMMutation
+// @name:zh-TW          YouTube CPU Tamer by DOMMutation
 // @namespace           http://tampermonkey.net/
 // @version             2025.02.24.0
 // @license             MIT License
@@ -96,15 +96,15 @@
 // @description:ka      YouTube ვიდეოების დაკვრებისას ბრაუზერის ენერგიის შეცვლა
 // @description:am      YouTube ቪዲዮዎችን ለመቀነስ የባህሪውን አርእስት ግንኙነት ማድረግ
 // @description:km      បង្កើតការធ្វើបរិមាណលំអិតរបស់ការកំណត់ការដាក់នៅលើសម្ពាធរបស់ប្រព័ន្ធបញ្ចូលបន្ទាត់ YouTube
-// @downloadURL https://update.greasyfork.org/scripts/431573/YouTube%20CPU%20Tamer%20by%20AnimationFrame.user.js
-// @updateURL https://update.greasyfork.org/scripts/431573/YouTube%20CPU%20Tamer%20by%20AnimationFrame.meta.js
+// @downloadURL https://update.greasyfork.org/scripts/494219/YouTube%20CPU%20Tamer%20by%20DOMMutation.user.js
+// @updateURL https://update.greasyfork.org/scripts/494219/YouTube%20CPU%20Tamer%20by%20DOMMutation.meta.js
 // ==/UserScript==
 
 /*
 
 MIT License
 
-Copyright 2021-2025 CY Fung
+Copyright 2024-2025 CY Fung
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -155,20 +155,8 @@ SOFTWARE.
     };
   })();
 
-  const isGPUAccelerationAvailable = (() => {
-    // https://gist.github.com/cvan/042b2448fcecefafbb6a91469484cdf8
-    try {
-      const canvas = document.createElement('canvas');
-      return !!(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
-    } catch (e) {
-      return false;
-    }
-  })();
-
-  if (!isGPUAccelerationAvailable) {
-    throw new Error('Your browser does not support GPU Acceleration. YouTube CPU Tamer by AnimationFrame is skipped.');
-  }
-
+  // for future use
+  /*
   const timeupdateDT = (() => {
 
     window.__j6YiAc__ = 1;
@@ -186,7 +174,8 @@ SOFTWARE.
 
     return kz >= 1 ? () => top.__j6YiAc__ : () => window.__j6YiAc__;
 
-  })();
+  })(); 
+  */
 
   const cleanContext = async (win) => {
     const waitFn = requestAnimationFrame; // shall have been binded to window
@@ -240,88 +229,92 @@ SOFTWARE.
     }
   };
 
+
+  const { _setAttribute, _insertBefore, _hasAttribute } = (() => {
+    let _setAttribute = Element.prototype.setAttribute;
+    try {
+      _setAttribute = ShadyDOM.nativeMethods.setAttribute || _setAttribute;
+    } catch (e) { }
+    let _hasAttribute = Element.prototype.hasAttribute;
+    try {
+      _hasAttribute = ShadyDOM.nativeMethods.hasAttribute || _hasAttribute;
+    } catch (e) { }
+    let _insertBefore = Node.prototype.insertBefore;
+    try {
+      _insertBefore = ShadyDOM.nativeMethods.insertBefore || _insertBefore;
+    } catch (e) { }
+    return { _setAttribute, _insertBefore, _hasAttribute};
+  })();
+
   cleanContext(win).then(__CONTEXT__ => {
 
     if (!__CONTEXT__) return null;
 
-    const { requestAnimationFrame, setTimeout, setInterval, clearTimeout, clearInterval } = __CONTEXT__;
+    const { setTimeout, setInterval, clearTimeout, clearInterval } = __CONTEXT__;
 
-    /** @type {Function|null} */
-    let afInterupter = null;
+    /*
+    /-** @type {Function|null} *-/
+    // let afInterupter = null;
+    */
 
-    const getRAFHelper = () => {
-      const asc = document.createElement('a-f');
-      if (!('onanimationiteration' in asc)) {
-        return (resolve) => requestAnimationFrame(afInterupter = resolve);
+    const getDMHelper = () => {
+      let _dm = document.getElementById('d-m');
+      if (!_dm) {
+        _dm = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        _dm.id = 'd-m';
+        _insertBefore.call(document.documentElement, _dm, document.documentElement.firstChild);
       }
-      asc.id = 'a-f';
-      let qr = null;
-      asc.onanimationiteration = function () {
-        if (qr !== null) qr = (qr(), null);
+      const dm = _dm;
+      dm._setAttribute = _setAttribute;
+      dm._hasAttribute = _hasAttribute;
+      let j = 0;
+      let attributeName_;
+      while (dm._hasAttribute(attributeName_ = `dm-${Math.floor(Math.random() * 314159265359 + 314159265359).toString(36)}`)) {
+        // none
       }
-      if (!document.getElementById('afscript')) {
-        const style = document.createElement('style');
-        style.id = 'afscript';
-        style.textContent = `
-          @keyFrames aF1 {
-            0% {
-              order: 0;
-            }
-            100% {
-              order: 1;
-            }
-          }
-          #a-f[id] {
-            visibility: collapse !important;
-            position: fixed !important;
-            display: block !important;
-            top: -100px !important;
-            left: -100px !important;
-            margin:0 !important;
-            padding:0 !important;
-            outline:0 !important;
-            border:0 !important;
-            z-index:-1 !important;
-            width: 0px !important;
-            height: 0px !important;
-            contain: strict !important;
-            pointer-events: none !important;
-            animation: 1ms steps(2, jump-none) 0ms infinite alternate forwards running aF1 !important;
-          }
-        `;
-        (document.head || document.documentElement).appendChild(style);
-      }
-      document.documentElement.insertBefore(asc, document.documentElement.firstChild);
-      return (resolve) => (qr = afInterupter = resolve);
+      const attributeName = attributeName_;
+      let sr = null;
+      const mo = new MutationObserver(() => {
+        const sr_ = sr;
+        if (sr_ !== null) {
+          sr = null;
+          if (j > 8) j = 0;
+          sr_.resolve();
+        }
+      });
+      mo.observe(document, { childList: true, subtree: true, attributes: true });
+      return () => {
+        return sr || (sr = (dm._setAttribute(attributeName, ++j), (new PromiseExternal()))); // mutationcallback in next macrotask
+      };
     };
 
     /** @type {(resolve: () => void)}  */
-    const rafPN = getRAFHelper(); // rAF will not execute if document is hidden
+    const dmSN = getDMHelper(); // dm will execute even if document is hidden
 
     (() => {
-      let afPromiseP, afPromiseQ; // non-null
-      afPromiseP = afPromiseQ = { resolved: true }; // initial state for !uP && !uQ
-      let afix = 0;
-      const afResolve = async (rX) => {
-        await new Promise(rafPN);
+      let dmPromiseP, dmPromiseQ; // non-null
+      dmPromiseP = dmPromiseQ = { resolved: true }; // initial state for !uP && !uQ
+      let dmix = 0;
+      const dmResolve = async (rX) => {
+        await dmSN();
         rX.resolved = true;
-        const t = afix = (afix & 1073741823) + 1;
+        const t = dmix = (dmix & 1073741823) + 1;
         return rX.resolve(t), t;
       };
       const eFunc = async () => {
-        const uP = !afPromiseP.resolved ? afPromiseP : null;
-        const uQ = !afPromiseQ.resolved ? afPromiseQ : null;
+        const uP = !dmPromiseP.resolved ? dmPromiseP : null;
+        const uQ = !dmPromiseQ.resolved ? dmPromiseQ : null;
         let t = 0;
         if (uP && uQ) {
           const t1 = await uP;
           const t2 = await uQ;
           t = ((t1 - t2) & 536870912) === 0 ? t1 : t2; // = 0 for t1 - t2 = [0, 536870911], [–1073741824, -536870913]
         } else {
-          const vP = !uP ? (afPromiseP = new PromiseExternal()) : null;
-          const vQ = !uQ ? (afPromiseQ = new PromiseExternal()) : null;
+          const vP = !uP ? (dmPromiseP = new PromiseExternal()) : null;
+          const vQ = !uQ ? (dmPromiseQ = new PromiseExternal()) : null;
           if (uQ) await uQ; else if (uP) await uP;
-          if (vP) t = await afResolve(vP);
-          if (vQ) t = await afResolve(vQ);
+          if (vP) t = await dmResolve(vP);
+          if (vQ) t = await dmResolve(vQ);
         }
         return t;
       }
@@ -329,7 +322,7 @@ SOFTWARE.
       const wFunc = async (handler, wStore) => {
         try {
           const ct = Date.now();
-          if (ct - timeupdateDT() < 800 && ct - wStore.dt < 800) {
+          if (ct - wStore.dt < 800) {
             const cid = wStore.cid;
             inExec.add(cid);
             const t = await eFunc();
@@ -375,14 +368,16 @@ SOFTWARE.
 
     })();
 
-    let mInterupter = null;
-    setInterval(() => {
-      if (mInterupter === afInterupter) {
-        if (mInterupter !== null) afInterupter = mInterupter = (mInterupter(), null);
-      } else {
-        mInterupter = afInterupter;
-      }
-    }, 125);
+    /*
+        let mInterupter = null;
+        setInterval(() => {
+        if (mInterupter === afInterupter) {
+            if (mInterupter !== null) afInterupter = mInterupter = (mInterupter(), null);
+        } else {
+            mInterupter = afInterupter;
+        }
+        }, 125);
+    */
   });
 
 })(null);

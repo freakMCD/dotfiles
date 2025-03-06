@@ -9,9 +9,8 @@ in
     source /tmp/mpv_addresses
     set target_address "mpv$argv[1]"
     
-    if test -n "$$target_address"
-      hyprctl dispatch closewindow address:$$target_address
-    end
+    test -n "$$target_address" || return
+    hyprctl dispatch closewindow address:$$target_address
     ''
   )
 
@@ -19,24 +18,29 @@ in
     source /tmp/mpv_addresses
     set mpv_socket_dir "/tmp/mpvSockets"
     set name_target "mpv$argv[1]" 
-
     set target_address $$name_target
-    if test -z $target_address
-      exit 1
-    end
+
+    test -z $target_address && exit 1
 
     set clients (hyprctl clients -j)
     set monitors_json (hyprctl monitors -j)
   
       function cyclePause
         set target_pid (echo $clients | jq -r --arg addr "$target_address" '.[] | select(.class=="mpv" and .address==$addr) | .pid')
-        if test -n "$target_pid"
-          echo '{"command":["set_property","pause",false]}'\n'{"command":["set_property","mute",false]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid"
 
-            for pid in (echo $clients | jq -r --arg target "$target_address" '.[] | select(.class=="mpv" and .address != $target) | .pid')
-              echo '{"command":["set_property","mute",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
-            end
-        end
+        test -z "$target_pid" && return
+
+        echo '{"command":["set_property","pause",false]}'\n'{"command":["set_property","mute",false]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid"
+        set -a cmds "dispatch setprop address:$target_address alphainactive ${var.high};"
+
+          echo $clients | jq -r --arg target "$target_address" '
+              .[] | select(.class=="mpv" and .address != $target) |
+              (.pid|tostring) + " " + .address
+          ' | while read -l pid address
+              # Use the variables directly
+              echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
+              set -a cmds "dispatch setprop address:$address alphainactive ${var.low};"
+          end
       end
 
     # Extract workspace details from monitors JSON
@@ -44,9 +48,7 @@ in
     set target_workspace (echo $clients | jq -r --arg addr "$target_address" '
         .[] | select(.address == $addr) | .workspace.name')
     set special_workspace (echo $monitors_json | jq -r '.[].specialWorkspace.name')
-    if test -n "$special_workspace"
-        hyprctl dispatch togglespecialworkspace "$special_workspace"
-    end
+    test -z "$special_workspace" || hyprctl dispatch togglespecialworkspace "$special_workspace"
     
     # Extract fullscreen and focus-related values from clients JSON
     set target_is_fullscreen (echo $clients | jq -r --arg addr "$target_address" '
@@ -70,52 +72,50 @@ in
             set cmds "$cmds dispatch setprop address:$another_window nofocus 1; dispatch fullscreen; dispatch setprop address:$target_address nofocus 1; dispatch focuswindow address:$last_focused;"
         end
     else
-        if test -n "$another_fullscreen"
-            hyprctl dispatch setprop address:$another_fullscreen nofocus 1
-        end
-        set cmds "$cmds dispatch setprop address:$target_address nofocus 0; dispatch focuswindow address:$target_address; dispatch fullscreen;"
+        test -n "$another_fullscreen" && hyprctl dispatch setprop address:$another_fullscreen nofocus 1
         cyclePause
+        set cmds "$cmds dispatch setprop address:$target_address nofocus 0; dispatch focuswindow address:$target_address; dispatch fullscreen;"
     end
     hyprctl --batch "$cmds"
     '')
 
-    (writers.writeFishBin "toggleSTATE" ''
+    (writers.writeFishBin "togglePAUSE" ''
       source /tmp/mpv_addresses
       set mpv_socket_dir "/tmp/mpvSockets"
 
       function cycleState
-        set clients_json (hyprctl clients -j)
-        set target_pid (echo $clients_json | jq -r --arg addr "$target_address" '.[] | select(.class=="mpv" and .address==$addr) | .pid')
+        set clients (hyprctl clients -j)
+        set target_pid (echo $clients | jq -r --arg addr "$target_address" '.[] | select(.class=="mpv" and .address==$addr) | .pid')
 
-        if test -n "$target_pid"
-          switch $state
-            case pause
-              echo '{"command":["cycle","pause"]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid"
+        test -z "$target_pid" && return
 
-            case mute
-              echo '{"command":["cycle","mute"]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid"
-              sleep 0.1
-              # If the target was muted (now is unmuted), adjust mutes.
-              set pause_state (echo '{"command":["get_property","mute"]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid" | jq -r '.data')
-              if test "$pause_state" = "false"
-                  for pid in (echo $clients_json | jq -r --arg target "$target_address" '.[] | select(.class=="mpv" and .address != $target) | .pid')
-                    echo '{"command":["set_property","mute",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
-                  end
-              end
-            case '*'
-              echo "unknown state :$state"
+        echo '{"command":["cycle","pause"]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid"
+        sleep 0.1
+
+        set pause_state (echo '{"command":["get_property","pause"]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid" | jq -r '.data')
+        set alpha (test "$pause_state" = "false" && echo ${var.high} || echo ${var.low})
+        set -a cmds "dispatch setprop address:$target_address alphainactive $alpha;"
+
+        if test "$pause_state" = "false"
+          echo $clients | jq -r --arg target "$target_address" '
+              .[] | select(.class=="mpv" and .address != $target) |
+              (.pid|tostring) + " " + .address
+          ' | while read -l pid address
+              # Use the variables directly
+              echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
+              set -a cmds "dispatch setprop address:$address alphainactive ${var.low};"
           end
         end
+        hyprctl --batch "$cmds"
       end
 
-      set name_target "mpv$argv[2]" 
+      set name_target "mpv$argv[1]" 
       set target_address $$name_target
 
-      if test -n "$target_address" -a (count $argv) -ge 2
-        set state $argv[1]
+      if test -n "$target_address" -a (count $argv) -eq 1
         cycleState
       else 
-        echo "Usage: unified_mpv_control <instance-number> <pause|mute>"
+        echo "Usage: togglePAUSE <instance-number>"
         exit 1
       end
       ''
