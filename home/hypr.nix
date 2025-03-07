@@ -101,7 +101,31 @@ in
       "$cmod" = "CONTROL+$mod";
       "$scmod" = "CONTROL+SHIFT+$mod";
 
-      bind = [
+      bind = let
+        # Define the keypad keys for 1 to 9
+        keypadKeys = [
+          "KP_End"    # 1
+          "KP_Down"   # 2
+          "KP_Next"   # 3
+          "KP_Left"   # 4
+          "KP_Begin"  # 5
+          "KP_Right"  # 6
+          "KP_Home"   # 7
+          "KP_Up"     # 8
+          "KP_Prior"  # 9
+        ];
+
+        # Generate keybindings for toggleFS, togglePAUSE, and closeMpvWindow
+        generateBindings = command: modifier:
+          builtins.genList (i:
+            let key = builtins.elemAt keypadKeys i;
+            in "${modifier},${key},exec,${command} ${toString (i + 1)}"
+        ) 9;
+        in   
+          (generateBindings "toggleFS" "") ++
+          (generateBindings "togglePAUSE" "SHIFT") ++
+          (generateBindings "closeMpvWindow" "CTRL") ++
+        [
         "$mod, 1 , workspace, 1"
         "$mod, 2, workspace, 2"
         "$mod, 3, workspace,  3"
@@ -171,22 +195,6 @@ in
         "$mod SHIFT, TAB, changegroupactive, b"
         "$mod, masculine, togglegroup"
         
-# nds
-        ",KP_End,exec,toggleFS 1"
-        ",KP_Down,exec,toggleFS 2"
-        ",KP_Next,exec,toggleFS 3"
-        ",KP_Left,exec,toggleFS 4"
-
-        "SHIFT,KP_End,exec,togglePAUSE 1"
-        "SHIFT,KP_Down,exec,togglePAUSE 2"
-        "SHIFT,KP_Next,exec,togglePAUSE 3"
-        "SHIFT,KP_Left,exec,togglePAUSE 4"
-
-        "CTRL,KP_End,exec,closeMpvWindow 1"
-        "CTRL,KP_Down,exec,closeMpvWindow 2"
-        "CTRL,KP_Next,exec,closeMpvWindow 3"
-        "CTRL,KP_Left,exec,closeMpvWindow 4"  
-
         "$mod, A, togglespecialworkspace, fastanime"
         "$mod SHIFT, KP_End, togglespecialworkspace, trans"
         "$mod, KP_End, togglespecialworkspace, transI"

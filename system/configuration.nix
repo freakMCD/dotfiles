@@ -48,7 +48,14 @@ in
   # Enable automatic login for the user.
   services.getty.autologinUser = "edwin";
   security.sudo.wheelNeedsPassword = false;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono

@@ -20,8 +20,8 @@
      };
      modules = [
         ./theme.nix
-        ./home
         ./theme
+        ./home
      ];
     };
 
