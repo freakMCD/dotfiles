@@ -1,6 +1,6 @@
 {config, ...}:
 {
-  home.file.".config/qutebrowser/colors.py".text = /* python */''
+  home.file."nix/home/config/qutebrowser/colors.py".text = /* python */''
     bg0 = "#${config.colors.bg0}"
     bg1 = "#${config.colors.bg1}"
     bg2 = "#${config.colors.bg2}"

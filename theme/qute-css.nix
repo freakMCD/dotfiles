@@ -1,6 +1,6 @@
 {config, ...}:
 {
-  home.file.".config/qutebrowser/css/gruvbox.css".text = /* css */ ''
+ home.file."nix/home/config/qutebrowser/css/gruvbox.css".text = /* css */ ''
       :root {
         --bg0: #${config.colors.bg0};
         --bg1: #${config.colors.bg1};

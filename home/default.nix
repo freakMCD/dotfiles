@@ -1,4 +1,4 @@
-{config, inputs, pkgs, ... }: {
+{config, lib, inputs, pkgs, ... }: {
   imports = [
     ./hypr.nix
     ./services.nix
@@ -10,7 +10,7 @@
 
   xdg.configFile =
   let
-    dotfiles = config.lib.file.mkOutOfStoreSymlink "/home/edwin/nix/home/config/";
+    dotfiles = config.lib.file.mkOutOfStoreSymlink "${config.dotfiles}";
   in
   {
     "nvim".source = "${dotfiles}/nvim";

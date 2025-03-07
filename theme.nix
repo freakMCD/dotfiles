@@ -1,6 +1,12 @@
 { lib, config, ... }:
 
 {
+  options.dotfiles = lib.mkOption {
+      type = lib.types.path;
+      apply = toString;
+      default = "${config.home.homeDirectory}/nix/home/config/";
+  };
+  
   options.colors = lib.mkOption {
     type = lib.types.attrs;
     description = "Theme configuration including color palette.";
