@@ -212,7 +212,7 @@ in
         "MOD5, up, exec, $HOME/nix/scripts/volume_notif up"
         "MOD5, down, exec, $HOME/nix/scripts/volume_notif down"
         "MOD5, delete, exec, $HOME/nix/scripts/volume_notif mute"
-        "$mod, delete, exec, $HOME/nix/scripts/volume_notif mic"
+        "$mod, delete, exec, $HOME/nix/scripts/volume_notif mute-mic"
       ];
       bindm =[
         "$mod, mouse:272, movewindow"  

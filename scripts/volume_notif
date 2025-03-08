@@ -1,62 +1,64 @@
 #!/usr/bin/env bash
 
-audiovolumechange="/home/edwin/Music/freedesktop/audio-volume-change.oga"
+case $1 in
+    up|down|mute)
+        node="@DEFAULT_SINK@"
+        type="Volume" ;;
+    mute-mic)
+        node="@DEFAULT_SOURCE@"
+        type="Microphone" ;;
+    *)
+        echo "Usage: $0 {up|down|mute|mute-mic}"
+        exit 2 ;;
+esac
 
-function get_volume {
-    wpctl get-volume @DEFAULT_SINK@ | awk '{print $2*100}'
-}
-
-function volume_notification {
-    volume=$(get_volume)
-
-    # Show the volume notification
-    notify-send -r 2000 -t 1000 -u low -h int:value:"$volume" "Volume: ${volume}%"
-
-    # Play the volume changed sound
-    pw-cat --playback $audiovolumechange
-
-}
-
-function mute_notification {
-    muted=$(wpctl get-volume @DEFAULT_SINK@ | awk '{print $3}')
-
-    if [[ $muted == "[MUTED]" ]]; then
-        notify-send -r 2000 -t 0 -u low "muted"
-    else
-        notify-send -r 2000 -t 1000 -u low "unmuted"
-        pw-cat --playback $audiovolumechange
-    fi
-}
-
-function mic_notification {
-	volume=$(wpctl get-volume @DEFAULT_SOURCE@ | awk '{print $3}')
-	
-	if [[ "$volume" == "[MUTED]" ]]; then
-		notify-send -r 2001 -t 0 -u low --hint=string:x-dunst-stack-tag:mic "󰍭"
-    else
-		notify-send -r 2001 -t 5000 -u low --hint=string:x-dunst-stack-tag:mic "󰍬"
-    pw-cat --playback $audiovolumechange
-	fi
-}
+{ read vol muted; } <<< $(wpctl get-volume $node | awk '{
+    v=int($2*100); m=$3~/MUTED/?1:0; print v,m }')
 
 case $1 in
-    up)
-        wpctl set-volume @DEFAULT_SINK@ 0.05+
-        volume_notification
-        ;;
-    down)
-        wpctl set-volume @DEFAULT_SINK@ 0.05-
-        volume_notification
-	    ;;
-    mute)
-        wpctl set-mute @DEFAULT_SINK@ toggle
-        mute_notification
-        ;;
-    mic)
-        wpctl set-mute @DEFAULT_SOURCE@ toggle
-        mic_notification
-        ;;
-    *)
-        echo "Usage: $0 up | down | mute"
-        ;;
+    up|down)
+        wpctl set-mute $node 0 && muted=0
+        if [[ $1 == up ]]; then
+            new_vol=$((vol + 5))
+        else
+            new_vol=$((vol - 5))
+        fi
+        new_vol=$((new_vol < 0 ? 0 : new_vol > 100 ? 100 : new_vol))
+        wpctl set-volume $node "$new_vol%"
+        vol=$new_vol ;;
+    mute*)
+        wpctl set-mute $node toggle && muted=$((1 - muted)) ;;
 esac
+
+if ((muted)); then
+    if [[ $type == "Volume" ]]; then
+        symbol="🔇"  # Speaker mute
+        msg="$symbol muted"
+    else
+        symbol="🤐"  # More visually distinct mic mute
+        msg="$symbol mic muted"
+    fi
+    timeout="-t 0"
+else
+    if [[ $type == "Volume" ]]; then
+        if ((vol <= 30)); then
+            symbol="🔈"
+        elif ((vol <= 60)); then
+            symbol="🔉"
+        else
+            symbol="🔊"
+        fi
+        msg="$symbol $vol%"
+        # Add progress bar hint only for volume notifications
+        progress_hint="-h int:value:$vol"
+    else
+        symbol="🎤"  # Active mic
+        msg="$symbol unmuted"
+    fi
+    timeout="-t 1500"
+fi
+
+notify-send -u low \
+    -h "string:x-canonical-private-synchronous:${type,,}" \
+    $progress_hint \
+    "$msg" $timeout

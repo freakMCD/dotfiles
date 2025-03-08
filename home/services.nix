@@ -26,35 +26,41 @@
   };
 
   services.fnott = {
-  enable = true;
-  settings = {
-      main = {
-          max-width = 300;
-          default-timeout = 10;
-          idle-timeout = 300;
-          summary-font = "JetBrainsMono Nerd Font:weight=bold:size=12";
-          body-font = "JetBrainsMono Nerd Font:size=11";
-          title-font = "JetBrainsMono Nerd Font:size=16";
-          layer = "overlay";
-          progress-bar-height = 5;
-          padding-vertical = 10;
-          padding-horizontal = 10;
-          edge-margin-vertical = 24;
-          edge-margin-horizontal = 24;
-          background = "${config.colors.bg1}ff";
-          title-format = "";
-          summary-format = "%s";
-          body-format = "%b";
-
-          title-color = "${config.colors.yellow}ff";
-          summary-color = "${config.colors.blue}ff";
-          border-color = "${config.colors.bg3}ff";
-          body-color = "${config.colors.white}ff";
-          border-size = 2;
-
-          play-sound = "paplay --volume=35000 \${filename}";
-      };
-  };
+    enable = true;
+    settings = {
+        main = {
+            # Layout and sizing
+            max-width = 350;
+            max-height = 500;
+            default-timeout = 10;
+            idle-timeout = 300;
+            layer = "overlay";
+            progress-bar-height = 5;
+            padding-vertical = 12;
+            padding-horizontal = 12;
+            edge-margin-vertical = 24;
+            edge-margin-horizontal = 24;
+            # Fonts
+            summary-font = "JetBrainsMono Nerd Font:weight=bold:size=15";
+            body-font = "JetBrainsMono Nerd Font:size=13";
+            title-font = "JetBrainsMono Nerd Font:size=14";
+            # Colors
+            background = "${config.colors.bg1}ff";
+            title-color = "${config.colors.yellow}ff";
+            summary-color = "${config.colors.blue}ff";
+            body-color = "${config.colors.white}ff";
+            border-color = "${config.colors.bg3}ff";
+            border-size = 2;
+            # Progress bar customization
+            progress-bar-color = "${config.colors.blue}ff";
+            # Text formatting
+            title-format = "";  # No title formatting
+            summary-format = "%b";  # Summary text
+            body-format = "%b";  # Body text
+            # Additional aesthetic improvements
+            border-radius = 8;
+        };
+    };
   };
 
   systemd.user.services.shellevents = let hyprevents = 
