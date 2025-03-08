@@ -15,7 +15,6 @@ declare -A chill=(
     ["https://www.youtube.com/playlist?list=PL4CmunqMOJjL9ClFBPb9pjNun2GmL5Ll-"]="G-Dragon"
     ["https://www.youtube.com/playlist?list=PL4CmunqMOJjJZJXUPeHLcHsav5epPRdNq"]="Ado"
     ["https://www.youtube.com/playlist?list=PL4CmunqMOJjLS71zYnNkTtv2hhvYT_QTt"]="Phantom Siita"
-    ["https://www.youtube.com/playlist?list=PL4CmunqMOJjJe5VV9Rnzhk-ltjbdhIBFu"]="BIGBANG"
 )
 
 download_playlists() {

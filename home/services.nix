@@ -30,38 +30,59 @@
     settings = {
         main = {
             # Layout and sizing
-            max-width = 350;
-            max-height = 500;
-            default-timeout = 10;
-            idle-timeout = 300;
+            max-width = 380;
+            max-height = 600;
+            default-timeout = 8;
+            idle-timeout = 240;
             layer = "overlay";
-            progress-bar-height = 5;
-            padding-vertical = 12;
-            padding-horizontal = 12;
-            edge-margin-vertical = 24;
-            edge-margin-horizontal = 24;
+            padding-vertical = 20;
+            padding-horizontal = 20;
+            edge-margin-vertical = 30;
+            edge-margin-horizontal = 10;
+            dpi-aware="yes";
+
             # Fonts
-            summary-font = "JetBrainsMono Nerd Font:weight=bold:size=15";
-            body-font = "JetBrainsMono Nerd Font:size=13";
+            summary-font = "JetBrainsMono Nerd Font:weight=bold:size=13";
+            body-font = "JetBrainsMono Nerd Font:size=12";
             title-font = "JetBrainsMono Nerd Font:size=14";
+
             # Colors
-            background = "${config.colors.bg1}ff";
-            title-color = "${config.colors.yellow}ff";
-            summary-color = "${config.colors.blue}ff";
-            body-color = "${config.colors.white}ff";
-            border-color = "${config.colors.bg3}ff";
+            background = "${config.colors.bg1}ee";
+            summary-color = "${config.colors.yellow}ff";
+            body-color = "${config.colors.white}dd";
+            border-color = "${config.colors.bg3}66";
             border-size = 2;
+            border-radius = 6;
+
             # Progress bar customization
-            progress-bar-color = "${config.colors.blue}ff";
+            progress-bar-color = "${config.colors.yellow}cc";
+            progress-bar-height = 8;
+
             # Text formatting
             title-format = "";  # No title formatting
-            summary-format = "%b";  # Summary text
-            body-format = "%b";  # Body text
-            # Additional aesthetic improvements
-            border-radius = 8;
+            summary-format = "<b><i>%s</i></b>";  # Summary text
+            body-format = "%b";  # Underlined action indicator
         };
+
+        # Urgency-specific overrides
+        low = {
+          background = "${config.colors.bg2}ee";
+          title-color = "${config.colors.gray}ff";
+          summary-color = "${config.colors.gray}ff";
+          body-color = "${config.colors.gray}dd";
+          progress-bar-color = "${config.colors.gray}66";
+        };
+
+        critical = {
+          background = "${config.colors.red}22";  # Subtle red overlay
+          border-color = "${config.colors.red}ff";
+          title-color = "${config.colors.red}ff";
+          summary-color = "${config.colors.yellow}ff";
+          border-size = 2;
+          progress-bar-color = "${config.colors.red}ff";
+        };
+      };
     };
-  };
 
   systemd.user.services.shellevents = let hyprevents = 
   let var = import ./variables.nix;
