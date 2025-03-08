@@ -73,9 +73,9 @@
       hyprctl clients -j | jq -r --arg target "0x$WINDOWADDRESS" '
           .[] | select(.class=="mpv" and .address != $target) |
           (.pid|tostring) + " " + .address
-      ' | while read pid address
+      ' | while read -l pid address
           # Use the variables directly
-          echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid"
+          echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid" &
           set -a cmds "dispatch setprop address:$address alphainactive ${var.low};"
       end
     end
@@ -88,7 +88,7 @@
         test $mpv_count -gt 1 && cycle_pause
 
         hyprctl --batch "$cmds dispatch movewindowpixel exact $x_coords[$mpv_count] $y_coords[$mpv_count], address:0x$WINDOWADDRESS"
-        echo "set mpv$mpv_count 0x$WINDOWADDRESS" >> "$mpv_addresses_file"
+        echo "0x$WINDOWADDRESS" >> "$mpv_addresses_file"
     end
 
     function event_closewindow
@@ -100,7 +100,7 @@
 
       printf "" > $mpv_addresses_file
       for i in (seq $mpv_count)
-        echo "set mpv$i 0x$mpv_addresses[$i]" >> $mpv_addresses_file
+        echo "0x$mpv_addresses[$i]" >> $mpv_addresses_file
         hyprctl dispatch movewindowpixel exact "$x_coords[$i] $y_coords[$i]", address:"0x$mpv_addresses[$i]"
       end
     end

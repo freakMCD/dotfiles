@@ -119,7 +119,7 @@ in
         generateBindings = command: modifier:
           builtins.genList (i:
             let key = builtins.elemAt keypadKeys i;
-            in "${modifier},${key},exec,${command} ${toString (i + 1)}"
+            in "${modifier},${key},exec,${command} ${toString (i+1)}"
         ) 9;
         in   
           (generateBindings "toggleFS" "") ++
