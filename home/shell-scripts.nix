@@ -39,7 +39,7 @@ in
 
     # Monitor states
     set special_ws (echo $monitor_json | jq -r '.[].specialWorkspace.name')
-    test -z "$special_ws" || hyprctl dispatch togglespecialworkspace "$special_workspace"
+    test -z "$special_ws" || hyprctl dispatch togglespecialworkspace "$special_ws"
         
     # Build command string based on fullscreen state
     set cmds ""
@@ -57,8 +57,12 @@ in
         # Enter fullscreen
         echo $clients | jq -r --arg target "$target_address" '
             .[] | select(.class == "mpv" and .address != $target) |
-            (.pid | tostring) + " " + .address
-        ' | while read -l pid address
+            (.pid | tostring) + " " + .address + " " + (.fullscreen | tostring)
+        ' | while read -l pid address fullscreen
+            # Reset previous fullscreen MPVs
+            if test "$fullscreen" = "2"
+                set -a cmds "dispatch setprop address:$address nofocus 1"
+            end
             echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid" &
             set -a cmds "dispatch setprop address:$address alphainactive ${var.low}"
         end
