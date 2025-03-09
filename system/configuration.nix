@@ -89,7 +89,6 @@ in
 
   environment.variables = {
     GNUPGHOME="$HOME/.local/share/gnupg";
-    PASSWORD_STORE_DIR="$HOME/.PrivateHub/password-store/";
     TEXMFVAR="$HOME/.cache/texlive/texmf-var";
     W3M_DIR="$HOME/.local/share/w3m";
     BROWSER="qutebrowser";
