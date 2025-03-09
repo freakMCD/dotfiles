@@ -17,7 +17,6 @@ https://pubmed.ncbi.nlm.nih.gov/37299829/ A Convex Optimization Approach to Mult
 https://radio.garden/visit/tokyo/eR8K4rBb Radio Garden – Tokyo
 https://home-manager-options.extranix.com/ Home Manager - Option Search
 https://search.nixos.org/packages NixOS Search - Packages
-https://search.nixos.org/options NixOS Search - Options
 https://github.com/fish-shell/fish-shell/wiki/Shell-Translation-Dictionary Shell Translation Dictionary · fish-shell/fish-shell Wiki
 https://git.sr.ht/~pkulak/nix/tree/main/item/home/default.nix#L45 ~pkulak/nix (main): home/default.nix - sourcehut git
 https://github.com/yokoffing/Betterfox/blob/main/README.md Betterfox/README.md at main · yokoffing/Betterfox
@@ -28,3 +27,4 @@ https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-hyprland-set
 https://yashgarg.dev/posts/nix-tips-tricks/ Nix Tips & Tricks · Yash Garg
 https://bandito.re/dashboard Bandito.re
 https://chat.deepseek.com/ DeepSeek - Into the Unknown
+https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=enableNG NixOS Search - Options - enableNG

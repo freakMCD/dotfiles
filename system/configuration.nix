@@ -12,6 +12,26 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # From https://kokada.dev/blog/an-unordered-list-of-hidden-gems-inside-nixos/
+  boot.tmp.useTmpfs = true; 
+  systemd.services.nix-daemon = {
+    environment.TMPDIR = "/var/tmp";
+  };
+
+  system.switch = {
+    enable = false;
+    enableNg = true;
+  };
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+  };
+
+  services.dbus.implementation = "broker";
+  services.fstrim.enable = true;
+
+  # HP scanner
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "hplip"
@@ -21,6 +41,7 @@ in
     extraBackends = [pkgs.hplipWithPlugin ];
   };
 
+  # Other
   time.timeZone = "America/Lima";
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -54,6 +75,7 @@ in
       dates = "weekly";
       options = "--delete-older-than 30d";
     };
+    settings.auto-optimise-store = true;
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
