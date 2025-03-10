@@ -10,7 +10,18 @@ let
 in
 {
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
+
+   nix = {
+      gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 1w";
+      };
+      optimise.automatic = true;
+      settings.experimental-features = [ "nix-command" "flakes" ];
+    };
 
   # From https://kokada.dev/blog/an-unordered-list-of-hidden-gems-inside-nixos/
   boot.tmp.useTmpfs = true; 
@@ -69,16 +80,7 @@ in
   # Enable automatic login for the user.
   services.getty.autologinUser = "edwin";
   security.sudo.wheelNeedsPassword = false;
-  nix = {
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
-    settings.auto-optimise-store = true;
-    settings.experimental-features = [ "nix-command" "flakes" ];
-  };
-
+ 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     noto-fonts-cjk-sans

@@ -1,12 +1,5 @@
-# Define keywords and subdomains
-whitelist = [
-    '*://web.whatsapp.com/*',
-    '*://*.whatsapp.net/*',
-]
 
-config.set('content.blocking.whitelist', whitelist)
-
-# Adblock
+# Adblock Lists
 c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt',
                                     'https://easylist.to/easylist/easyprivacy.txt',
                                     'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',

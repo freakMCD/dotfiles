@@ -49,7 +49,7 @@ c.content.javascript.enabled = True
 c.content.javascript.clipboard = "access-paste"
 c.content.javascript.log_message.excludes = {"userscript:_qute_stylesheet": ["*Refused to apply inline style because it violates the following Content Security Policy directive: *"], 
                                              "userscript:_qute_js": ["*TrustedHTML*"]}
-c.content.webgl = True
+c.content.webgl = False
 
 # Tabs
 c.tabs.width = "14%"

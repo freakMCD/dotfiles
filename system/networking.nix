@@ -9,35 +9,37 @@ let
   ];
 in
 { 
+  services.blocky = {
+    enable = true;
+    settings = {
+      upstreams.groups.default = defaultNameservers;
+      bootstrapDns = defaultNameservers;
+      blocking = {
+        denylists = {
+          stevenBlack = [
+            "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts"
+          ];
+        };
+        allowlists = {
+          stevenBlack= [
+            ''
+              web.whatsapp.com
+              *.whatsapp.net
+            ''
+          ];
+        };
+        clientGroupsBlock = {
+          default = [ "stevenBlack" ];
+        };
+      };
+    };
+  };
+
   networking = {
-    useDHCP = false;
-    nameservers = defaultNameservers;
+    nameservers = ["127.0.0.1"];  # Use Blocky as the DNS resolver
     networkmanager = {
       enable = true;
-      dns = "systemd-resolved";
+      dns = "none";  # Disable NetworkManager's built-in DNS
     };
-    stevenblack = {
-      enable = true;
-      block = ["fakenews" "social" "porn"];
-    };
-    extraHosts = ''
-      0.0.0.0 twitch.tv www.twitch.tv gql.twitch.tv
-      0.0.0.0 allkpop.com www.allkpop.com
-    '';
   };
-
-  services.resolved = {
-    enable = true;
-    extraConfig = ''
-      MulticastDNS=no # This is handled by Avahi.
-    '';
-    domains = ["~."];
-    fallbackDns = defaultNameservers;
-  };
-
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-  };
-
 }

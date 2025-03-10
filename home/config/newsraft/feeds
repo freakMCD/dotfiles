@@ -1,10 +1,11 @@
 # vim: set nowrap :
 #
 @ News < reload-period 1440
+https://nixos.org/blog/announcements-rss.xml
 https://bandito.re/13b14305-cba7-4fd1-92b6-d5a424169984.atom
-https://gitlab.com/nitrohorse/search-engines-compare/-/commits/master?format=atom
 https://codeberg.org/newsraft/newsraft/releases.rss
 https://codeberg.org/dnkl/yambar/releases.rss
+https://gitlab.com/nitrohorse/search-engines-compare/-/commits/master?format=atom
 
 @ Math < reload-period 1440
 https://terrytao.wordpress.com/feed/ "Terence Tao Blog"

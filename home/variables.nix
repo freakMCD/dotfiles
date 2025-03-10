@@ -3,7 +3,7 @@ let
   screen = { width = 1920; height = 1080; };
 
   # mpv window dimensions
-  mpv = { width = 320; height = 240; };
+  mpv = { width = 384; height = 265; };
 
   # Offsets
   offset = { x = 10; y = 10; };
@@ -47,8 +47,8 @@ in builtins.mapAttrs (_name: builtins.toString) {
   inherit y1 y2 y3 y4 y5 y6 y7 y8 y9;
 
   # Extra settings
-  rounding = 50;
-  high = 0.75;
-  low = 0.1;
+  rounding = 0;
+  high = 1;
+  low = 0.12;
 }
 
