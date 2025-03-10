@@ -242,7 +242,6 @@ in
         "workspace 5,class:(^(puddletag)$)"
         "workspace 5,class:(^(WebCord)$)"
         "suppressevent maximize,class:^(libreoffice.*)$"
-        "group,class:(org.qutebrowser.qutebrowser)"
 # 
         "pin, class:(^(mpv))"
         "noanim, class:(^(mpv))"

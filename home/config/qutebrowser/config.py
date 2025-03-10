@@ -53,7 +53,7 @@ c.content.webgl = True
 
 # Tabs
 c.tabs.width = "14%"
-c.tabs.position = "right"
+c.tabs.position = "top"
 c.tabs.show = "multiple"
 c.tabs.title.alignment = "left"
 c.tabs.title.elide = "right"

@@ -42,4 +42,5 @@ bind = {
 }
 for key, command in bind.items():
     config.bind(key, command)
-
+config.bind('f', 'hint links userscript domain-replacer')
+config.bind('F', 'hint links userscript domain-opener')
