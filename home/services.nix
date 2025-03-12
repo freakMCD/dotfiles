@@ -89,9 +89,9 @@
   in pkgs.writers.writeFish "shellevents" ''
     set mpv_socket_dir "/tmp/mpvSockets"
     set mpv_addresses_file "/tmp/mpv_addresses"
+    set mpv_count_file "/tmp/mpv_count"
     set mpv_addresses
     set mpv_count 0
-    set -g cmds
 
     function cycle_pause
       hyprctl clients -j | jq -r --arg target "0x$WINDOWADDRESS" '
@@ -100,20 +100,20 @@
       ' | while read -l pid address
           # Use the variables directly
           echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid" &
-          set -a cmds "dispatch setprop address:$address alphainactive ${var.low};"
+          set cmds "dispatch setprop address:$address alphainactive ${var.low};"
       end
     end
 
     function event_openwindow
+        set -g cmds
         test "$WINDOWCLASS" = "mpv" || return
         set mpv_count (math $mpv_count + 1)
         set -a mpv_addresses "$WINDOWADDRESS"
 
         test $mpv_count -gt 1 && cycle_pause
-
         hyprctl --batch "$cmds dispatch movewindowpixel exact ${var.x} ${var.y}, address:0x$WINDOWADDRESS"
         echo "0x$WINDOWADDRESS" >> "$mpv_addresses_file"
-        echo "high" > /tmp/hypr_opacity_state
+        echo "$mpv_count" > $mpv_count_file
     end
 
     function event_closewindow
@@ -122,6 +122,7 @@
 
       set -e mpv_addresses[$index]
       set mpv_count (math $mpv_count - 1)
+      echo $mpv_count > $mpv_count_file
 
       printf "" > $mpv_addresses_file
       for i in (seq $mpv_count)
@@ -140,8 +141,8 @@
         set WINDOWTITLE $fields[4]
 
         switch $event
-            case "openwindow"; event_openwindow; echo "$event $fields"
-            case "closewindow"; event_closewindow; echo "$event $fields"
+            case "openwindow"; event_openwindow
+            case "closewindow"; event_closewindow
         end
     end
       '';

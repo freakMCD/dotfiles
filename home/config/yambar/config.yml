@@ -3,9 +3,9 @@ bar:
  margin: 10
  spacing: 12
  font: JetBrainsMono Nerd Font Mono:pixelsize=12px:style=bold
- 
  height: 18
  background: 000000ff
+
  left:
    - clock:
        date-format: "%a"
@@ -72,3 +72,16 @@ bar:
                         default: {string: {text: down, foreground: e78a4eff}}
                         conditions:
                           state == up && ipv4 != "": {string: {text: up, foreground: 89b482ff}}
+    - script:
+        path: "/home/edwin/nix/scripts/yambar/mpv-watcher.sh"
+        content:
+          map:
+            conditions:
+              mpv_count == 0:
+                string:
+                  text: ""
+                  foreground: "665c54ff"  # Red color for 0 windows
+              mpv_count > 0:
+                string:
+                  text: "🎥 {mpv_count}"
+                  foreground: "fe8019ff" 

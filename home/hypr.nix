@@ -238,7 +238,7 @@ in
         "float,class:(^(org-geogebra-desktop)),title:(^(win))"
         "tile,title:(^(GeoGebra Classic))"
         "workspace 1,class:(org.qutebrowser.qutebrowser|firefox)"
-        "workspace 2,class:(${terminal}|org.pwmt.zathura)"
+        "workspace 1,class:(${terminal}|org.pwmt.zathura)"
         "workspace 3,class:(libreoffice)"
         "workspace 4,class:(^(org-geogebra-desktop))"
         "workspace 5,class:(^(puddletag)$)"

@@ -14,15 +14,24 @@ config.source('websites.py')
 # General
 c.auto_save.session = False
 c.downloads.location.directory = "/home/edwin/MathCareer/"
+c.downloads.location.prompt = True
+c.downloads.remove_finished = 300
+c.downloads.open_dispatcher = "xdg-open {}"
+c.fileselect.folder.command = ["foot","yazi", "--cwd-file={}"]
+c.fileselect.multiple_files.command = ["foot","yazi", "--chooser-file={}"]
+c.fileselect.single_file.command = ["foot","yazi", "--chooser-file={}"]
+c.completion.height = "25%"
+c.completion.scrollbar.padding = 2
 c.completion.shrink = True
 c.completion.open_categories = ["quickmarks", "bookmarks", "searchengines"]
 c.history_gap_interval = -1
 c.messages.timeout = 2000
-c.qt.args = [ "disable-logging", "enable-gpu-rasterization", "ignore-gpu-blocklist", "disable-features=FFmpegAllowLists" ]
+c.qt.args = [ "disable-logging", "enable-gpu-rasterization", "ignore-gpu-blocklist", "disable-features=FFmpegAllowLists" ] # Other qt flag: "disable-remote-fonts"
 c.qt.highdpi= True
 c.session.lazy_restore = True
 c.statusbar.padding = {"bottom": 0, "left": 0, "right": 0, "top": 0}
 c.statusbar.show = "in-mode"
+c.zoom.default = "125%"
 
 # Hints
 c.hints.padding = {"bottom": 0, "left": 1, "right": 1, "top": 0}
@@ -58,10 +67,19 @@ c.input.insert_mode.auto_leave = False
 c.input.insert_mode.leave_on_load = True
 
 # Fonts
-c.fonts.default_size = "15pt"
-c.fonts.default_family = "Liberation Sans"
-c.fonts.tabs.selected = "11pt bold"
-c.fonts.tabs.unselected = "11pt default_family"
-c.fonts.web.size.minimum = 14
-c.fonts.web.size.default = 17
-c.fonts.web.family.serif = "Liberation Serif"
+c.fonts.contextmenu = "default_size default_family"
+c.fonts.default_family = "JetBrainsMono Nerd Font"
+c.fonts.default_size = "12pt"
+c.fonts.prompts = "default_size default_family"
+c.fonts.tooltip = "default_size default_family"
+c.fonts.web.family.cursive = "default_family"
+c.fonts.web.family.fantasy = "default_family"
+c.fonts.web.family.fixed = "default_family"
+c.fonts.web.family.sans_serif = "default_family"
+c.fonts.web.family.serif = "default_family"
+c.fonts.web.family.standard = "default_family"
+c.fonts.web.size.default = 14
+c.fonts.web.size.default_fixed = 14
+c.fonts.web.size.minimum = 12
+c.fonts.web.size.minimum_logical = 12
+

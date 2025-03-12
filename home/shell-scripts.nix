@@ -145,14 +145,6 @@ in
     echo "$new_state" > "$state_file"
 '')
 
-    (writeShellScriptBin "fakehome" ''
-     BIN=$1
-      export HOME="''${HOME}/.opt/$(basename "$BIN")"
-      [ -d "$HOME" ] || mkdir -p "$HOME"
-      # run
-      ''${BIN}
-    '')
-
     (writeShellScriptBin "open_file" ''
       selected_file=$(fzf --delimiter / --with-nth 4..)
 

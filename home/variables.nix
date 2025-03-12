@@ -6,7 +6,7 @@ let
   mpv = { width = screen.width / 5; height = screen.height / 4; };  # Increased by 50px each
 
   # Coordinates (centered directly on screen)
-  x = (screen.width - mpv.width) - 100;
+  x = (screen.width - mpv.width);
   y = (screen.height - mpv.height) / 2;
 in builtins.mapAttrs (_name: builtins.toString) {
   inherit (mpv) width height;
