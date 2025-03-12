@@ -5,6 +5,7 @@ https://nixos.org/blog/announcements-rss.xml
 https://bandito.re/13b14305-cba7-4fd1-92b6-d5a424169984.atom
 https://codeberg.org/newsraft/newsraft/releases.rss
 https://codeberg.org/dnkl/yambar/releases.rss
+https://adguard.com/blog/rss-en.xml
 https://gitlab.com/nitrohorse/search-engines-compare/-/commits/master?format=atom
 
 @ Math < reload-period 1440
@@ -22,8 +23,8 @@ https://w37.onepiece-manga-online.net/feed
 @ Videos < reload-period 1440
 https://www.youtube.com/feeds/videos.xml?playlist_id=UULFYO_jab_esuFRV4b17AJtAw "3Blue1Brown"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCSju5G2aFaWMqn-_0YBtq5A "Stand-up Maths"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "GOT_Extras"
-https://www.youtube.com/feeds/videos.xml?channel_id=UC97I55D2HsW1nfA_1QgJ3IA "HierToGame"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "GOT_Extras" < bind m mark-read; exec nohup mpv "%l" --ytdl-format="bv[height<=1080][vcodec!^=av01]+ba/bv[height<=1080]/b[height<=1080]" >/dev/null 2>&1 &
+https://www.youtube.com/feeds/videos.xml?channel_id=UC97I55D2HsW1nfA_1QgJ3IA "HierToGame" < bind m mark-read; exec nohup mpv "%l" --ytdl-format="bv[height<=1080][vcodec!^=av01]+ba/bv[height<=1080]/b[height<=1080]" >/dev/null 2>&1 &
 
 
 

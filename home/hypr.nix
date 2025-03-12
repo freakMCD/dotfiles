@@ -248,7 +248,7 @@ in
         "pin, class:(^(mpv))"
         "noanim, class:(^(mpv))"
         "nofocus, class:(^(mpv))"
-#        "noborder, class:(^(mpv))"
+        "noborder, class:(^(mpv))"
         "rounding ${var.rounding}, class:(^(mpv))"
         "opacity 1 ${var.high}, class:(^(mpv))"
         "opacity 1 1 0.97, class:(^(${terminal}))"

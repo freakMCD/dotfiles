@@ -17,17 +17,11 @@ bind = {
 	leader + leader: "config-cycle colors.webpage.darkmode.enabled true false;; config-cycle content.user_stylesheets [] ['css/gruvbox.css']",
 	leader + "v": "config-source ;; message-info 'qutebrowser reloaded'",
     ## mpv 
-    lleader + "m": "hint videos userscript qute-mpv",
-    lleader + "a": "hint videos spawn --detach mpv --ytdl-format=ba {hint-url}",
-    lleader + "A": "spawn --detach mpv --ytdl-format=ba {url}",
+    lleader + "m": "hint videos spawn --detach mpv {hint-url}",
+    lleader + "M": "spawn --detach mpv {url}",
+    lleader + "A": "hint videos spawn --detach mpv --ytdl-format=ba {hint-url}",
     lleader + "f": "hint videos spawn --detach mpv {hint-url} --profile=fastYT",
     lleader + "F": "hint links spawn --detach mpv {hint-url}",
-
-    ## qute-pass
-    'zl': 'spawn --userscript qute-pass',
-    'zul': 'spawn --userscript qute-pass --username-only',
-    'zpl': 'spawn --userscript qute-pass --password-only',
-    'zol': 'spawn --userscript qute-pass --otp-only',
 
     ## hints
 	"i": "hint --first inputs",

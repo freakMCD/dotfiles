@@ -64,7 +64,7 @@
     '';
     shellAbbrs = {
       rebuild = "sudo nixos-rebuild --flake $HOME/nix#edwin switch";
-      retest = "sudo nixos-rebuild --flake $HOME/nix#edwin test";
+      retest = "sudo nixos-rebuild --flake $HOME/nix#edwin test --fast";
       reconfig = "home-manager switch --flake $HOME/nix#edwin";
       df="df -h";
       dus="du -h --max-depth=1 | sort -hr";

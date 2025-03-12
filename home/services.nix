@@ -93,9 +93,6 @@
     set mpv_count 0
     set -g cmds
 
-    set -g x_coords ${lib.concatStringsSep " " (map (i: var."x${toString i}") (lib.range 1 9))}
-    set -g y_coords ${lib.concatStringsSep " " (map (i: var."y${toString i}") (lib.range 1 9))}
-
     function cycle_pause
       hyprctl clients -j | jq -r --arg target "0x$WINDOWADDRESS" '
           .[] | select(.class=="mpv" and .address != $target) |
@@ -114,8 +111,9 @@
 
         test $mpv_count -gt 1 && cycle_pause
 
-        hyprctl --batch "$cmds dispatch movewindowpixel exact $x_coords[$mpv_count] $y_coords[$mpv_count], address:0x$WINDOWADDRESS"
+        hyprctl --batch "$cmds dispatch movewindowpixel exact ${var.x} ${var.y}, address:0x$WINDOWADDRESS"
         echo "0x$WINDOWADDRESS" >> "$mpv_addresses_file"
+        echo "high" > /tmp/hypr_opacity_state
     end
 
     function event_closewindow
@@ -128,7 +126,7 @@
       printf "" > $mpv_addresses_file
       for i in (seq $mpv_count)
         echo "0x$mpv_addresses[$i]" >> $mpv_addresses_file
-        hyprctl dispatch movewindowpixel exact "$x_coords[$i] $y_coords[$i]", address:"0x$mpv_addresses[$i]"
+        hyprctl dispatch movewindowpixel exact "${var.x} ${var.y}", address:"0x$mpv_addresses[$i]"
       end
     end
 

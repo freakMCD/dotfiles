@@ -6,9 +6,7 @@ config.set('content.javascript.enabled', False, '*.fandom.com')
 c.url.searchengines = {
     "DEFAULT": "https://www.mojeek.com/search?q={}&arc=none&hp=minimal&qsbu=0&qsba=1&qss=Brave%2CStartpage&foc=Custom",
     "lyrics": "https://www.lyrics.cat/search/?q={}",
-    "i": "https://www.mojeek.com/search?q={}&fmt=images",
     "gh": "https://github.com/search?q={}&type=code",
-    "yt": "https://www.youtube.com/results?search_query={}",
     "arxiv": "https://arxiv.org/search/?query={}&searchtype=all",
     "wolfram": "https://www.wolframalpha.com/input/?i={}",
 }

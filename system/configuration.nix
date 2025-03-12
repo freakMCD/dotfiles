@@ -24,21 +24,15 @@ in
     };
 
   # From https://kokada.dev/blog/an-unordered-list-of-hidden-gems-inside-nixos/
-  boot.tmp.useTmpfs = true; 
-  systemd.services.nix-daemon = {
-    environment.TMPDIR = "/var/tmp";
-  };
-
+  boot.tmp.cleanOnBoot = true;
   system.switch = {
     enable = false;
     enableNg = true;
   };
-
   zramSwap = {
     enable = true;
     algorithm = "zstd";
   };
-
   services.dbus.implementation = "broker";
   services.fstrim.enable = true;
 

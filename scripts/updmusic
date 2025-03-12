@@ -9,11 +9,11 @@ mkdir -p "$dir"
 
 declare -A chill=(
     ["https://www.youtube.com/playlist?list=PL4CmunqMOJjKi1Mtlc3N5pedFJ5UgFobk"]="The Hall"
-    ["https://www.youtube.com/playlist?list=PL4CmunqMOJjLJngQzRR6tExqelkRKa0Vc"]="Classics"
 
+    ["https://www.youtube.com/playlist?list=PL4CmunqMOJjJe4ObHaAdK-y4MWCZqlb0w"]="Ado"
     ["https://www.youtube.com/playlist?list=PL4CmunqMOJjKoQaFs9gpeI3TKq0fkxWQt"]="Reol"
+    ["https://www.youtube.com/playlist?list=PL4CmunqMOJjIlu8Pc-8-mngmOf5dGpfid"]="Reol Featured"
     ["https://www.youtube.com/playlist?list=PL4CmunqMOJjL9ClFBPb9pjNun2GmL5Ll-"]="G-Dragon"
-    ["https://www.youtube.com/playlist?list=PL4CmunqMOJjJZJXUPeHLcHsav5epPRdNq"]="Ado"
     ["https://www.youtube.com/playlist?list=PL4CmunqMOJjLS71zYnNkTtv2hhvYT_QTt"]="Phantom Siita"
 )
 
@@ -22,12 +22,10 @@ download_playlists() {
 
     for url in "${!playlists[@]}"; do
         artist="${playlists[$url]}"
-        filter="duration > 60 & duration < 600"
 
     echo -e "\e[1;32mDownloading $artist's playlist...\e[0m"
 
-    yt-dlp --quiet --progress --parse-metadata " $artist: %(meta_artist)s" --match-filters "$filter & title!~='(?i)\blive\b'" \
-           -o "$dir/%(title)s_%(id)s.%(ext)s" "$url"
+    yt-dlp --progress --parse-metadata " $artist: %(meta_artist)s" -o "$dir/%(title)s_%(id)s.%(ext)s" "$url"
     done
 }
 download_playlists chill

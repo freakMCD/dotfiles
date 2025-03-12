@@ -31,7 +31,7 @@
       sub-spacing=0.5;
 
       ## Streaming ##
-      ytdl-format = "bv[height<=1080][vcodec!^=av01]+ba/bv[height<=1080]/b[height<=1080]";
+      ytdl-format = "bv[height<=720]+ba/bv[height<=720]/b[height<=720]";
       demuxer-max-bytes = "500M";
       demuxer-max-back-bytes="500MiB";
       force-seekable= true;
@@ -41,7 +41,7 @@
       "not fullscreen" = {
         profile-restore = "copy";
         profile-cond = "(osd_width < 1280)";
-        video-zoom = 0.42;
+        video-zoom = 0.5;
         sub-visibility = false;
 
       };

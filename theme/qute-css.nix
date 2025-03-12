@@ -86,11 +86,6 @@
       /* --- Images --- */
       img {
         filter: opacity(0.85);
-        transition: filter 0.2s ease;
-      }
-      
-      img:hover {
-        filter: opacity(1);
       }
       
       /* --- Headings --- */
@@ -129,7 +124,7 @@
         background-color: var(--bg2) !important;
         transition: background-color 0.2s ease;
       }
-      
+
       /* ===== Reddit ===== */
       
       .title {

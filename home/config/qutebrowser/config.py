@@ -38,19 +38,6 @@ c.colors.webpage.darkmode.policy.images = "never"
 c.colors.webpage.darkmode.threshold.background = 110
 c.colors.webpage.darkmode.threshold.foreground = 110
 
-# Content
-c.content.autoplay = False
-c.content.notifications.enabled = False
-c.content.geolocation               = False
-c.content.blocking.enabled = True
-c.content.blocking.method = "both"
-c.content.fullscreen.window = True
-c.content.javascript.enabled = True
-c.content.javascript.clipboard = "access-paste"
-c.content.javascript.log_message.excludes = {"userscript:_qute_stylesheet": ["*Refused to apply inline style because it violates the following Content Security Policy directive: *"], 
-                                             "userscript:_qute_js": ["*TrustedHTML*"]}
-c.content.webgl = False
-
 # Tabs
 c.tabs.width = "14%"
 c.tabs.position = "top"
