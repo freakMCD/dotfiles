@@ -30,7 +30,7 @@
         --bright-white: #${config.colors.b_white};
       }
 
-      * { font-family: JetBrainsMono Nerd Font Mono !important; }
+      * { font-family: JetBrainsMono Nerd Font !important; }
       /* --- Global Elements --- */
       html, body, table, 
       #content, #mw-content-text,

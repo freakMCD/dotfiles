@@ -107,6 +107,7 @@
     function event_openwindow
         set -g cmds
         test "$WINDOWCLASS" = "mpv" || return
+        notify-send "$WINDOWTITLE"
         set mpv_count (math $mpv_count + 1)
         set -a mpv_addresses "$WINDOWADDRESS"
 

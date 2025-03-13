@@ -20,7 +20,7 @@ https://mathvoices.ams.org/featurecolumn/feed/
 @ Manga
 https://w37.onepiece-manga-online.net/feed
 
-@ Videos < reload-period 1440
+@ Videos < reload-period 720
 https://www.youtube.com/feeds/videos.xml?playlist_id=UULFYO_jab_esuFRV4b17AJtAw "3Blue1Brown"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCSju5G2aFaWMqn-_0YBtq5A "Stand-up Maths"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "GOT_Extras" < bind m mark-read; exec nohup mpv "%l" --ytdl-raw-options='format-sort="codec:vp9.2,res:1080,+size,+br"' >/dev/null 2>&1 &

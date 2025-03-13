@@ -4,6 +4,7 @@
     enable = true;
     config = {
       hwdec = "auto";
+      title="\${filename}";
       gpu-context = "wayland";
       save-position-on-quit = true;
       watch-later-options = "start";
@@ -32,9 +33,14 @@
 
       ## Streaming ##
       ytdl-raw-options = ''format-sort="codec:vp9.2,res:720,+size,+br"'';
-      demuxer-max-bytes = "500M";
-      demuxer-max-back-bytes="500MiB";
+      cache = "yes";
       force-seekable= true;
+      demuxer-max-bytes = "750M";
+      demuxer-max-back-bytes="250MiB";
+      prefetch-playlist= true;
+      cache-pause-initial = true;
+      cache-pause-wait = 5;
+
     };
 
     profiles = {
@@ -44,6 +50,9 @@
         video-zoom = 0.5;
         sub-visibility = false;
 
+      };
+      "protocol.https" = {
+        title= "\${media-title}";
       };
       "fastYT" = { ytdl-format="22/18/17/bv+ba";};
     };
