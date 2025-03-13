@@ -13,15 +13,15 @@ in
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
 
-   nix = {
-      gc = {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 1w";
-      };
-      optimise.automatic = true;
-      settings.experimental-features = [ "nix-command" "flakes" ];
-    };
+  nix = {
+     gc = {
+       automatic = true;
+       dates = "weekly";
+       options = "--delete-older-than 1w";
+     };
+     optimise.automatic = true;
+     settings.experimental-features = [ "nix-command" "flakes" ];
+   };
 
   # From https://kokada.dev/blog/an-unordered-list-of-hidden-gems-inside-nixos/
   boot.tmp.cleanOnBoot = true;

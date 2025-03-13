@@ -1,5 +1,6 @@
 {config, lib, inputs, pkgs, ... }: {
   imports = [
+    ./theme
     ./hypr.nix
     ./services.nix
     ./programs.nix

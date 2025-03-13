@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{lib, config, ... }:
 
 {
   options.dotfiles = lib.mkOption {
@@ -45,4 +45,9 @@
       b_orange  = "fe8019";
     };
   };
+
+  imports = [
+   ./qute-py.nix
+   ./qute-css.nix
+  ];
 }

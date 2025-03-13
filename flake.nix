@@ -20,8 +20,6 @@
      };
      modules = [
         ./home
-        ./theme.nix
-        ./theme
      ];
     };
 
