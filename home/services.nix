@@ -91,9 +91,12 @@
     set mpv_addresses_file "/tmp/mpv_addresses"
     set mpv_count_file "/tmp/mpv_count"
     set mpv_addresses
-    set mpv_count 0
+    echo "" >> $mpv_addresses_file
+    set -g mpv_titles
 
     function cycle_pause
+      set index 1
+      set current_playing_index -1
       hyprctl clients -j | jq -r --arg target "0x$WINDOWADDRESS" '
           .[] | select(.class=="mpv" and .address != $target) |
           (.pid|tostring) + " " + .address
@@ -105,31 +108,31 @@
     end
 
     function event_openwindow
-        set -g cmds
         test "$WINDOWCLASS" = "mpv" || return
-        notify-send "$WINDOWTITLE"
-        set mpv_count (math $mpv_count + 1)
-        set -a mpv_addresses "$WINDOWADDRESS"
+        set -g cmds
+        set -a mpv_addresses "0x$WINDOWADDRESS"
+        set -a mpv_titles "$WINDOWTITLE"
 
-        test $mpv_count -gt 1 && cycle_pause
+        test (count $mpv_addresses) -gt 1 && cycle_pause
         hyprctl --batch "$cmds dispatch movewindowpixel exact ${var.x} ${var.y}, address:0x$WINDOWADDRESS"
-        echo "0x$WINDOWADDRESS" >> "$mpv_addresses_file"
-        echo "$mpv_count" > $mpv_count_file
+
+        printf "%s\n" $mpv_addresses > "$mpv_addresses_file"
+        echo (for i in (seq (count $mpv_titles))
+            echo "[$i. $mpv_titles[$i]]"
+        end) > $mpv_count_file
     end
 
     function event_closewindow
-      set index (contains -i $WINDOWADDRESS $mpv_addresses)
+      set index (contains -i "0x$WINDOWADDRESS" $mpv_addresses)
       test -n "$index" || return 1
 
       set -e mpv_addresses[$index]
-      set mpv_count (math $mpv_count - 1)
-      echo $mpv_count > $mpv_count_file
+      set -e mpv_titles[$index]
 
-      printf "" > $mpv_addresses_file
-      for i in (seq $mpv_count)
-        echo "0x$mpv_addresses[$i]" >> $mpv_addresses_file
-        hyprctl dispatch movewindowpixel exact "${var.x} ${var.y}", address:"0x$mpv_addresses[$i]"
-      end
+      printf "%s\n" $mpv_addresses > $mpv_addresses_file
+      echo (for i in (seq (count $mpv_titles))
+          echo "[$i. $mpv_titles[$i]]"
+      end) > $mpv_count_file
     end
 
     while read event_data

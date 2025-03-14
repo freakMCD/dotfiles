@@ -34,7 +34,7 @@ bar:
        args:
          - "--follow"
          - "-i"
-         - "chromium"
+         - "chromium,mpv" 
          - "metadata"
          - "-f"
          - |
@@ -50,13 +50,11 @@ bar:
                 default: {string: {text: "{artist} - {title}", foreground: FF6F6199}}
                 conditions:
                   playerName == "mpd": {string: {text: ""}}
-                  playerName == "mpv": {string: {text: "{title}", foreground: 83a59899}}
              status == Playing:
               map:
                 default: {string: {text: "{artist} - {title}", foreground: FF6F61FF}}
                 conditions:
                   playerName == "mpd": {string: {text: "{artist} - {title}", foreground: 8ec07cff}}
-                  playerName == "mpv": {string: {text: "{title}", foreground: 83a598FF}}
  right:
     - network:
         content:
@@ -75,13 +73,6 @@ bar:
     - script:
         path: "/home/edwin/nix/scripts/yambar/mpv-watcher.sh"
         content:
-          map:
-            conditions:
-              mpv_count == 0:
-                string:
-                  text: ""
-                  foreground: "665c54ff"  # Red color for 0 windows
-              mpv_count > 0:
-                string:
-                  text: "🎥 {mpv_count}"
-                  foreground: "fe8019ff" 
+          string:
+            text: "🎥 {mpv_count}"
+            foreground: "fe8019ff" 
