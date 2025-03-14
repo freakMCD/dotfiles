@@ -28,6 +28,11 @@ require("lazy").setup({
 	end
 },
 { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true} ,
+{
+  "ibhagwan/fzf-lua",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  opts = {}
+},
 
   {
   'hrsh7th/nvim-cmp', 
@@ -40,23 +45,13 @@ require("lazy").setup({
    'saadparwaiz1/cmp_luasnip',
    'L3MON4D3/LuaSnip',
   },
- },
+},
 
   'neovim/nvim-lspconfig',
   'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp,  
 
--- appearance
-{
-    'nvim-lualine/lualine.nvim', 
-    dependencies = 'kyazdani42/nvim-web-devicons',
-},
-
-
 -- tex
-{
-    'lervag/vimtex',
-    ft = "tex",
-},
+{ 'lervag/vimtex', ft = "tex" },
 {
     'dense-analysis/ale',
     config = function()
@@ -70,6 +65,22 @@ require("lazy").setup({
     end
 }
 })
+
+require("fzf-lua").setup{
+  files = {
+    fd_opts = [[--color=always -t f  . /mnt/DATA ~/nix ]],
+    fzf_opts = {  
+      ["--delimiter"] = "/";
+      ["--with-nth"] = "4..";
+    },
+  },
+}
+
+vim.g.mapleader = " "
+vim.api.nvim_set_keymap('n', '<Leader>f', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>b', "<cmd>lua require('fzf-lua').buffers()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>l', "<cmd>lua require('fzf-lua').lines()<CR>", { noremap = true, silent = true })
+
 
 require("gruvbox").setup({
   italic = {
