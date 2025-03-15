@@ -15,20 +15,14 @@
 
   outputs = { nixpkgs, home-manager, fastanime, ... }@inputs: {
     homeConfigurations.edwin = home-manager.lib.homeManagerConfiguration {
-     pkgs = import nixpkgs {
-        system = "x86_64-linux";
-     };
-     modules = [
-        ./home
-     ];
+      pkgs = import nixpkgs { system = "x86_64-linux"; };
+      modules = [ ./home ];
     };
 
     nixosConfigurations.edwin = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
-      modules = [
-        ./system
-      ];
+      modules = [ ./system ];
     };
   };
 }

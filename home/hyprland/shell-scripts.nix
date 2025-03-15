@@ -21,6 +21,8 @@ in
 
   test -z $target_address && exit 1
 
+  set states (cat /tmp/mpv_states)
+
   set clients (hyprctl clients -j)
   set monitor_json (hyprctl monitors -j)
 
@@ -65,10 +67,18 @@ in
           end
           echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid" &
           set -a cmds "dispatch setprop address:$address alphainactive ${var.low}"
+      # Update states
+          set idx (contains -i "$address" $mpv_addresses)
+          set states[$idx] "paused"
       end
 
       # Unpause target and set opacity
       echo '{"command":["set_property","pause",false]}' | socat - UNIX-CONNECT:"/tmp/mpvSockets/$target_pid" &
+
+      set target_index (contains -i "$target_address" $mpv_addresses)
+      if test -n "$target_index"
+          set states[$target_index] "playing"
+      end
 
       set -a cmds \
           "dispatch setprop address:$target_address alphainactive ${var.high}" \
@@ -76,12 +86,14 @@ in
           "dispatch focuswindow address:$target_address" \
           "dispatch fullscreen"
   end
-
+  printf "%s\n" $states > /tmp/mpv_states
   hyprctl --batch (string join ";" $cmds)
   '')
 
   (writers.writeFishBin "togglePAUSE" ''
     set mpv_socket_dir "/tmp/mpvSockets"
+    set mpv_addresses (cat /tmp/mpv_addresses)
+    set target_address $mpv_addresses[$argv[1]]
 
     function cycleState
       set clients (hyprctl clients -j)
@@ -95,6 +107,10 @@ in
       set alpha (test "$pause_state" = "false" && echo ${var.high} || echo ${var.low})
       set cmds "dispatch setprop address:$target_address alphainactive $alpha"
 
+      set states (cat /tmp/mpv_states)
+      set target_index (contains -i "$target_address" $mpv_addresses)
+      set states[$target_index] (test "$pause_state" = "false" && echo "playing" || echo "paused")
+
       if test "$pause_state" = "false"
         echo $clients | jq -r --arg target "$target_address" '
             .[] | select(.class=="mpv" and .address != $target) |
@@ -103,13 +119,14 @@ in
             # Use the variables directly
             echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid" &
             set -a cmds "dispatch setprop address:$address alphainactive ${var.low}"
+            # Update states
+            set idx (contains -i "$address" $mpv_addresses)
+            set states[$idx] "paused"
         end
       end
+      printf "%s\n" $states > /tmp/mpv_states
       hyprctl --batch (string join ";" $cmds)
     end
-
-    set mpv_addresses (cat /tmp/mpv_addresses)
-    set target_address $mpv_addresses[$argv[1]]
 
     if test -n "$target_address" -a (count $argv) -eq 1
       cycleState

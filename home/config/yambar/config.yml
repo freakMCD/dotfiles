@@ -28,51 +28,79 @@ bar:
                   foreground: d8a657ff
                - string:
                   text: "{cpu}%"
+   - network:
+       content:
+         map:
+           default: {empty: {}}
+           conditions:
+             name == enp34s0:
+               map:
+                 conditions:
+                   # Physical disconnection (no carrier)
+                   ~carrier: 
+                     string: { text: 🔌 }
+                   # Logical failure (carrier up but no IP)
+                   carrier:
+                     map:
+                       default: {empty: {}}
+                       conditions:
+                         state == up && ipv4 == "":
+                           string: {
+                             font: JetBrainsMono Nerd Font Mono:pixelsize=20px:style=bold,
+                             text: "⚠",  # Warning (up but no IP)
+                             foreground: e78a4eff  # Orange
+                           }
+                         state == dormant:
+                           string: { text: ⏳ }
+                         state == down:
+                           string: { text: ⛔ }
+
  center:
    - script:
        path: /run/current-system/sw/bin/playerctl
        args:
          - "--follow"
-         - "-i"
-         - "chromium,mpv" 
+         - "-p"
+         - "mpd" 
          - "metadata"
          - "-f"
          - |
            status|string|{{status}}
-           playerName|string|{{playerName}}
            artist|string|{{artist}}
            title|string|{{title}}
        content:
          map:
            conditions:
-             status == Paused:
-              map:
-                default: {string: {text: "{artist} - {title}", foreground: FF6F6199}}
-                conditions:
-                  playerName == "mpd": {string: {text: ""}}
+             status == Paused: {empty: {}}
              status == Playing:
-              map:
-                default: {string: {text: "{artist} - {title}", foreground: FF6F61FF}}
-                conditions:
-                  playerName == "mpd": {string: {text: "{artist} - {title}", foreground: 8ec07cff}}
+                 string: {text: "{artist} - {title}", foreground: 8ec07cff}
  right:
-    - network:
-        content:
-          map:
-            default: {empty: {}}
-            conditions:
-              name == enp34s0:
-                map:
-                  conditions:
-                    ~carrier: {empty: {}}
-                    carrier:
-                      map:
-                        default: {string: {text: down, foreground: e78a4eff}}
-                        conditions:
-                          state == up && ipv4 != "": {string: {text: up, foreground: 89b482ff}}
     - script:
-        path: "/home/edwin/nix/scripts/yambar/mpv-watcher.sh"
+        path: ~/nix/scripts/yambar/mpv-watcher.sh
         content:
-          string:
-            text: "🎥 {mpv_count}"
-            foreground: "fe8019ff" 
+          - list:
+              items:
+                - map:
+                    conditions:
+                      "mpv1_state == playing":
+                        string: {text: "{mpv1_title}", foreground: "00ff00ff"}
+                      "mpv1_state == paused":
+                        string: {text: "{mpv1_title}", foreground: "00ff0066"}
+                    default:
+                      string: {text: ""}
+                - map:
+                    conditions:
+                      "mpv2_state == playing":
+                        string: {text: "{mpv2_title}", foreground: "00ff00ff"}
+                      "mpv2_state == paused":
+                        string: {text: "{mpv2_title}", foreground: "00ff0066"}
+                    default:
+                      string: {text: ""}
+                - map:
+                    conditions:
+                      "mpv3_state == playing":
+                        string: {text: "{mpv3_title}", foreground: "00ff00ff"}
+                      "mpv3_state == paused":
+                        string: {text: "{mpv3_title}", foreground: "00ff0066"}
+                    default:
+                      string: {text: ""}

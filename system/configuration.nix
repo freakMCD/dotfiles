@@ -3,15 +3,12 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { system, pkgs, lib, ... }:
-let
-  perlEnv = pkgs.perl.withPackages (p: with p; [
-    MIMEEncWords
-  ]);
-in
 {
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    systemd-boot.configurationLimit = 10;
+    efi.canTouchEfiVariables = true;
+  };
 
   nix = {
      gc = {

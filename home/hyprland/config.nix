@@ -28,9 +28,9 @@ in
       };
 
       exec-once = [
-        "yambar"
         "fnott"
         "udiskie"
+        "yambar"
       ];
 
       general = {
@@ -222,7 +222,7 @@ in
       ];
 
       workspace = [
-        "special:fastanime, on-created-empty: ${terminal} --app-id=fastanime fakehome \"fastanime anilist\""
+        "special:fastanime, on-created-empty: ${terminal} --app-id=fastanime fastanime anilist"
         "special:trans, on-created-empty: ${terminal} --app-id=trans trans -b -I :es"
         "special:transI, on-created-empty: ${terminal} --app-id=transI trans -b -I :@es"
         "special:neomutt, on-created-empty: ${terminal} --app-id=neomutt neomutt"

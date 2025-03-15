@@ -1,160 +1,79 @@
-{pkgs, lib, config, ...}:
-
+{config, ...}:
 {
-  home.username = "edwin";
-  home.homeDirectory = "/home/edwin/";
-  home.stateVersion = "24.11";
-  home.sessionPath = [
-    "$HOME/bin"
-  ];
-  xdg.enable = true;
-
-  services.mpd = {
-    enable = true;
-    musicDirectory = "/home/edwin/Music/2024/";
-    extraConfig = ''
-        auto_update "yes"
-        audio_output {
-          type "pipewire"
-          name "My PipeWire Output"
-        }
-    '';
-  };
-
-  services.mpd-mpris = {
-    enable = true;
-  };
-
-  services.fnott = {
-    enable = true;
-    settings = {
-        main = {
-            # Layout and sizing
-            max-width = 380;
-            max-height = 600;
-            default-timeout = 8;
-            idle-timeout = 240;
-            layer = "overlay";
-            padding-vertical = 20;
-            padding-horizontal = 20;
-            edge-margin-vertical = 30;
-            edge-margin-horizontal = 10;
-            dpi-aware="yes";
-
-            # Fonts
-            summary-font = "JetBrainsMono Nerd Font:weight=bold:size=13";
-            body-font = "JetBrainsMono Nerd Font:size=12";
-            title-font = "JetBrainsMono Nerd Font:size=14";
-
-            # Colors
-            background = "${config.colors.bg1}ee";
-            summary-color = "${config.colors.yellow}ff";
-            body-color = "${config.colors.white}dd";
-            border-color = "${config.colors.bg3}66";
-            border-size = 2;
-            border-radius = 6;
-
-            # Progress bar customization
-            progress-bar-color = "${config.colors.yellow}cc";
-            progress-bar-height = 8;
-
-            # Text formatting
-            title-format = "";  # No title formatting
-            summary-format = "<b><i>%s</i></b>";  # Summary text
-            body-format = "%b";  # Underlined action indicator
-        };
-
-        # Urgency-specific overrides
-        low = {
-          background = "${config.colors.bg2}ee";
-          title-color = "${config.colors.gray}ff";
-          summary-color = "${config.colors.gray}ff";
-          body-color = "${config.colors.gray}dd";
-          progress-bar-color = "${config.colors.gray}66";
-        };
-
-        critical = {
-          background = "${config.colors.red}22";  # Subtle red overlay
-          border-color = "${config.colors.red}ff";
-          title-color = "${config.colors.red}ff";
-          summary-color = "${config.colors.yellow}ff";
-          border-size = 2;
-          progress-bar-color = "${config.colors.red}ff";
-        };
-      };
+  services = {
+    mpd = {
+      enable = true;
+      musicDirectory = "/home/edwin/Music/2024/";
+      extraConfig = ''
+          auto_update "yes"
+          audio_output {
+            type "pipewire"
+            name "My PipeWire Output"
+          }
+      '';
     };
 
-  systemd.user.services.shellevents = let hyprevents = 
-  let var = import ./variables.nix;
-  in pkgs.writers.writeFish "shellevents" ''
-    set mpv_socket_dir "/tmp/mpvSockets"
-    set mpv_addresses_file "/tmp/mpv_addresses"
-    set mpv_count_file "/tmp/mpv_count"
-    set mpv_addresses
-    echo "" >> $mpv_addresses_file
-    set -g mpv_titles
+    mpd-mpris = {
+      enable = true;
+    };
 
-    function cycle_pause
-      set index 1
-      set current_playing_index -1
-      hyprctl clients -j | jq -r --arg target "0x$WINDOWADDRESS" '
-          .[] | select(.class=="mpv" and .address != $target) |
-          (.pid|tostring) + " " + .address
-      ' | while read -l pid address
-          # Use the variables directly
-          echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid" &
-          set cmds "dispatch setprop address:$address alphainactive ${var.low};"
-      end
-    end
+    fnott = {
+      enable = true;
+      settings = {
+          main = {
+              # Layout and sizing
+              max-width = 380;
+              max-height = 600;
+              default-timeout = 8;
+              idle-timeout = 240;
+              layer = "overlay";
+              padding-vertical = 20;
+              padding-horizontal = 20;
+              edge-margin-vertical = 30;
+              edge-margin-horizontal = 10;
+              dpi-aware="yes";
 
-    function event_openwindow
-        test "$WINDOWCLASS" = "mpv" || return
-        set -g cmds
-        set -a mpv_addresses "0x$WINDOWADDRESS"
-        set -a mpv_titles "$WINDOWTITLE"
+              # Fonts
+              summary-font = "JetBrainsMono Nerd Font:weight=bold:size=13";
+              body-font = "JetBrainsMono Nerd Font:size=12";
+              title-font = "JetBrainsMono Nerd Font:size=14";
 
-        test (count $mpv_addresses) -gt 1 && cycle_pause
-        hyprctl --batch "$cmds dispatch movewindowpixel exact ${var.x} ${var.y}, address:0x$WINDOWADDRESS"
+              # Colors
+              background = "${config.colors.bg1}ee";
+              summary-color = "${config.colors.yellow}ff";
+              body-color = "${config.colors.white}dd";
+              border-color = "${config.colors.bg3}66";
+              border-size = 2;
+              border-radius = 6;
 
-        printf "%s\n" $mpv_addresses > "$mpv_addresses_file"
-        echo (for i in (seq (count $mpv_titles))
-            echo "[$i. $mpv_titles[$i]]"
-        end) > $mpv_count_file
-    end
+              # Progress bar customization
+              progress-bar-color = "${config.colors.yellow}cc";
+              progress-bar-height = 8;
 
-    function event_closewindow
-      set index (contains -i "0x$WINDOWADDRESS" $mpv_addresses)
-      test -n "$index" || return 1
+              # Text formatting
+              title-format = "";  # No title formatting
+              summary-format = "<b><i>%s</i></b>";  # Summary text
+              body-format = "%b";  # Underlined action indicator
+          };
 
-      set -e mpv_addresses[$index]
-      set -e mpv_titles[$index]
+          # Urgency-specific overrides
+          low = {
+            background = "${config.colors.bg2}ee";
+            title-color = "${config.colors.gray}ff";
+            summary-color = "${config.colors.gray}ff";
+            body-color = "${config.colors.gray}dd";
+            progress-bar-color = "${config.colors.gray}66";
+          };
 
-      printf "%s\n" $mpv_addresses > $mpv_addresses_file
-      echo (for i in (seq (count $mpv_titles))
-          echo "[$i. $mpv_titles[$i]]"
-      end) > $mpv_count_file
-    end
-
-    while read event_data
-        set event (string split ">>" "$event_data")[1]
-        set fields (string split -- "," (string split -- ">>" "$event_data")[2])
-
-        set WINDOWADDRESS $fields[1]
-        set WORKSPACENAME $fields[2]
-        set WINDOWCLASS $fields[3]
-        set WINDOWTITLE $fields[4]
-
-        switch $event
-            case "openwindow"; event_openwindow
-            case "closewindow"; event_closewindow
-        end
-    end
-      '';
-    in {
-    Unit.Description = "Hyprland Event Listener for shellevents";
-    Service.ExecStart = ''
-      /bin/sh -c '${pkgs.socat}/bin/socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock EXEC:'${hyprevents}',nofork'
-      '';
-    Install.WantedBy = [ "graphical-session.target" ];
+          critical = {
+            background = "${config.colors.red}22";  # Subtle red overlay
+            border-color = "${config.colors.red}ff";
+            title-color = "${config.colors.red}ff";
+            summary-color = "${config.colors.yellow}ff";
+            border-size = 2;
+            progress-bar-color = "${config.colors.red}ff";
+          };
+        };
+      };
   };
 }
