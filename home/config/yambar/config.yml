@@ -83,24 +83,43 @@ bar:
                 - map:
                     conditions:
                       "mpv1_state == playing":
-                        string: {text: "{mpv1_title}", foreground: "00ff00ff"}
+                        list:
+                          items:
+                          - string: {text: "{mpv1_number}", foreground: "fb4934ff"}
+                          - string: {text: "{mpv1_title}", foreground: "83a598ff"}
                       "mpv1_state == paused":
-                        string: {text: "{mpv1_title}", foreground: "00ff0066"}
+                        list:
+                          items:
+                          - string: {text: "{mpv1_number}", foreground: "fb4934ff"}
+                          - string: {text: "{mpv1_title}", foreground: "bdae9366"}
                     default:
                       string: {text: ""}
                 - map:
                     conditions:
                       "mpv2_state == playing":
-                        string: {text: "{mpv2_title}", foreground: "00ff00ff"}
+                        list:
+                          items:
+                          - string: {text: "{mpv2_number}", foreground: "fb4934ff"}
+                          - string: {text: "{mpv2_title}", foreground: "83a598ff"}
                       "mpv2_state == paused":
-                        string: {text: "{mpv2_title}", foreground: "00ff0066"}
+                        list:
+                          items:
+                          - string: {text: "{mpv2_number}", foreground: "fb4934ff"}
+                          - string: {text: "{mpv2_title}", foreground: "bdae9366"}
                     default:
                       string: {text: ""}
                 - map:
                     conditions:
                       "mpv3_state == playing":
-                        string: {text: "{mpv3_title}", foreground: "00ff00ff"}
+                        list:
+                          items:
+                          - string: {text: "{mpv3_number}", foreground: "fb4934ff"}
+                          - string: {text: "{mpv3_title}", foreground: "83a598ff"}
                       "mpv3_state == paused":
-                        string: {text: "{mpv3_title}", foreground: "00ff0066"}
+                        list:
+                          items:
+                          - string: {text: "{mpv3_number}", foreground: "fb4934ff"}
+                          - string: {text: "{mpv3_title}", foreground: "bdae9366"}
                     default:
                       string: {text: ""}
+

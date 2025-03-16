@@ -1,24 +1,31 @@
 #!/usr/bin/env bash
-touch /tmp/mpv_titles
-touch /tmp/mpv_states
+
 titles_file="/tmp/mpv_titles"
 states_file="/tmp/mpv_states"
 
-echo "mpv1_title|string|"
-echo "mpv1_state|string|"
-echo "mpv2_title|string|"
-echo "mpv2_state|string|"
-echo "mpv3_title|string|"
-echo "mpv3_state|string|"
+# Initialize files
+touch "$titles_file" "$states_file"
+printf '\n\n\n' > "$titles_file"
+printf '\n\n\n' > "$states_file"
 
+
+# Function to generate numbered output
+update_output() {
+    local count=0
+    while IFS= read -r title && IFS= read -r state <&3; do
+        ((count++))
+        echo "mpv${count}_title|string|${title:- }  "
+        echo "mpv${count}_state|string|${state:-unknown}"
+        echo "mpv${count}_number|string|  $count."
+    done < "$titles_file" 3< "$states_file"
+}
+
+# Initial output
+update_output
 echo ""
 
+# Watch for changes
 while inotifywait -qq -e modify "$titles_file" "$states_file"; do
-    echo "mpv1_title|string|$(sed -n 1p "$titles_file")"
-    echo "mpv1_state|string|$(sed -n 1p "$states_file")"
-    echo "mpv2_title|string|$(sed -n 2p "$titles_file")"
-    echo "mpv2_state|string|$(sed -n 2p "$states_file")"
-    echo "mpv3_title|string|$(sed -n 3p "$titles_file")"
-    echo "mpv3_state|string|$(sed -n 3p "$states_file")"
+    update_output
     echo ""
 done
