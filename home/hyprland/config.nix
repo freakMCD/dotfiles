@@ -62,7 +62,8 @@ in
 
       input = {
         follow_mouse = 1;
-        kb_layout = "es";
+        kb_layout = "us";
+        kb_variant= "altgr-intl";
         mouse_refocus = false;
       };
 
@@ -195,7 +196,7 @@ in
         "$mod SHIFT, Y, lockactivegroup, toggle"
         "$mod, TAB, changegroupactive, f"
         "$mod SHIFT, TAB, changegroupactive, b"
-        "$mod, masculine, togglegroup"
+        "$mod, grave, togglegroup"
         
         "$mod, A, togglespecialworkspace, fastanime"
         "$mod SHIFT, KP_End, togglespecialworkspace, trans"

@@ -11,7 +11,7 @@ IMAPStore gmail-remote
 TLSType IMAPS
 Host imap.gmail.com
 User vastagox@gmail.com
-PassCmd "PASSWORD_STORE_DIR=~/.PrivateHub/password-store/ pass gmailapp/vastagox"
+PassCmd "PASSWORD_STORE_DIR=~/.password-store/ pass gmailapp/vastagox"
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 MaildirStore gmail-local

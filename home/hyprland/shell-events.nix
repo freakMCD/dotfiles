@@ -68,6 +68,8 @@
     function event_windowtitlev2
         set idx (contains -i "0x$WINDOWADDRESS" $mpv_addresses)
         test -n "$idx" || return 1
+        test -n "$WINDOWTITLE" || return  # New: Skip empty titles!
+
         set mpv_titles[$idx] (format_title "$WINDOWTITLE")
         printf "%s\n" $mpv_titles > $mpv_titles_file
     end

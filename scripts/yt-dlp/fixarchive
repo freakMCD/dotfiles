@@ -4,7 +4,7 @@ set -euo pipefail  # Strict error handling
 
 workingdir="$(realpath "$(dirname "$0")")"
 archive_file="$workingdir/yt_songs.txt"
-music_dir="$HOME/Music/2024"
+music_dir="$HOME/Music/MainPL"
 
 echo "Updating $archive_file with video IDs from $music_dir"
 

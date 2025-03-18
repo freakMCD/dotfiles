@@ -56,8 +56,8 @@
       ];
     };
 
-    desktopEntries.qutebrowser = {
-      name = "QuteBrowser";
+    desktopEntries."org.qutebrowser.qutebrowser" = {
+      name = "qutebrowser";
       genericName = "Web Browser";
       comment = "A keyboard-driven, vim-like browser based on Python and Qt";
       icon = "qutebrowser";

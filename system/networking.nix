@@ -2,11 +2,9 @@
 let 
   defaultNameservers = [
     "9.9.9.9"
-    "9.9.9.10"
-    "9.9.9.11"
+    "149.112.112.112"
+    "2620:fe::fe"
     "2620:fe::9"
-    "2620:fe::10"
-    "2620:fe::11"
   ];
 in
 { 
@@ -16,21 +14,22 @@ in
     services.blocky = {
       enable = true;
       settings = {
-        upstreams.groups.default = defaultNameservers;
+        upstreams = {
+        groups.default = defaultNameservers;
+        };
         bootstrapDns = defaultNameservers;
         blocking = {
+          loading.refreshPeriod = "24h";
           denylists = {
-            ads = [
+            general = [
               "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/ultimate.txt"
               "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt"
             ];
-
-            porn = [
-              "https://nsfw.oisd.nl/domainswild"
-            ];
-
             social = [
               "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/social-only/hosts"
+            ]; 
+            extra = [
+              "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn-only/hosts"
               ''
                 *.twitch.tv
               ''
@@ -45,13 +44,16 @@ in
             ];
           };
           clientGroupsBlock = {
-            default = [ "ads" "social" "porn" ];
+            default = [ "general" "social" "extra" ];
           };
         };
         caching = {
-          minTime = "40m";
-          maxTime = "0";
+          minTime = "5m";
+          maxTime = "4h";
           prefetching = true;
+          prefetchExpires = "30m";
+          prefetchThreshold = 4;
+          cacheTimeNegative = "15m";
         };
         ports = lib.mkIf config.enableMonitoring {
           dns = 53;

@@ -7,13 +7,14 @@
 // @grant        GM_addStyle
 // @license      MIT
 // ==/UserScript==
-
+//
+/*OTHER:
+ #related, */
 GM_addStyle(`
-    #related,
     #player,
     #secondary,
     #comments,
-    .miniplayer,
+    ytd-miniplayer,
     ytd-merch-shelf-renderer,
     ytd-reel-shelf-renderer,
     #content .ytd-rich-shelf-renderer,

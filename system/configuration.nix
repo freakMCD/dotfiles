@@ -48,11 +48,11 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   services.xserver.xkb = {
-    layout = "es";
-    variant = "";
+    layout = "us";
+    variant = "altgr-intl";
   };
 
-  console.keyMap = "es";
+  console.keyMap = "us";
 
   services.pipewire = {
     enable = true;
@@ -74,6 +74,7 @@
  
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
+    nerd-fonts.liberation
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-emoji

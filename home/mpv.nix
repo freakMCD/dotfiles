@@ -32,15 +32,16 @@
       sub-spacing=0.5;
 
       ## Streaming ##
-      ytdl-raw-options = ''format-sort="codec:vp9.2,res:720,+size,+br"'';
+      ytdl-raw-options = ''format-sort="res:1080,codec:vp9.2,+size,+br"'';
       cache = "yes";
       force-seekable= true;
-      demuxer-max-bytes = "750M";
-      demuxer-max-back-bytes="250MiB";
+      demuxer-max-bytes = "300M";
+      demuxer-max-back-bytes="200MiB";
+      demuxer-hysteresis-secs = 10;
+      demuxer-donate-buffer = false;
       prefetch-playlist= true;
       cache-pause-initial = true;
       cache-pause-wait = 5;
-
     };
 
     profiles = {
@@ -54,7 +55,6 @@
       "protocol.https" = {
         title= "\${media-title}";
       };
-      "fastYT" = { ytdl-format="22/18/17/bv+ba";};
     };
 
     bindings = {

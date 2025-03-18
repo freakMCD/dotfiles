@@ -16,13 +16,13 @@
         # Help message
         if test (count $argv) -eq 1 -a \( "$argv[1]" = "-h" -o "$argv[1]" = "--help" \)
           echo "Usage: yt_compat <url> <range>"
-          echo 'Example: yt_compat https://www.youtube.com/watch?v=o9DhvbqYzns "48-90"'
+          echo 'Example: yt_compat https://www.youtube.com/watch?v=o9DhvbqYzns 48-90'
           echo "Note: The range is in seconds"
           return
         end
 
         if test (count $argv) -ne 2
-            echo "Error: Incorrect usage. Run 'yt_compat --help' for instructions."
+            echo "Error: Incorrect usage. Run 'yt-compat --help' for instructions."
             return 1
         end
 
@@ -63,6 +63,7 @@
       end
     '';
     shellAbbrs = {
+      top = "htop";
       rebuild = "sudo nixos-rebuild --flake $HOME/nix#edwin switch";
       retest = "sudo nixos-rebuild --flake $HOME/nix#edwin test --fast";
       reconfig = "home-manager switch --flake $HOME/nix#edwin";

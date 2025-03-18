@@ -80,6 +80,7 @@ vim.g.mapleader = " "
 vim.api.nvim_set_keymap('n', '<Leader>f', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>b', "<cmd>lua require('fzf-lua').buffers()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>l', "<cmd>lua require('fzf-lua').lines()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>o', "<cmd>lua require('fzf-lua').oldfiles()<CR>", { noremap = true, silent = true })
 
 
 require("gruvbox").setup({

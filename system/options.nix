@@ -1,3 +1,3 @@
 {
-  enableMonitoring = false;
+  enableMonitoring = true;
 }

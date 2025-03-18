@@ -31,14 +31,15 @@ c.qt.highdpi= True
 c.session.lazy_restore = True
 c.statusbar.padding = {"bottom": 0, "left": 0, "right": 0, "top": 0}
 c.statusbar.show = "in-mode"
-c.zoom.default = "125%"
+c.zoom.default = "100%"
 
 # Hints
 c.hints.padding = {"bottom": 0, "left": 1, "right": 1, "top": 0}
 c.hints.border = "2px solid"
 c.hints.radius = 8
 c.hints.scatter = False
-c.hints.mode = "number"
+c.hints.mode = "letter"
+c.hints.chars = "qwerasdzxc"
 
 # Colors
 c.colors.webpage.darkmode.enabled = True
@@ -68,8 +69,8 @@ c.input.insert_mode.leave_on_load = True
 
 # Fonts
 c.fonts.contextmenu = "default_size default_family"
-c.fonts.default_family = "JetBrainsMono Nerd Font"
-c.fonts.default_size = "12pt"
+c.fonts.default_family = "LiterationSans Nerd Font"
+c.fonts.default_size = "11pt"
 c.fonts.prompts = "default_size default_family"
 c.fonts.tooltip = "default_size default_family"
 c.fonts.web.family.cursive = "default_family"
@@ -78,8 +79,8 @@ c.fonts.web.family.fixed = "default_family"
 c.fonts.web.family.sans_serif = "default_family"
 c.fonts.web.family.serif = "default_family"
 c.fonts.web.family.standard = "default_family"
-c.fonts.web.size.default = 14
-c.fonts.web.size.default_fixed = 14
-c.fonts.web.size.minimum = 12
-c.fonts.web.size.minimum_logical = 12
+c.fonts.web.size.default = 16
+c.fonts.web.size.default_fixed = 16
+c.fonts.web.size.minimum = 16
+c.fonts.web.size.minimum_logical = 16
 

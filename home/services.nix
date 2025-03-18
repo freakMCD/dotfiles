@@ -3,7 +3,7 @@
   services = {
     mpd = {
       enable = true;
-      musicDirectory = "/home/edwin/Music/2024/";
+      musicDirectory = "/home/edwin/Music/MainPL";
       extraConfig = ''
           auto_update "yes"
           audio_output {
