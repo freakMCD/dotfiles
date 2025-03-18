@@ -10,14 +10,8 @@
       watch-later-options = "start";
       force-window = true;
       screenshot-directory = "~/MediaHub/screenshots/mpv";
-
-      ## OSD ##
-      osd-on-seek="msg-bar";
+      osd-bar= false;
       osd-font-size = 20;
-      osd-outline-size = 1.5;
-      osd-color="#${config.colors.fg1}";
-      osd-outline-color = "#${config.colors.bg1}";
-      osd-status-msg="\${time-pos} ~ \${demuxer-cache-duration}";
 
       ## Languages ##
       slang="eng,en,enUS,en-US,spa,es";
@@ -48,9 +42,9 @@
       "not fullscreen" = {
         profile-restore = "copy";
         profile-cond = "(osd_width < 1280)";
-        video-zoom = 0.5;
+        video-zoom = 0.4;
         sub-visibility = false;
-
+        
       };
       "protocol.https" = {
         title= "\${media-title}";
@@ -68,8 +62,12 @@
     scriptOpts = {
       osc = {
         seekbarstyle = "diamond";
+        seekbarhandlesize = 0.5;
         seekrangestyle = "line";
+        deadzonesize = 1;
         scalefullscreen = 0.85;
+        scalewindowed = 1.5;
+        hidetimeout = 1000;
       };
       playlistmanager = {
         playlist_display_timeout = 10;
@@ -121,6 +119,24 @@
             license = lib.licenses.mit;
           };
         })
+
+        (mpvScripts.buildLua {
+          pname = "show-osc-on-seek";
+          version = "1.0";
+          src = pkgs.writeTextFile {
+            name = "show-osc-on-seek-src";
+            text = ''
+              mp.observe_property('seeking', 'native', function(_, seeking)
+                  if seeking then
+                      mp.command('script-message osc-show')
+                  end
+              end)
+            '';
+            destination = "/show-osc-on-seek.lua";
+          };
+          scriptPath = "show-osc-on-seek.lua";
+        })
+
         mpvScripts.mpv-playlistmanager
         mpvScripts.seekTo
         mpvScripts.mpris

@@ -175,8 +175,6 @@ in
         "MOD5, P, exec, mpc toggle"
         "MOD5, left, exec, mpc prev"
         "MOD5, right, exec, mpc next"
-        "$mod, left, exec, ${playerctl} position 10-"
-        "$mod, right, exec, ${playerctl} position 10+"
 
         #change focus keys
         "$mod, h, movefocus, l"
@@ -216,6 +214,11 @@ in
         "MOD5, down, exec, $HOME/nix/scripts/volume_notif down"
         "MOD5, delete, exec, $HOME/nix/scripts/volume_notif mute"
         "$mod, delete, exec, $HOME/nix/scripts/volume_notif mute-mic"
+        "$mod, left, exec, mpvSeek -9"
+        "$mod, right, exec, mpvSeek 9"
+        "$smod, left, exec, mpvSeek -54"
+        "$smod, right, exec, mpvSeek 54"
+
       ];
       bindm =[
         "$mod, mouse:272, movewindow"  

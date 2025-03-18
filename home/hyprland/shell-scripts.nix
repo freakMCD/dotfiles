@@ -137,32 +137,38 @@ in
     ''
   )
 
-(writers.writeFishBin "toggleVIEW" ''
-    # State file to track current opacity
-    set state_file "/tmp/hypr_opacity_state"
-    
-    # Determine target opacity
-    if test -e "$state_file" && grep -q "high" "$state_file"
-        set target_opacity ${var.low}
-        set new_state "low"
+(writers.writeFishBin "mpvSeek" ''
+  set mpv_socket_dir "/tmp/mpvSockets"
+  set default_seek 10  # Default absolute value
+
+  # Parse single argument
+  set seek_cmd $default_seek
+  if set -q argv[1]
+    if string match -qr '^-?\d+$' -- $argv[1]
+      set seek_cmd $argv[1]
     else
-        set target_opacity ${var.high}
-        set new_state "high"
+      echo "Error: Invalid seek value '$argv[1]' - must be integer"
+      exit 1
     end
+  end
 
-    set clients (hyprctl clients -j)
+  # Find playing window
+  set addresses (cat /tmp/mpv_addresses)
+  set states (cat /tmp/mpv_states)
+  set playing_index (contains -i "playing" $states)
+  if test -z "$playing_index"
+    exit 1
+  end
 
-    # Apply to all mpv windows
-    echo $clients | jq -r '.[] | select(.class=="mpv" ) | .address' | while read -l address
-        set -a cmds "dispatch setprop address:$address alphainactive $target_opacity"
-    end
-
-    # Execute commands and update state
-    hyprctl --batch (string join ";" $cmds)
-    echo "$new_state" > "$state_file"
+  # Get PID and execute seek
+  set target_address $addresses[$playing_index]
+  set target_pid (hyprctl clients -j | jq -r --arg addr "$target_address" '
+    .[] | select(.address == $addr).pid')
+  
+  echo '{"command":["seek", '$seek_cmd', "relative"]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$target_pid"
 '')
 
-    (writeShellScriptBin "open_file" ''
+(writeShellScriptBin "open_file" ''
       selected_file=$(fzf --delimiter / --with-nth 4..)
 
       # Open the selected file using nohup and redirect output to nohup.out
