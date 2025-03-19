@@ -37,6 +37,7 @@
     ncmpcpp = {
       enable = true;
       settings = {
+        user_interface = "alternative";
         lyrics_directory = "~/Music/lyrics";
         mpd_crossfade_time = 5;
         allow_for_physical_item_deletion = "yes";

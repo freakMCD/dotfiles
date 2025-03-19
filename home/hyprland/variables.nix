@@ -1,9 +1,9 @@
 let
   # Screen dimensions
   screen = { width = 1920; height = 1080; };
-
-  # Slightly bigger mpv window
-  mpv = { width = screen.width / 5; height = screen.height / 4; };  # Increased by 50px each
+  
+  # Mpv dimensions
+  mpv = { width = screen.width * 17 / 64; height = screen.height * 14 / 36; };
 
   # Coordinates (centered directly on screen)
   x = (screen.width - mpv.width);

@@ -3,6 +3,9 @@ source ~/.config/neomutt/mappings
 
 set from = "vastagox@gmail.com"
 set real_name = "Edwin Velarde"
+set timeout = 300
+timeout-hook 'exec sync-mailbox'
+shutdown-hook 'exec sync-mailbox'
 
 # paths
 set folder = "~/.local/share/email/gmail"

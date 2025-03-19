@@ -51,8 +51,8 @@ in
           minTime = "5m";
           maxTime = "4h";
           prefetching = true;
-          prefetchExpires = "30m";
-          prefetchThreshold = 4;
+          prefetchExpires = "1h";
+          prefetchThreshold = 3;
           cacheTimeNegative = "15m";
         };
         ports = lib.mkIf config.enableMonitoring {

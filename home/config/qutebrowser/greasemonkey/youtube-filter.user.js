@@ -8,10 +8,10 @@
 // @license      MIT
 // ==/UserScript==
 //
-/*OTHER:
- #related, */
 GM_addStyle(`
     #player,
+    #related,
+    #center,
     #secondary,
     #comments,
     ytd-miniplayer,

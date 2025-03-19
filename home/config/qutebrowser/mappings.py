@@ -17,11 +17,8 @@ bind = {
 	leader + leader: "config-cycle colors.webpage.darkmode.enabled true false;; config-cycle content.user_stylesheets [] ['css/gruvbox.css']",
 	leader + "v": "config-source ;; message-info 'qutebrowser reloaded'",
     ## mpv 
-    lleader + "m": "hint videos spawn --detach mpv {hint-url}",
-    lleader + "M": "spawn --detach mpv {url}",
-    lleader + "A": "hint videos spawn --detach mpv --ytdl-format=ba {hint-url}",
-    lleader + "f": "hint videos spawn --detach mpv {hint-url} --profile=fastYT",
-    lleader + "F": "hint links spawn --detach mpv {hint-url}",
+    lleader + "m": "hint videos spawn --detach mpv --ytdl-format=ba {hint-url}",
+    lleader + "M": "spawn --detach mpv {url} --ytdl-format=ba",
 
     ## hints
 	"i": "hint --first inputs",

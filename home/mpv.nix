@@ -3,6 +3,7 @@
   programs.mpv = {
     enable = true;
     config = {
+      video-unscaled = true;
       hwdec = "auto";
       title="\${filename}";
       gpu-context = "wayland";
@@ -31,7 +32,6 @@
       force-seekable= true;
       demuxer-max-bytes = "300M";
       demuxer-max-back-bytes="200MiB";
-      demuxer-hysteresis-secs = 10;
       demuxer-donate-buffer = false;
       prefetch-playlist= true;
       cache-pause-initial = true;
@@ -42,7 +42,7 @@
       "not fullscreen" = {
         profile-restore = "copy";
         profile-cond = "(osd_width < 1280)";
-        video-zoom = 0.4;
+        video-zoom = -1.25;
         sub-visibility = false;
         
       };
@@ -138,8 +138,6 @@
         })
 
         mpvScripts.mpv-playlistmanager
-        mpvScripts.seekTo
-        mpvScripts.mpris
     ];
   };
 }

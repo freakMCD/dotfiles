@@ -2,8 +2,8 @@ bar:
  location: top
  margin: 10
  spacing: 12
- font: JetBrainsMono Nerd Font Mono:pixelsize=12px:style=bold
- height: 18
+ font: JetBrainsMono Nerd Font Mono:size=12:style=bold
+ height: 20
  background: 000000ff
 
  left:
