@@ -1,9 +1,22 @@
-{ pkgs, lib, config, ...}: 
+{ pkgs, lib, config, ...}: let
+  yt-dlp = pkgs.yt-dlp.overrideAttrs (old: {
+    version = "2025.3.26";
+    src = pkgs.fetchPypi {
+      pname = "yt_dlp";
+      version = "2025.3.26";
+      hash = "sha256-R0Vhcrx6iNuhxRn+QtgAh6j1MMA9LL8k4GCkH48fbss=";
+    };
+    postPatch = "";
+  });
+in
 {
   programs.mpv = {
     enable = true;
     config = {
       hwdec = "auto";
+      keep-open = true;
+      profile = "fast";
+      video-sync = "display-resample";
       title="\${filename}";
       gpu-context = "wayland";
       save-position-on-quit = true;
@@ -26,12 +39,11 @@
       sub-spacing=0.5;
 
       ## Streaming ##
-      ytdl-raw-options = ''format-sort="res:1080,codec:vp9.2,+size,+br"'';
-      cache = "yes";
+      ytdl-format = "bv*[vcodec^=avc1][height<=1080]+ba";
+      demuxer-lavf-o="extension_picky=0";
       force-seekable= true;
-      demuxer-max-bytes = "300M";
-      demuxer-max-back-bytes="200MiB";
-      demuxer-hysteresis-secs = 10;
+      demuxer-max-bytes = "450M";
+      demuxer-max-back-bytes="150MiB";
       demuxer-donate-buffer = false;
       prefetch-playlist= true;
       cache-pause-initial = true;
@@ -42,7 +54,7 @@
       "not fullscreen" = {
         profile-restore = "copy";
         profile-cond = "(osd_width < 1280)";
-        video-zoom = 0.4;
+        video-zoom = 0.6;
         sub-visibility = false;
         
       };
@@ -55,7 +67,6 @@
       "ESC" = "ignore";
       "WHEEL_UP" = "ignore";
       "WHEEL_DOWN" = "ignore";
-      "Shift+Ctrl+S" = "script-binding toggle-seeker";
       "Shift+d" = "playlist-remove current";
     };
 
@@ -138,8 +149,16 @@
         })
 
         mpvScripts.mpv-playlistmanager
-        mpvScripts.seekTo
-        mpvScripts.mpris
     ];
   };
+  home.packages = with pkgs; [
+    yt-dlp
+    (writeShellApplication {
+      name = "mpvl";
+      runtimeInputs = with pkgs; [ wl-clipboard ];
+      text = ''
+        mpv "$(wl-paste)"
+      '';
+    })
+  ];
 }

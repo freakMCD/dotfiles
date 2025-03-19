@@ -15,11 +15,13 @@ https://www.ams.org/rss/mathmoments.rss
 https://mathvoices.ams.org/teachingandlearning/feed/
 https://mathvoices.ams.org/mathmedia/feed/
 https://mathvoices.ams.org/featurecolumn/feed/
-
-
-@ Videos|Manga < reload-period 720
-https://w37.onepiece-manga-online.net/feed
 https://www.youtube.com/feeds/videos.xml?playlist_id=UULFYO_jab_esuFRV4b17AJtAw "3Blue1Brown"
+
+
+@ Extra < reload-period 240
+https://twitchrss.appspot.com/vodonly/hollowknightcommunity
+https://twitchrss.appspot.com/vodonly/insym
+https://w37.onepiece-manga-online.net/feed
 https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "GOT_Extras" < bind m mark-read; exec nohup mpv "%l" --ytdl-raw-options='format-sort="codec:vp9.2,res:1080,+size,+br"' >/dev/null 2>&1 &
 https://www.youtube.com/feeds/videos.xml?channel_id=UC97I55D2HsW1nfA_1QgJ3IA "HierToGame" < bind m mark-read; exec nohup mpv "%l" --ytdl-raw-options='format-sort="codec:vp9.2,res:1080,+size,+br"' >/dev/null 2>&1 &
 

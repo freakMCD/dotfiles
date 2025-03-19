@@ -1,9 +1,9 @@
 let
   # Screen dimensions
   screen = { width = 1920; height = 1080; };
-
-  # Slightly bigger mpv window
-  mpv = { width = screen.width / 5; height = screen.height / 4; };  # Increased by 50px each
+  
+  # Mpv dimensions
+  mpv = { width = screen.width * 13 / 64; height = screen.height * 10 / 36; };
 
   # Coordinates (centered directly on screen)
   x = (screen.width - mpv.width);
@@ -13,6 +13,6 @@ in builtins.mapAttrs (_name: builtins.toString) {
   inherit x y;
 
   rounding = 10;
-  high = 0.8;
+  high = 0.85;
   low = 0;
 }

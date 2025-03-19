@@ -1,6 +1,7 @@
 {config, ...}:
 {
   programs = {
+    librewolf.enable = true;
     git = {
       enable = true;
       extraConfig.credential.helper = "store";
@@ -37,6 +38,7 @@
     ncmpcpp = {
       enable = true;
       settings = {
+        user_interface = "alternative";
         lyrics_directory = "~/Music/lyrics";
         mpd_crossfade_time = 5;
         allow_for_physical_item_deletion = "yes";
@@ -84,7 +86,7 @@
         selection-clipboard = "clipboard";
         selection-notification = false;
         show-recent = 20;
-        recolor-lightcolor = "rgba(245,200,150,0.75)" ;
+        recolor-lightcolor = "rgba(241,228,181,0.6)" ;
         recolor-darkcolor = "#000000";
         recolor = true;
         recolor-keephue = true;

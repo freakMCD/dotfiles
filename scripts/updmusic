@@ -9,10 +9,6 @@ mkdir -p "$dir"
 
 declare -A chill=(
     ["https://www.youtube.com/playlist?list=PL4CmunqMOJjKi1Mtlc3N5pedFJ5UgFobk"]="The Hall"
-    ["https://www.youtube.com/playlist?list=PL4CmunqMOJjKoQaFs9gpeI3TKq0fkxWQt"]="Reol"
-    ["https://www.youtube.com/playlist?list=PL4CmunqMOJjIlu8Pc-8-mngmOf5dGpfid"]="Reol Featured"
-    ["https://www.youtube.com/playlist?list=PL4CmunqMOJjL9ClFBPb9pjNun2GmL5Ll-"]="G-Dragon"
-    ["https://www.youtube.com/playlist?list=PL4CmunqMOJjLS71zYnNkTtv2hhvYT_QTt"]="Phantom Siita"
 )
 
 download_playlists() {

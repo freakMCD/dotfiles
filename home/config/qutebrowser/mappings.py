@@ -19,9 +19,6 @@ bind = {
     ## mpv 
     lleader + "m": "hint videos spawn --detach mpv {hint-url}",
     lleader + "M": "spawn --detach mpv {url}",
-    lleader + "A": "hint videos spawn --detach mpv --ytdl-format=ba {hint-url}",
-    lleader + "f": "hint videos spawn --detach mpv {hint-url} --profile=fastYT",
-    lleader + "F": "hint links spawn --detach mpv {hint-url}",
 
     ## hints
 	"i": "hint --first inputs",

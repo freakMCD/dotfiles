@@ -4,14 +4,14 @@ in
 {
 # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-      dig htop inotify-tools
-      home-manager pass yadm gnupg ffmpeg simple-scan
+      dig htop inotify-tools streamlink telegram-desktop
+      home-manager nvd pass yadm gnupg simple-scan
       gcc bundix perlEnv
-      qutebrowser firefox w3m 
+      qutebrowser w3m 
       neovim kalker
       curl rclone udiskie bat fd libnotify
       neomutt msmtp isync newsraft
-      nomacs playerctl yt-dlp mpc
+      nomacs playerctl mpc
       wev wl-clipboard grim slurp wf-recorder qbittorrent translate-shell
       chafa inputs.fastanime.packages.${system}.default
       texlab texlive.combined.scheme-medium

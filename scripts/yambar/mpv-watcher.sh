@@ -3,21 +3,24 @@
 titles_file="/tmp/mpv_titles"
 states_file="/tmp/mpv_states"
 
-# Initialize files
-touch "$titles_file" "$states_file"
-printf '\n\n\n' > "$titles_file"
-printf '\n\n\n' > "$states_file"
+# Initialize empty files
+true > "$titles_file"
+true > "$states_file"
 
-
-# Function to generate numbered output
 update_output() {
-    local count=0
-    while IFS= read -r title && IFS= read -r state <&3; do
-        ((count++))
-        echo "mpv${count}_title|string|${title:- }  "
-        echo "mpv${count}_state|string|${state:-unknown}"
-        echo "mpv${count}_number|string|  $count."
-    done < "$titles_file" 3< "$states_file"
+    # Read current entries
+    mapfile -t titles < "$titles_file"
+    mapfile -t states < "$states_file"
+    
+    # Always output 3 entries with fallbacks
+    for ((i=0; i<3; i++)); do
+        num=$((i+1))
+        title="${titles[$i]:- }"
+        state="${states[$i]:-unknown}"
+        echo "mpv${num}_title|string|$title"
+        echo "mpv${num}_state|string|$state"
+        echo "mpv${num}_number|string|$num."
+    done
 }
 
 # Initial output

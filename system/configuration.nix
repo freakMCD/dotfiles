@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ system, pkgs, lib, ... }:
+{ system, plugins, pkgs, lib, ... }:
 {
   boot.loader = {
     systemd-boot.enable = true;
@@ -22,6 +22,10 @@
 
   # From https://kokada.dev/blog/an-unordered-list-of-hidden-gems-inside-nixos/
   boot.tmp.cleanOnBoot = true;
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
   system.switch = {
     enable = false;
     enableNg = true;
@@ -33,11 +37,20 @@
   services.dbus.implementation = "broker";
   services.fstrim.enable = true;
 
-  # HP scanner
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "hplip"
-    ];
+  nixpkgs.config = {
+    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "hplip" ];
+
+    packageOverrides = pkgs: {
+      hplip = pkgs.hplip.overrideAttrs (oldAttrs: {
+        # Override the plugin fetch directly in derivation
+        HPLIP_PLUGIN = pkgs.fetchurl {
+          url = "https://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/hplip-3.24.4-plugin.run";
+          hash = "sha256-Hzxr3SVmGoouGBU2VdbwbwKMHZwwjWnI7P13Z6LQxao="; # Keep this updated!
+        };
+      });
+    };
+  };
+
   hardware.sane = {
     enable = true;
     extraBackends = [pkgs.hplipWithPlugin ];

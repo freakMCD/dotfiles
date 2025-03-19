@@ -88,11 +88,7 @@ in
       group = {
           "col.border_active" = "rgba(fe8019ee) rgba(fabd2fee) 135deg";
           groupbar = {
-              font_family="JetBrainsMono Nerd Font Mono";
-              font_size=13;
-              "col.active"="0xdd401000";
-              "col.inactive"="0xcc303030";
-              text_color="0xffffffff";
+              render_titles = false;
           };
       };
 
@@ -242,7 +238,8 @@ in
         "float,class:(^(org-geogebra-desktop)),title:(^(win))"
         "tile,title:(^(GeoGebra Classic))"
         "workspace 1,class:(org.qutebrowser.qutebrowser|firefox)"
-        "workspace 1,class:(${terminal}|org.pwmt.zathura)"
+        "workspace 1,class:(${terminal})"
+        "workspace 2,class:(org.pwmt.zathura)"
         "workspace 3,class:(libreoffice)"
         "workspace 4,class:(^(org-geogebra-desktop))"
         "workspace 5,class:(^(puddletag)$)"

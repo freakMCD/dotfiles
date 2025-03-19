@@ -11,15 +11,22 @@ in
 
   options.enableMonitoring = lib.mkEnableOption "Enable Prometheus and Grafana monitoring services";
   config = {
-    services.blocky = {
+    systemd.services.blocky = {
+      wants = [ "network-online.target" ];
+      after = [ "network-online.target" ];
+
+      startLimitIntervalSec = 1;
+      startLimitBurst = 50;
+    };
+      services.blocky = {
       enable = true;
       settings = {
-        upstreams = {
-        groups.default = defaultNameservers;
+        upstreams.groups.default = defaultNameservers;
+        bootstrapDns = {
+          upstream = "https://dns.quad9.net/dns-query";
+          ips = [ "9.9.9.9" "149.112.112.112" ];
         };
-        bootstrapDns = defaultNameservers;
         blocking = {
-          loading.refreshPeriod = "24h";
           denylists = {
             general = [
               "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/ultimate.txt"
@@ -30,9 +37,6 @@ in
             ]; 
             extra = [
               "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn-only/hosts"
-              ''
-                *.twitch.tv
-              ''
             ];
           };
           allowlists = {
@@ -49,14 +53,10 @@ in
         };
         caching = {
           minTime = "5m";
-          maxTime = "4h";
+          maxTime = "2h";
           prefetching = true;
-          prefetchExpires = "30m";
-          prefetchThreshold = 4;
-          cacheTimeNegative = "15m";
         };
         ports = lib.mkIf config.enableMonitoring {
-          dns = 53;
           http = 4000;
         };
         prometheus = {
