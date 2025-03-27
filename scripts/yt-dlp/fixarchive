@@ -1,16 +1,39 @@
 #!/usr/bin/env bash
+source ~/nix/scripts/music_config
 
-set -euo pipefail  # Strict error handling
+# Process The Hall separately
+hall_dir="$BASE_DIR/The Hall"
+hall_archive="$hall_dir/downloaded.txt"
 
-workingdir="$(realpath "$(dirname "$0")")"
-archive_file="$workingdir/yt_songs.txt"
-music_dir="$HOME/Music/MainPL"
+if [[ -v "PLAYLISTS[The Hall]" ]]; then
+    echo "🧼 Cleaning The Hall..."
+    mkdir -p "$hall_dir"
+    find "$hall_dir" -type f -name '*.m4a' -printf 'youtube %f\n' | \
+      sed -E 's/.*\[([A-Za-z0-9_-]{11})\]\.m4a$/youtube \1/' | \
+      sort -u > "$hall_archive"
+fi
 
-echo "Updating $archive_file with video IDs from $music_dir"
+# Process all other playlists into shared archive
+vault_dir="$BASE_DIR/$ARTISTS_DIR"
+vault_archive="$vault_dir/downloaded.txt"
+temp_file=$(mktemp)
 
-# Extract YouTube video IDs and store them in yt_songs.txt
-find "$music_dir" -type f -name '*.m4a' -printf 'youtube %f\n' | \
-    sed -E 's/.*([A-Za-z0-9_-]{11})\.m4a$/youtube \1/' | \
-    sort -u > "$archive_file"
+for playlist_name in "${!PLAYLISTS[@]}"; do
+    [[ "$playlist_name" == "The Hall" ]] && continue
+    
+    target_dir="$vault_dir/$playlist_name"
+    echo "🔍 Scanning $playlist_name..."
+    
+    if [ -d "$target_dir" ]; then
+        find "$target_dir" -type f -name '*.m4a' -printf 'youtube %f\n' | \
+          sed -E 's/.*\[([A-Za-z0-9_-]{11})\]\.m4a$/youtube \1/' >> "$temp_file"
+    fi
+done
 
-echo "Updated $archive_file with new video IDs."
+# Create final consolidated archive
+mkdir -p "$vault_dir"
+sort -u "$temp_file" > "$vault_archive"
+echo "✅ Vault archive updated: $vault_archive ($(wc -l < "$vault_archive") entries)"
+
+# Cleanup
+rm "$temp_file"

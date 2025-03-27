@@ -43,7 +43,7 @@ in
       demuxer-lavf-o="extension_picky=0";
       force-seekable= true;
       demuxer-max-bytes = "450M";
-      demuxer-max-back-bytes="150MiB";
+      demuxer-max-back-bytes="250MiB";
       demuxer-donate-buffer = false;
       prefetch-playlist= true;
       cache-pause-initial = true;

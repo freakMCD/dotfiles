@@ -1,25 +1,45 @@
 #!/usr/bin/env bash
-
+source ~/nix/scripts/music_config
 trap "echo 'Script interrupted. Exiting...'; exit" SIGINT
-
-# Define directories
-dir=~/Music/MainPL
 cd ~/Music
-mkdir -p "$dir"
+hall_processed=false
+other_playlists=()
 
-declare -A chill=(
-    ["https://www.youtube.com/playlist?list=PL4CmunqMOJjKi1Mtlc3N5pedFJ5UgFobk"]="The Hall"
-)
+for playlist_name in "${!PLAYLISTS[@]}"; do
+    # Auto-determine target directory
+    if [[ "$playlist_name" == "The Hall" ]]; then
+        target_dir="$BASE_DIR/$playlist_name"
+        archive_file="$BASE_DIR/$playlist_name/downloaded.txt"
 
-download_playlists() {
-    declare -n playlists="$1"
+        echo "⭐ Priority Download: The Hall"   
+        mkdir -p "$target_dir"
+        
+        yt-dlp --progress \
+            --download-archive "$archive_file" \
+            -o "$target_dir/%(title)s [%(id)s].%(ext)s" \
+            --parse-metadata "%(uploader)s:%(meta_artist)s" \
+            "${PLAYLISTS[$playlist_name]}"
+        hall_processed=true
+    else 
+        other_playlists+=("$playlist_name")
+    fi
+done
 
-    for url in "${!playlists[@]}"; do
-        artist="${playlists[$url]}"
+for playlist_name in "${other_playlists[@]}"; do
+    target_dir="$BASE_DIR/$ARTISTS_DIR/$playlist_name"
+    archive_file="$BASE_DIR/$ARTISTS_DIR/downloaded.txt"
+    echo "📥 Downloading $playlist_name..."
 
-    echo -e "\e[1;32mDownloading $artist's playlist...\e[0m"
+    mkdir -p "$target_dir"
+    
+    yt-dlp --progress \
+        --download-archive "$archive_file" \
+        -o "$target_dir/%(title)s [%(id)s].%(ext)s" \
+        --parse-metadata " $playlist_name: %(meta_artist)s" \
+        "${PLAYLISTS[$playlist_name]}"
+done
 
-    yt-dlp --progress --parse-metadata " $artist: %(meta_artist)s" -o "$dir/%(title)s_%(id)s.%(ext)s" "$url"
-    done
-}
-download_playlists chill
+# Verify Hall processing
+if ! $hall_processed; then
+    echo "⚠️ Warning: 'The Hall' playlist not found in config!"
+fi
