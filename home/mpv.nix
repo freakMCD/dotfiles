@@ -68,13 +68,15 @@ in
 
     scriptOpts = {
       osc = {
-        seekbarstyle = "diamond";
-        seekbarhandlesize = 0.5;
-        seekrangestyle = "line";
-        deadzonesize = 1;
-        scalefullscreen = 0.85;
-        scalewindowed = 1.5;
-        hidetimeout = 1000;
+        layout = "slimbox";
+        seekbarstyle = "knob";
+        seekbarhandlesize = 0.6;
+        valign = 0.9;
+        seekrangestyle = "bar";
+        deadzonesize = 0.75;
+        scrollcontrols = false;
+        scalewindowed = 2;
+        hidetimeout = 2000;
       };
       playlistmanager = {
         playlist_display_timeout = 10;
