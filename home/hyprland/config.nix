@@ -10,7 +10,7 @@ in
     enable = true;
     settings = let
     #stolen from fufexan
-      screenarea = ''grim -g "$(slurp)" "$HOME/MediaHub/screenshots/Screenshot-area_$(date +%y-%m-%d_%H%M-%S).png"'';
+      screenarea = ''grim -c -g "$(slurp -d)" - | wl-copy'';
       screenfull = ''grim "$HOME/MediaHub/Screenshot-full_$(date +%y-%m-%d_%H%M-%S).png"'';
 
       recordarea = ''wf-recorder -g "$(slurp)" -x yuv420p -c libx264 -f "$HOME/MediaHub/recordings/Screenrecording-area_$(date +%y-%m-%d_%H%M-%S).mp4"'';

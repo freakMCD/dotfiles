@@ -70,6 +70,10 @@
       function rebuild
         sudo nixos-rebuild build --flake $HOME/nix#edwin && nvd diff /run/current-system result
       end
+
+      function cheat
+        curl cheat.sh/$argv
+      end
     '';
     shellAbbrs = {
       rm = "rm -I";

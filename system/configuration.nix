@@ -36,6 +36,12 @@
   };
   services.dbus.implementation = "broker";
   services.fstrim.enable = true;
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   nixpkgs.config = {
     allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "hplip" ];

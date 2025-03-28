@@ -4,7 +4,7 @@ in
 {
 # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-      dig htop inotify-tools streamlink telegram-desktop
+      dig htop inotify-tools streamlink telegram-desktop firefox
       home-manager nvd pass yadm gnupg simple-scan
       gcc bundix perlEnv
       qutebrowser w3m 

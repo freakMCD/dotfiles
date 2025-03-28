@@ -1,10 +1,10 @@
 { pkgs, lib, config, ...}: let
   yt-dlp = pkgs.yt-dlp.overrideAttrs (old: {
-    version = "2025.3.26";
+    version = "2025.3.27";
     src = pkgs.fetchPypi {
       pname = "yt_dlp";
-      version = "2025.3.26";
-      hash = "sha256-R0Vhcrx6iNuhxRn+QtgAh6j1MMA9LL8k4GCkH48fbss=";
+      version = "2025.3.27";
+      hash = "sha256-MMsHj4A7U5sqZlIcXshtMowH90rsqUQAaeWGGcKZzxU=";
     };
     postPatch = "";
   });
@@ -46,7 +46,7 @@ in
       demuxer-donate-buffer = false;
       prefetch-playlist= true;
       cache-pause-initial = true;
-      cache-pause-wait = 5;
+      cache-pause-wait = 3;
     };
 
     profiles = {

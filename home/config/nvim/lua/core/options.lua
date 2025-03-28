@@ -87,4 +87,36 @@ autocmd("CmdlineLeave", {
     command = "set nohlsearch",
 })
 
+function FormatUndotree()
+  local undotree = vim.fn.undotree()
+  local formatted = {}
 
+  -- Convert Unix timestamps to readable format
+  local function format_time(timestamp)
+    return os.date("%Y-%m-%d %H:%M:%S", timestamp)
+  end
+
+  -- Recursively format entries and their alternatives
+  local function process_entries(entries)
+    local result = {}
+    for _, entry in ipairs(entries) do
+      local formatted_entry = {
+        seq = entry.seq,
+        time = format_time(entry.time),
+        newhead = entry.newhead or false
+      }
+      if entry.alt then
+        formatted_entry.alt = process_entries(entry.alt)
+      end
+      table.insert(result, formatted_entry)
+    end
+    return result
+  end
+
+  -- Build final formatted output
+  formatted.seq_cur = undotree.seq_cur
+  formatted.time_cur = format_time(undotree.time_cur)
+  formatted.entries = process_entries(undotree.entries)
+
+  print(vim.inspect(formatted))
+end

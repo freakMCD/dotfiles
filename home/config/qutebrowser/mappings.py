@@ -20,6 +20,7 @@ bind = {
     lleader + "m": "hint videos spawn --detach mpv {hint-url}",
     lleader + "M": "spawn --detach mpv {url}",
 
+
     ## hints
 	"i": "hint --first inputs",
     "I": "hint inputs",
@@ -33,3 +34,5 @@ bind = {
 }
 for key, command in bind.items():
     config.bind(key, command)
+# Auto-fill both (if supported)
+config.bind(',p', 'spawn --userscript qute-pass')
