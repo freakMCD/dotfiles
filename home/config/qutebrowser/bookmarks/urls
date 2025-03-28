@@ -18,7 +18,6 @@ https://radio.garden/visit/tokyo/eR8K4rBb Radio Garden – Tokyo
 https://home-manager-options.extranix.com/ Home Manager - Option Search
 https://github.com/fish-shell/fish-shell/wiki/Shell-Translation-Dictionary Shell Translation Dictionary · fish-shell/fish-shell Wiki
 https://git.sr.ht/~pkulak/nix/tree/main/item/home/default.nix#L45 ~pkulak/nix (main): home/default.nix - sourcehut git
-https://github.com/yokoffing/Betterfox/blob/main/README.md Betterfox/README.md at main · yokoffing/Betterfox
 https://mpv.io/manual/master/ mpv.io
 https://everythingmoe.com/ EverythingMoe - Index of best Anime/Manga sites
 https://stackoverflow.com/questions/19795987/youtube-channel-and-playlist-id-prefixes YouTube channel and playlist ID prefixes - Stack Overflow
@@ -31,3 +30,4 @@ https://search.nixos.org/packages?channel=unstable NixOS Search - Packages
 https://search.nixos.org/options?channel=unstable NixOS Search - Options
 https://www.start.gg/tournament/hollow-knight-any-2025-siksong-is-still-not-out-tournament/event/awesome-sauce/brackets/1901560/2795702 hollow knight any% 2025 siksong is still not out tournament
 https://hk-tournaments.web.app/sign-in HkTournaments
+https://github.com/EightBitApple/dotfiles/blob/8038e73c0a7d7c069443883255b1c926f7647a9f/modules/home-manager/packages/media/video-playback.nix#L39 dotfiles/modules/home-manager/packages/media/video-playback.nix at 8038e73c0a7d7c069443883255b1c926f7647a9f · EightBitApple/dotfiles

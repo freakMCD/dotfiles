@@ -179,7 +179,12 @@ in
     '')
 
     (writeShellScriptBin "syncMega" ''
-      RCLONE_OPTS="--transfers 45 --checkers 65 -P"
+      RCLONE_OPTS="--transfers 8 --checkers 16 -P \
+      --retries 3 --retries-sleep 10s \
+      --fast-list \
+      --timeout 300s --contimeout 60s \
+      --log-level INFO"
+
       cd ~
       rclone $RCLONE_OPTS sync Documents mega:Documents
       rclone $RCLONE_OPTS sync MediaHub mega:MediaHub

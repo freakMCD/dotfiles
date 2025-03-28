@@ -19,7 +19,7 @@
             set idx (contains -i "$address" $mpv_addresses)
             set mpv_states[$idx] "paused"
             echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid" &
-            set cmds "dispatch setprop address:$address alphainactive ${var.low};"
+            set -ga cmds "dispatch setprop address:$address alphainactive ${var.low}"
         end
     end
 
@@ -49,11 +49,13 @@
         set mpv_titles[$idx] (format_title "$WINDOWTITLE")
         set mpv_states[$idx] "playing"
 
+        set -g cmds
         test (count $mpv_addresses) -gt 1 && cycle_pause
 
-        set -g cmds
-        hyprctl --batch "$cmds dispatch movewindowpixel exact ${var.x} ${var.y}, address:0x$WINDOWADDRESS"
+        set -a cmds "dispatch movewindowpixel exact ${var.x} ${var.y}, address:0x$WINDOWADDRESS"
 
+        set batch_cmd (string join ";" $cmds)
+        hyprctl --batch "$batch_cmd"
         update_files
         end
 

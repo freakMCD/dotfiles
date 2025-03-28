@@ -22,8 +22,8 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCdwo4k1RQHTcq_-WS7Cazqg "Th
 @ Extra < reload-period 240
 https://twitchrss.appspot.com/vodonly/hollowknightcommunity
 https://w37.onepiece-manga-online.net/feed
-https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "GOT_Extras" < bind m mark-read; exec nohup mpv "%l" --ytdl-raw-options='format-sort="codec:vp9.2,res:1080,+size,+br"' >/dev/null 2>&1 &
-https://www.youtube.com/feeds/videos.xml?channel_id=UC97I55D2HsW1nfA_1QgJ3IA "HierToGame" < bind m mark-read; exec nohup mpv "%l" --ytdl-raw-options='format-sort="codec:vp9.2,res:1080,+size,+br"' >/dev/null 2>&1 &
+https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "GOT_Extras"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC97I55D2HsW1nfA_1QgJ3IA "HierToGame"
 
 
 

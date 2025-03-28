@@ -38,10 +38,10 @@ in
       sub-spacing=0.5;
 
       ## Streaming ##
-      ytdl-format = "bv*[vcodec^=avc1][height<=1080]+ba/b[height<=1080]";
+      ytdl-format = "bv*[vcodec!^=av01][height<=1080]+ba/bv*[height<=1080]+ba";
       demuxer-lavf-o="extension_picky=0";
       force-seekable= true;
-      demuxer-max-bytes = "450M";
+      demuxer-max-bytes = "500M";
       demuxer-max-back-bytes="250MiB";
       demuxer-donate-buffer = false;
       prefetch-playlist= true;
