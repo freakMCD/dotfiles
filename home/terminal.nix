@@ -63,7 +63,7 @@
       end
 
       function ttv
-          nohup streamlink https://twitch.tv/"$argv" --title "{title} [{author}]" --player=mpv --twitch-proxy-playlist=https://eu.luminous.dev,https://lb-eu.cdn-perfprod.com best & disown
+          nohup streamlink https://twitch.tv/"$argv" --title "{author} - {category}" --player=mpv --twitch-proxy-playlist=https://eu.luminous.dev,https://lb-eu.cdn-perfprod.com best & disown
           exit
       end
 

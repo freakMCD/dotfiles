@@ -13,6 +13,6 @@ in builtins.mapAttrs (_name: builtins.toString) {
   inherit x y;
 
   rounding = 10;
-  high = 0.85;
+  high = 0.65;
   low = 0;
 }

@@ -13,7 +13,9 @@ screenshots() {
 }
 
 music() {
-    rsync -aUP --stats --delete --delete-after --copy-links -e 'ssh -p 8022' ~/Music u0_a157@192.168.1.43:/storage/5DD2-1011/
+    rsync -rlptP --delete --copy-links --whole-file --stats \
+      -e 'ssh -p 8022 -o Compression=no -c aes128-ctr' \
+      ~/Music u0_a157@192.168.1.43:/storage/5DD2-1011/
 }
 
 books() {

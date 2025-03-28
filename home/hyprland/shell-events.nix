@@ -24,7 +24,8 @@
     end
 
     function format_title
-        string replace '_' ' ' "$argv[1]" |  # Underscores to spaces
+        string replace -r ' - mpv$' "" "$argv[1]" |
+        string replace '_' ' ' |  # Underscores to spaces
         string trim |                        # Remove whitespace
         string replace -r '(.{24}).+' '$1…'  # Truncate and add ellipsis
     end

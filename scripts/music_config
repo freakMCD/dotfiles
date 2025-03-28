@@ -2,12 +2,14 @@
 declare -A PLAYLISTS=(
   ["The Hall"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjKi1Mtlc3N5pedFJ5UgFobk"
   ["Reol"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjLqv7Z191-7ovzHb6i-dqg-"
+  ["Babymetal"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjJA3n5ZpZE66F--PMAF6tW-"
+  ["Kenshi Yonezu"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjLtUqr1f4ozG8e8HGJmemHS"
   ["Phantom Siita"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjIvFs416yAtg9JEqW2lL8b-"
   ["OSTs"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjLgifyNK_xGeMq-NtQ52P7N"
   ["Sakuzyo"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjKqoUAi5vn1h5NhQLZ9bDWD"
   ["Feryquitous"]="https://www.youtube.com/playlist?list=PLjYilp-bySE1qwXLKHWZZcHbqWaetqyaM"
   ["Xi"]="https://www.youtube.com/watch?v=s7mKnTjl9Pg&list=PLjYilp-bySE3Elmd73Irfp6_qSk0jwaRj"
-  ["Yo Kaze"]="https://www.youtube.com/playlist?list=PLvoJm-S4aIsyku-i5SCMlYd5mcQqzh3FK"
 )
 BASE_DIR=~/Music
 ARTISTS_DIR="Artists"  # Customize folder name if needed
+MIN_DURATION=300

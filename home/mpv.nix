@@ -17,7 +17,6 @@ in
       keep-open = true;
       profile = "fast";
       video-sync = "display-resample";
-      title="\${filename}";
       gpu-context = "wayland";
       save-position-on-quit = true;
       watch-later-options = "start";
@@ -39,7 +38,7 @@ in
       sub-spacing=0.5;
 
       ## Streaming ##
-      ytdl-format = "bv*[vcodec^=avc1][height<=1080]+ba";
+      ytdl-format = "bv*[vcodec^=avc1][height<=1080]+ba/b[height<=1080]";
       demuxer-lavf-o="extension_picky=0";
       force-seekable= true;
       demuxer-max-bytes = "450M";
@@ -57,9 +56,6 @@ in
         video-zoom = 0.6;
         sub-visibility = false;
         
-      };
-      "protocol.https" = {
-        title= "\${media-title}";
       };
     };
 

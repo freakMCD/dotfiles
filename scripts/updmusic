@@ -31,12 +31,22 @@ for playlist_name in "${other_playlists[@]}"; do
     echo "📥 Downloading $playlist_name..."
 
     mkdir -p "$target_dir"
-    
-    yt-dlp --progress \
-        --download-archive "$archive_file" \
-        -o "$target_dir/%(title)s [%(id)s].%(ext)s" \
-        --parse-metadata " $playlist_name: %(meta_artist)s" \
-        "${PLAYLISTS[$playlist_name]}"
+
+    # Apply duration filter ONLY to Yo Kaze
+    if [[ "$playlist_name" == "Yo Kaze" ]]; then
+        yt-dlp --progress \
+            --download-archive "$archive_file" \
+            -o "$target_dir/%(title)s [%(id)s].%(ext)s" \
+            --parse-metadata " $playlist_name: %(meta_artist)s" \
+            --match-filter "duration > $MIN_DURATION" \  # Filter here
+            "${PLAYLISTS[$playlist_name]}"
+    else
+      yt-dlp --progress \
+          --download-archive "$archive_file" \
+          -o "$target_dir/%(title)s [%(id)s].%(ext)s" \
+          --parse-metadata " $playlist_name: %(meta_artist)s" \
+          "${PLAYLISTS[$playlist_name]}"
+    fi
 done
 
 # Verify Hall processing
