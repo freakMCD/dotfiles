@@ -74,6 +74,7 @@
     shellAbbrs = {
       rm = "rm -I";
       top = "htop";
+      yamend = "yadm commit --amend --no-edit && yadm push -f";
       reswitch = "sudo nixos-rebuild --flake $HOME/nix#edwin switch";
       retest = "sudo nixos-rebuild --flake $HOME/nix#edwin test --fast";
       reconfig = "home-manager switch --flake $HOME/nix#edwin";
