@@ -19,11 +19,19 @@ in
   ];
 
   programs = {
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
+
     hyprland.enable = true;
+
     fish.enable = true;
+
     gnupg.agent = {
       enable = true;
       };
+
     bash = {
       interactiveShellInit = ''
         if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
@@ -34,8 +42,6 @@ in
       '';
     };
   };
-
-  services.udisks2.enable = true;
 
   systemd.user.services.mailsync = {
     enable = true;

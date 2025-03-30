@@ -13,9 +13,7 @@
       '';
     };
 
-    mpd-mpris = {
-      enable = true;
-    };
+    mpd-mpris.enable = true;
 
     fnott = {
       enable = true;

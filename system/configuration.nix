@@ -5,8 +5,10 @@
 { system, plugins, pkgs, lib, ... }:
 {
   boot.loader = {
-    systemd-boot.enable = true;
-    systemd-boot.configurationLimit = 10;
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 10;
+    };
     efi.canTouchEfiVariables = true;
   };
 
@@ -22,27 +24,48 @@
 
   # From https://kokada.dev/blog/an-unordered-list-of-hidden-gems-inside-nixos/
   boot.tmp.cleanOnBoot = true;
-  programs.appimage = {
-    enable = true;
-    binfmt = true;
-  };
-  system.switch = {
-    enable = false;
-    enableNg = true;
-  };
+
   zramSwap = {
     enable = true;
     algorithm = "zstd";
   };
-  services.dbus.implementation = "broker";
-  services.fstrim.enable = true;
-  services.printing.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
+
+  # rtkit is optional but recommended
+  security = {
+    rtkit.enable = true;
+    sudo.wheelNeedsPassword = false;
   };
 
+  services = {
+    getty.autologinUser = "edwin";
+    dbus.implementation = "broker";
+    fstrim.enable = true;
+    udisks2.enable = true;
+    
+    # Printing
+    printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+
+    # Audio
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      };
+
+    # Keyboard Layout
+     xserver.xkb = {
+      layout = "us";
+      variant = "altgr-intl";
+      };
+  };
+
+  # Printing
   nixpkgs.config = {
     allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "hplip" ];
 
@@ -65,20 +88,7 @@
   # Other
   time.timeZone = "America/Lima";
   i18n.defaultLocale = "en_US.UTF-8";
-
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "altgr-intl";
-  };
-
   console.keyMap = "us";
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
   users.users.edwin = {
     isNormalUser = true;
@@ -88,8 +98,6 @@
   };
 
   # Enable automatic login for the user.
-  services.getty.autologinUser = "edwin";
-  security.sudo.wheelNeedsPassword = false;
  
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
@@ -110,6 +118,12 @@
     BUNDLE_FORCE_RUBY_PLATFORM = "true";
   };
 
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system = {
+    stateVersion = "24.11"; # Did you read the comment?
+    switch = {
+      enable = false;
+      enableNg = true;
+    };
+  };
 }
 

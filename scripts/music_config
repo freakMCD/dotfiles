@@ -11,5 +11,8 @@ declare -A PLAYLISTS=(
   ["Xi"]="https://www.youtube.com/watch?v=s7mKnTjl9Pg&list=PLjYilp-bySE3Elmd73Irfp6_qSk0jwaRj"
 )
 BASE_DIR=~/Music
-ARTISTS_DIR="Artists"  # Customize folder name if needed
-MIN_DURATION=300
+VAULT_DIR="$BASE_DIR/Vault"
+HALL_DIR="$BASE_DIR/The Hall"
+GLOBAL_ARCHIVE="$BASE_DIR/downloaded.txt"
+HALL_ARCHIVE="$HALL_DIR/downloaded.txt"
+VAULT_ARCHIVE="$VAULT_DIR/downloaded.txt"

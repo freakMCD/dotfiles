@@ -1,39 +1,18 @@
 #!/usr/bin/env bash
 source ~/nix/scripts/music_config
 
-# Process The Hall separately
-hall_dir="$BASE_DIR/The Hall"
-hall_archive="$hall_dir/downloaded.txt"
+find "$HALL_DIR" -type f \( -iname '*.m4a' -o -iname '*.mp3' -o -iname '*.webm' \) -printf 'youtube %f\n' | \
+  sed -E 's/.*\[([A-Za-z0-9_-]{11})\]\..*$/youtube \1/' | \
+  sort -u > "$HALL_ARCHIVE"
 
-if [[ -v "PLAYLISTS[The Hall]" ]]; then
-    echo "🧼 Cleaning The Hall..."
-    mkdir -p "$hall_dir"
-    find "$hall_dir" -type f -name '*.m4a' -printf 'youtube %f\n' | \
-      sed -E 's/.*\[([A-Za-z0-9_-]{11})\]\.m4a$/youtube \1/' | \
-      sort -u > "$hall_archive"
-fi
+find "$VAULT_DIR" -type f \( -iname '*.m4a' -o -iname '*.mp3' -o -iname '*.webm' \) -printf 'youtube %f\n' | \
+  sed -E 's/.*\[([A-Za-z0-9_-]{11})\]\..*$/youtube \1/' | \
+  sort -u > "$VAULT_ARCHIVE"
 
-# Process all other playlists into shared archive
-vault_dir="$BASE_DIR/$ARTISTS_DIR"
-vault_archive="$vault_dir/downloaded.txt"
-temp_file=$(mktemp)
+# Rebuild global archive
+cat "$HALL_ARCHIVE" "$VAULT_ARCHIVE" | sort -u > "$GLOBAL_ARCHIVE"
 
-for playlist_name in "${!PLAYLISTS[@]}"; do
-    [[ "$playlist_name" == "The Hall" ]] && continue
-    
-    target_dir="$vault_dir/$playlist_name"
-    echo "🔍 Scanning $playlist_name..."
-    
-    if [ -d "$target_dir" ]; then
-        find "$target_dir" -type f -name '*.m4a' -printf 'youtube %f\n' | \
-          sed -E 's/.*\[([A-Za-z0-9_-]{11})\]\.m4a$/youtube \1/' >> "$temp_file"
-    fi
-done
-
-# Create final consolidated archive
-mkdir -p "$vault_dir"
-sort -u "$temp_file" > "$vault_archive"
-echo "✅ Vault archive updated: $vault_archive ($(wc -l < "$vault_archive") entries)"
-
-# Cleanup
-rm "$temp_file"
+echo "✅ Archives rebuilt:"
+echo " - Hall: $(wc -l < "$HALL_ARCHIVE") tracks"
+echo " - Vault: $(wc -l < "$VAULT_ARCHIVE") tracks"
+echo " - Global: $(wc -l < "$GLOBAL_ARCHIVE") tracks"

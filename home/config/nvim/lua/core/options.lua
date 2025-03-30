@@ -32,6 +32,8 @@ for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
+vim.opt.iskeyword:remove("_")
+
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local indicators = { error = 0, warn = 0 }

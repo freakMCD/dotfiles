@@ -1,55 +1,88 @@
 #!/usr/bin/env bash
 source ~/nix/scripts/music_config
-trap "echo 'Script interrupted. Exiting...'; exit" SIGINT
+trap "echo -e '\nScript interrupted. Exiting...'; exit" SIGINT
 cd ~/Music
-hall_processed=false
-other_playlists=()
 
-for playlist_name in "${!PLAYLISTS[@]}"; do
-    # Auto-determine target directory
-    if [[ "$playlist_name" == "The Hall" ]]; then
-        target_dir="$BASE_DIR/$playlist_name"
-        archive_file="$BASE_DIR/$playlist_name/downloaded.txt"
+# ANSI color codes
+CYAN='\033[0;36m'        # Brighter cyan for active processes
+BRIGHT_YELLOW='\033[1;33m' # Bold yellow for playlist names
+GREEN='\033[0;32m'        # Softer green for success
+MAGENTA='\033[0;35m'      # For status messages
+DIM_WHITE='\033[2;37m'    # For less important info
+NC='\033[0m'              # Reset
 
-        echo "⭐ Priority Download: The Hall"   
-        mkdir -p "$target_dir"
+download_playlist() {
+    local playlist_name="$1"
+    local output_dir="$2"
+    local counter=0  # Make it local to the function
+
+    echo -e "⭐ Downloading ${BRIGHT_YELLOW}$playlist_name${NC}..."   
+    
+    # Use process substitution instead of pipe
+    while IFS= read -r line; do
+        ((counter++))
+        clean_line=$(basename "$line")  # Add this line
+        title=$(echo "$clean_line" | sed -E 's/^(.*) \[.*/\1/')
+        video_id=$(echo "$clean_line" | grep -oE '\[([A-Za-z0-9_-]{11})\]' | tr -d '[]')
         
-        yt-dlp --progress \
-            --download-archive "$archive_file" \
-            -o "$target_dir/%(title)s [%(id)s].%(ext)s" \
-            --parse-metadata "%(uploader)s:%(meta_artist)s" \
-            "${PLAYLISTS[$playlist_name]}"
-        hall_processed=true
-    else 
-        other_playlists+=("$playlist_name")
-    fi
-done
-
-for playlist_name in "${other_playlists[@]}"; do
-    target_dir="$BASE_DIR/$ARTISTS_DIR/$playlist_name"
-    archive_file="$BASE_DIR/$ARTISTS_DIR/downloaded.txt"
-    echo "📥 Downloading $playlist_name..."
-
-    mkdir -p "$target_dir"
-
-    # Apply duration filter ONLY to Yo Kaze
-    if [[ "$playlist_name" == "Yo Kaze" ]]; then
-        yt-dlp --progress \
-            --download-archive "$archive_file" \
-            -o "$target_dir/%(title)s [%(id)s].%(ext)s" \
+        echo -e "${GREEN}✔ ${CYAN}$title ${YELLOW}[$video_id]${NC}"
+    done < <(
+        yt-dlp --quiet --cookies-from-browser firefox \
+            --download-archive "$GLOBAL_ARCHIVE" \
+            -o "$output_dir/%(title)s [%(id)s].%(ext)s" \
             --parse-metadata " $playlist_name: %(meta_artist)s" \
-            --match-filter "duration > $MIN_DURATION" \  # Filter here
+            --print after_move:"%(_filename)s" \
             "${PLAYLISTS[$playlist_name]}"
+    )
+
+    if (( counter > 0 )); then
+        echo -e "${GREEN}✓ Added ${BRIGHT_YELLOW}$counter${GREEN} track$([ $counter -ne 1 ] && echo "s") to ${BRIGHT_YELLOW}$playlist_name${NC}\n"
     else
-      yt-dlp --progress \
-          --download-archive "$archive_file" \
-          -o "$target_dir/%(title)s [%(id)s].%(ext)s" \
-          --parse-metadata " $playlist_name: %(meta_artist)s" \
-          "${PLAYLISTS[$playlist_name]}"
+        echo -e "${MAGENTA}↳ ${DIM_WHITE}Playlist already up to date${NC}\n"
     fi
+}
+
+mkdir -p "$HALL_DIR" "$VAULT_DIR"
+
+# Process The Hall
+yt-dlp --flat-playlist --get-id "${PLAYLISTS['The Hall']}" | \
+    awk '{print "youtube " $1}' | \
+    sort > "$HALL_ARCHIVE"
+
+download_playlist "The Hall" "$HALL_DIR"
+
+# Process Vault playlists
+for playlist_name in "${!PLAYLISTS[@]}"; do
+    [[ "$playlist_name" == "The Hall" ]] && continue
+    download_playlist "$playlist_name" "$VAULT_DIR/$playlist_name"
 done
 
-# Verify Hall processing
-if ! $hall_processed; then
-    echo "⚠️ Warning: 'The Hall' playlist not found in config!"
-fi
+# -- MOVE FILES FIRST --
+echo -e "${CYAN}🔄 Syncing Hall with Vault...${NC}"
+
+# Get list of Hall-tracked video IDs from ORIGINAL archive
+mapfile -t hall_ids < <(cut -d' ' -f2 "$HALL_ARCHIVE")
+
+# Find and move files using null-delimiters for safety
+while IFS= read -r -d '' vault_file; do
+    video_id=$(basename "$vault_file" | grep -oE '\[([A-Za-z0-9_-]{11})\]' | tr -d '[]')
+    
+    found=false
+    for id in "${hall_ids[@]}"; do
+        if [[ "$id" == "$video_id" ]]; then
+            found=true
+            break
+        fi
+    done
+
+    if $found; then
+        hall_file="$HALL_DIR/$(basename "$vault_file")"
+        if [ ! -f "$hall_file" ]; then
+            echo -e "${GREEN}♻ Moving ${CYAN}$video_id${GREEN} to Hall${NC}"
+            mv -nv "$vault_file" "$HALL_DIR/"
+        fi
+    fi
+done < <(find "$VAULT_DIR" -type f \( -iname "*.m4a" -o -iname "*.mp3" -o -iname "*.webm" \) -print0)
+
+# -- NOW UPDATE ARCHIVES --
+~/nix/scripts/yt-dlp/fixarchive

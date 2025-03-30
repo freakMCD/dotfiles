@@ -71,9 +71,9 @@ in
         layout = "slimbox";
         seekbarstyle = "knob";
         seekbarhandlesize = 0.6;
-        valign = 0.9;
+        valign = -0.9;
         seekrangestyle = "bar";
-        deadzonesize = 0.75;
+        deadzonesize = 0;
         scrollcontrols = false;
         scalewindowed = 2;
         hidetimeout = 2000;

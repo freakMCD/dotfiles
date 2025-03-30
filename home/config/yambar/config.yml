@@ -55,7 +55,6 @@ bar:
                          state == down:
                            string: { text: ⛔ }
 
- center:
    - script:
        path: /run/current-system/sw/bin/playerctl
        args:
