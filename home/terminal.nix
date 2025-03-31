@@ -12,34 +12,6 @@
       fish_config prompt choose nim
       source ~/.local/share/linuxfedora
 
-      function yt-compat
-        # Help message
-        if test (count $argv) -eq 1 -a \( "$argv[1]" = "-h" -o "$argv[1]" = "--help" \)
-          echo "Usage: yt_compat <url> <range>"
-          echo 'Example: yt_compat https://www.youtube.com/watch?v=o9DhvbqYzns 48-90'
-          echo "Note: The range is in seconds"
-          return
-        end
-
-        if test (count $argv) -ne 2
-            echo "Error: Incorrect usage. Run 'yt-compat --help' for instructions."
-            return 1
-        end
-
-        set url $argv[1]
-        set range $argv[2]
-        set temp_name (mktemp -u ytwhatsappXXXX) # Generate a unique temporary filename prefix
-
-        # Download the specified segment with yt-dlp
-        yt-dlp --download-sections "*$range" -f "bestvideo[height<=720]+bestaudio/best" -o "$temp_name.%(ext)s" $url
-
-        # Convert the downloaded file to a WhatsApp-compatible format
-        set input_file (ls $temp_name.* | head -n 1)
-        ffmpeg -i "$input_file" -c:v libx264 -profile:v baseline -level 3.0 -acodec aac -movflags +faststart -pix_fmt yuv420p output.mp4
-        # Remove temp file
-        rm "$input_file"
-      end
-
       function fe
           set -l files (fzf --delimiter / --with-nth 4.. --query="$argv" --multi --select-1 --exit-0 | string split0)
           if test -n "$files"

@@ -11,7 +11,7 @@ in
     settings = let
     #stolen from fufexan
       screenarea = ''grim -c -g "$(slurp -d)" - | wl-copy'';
-      screenfull = ''grim "$HOME/MediaHub/Screenshot-full_$(date +%y-%m-%d_%H%M-%S).png"'';
+      screenfull = ''grim -c - | wl-copy'';
 
       recordarea = ''wf-recorder -g "$(slurp)" -x yuv420p -c libx264 -f "$HOME/MediaHub/recordings/Screenrecording-area_$(date +%y-%m-%d_%H%M-%S).mp4"'';
       recordfull = ''wf-recorder -x yuv420p -c libx264 -f "$HOME/MediaHub/recordings/Screenrecording-full_$(date +%y-%m-%d_%H%M-%S).mp4"'';
@@ -154,11 +154,8 @@ in
         "$mod, R, exec, fuzzel"
 
         #screenshot
-        ", Print, exec, ${screenarea}"
-        "CTRL, Print, exec, ${screenfull}"
-        "$mod, Print, exec, ${recordarea}"
-        "$smod, Print, exec, ${recordfull}"
-        "$scmod, Print, exec, pkill wf-recorder"
+        ", Print, exec, ${screenfull}"
+        "CTRL, Print, exec, ${screenarea}"
 
         #windows managment related
         "$mod, f, fullscreen"

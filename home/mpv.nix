@@ -135,10 +135,14 @@ in
           src = pkgs.writeTextFile {
             name = "show-osc-on-seek-src";
             text = ''
-              mp.observe_property('seeking', 'native', function(_, seeking)
-                  if seeking then
-                      mp.command('script-message osc-show')
-                  end
+              mp.observe_property("seeking", "native", function(_, seeking)
+                if seeking then
+                    if mp.get_property_bool("fullscreen") then
+                        local title = mp.get_property("media-title") or mp.get_property("filename")
+                        mp.osd_message(title, 2)  -- Display title for 2 seconds
+                    end
+                    mp.command("script-message osc-show")
+                end
               end)
             '';
             destination = "/show-osc-on-seek.lua";

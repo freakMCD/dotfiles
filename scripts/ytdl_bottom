@@ -1,0 +1,75 @@
+#!/usr/bin/env fish
+
+argparse -n yt-compat 'h/help' 's/embed-subs' -- $argv
+or return
+
+if set -q _flag_help
+    echo "Usage: yt_compat [OPTIONS] <url>"
+    echo "Options:"
+    echo "  -s, --embed-subs    Burn Spanish/English subtitles"
+    echo "  -h, --help          Show help"
+    return
+end
+
+if test (count $argv) -ne 1
+    echo "Error: Requires exactly 1 argument (URL)"
+    return 1
+end
+
+set url "$argv[1]"
+set temp_dir (mktemp -d)
+
+# Nix-safe filename generation
+set video_title (yt-dlp --get-title -- "$url" | string replace -ra '[^a-zA-Z0-9]' '_' | string sub -l 50)
+set output_name "$video_title"(date +"_%Y%m%d")".mp4"
+
+# Download best 480p version
+yt-dlp -f "bestvideo[height<=480]+bestaudio" --cookies-from-browser firefox \
+    --merge-output-format mp4 \
+    --sub-langs "es,en" --write-subs --convert-subs srt \
+    -o "$temp_dir/video.mp4" \
+    -- "$url"
+
+# Find subtitle file with priority
+set sub_file ""
+if set -q _flag_embed_subs
+    for lang in es en
+        set sub_file "$temp_dir/video.$lang.srt"
+        if test -f "$sub_file"
+            break
+        else
+            set sub_file ""
+        end
+    end
+end
+
+# Always process through FFmpeg for compatibility
+if set -q _flag_embed_subs; and test -n "$sub_file"
+    ffmpeg -hide_banner -i "$temp_dir/video.mp4" \
+        -vf "subtitles='$sub_file':force_style='Fontname=Dejavu Sans,OutlineColour=&H40000000,BorderStyle=3'" \
+        -tune zerolatency \
+        -profile:v main -level 4.0 \
+        -preset fast \
+        -crf 26 \
+        -pix_fmt yuv420p \
+        -c:v libx264 \
+        -c:a aac -b:a 96k \
+        -movflags +faststart \
+        -y "$output_name"
+else
+    # Process without subtitles but maintain compatibility settings
+    ffmpeg -hide_banner -i "$temp_dir/video.mp4" \
+        -profile:v main -level 4.0 \
+        -tune zerolatency \
+        -preset medium \
+        -crf 26 \
+        -pix_fmt yuv420p \
+        -c:v libx264 \
+        -c:a aac -b:a 96k \
+        -movflags +faststart \
+        -y "$output_name"
+end
+
+# Cleanup
+rm -rf "$temp_dir"
+echo "Created: "(realpath "$output_name")
