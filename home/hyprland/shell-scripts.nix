@@ -97,7 +97,7 @@ in
 
     function cycleState
       set clients (hyprctl clients -j)
-      set target_pid (echo $clients | jq -r --arg addr "$target_address" '.[] | select(.class=="mpv" and .address==$addr) | .pid')
+      set target_pid (echo $clients | jq -r --arg addr $target_address '.[] | select(.class=="mpv" and .address==$addr) | .pid')
 
       test -z "$target_pid" && return
 
@@ -178,18 +178,18 @@ in
       exit 
     '')
 
-    (writeShellScriptBin "syncMega" ''
-      RCLONE_OPTS="--transfers 8 --checkers 16 -P \
-      --retries 3 --retries-sleep 10s \
-      --fast-list \
-      --timeout 300s --contimeout 60s \
-      --log-level INFO"
+(writeShellScriptBin "syncMega" ''
+  RCLONE_OPTS="--transfers 8 --checkers 16 -P \
+  --retries 3 --retries-sleep 10s \
+  --fast-list \
+  --timeout 300s --contimeout 60s \
+  --log-level INFO"
 
-      cd ~
-      rclone $RCLONE_OPTS sync Documents mega:Documents
-      rclone $RCLONE_OPTS sync MediaHub mega:MediaHub
-      rclone $RCLONE_OPTS sync MathCareer mega:MathCareer
-      rclone $RCLONE_OPTS sync Music mega:Music
-    '')
-  ];
+  cd ~
+  rclone $RCLONE_OPTS sync Documents mega:Documents
+  rclone $RCLONE_OPTS sync MediaHub mega:MediaHub
+  rclone $RCLONE_OPTS sync MathCareer mega:MathCareer
+  rclone $RCLONE_OPTS sync Music mega:Music
+'')
+];
 }

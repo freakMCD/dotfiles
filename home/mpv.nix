@@ -15,6 +15,7 @@ in
     config = {
       hwdec = "auto";
       keep-open = true;
+      keep-open-pause = false;
       profile = "fast";
       video-sync = "display-resample";
       gpu-context = "wayland";

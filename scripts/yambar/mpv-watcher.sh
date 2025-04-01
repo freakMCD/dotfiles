@@ -19,7 +19,6 @@ update_output() {
         state="${states[$i]:-unknown}"
         echo "mpv${num}_title|string|$title"
         echo "mpv${num}_state|string|$state"
-        echo "mpv${num}_number|string|$num."
     done
 }
 

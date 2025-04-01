@@ -27,13 +27,13 @@
         string replace -r ' - mpv$' "" "$argv[1]" |
         string replace '_' ' ' |  # Underscores to spaces
         string trim |                        # Remove whitespace
-        string replace -r '(.{45}).+' '$1… '  # Truncate and add ellipsis
+        string replace -r '(.{45}).+' '$1'  # Truncate and add ellipsis
     end
 
     function update_files
         printf "%s\n" $mpv_addresses > $mpv_addresses_file
         printf "%s\n" $mpv_states > $mpv_states_file
-        printf "%s\n" $mpv_titles > $mpv_titles_file
+        printf "%s \n" $mpv_titles > $mpv_titles_file
     end
 
     function event_openwindow

@@ -1,3 +1,36 @@
+
+muted_green: &muted_green 98C379ff  # Brighter muted green
+muted_yellow: &muted_yellow EBCB8Bff      # Softer amber
+yellow: &yellow ffff00ff      # Softer amber
+orange: &orange D08770ff      # Less neon orange
+violeta: &violet 8A2BE2ff  # Blue-violet (contrasts with yellow)
+green: &green 00ff00ff        # Electric green (better visibility)
+red: &red ff0000ff            # Bright warning red
+blue: &blue 61AFEFff          # Vivid azure
+lavender: &lavender e6e6faff # Bright cyan for accents
+gray: &gray 5C6370aa          # Cool gray with transparency
+
+mpv_overline: &mpv_overline
+  overline:
+    size: 2
+    color: *violet
+
+# Playing state
+num_str: &num_str
+  foreground: *yellow
+  deco: *mpv_overline
+
+title_str: &title_str
+  foreground: *lavender
+  deco: *mpv_overline
+
+# Paused state
+paused_num_str: &paused_num_str
+  foreground: *yellow
+
+paused_title_str: &paused_title_str
+  foreground: *gray
+
 bar:
  location: top
  margin: 10
@@ -10,12 +43,12 @@ bar:
    - clock:
        date-format: "%a"
        content:
-         - string: {text: "{date} ", foreground: d8a657ff}
+         - string: {text: "{date} ", foreground: *muted_yellow}
          - string: {text: "{time}"}
    - mem:
        poll-interval: 3000
        content:
-         - string: {text: "RAM ", foreground: d8a657ff}
+         - string: {text: "RAM ", foreground: *muted_yellow}
          - string: {text: "{used:mb} MB"}
    - cpu:
        poll-interval: 3000
@@ -25,7 +58,7 @@ bar:
              id < 0:
                - string: 
                   text: "CPU "
-                  foreground: d8a657ff
+                  foreground: *muted_yellow
                - string:
                   text: "{cpu}%"
    - network:
@@ -48,7 +81,7 @@ bar:
                            string: {
                              font: JetBrainsMono Nerd Font Mono:pixelsize=20px:style=bold,
                              text: "⚠",  # Warning (up but no IP)
-                             foreground: e78a4eff  # Orange
+                             foreground: *orange  # Orange
                            }
                          state == dormant:
                            string: { text: ⏳ }
@@ -72,53 +105,61 @@ bar:
            conditions:
              status == Paused: {empty: {}}
              status == Playing:
-                 string: {text: "{artist} - {title}", foreground: 8ec07cff}
+                 string: {text: "{artist} - {title}", foreground: *muted_green}
+
  right:
     - script:
         path: ~/nix/scripts/yambar/mpv-watcher.sh
         content:
           - list:
+              spacing: 0
               items:
                 - map:
                     conditions:
                       "mpv1_state == playing":
                         list:
+                          spacing: 0
                           items:
-                          - string: {text: "{mpv1_number}", foreground: "fb4934ff"}
-                          - string: {text: "{mpv1_title}", foreground: "83a598ff"}
+                          - string: {<<: *num_str, text: "  1 "}
+                          - string: {<<: *title_str, text: "{mpv1_title}  "}
                       "mpv1_state == paused":
                         list:
+                          spacing: 0
                           items:
-                          - string: {text: "{mpv1_number}", foreground: "fb4934ff"}
-                          - string: {text: "{mpv1_title}", foreground: "bdae9366"}
+                          - string: {<<: *paused_num_str, text: "  1 "}
+                          - string: {<<: *paused_title_str, text: "{mpv1_title}  "}
                     default:
                       string: {text: ""}
                 - map:
                     conditions:
                       "mpv2_state == playing":
                         list:
+                          spacing: 0
                           items:
-                          - string: {text: "{mpv2_number}", foreground: "fb4934ff"}
-                          - string: {text: "{mpv2_title}", foreground: "83a598ff"}
+                          - string: {<<: *num_str, text: "  2 "}
+                          - string: {<<: *title_str, text: "{mpv2_title}  "}
                       "mpv2_state == paused":
                         list:
+                          spacing: 0
                           items:
-                          - string: {text: "{mpv2_number}", foreground: "fb4934ff"}
-                          - string: {text: "{mpv2_title}", foreground: "bdae9366"}
+                          - string: {<<: *paused_num_str, text: "  2 "}
+                          - string: {<<: *paused_title_str, text: "{mpv2_title}  "}
                     default:
                       string: {text: ""}
                 - map:
                     conditions:
                       "mpv3_state == playing":
                         list:
+                          spacing: 0
                           items:
-                          - string: {text: "{mpv3_number}", foreground: "fb4934ff"}
-                          - string: {text: "{mpv3_title}", foreground: "83a598ff"}
+                          - string: {<<: *num_str, text: "  3 "}
+                          - string: {<<: *title_str, text: "{mpv3_title}  "}
                       "mpv3_state == paused":
                         list:
+                          spacing: 0
                           items:
-                          - string: {text: "{mpv3_number}", foreground: "fb4934ff"}
-                          - string: {text: "{mpv3_title}", foreground: "bdae9366"}
+                          - string: {<<: *paused_num_str, text: "  3 "}
+                          - string: {<<: *paused_title_str, text: "{mpv3_title}  "}
                     default:
                       string: {text: ""}
 

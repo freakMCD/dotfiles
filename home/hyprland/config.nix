@@ -9,7 +9,6 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     settings = let
-    #stolen from fufexan
       screenarea = ''grim -c -g "$(slurp -d)" - | wl-copy'';
       screenfull = ''grim -c - | wl-copy'';
 
