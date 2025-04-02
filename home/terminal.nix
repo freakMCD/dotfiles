@@ -40,19 +40,45 @@
       end
 
       function rebuild
-        sudo nixos-rebuild build --flake $HOME/nix#edwin && nvd diff /run/current-system result
-      end
+          # Capture previous system state
+          set -l old_system (readlink /run/current-system)
+          set -l update_requested 0
 
-      function cheat
-        curl cheat.sh/$argv
+          # Parse arguments
+          for arg in $argv
+              if [ "$arg" = "--update" ]
+                  set update_requested 1
+                  echo "Updating flake..."
+                  nix flake update --flake $HOME/nix || return 1
+              end
+          end
+
+          # Build/switch
+          if contains "switch" $argv || contains "test" $argv
+              echo "Building and activating..."
+              sudo nixos-rebuild $argv[1] --flake $HOME/nix#edwin || return 1
+              set -l new_system (readlink -f /run/current-system)
+          else
+              echo "Building..."
+              sudo nixos-rebuild build --flake $HOME/nix#edwin || return 1
+              set -l new_system (readlink result)
+          end
+
+          # Only show diff if:
+          # 1. --update was used, or
+          # 2. The system actually changed
+          if [ "$update_requested" -eq 1 ] || [ "$old_system" != "$new_system" ]
+              nvd diff $old_system $new_system
+          else
+              echo "No changes detected."
+          end
       end
+    
     '';
     shellAbbrs = {
       rm = "rm -I";
       top = "htop";
       yamend = "yadm commit --amend --no-edit && yadm push -f";
-      reswitch = "sudo nixos-rebuild --flake $HOME/nix#edwin switch";
-      retest = "sudo nixos-rebuild --flake $HOME/nix#edwin test --fast";
       reconfig = "home-manager switch --flake $HOME/nix#edwin";
       df="df -h";
       dus="du -h --max-depth=1 | sort -hr";

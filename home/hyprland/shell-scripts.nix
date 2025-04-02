@@ -5,6 +5,7 @@ in
 {
   home.packages = with pkgs; [
     jq socat
+
 (writers.writeFishBin "closeMpvWindow" ''
   set mpv_addresses (cat /tmp/mpv_addresses)
   set target_address $mpv_addresses[$argv[1]]

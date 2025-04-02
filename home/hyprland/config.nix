@@ -11,9 +11,7 @@ in
     settings = let
       screenarea = ''grim -c -g "$(slurp -d)" - | wl-copy'';
       screenfull = ''grim -c - | wl-copy'';
-
-      recordarea = ''wf-recorder -g "$(slurp)" -x yuv420p -c libx264 -f "$HOME/MediaHub/recordings/Screenrecording-area_$(date +%y-%m-%d_%H%M-%S).mp4"'';
-      recordfull = ''wf-recorder -x yuv420p -c libx264 -f "$HOME/MediaHub/recordings/Screenrecording-full_$(date +%y-%m-%d_%H%M-%S).mp4"'';
+      recordarea = "$HOME/nix/scripts/record.sh";
     in 
     { env = mapAttrsToList (name: value: "${name},${toString value}") {
         XDG_CURRENT_DESKTOP = "Hyprland";
@@ -154,7 +152,10 @@ in
 
         #screenshot
         ", Print, exec, ${screenfull}"
-        "CTRL, Print, exec, ${screenarea}"
+        "SHIFT, Print, exec, ${screenarea}"
+
+        # Screen Recordings
+        "$mod, Print, exec, ${recordarea}"
 
         #windows managment related
         "$mod, f, fullscreen"

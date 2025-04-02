@@ -1,5 +1,0 @@
-#!/bin/bash
-
-for song in ./*.m4a; do
-      ffmpeg -y -i "$song" -vn -c copy ./NOART/"$song"; 
-done

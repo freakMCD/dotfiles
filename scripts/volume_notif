@@ -35,7 +35,7 @@ if ((muted)); then
         symbol="🔇"  # Speaker mute
         msg="$symbol muted"
     else
-        symbol="🤐"  # More visually distinct mic mute
+        symbol="🤐"  # Mic mute
         msg="$symbol mic muted"
     fi
     timeout="-t 0"
@@ -49,16 +49,18 @@ else
             symbol="🔊"
         fi
         msg="$symbol $vol%"
-        # Add progress bar hint only for volume notifications
-        progress_hint="-h int:value:$vol"
+        # Progress hint for volume
+        progress_hint=(-h "int:value:$vol")
     else
         symbol="🎤"  # Active mic
-        msg="$symbol unmuted"
+        msg="$symbol mic unmuted"
+        # No progress hint for mic
+        progress_hint=()
     fi
     timeout="-t 1500"
 fi
 
 notify-send -u low \
     -h "string:x-canonical-private-synchronous:${type,,}" \
-    $progress_hint \
+    "${progress_hint[@]}" \
     "$msg" $timeout

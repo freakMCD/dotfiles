@@ -3,8 +3,13 @@
   services = {
     mpd = {
       enable = true;
+      network = {
+        startWhenNeeded = true;
+        listenAddress = "any";
+      };
       musicDirectory = "/home/edwin/Music/";
       extraConfig = ''
+          restore_paused "yes"
           auto_update "yes"
           audio_output {
             type "pipewire"
@@ -12,7 +17,6 @@
           }
       '';
     };
-
     mpd-mpris.enable = true;
 
     fnott = {

@@ -1,5 +1,12 @@
-{ inputs, pkgs, ... }: let
+{lib, inputs, pkgs, ... }: let
   perlEnv = pkgs.perl.withPackages (p: with p; [ MIMEEncWords ]);
+  libnotify = pkgs.libnotify.overrideAttrs (old: {
+    src = pkgs.fetchurl {
+      url = "mirror://gnome/sources/libnotify/0.8/libnotify-0.8.6.tar.xz";
+      hash = "sha256-xVQKrvtg4dY7HFh8BfIoTr5y7OfQwOXkp3jP1YRLa1g=";
+    };
+    patches = "";
+  });
 in
 {
 # List packages installed in system profile. To search, run:

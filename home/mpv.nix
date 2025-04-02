@@ -83,7 +83,7 @@ in
         playlist_display_timeout = 10;
       };
       stats = {
-        font_size = 7;
+        font_size = 18;
       };
     };
 
