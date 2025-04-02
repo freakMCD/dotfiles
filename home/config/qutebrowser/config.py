@@ -15,7 +15,7 @@ config.source('websites.py')
 c.auto_save.session = False
 c.downloads.location.directory = "/home/edwin/MathCareer/"
 c.downloads.location.prompt = True
-c.downloads.remove_finished = 300
+c.downloads.remove_finished = 300000
 c.downloads.open_dispatcher = "xdg-open {}"
 c.fileselect.folder.command = ["foot","yazi", "--cwd-file={}"]
 c.fileselect.multiple_files.command = ["foot","yazi", "--chooser-file={}"]
