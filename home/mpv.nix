@@ -1,14 +1,4 @@
-{ pkgs, lib, config, ...}: let
-  yt-dlp = pkgs.yt-dlp.overrideAttrs (old: {
-    version = "2025.3.27";
-    src = pkgs.fetchPypi {
-      pname = "yt_dlp";
-      version = "2025.3.27";
-      hash = "sha256-MMsHj4A7U5sqZlIcXshtMowH90rsqUQAaeWGGcKZzxU=";
-    };
-    postPatch = "";
-  });
-in
+{ pkgs, lib, config, ...}:
 {
   programs.mpv = {
     enable = true;

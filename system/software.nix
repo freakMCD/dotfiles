@@ -7,22 +7,32 @@
     };
     patches = "";
   });
+  pinned = inputs.nixpkgs-020425.legacyPackages.${pkgs.system};  # Access pinned packages
 in
 {
-# List packages installed in system profile. To search, run:
+  nixpkgs.overlays = [
+    (final: prev: {
+      firefox = pinned.firefox;
+      texlive.combined.scheme-medium = pinned.texlive.combined.scheme-medium;
+      texlab = pinned.texlab;
+    })
+  ];
+
   environment.systemPackages = with pkgs; [
-      dig htop inotify-tools streamlink telegram-desktop firefox ffmpeg
-      home-manager nvd pass yadm gnupg simple-scan
-      gcc bundix perlEnv
-      qutebrowser w3m 
-      neovim kalker
-      curl rclone udiskie bat fd libnotify
-      neomutt msmtp isync newsraft
-      nomacs playerctl mpc
-      wev wl-clipboard grim slurp wf-recorder qbittorrent translate-shell
-      chafa inputs.fastanime.packages.${system}.default
-      texlab texlive.combined.scheme-medium
-      hyprpicker yambar webcord
+  # Pinned
+  firefox texlab texlive.combined.scheme-medium
+  # Others
+    dig htop inotify-tools streamlink telegram-desktop ffmpeg
+    home-manager nvd pass yadm gnupg simple-scan
+    gcc bundix perlEnv
+    qutebrowser w3m 
+    neovim kalker
+    curl rclone udiskie bat fd libnotify
+    neomutt msmtp isync newsraft
+    nomacs playerctl mpc
+    wev wl-clipboard grim slurp wf-recorder qbittorrent translate-shell
+    chafa inputs.fastanime.packages.${system}.default
+    hyprpicker yambar webcord
   ];
 
   programs = {

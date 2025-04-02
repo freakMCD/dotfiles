@@ -134,8 +134,7 @@
       }
       .comment {
         background-color: var(--bg1) !important;
-        padding: 8px 10px 0px 8px;
-        margin: 8px 0;
+        padding: 2px 4px 2px 4px;
         border-radius: 20px;
       }
       .tagline {

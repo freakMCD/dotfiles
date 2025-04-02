@@ -56,7 +56,7 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      };
+    };
 
     # Keyboard Layout
      xserver.xkb = {
