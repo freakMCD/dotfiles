@@ -120,7 +120,7 @@ in
           (generateBindings "togglePAUSE" "SHIFT") ++
           (generateBindings "closeMpvWindow" "CTRL") ++
         [
-        "$mod, less, exec, toggleVIEW"
+        ''$mod, semicolon, exec, notify-send -h "string:x-canonical-private-synchronous:weather" "Weather Update" "$(curl -s wttr.in?format=3)"''
 
         "$mod, 1 , workspace, 1"
         "$mod, 2, workspace, 2"
@@ -197,7 +197,6 @@ in
         "$mod, KP_Left, togglespecialworkspace, kalker"
         "$mod, KP_Begin, togglespecialworkspace, androidsync"
         "$mod, O, togglespecialworkspace, openfile"
-        "$mod, W, togglespecialworkspace, whatsapp"
         "$mod, R, exec, fuzzel"
       ];
 
@@ -229,8 +228,8 @@ in
         "special:openfile, on-created-empty: ${terminal} --app-id=openfile open_file"
       ];
 
-      windowrulev2 = [
-        "float, class:^(floating|mpv)$"
+      windowrule = [
+        "float,class:^(floating|mpv)$"
         "float,class:(^(org-geogebra-desktop)),title:(Algebra)"
         "float,class:(^(org-geogebra-desktop)),title:(^(win))"
         "tile,title:(^(GeoGebra Classic))"
