@@ -30,7 +30,7 @@
       end
 
       function mpv
-          nohup mpv $argv & disown
+          nohup mpv $argv >/dev/null 2>&1 & disown
           exit
       end
 
@@ -43,6 +43,7 @@
           # Capture previous system state
           set -l old_system (readlink /run/current-system)
           set -l update_requested 0
+          cd $HOME
 
           # Parse arguments
           for arg in $argv

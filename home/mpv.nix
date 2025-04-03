@@ -6,15 +6,17 @@
       hwdec = "auto";
       keep-open = true;
       keep-open-pause = false;
+      idle = "once";
       profile = "fast";
       video-sync = "display-resample";
       gpu-context = "wayland";
       save-position-on-quit = true;
       watch-later-options = "start";
+      save-watch-history = true;
       force-window = true;
       screenshot-directory = "~/MediaHub/screenshots/mpv";
       osd-bar= false;
-      osd-font-size = 20;
+      osd-font-size = 18;
 
       ## Languages ##
       slang="eng,en,enUS,en-US,spa,es";
@@ -54,6 +56,7 @@
       "ESC" = "ignore";
       "WHEEL_UP" = "ignore";
       "WHEEL_DOWN" = "ignore";
+      "f" = "ignore";
       "Shift+d" = "playlist-remove current";
     };
 
@@ -100,27 +103,6 @@
         })
 
         (mpvScripts.buildLua {
-          pname = "mpv-simple-history";
-          version = "1.0";
-
-          src = fetchFromGitHub {
-            owner = "Eisa01";
-            repo = "mpv-scripts";
-            rev = "48d68283cea47ff8e904decc9003b3abc3e2123e";
-            sha256 = "sha256-95CAKjBRELX2f7oWSHFWJnI0mikAoxhfUphe9k51Qf4=";
-          };
-
-          passthru.updateScript = unstableGitUpdater {};
-          scriptPath = "scripts/SimpleHistory.lua";
-
-          meta = {
-            description = "Stores whatever you open in a history file and abuses it with features!";
-            homepage = "https://github.com/Eisa01/mpv-scripts";
-            license = lib.licenses.mit;
-          };
-        })
-
-        (mpvScripts.buildLua {
           pname = "show-osc-on-seek";
           version = "1.0";
           src = pkgs.writeTextFile {
@@ -140,7 +122,6 @@
           };
           scriptPath = "show-osc-on-seek.lua";
         })
-
         mpvScripts.mpv-playlistmanager
     ];
   };

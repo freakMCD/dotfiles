@@ -13,7 +13,7 @@ config.source('websites.py')
 
 # General
 c.auto_save.session = False
-c.downloads.location.directory = "/home/edwin/MathCareer/"
+c.downloads.location.directory = "/home/edwin/Downloads/"
 c.downloads.location.prompt = True
 c.downloads.remove_finished = 300000
 c.downloads.open_dispatcher = "xdg-open {}"
