@@ -14,6 +14,7 @@ GM_addStyle(`
     #center,
     #secondary,
     #comments,
+    ytd-search,
     ytd-miniplayer,
     ytd-merch-shelf-renderer,
     ytd-reel-shelf-renderer,

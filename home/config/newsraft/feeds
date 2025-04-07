@@ -20,9 +20,9 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCdwo4k1RQHTcq_-WS7Cazqg "Th
 
 @ Extra < reload-period 240
 https://twitchrss.appspot.com/vodonly/hollowknightcommunity
+https://twitchrss.appspot.com/vodonly/insym < item-rule strftime('%w', publication_date, 'unixepoch') = '4'
 https://w37.onepiece-manga-online.net/feed
-https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "GOT_Extras"
-https://www.youtube.com/feeds/videos.xml?channel_id=UC97I55D2HsW1nfA_1QgJ3IA "HierToGame"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "GOT_Extras" < item-rule title LIKE '%NARUTO%' COLLATE NOCASE
 
 
 

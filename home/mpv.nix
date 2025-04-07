@@ -50,6 +50,15 @@
         sub-visibility = false;
         
       };
+      "protocol.http" = {
+        hls-bitrate = "min";
+        cache = "yes";
+        cache-pause = false;
+        force-window = "immediate";
+      };
+      "protocol.https" = { profile = "protocol.http"; };
+      "protocol.ytdl" = { profile = "protocol.http"; };
+
     };
 
     bindings = {

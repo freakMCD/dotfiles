@@ -66,7 +66,7 @@
         "Network"
         "WebBrowser"
       ];
-      exec = "qutebrowser --untrusted-args %u";
+      exec = "sh -c \"source ~/.local/share/linuxfedora && qutebrowser --untrusted-args %u\"";
       terminal = false;
       startupNotify = false;
       mimeType = [

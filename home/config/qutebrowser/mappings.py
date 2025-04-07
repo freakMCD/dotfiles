@@ -35,4 +35,4 @@ bind = {
 for key, command in bind.items():
     config.bind(key, command)
 # Auto-fill both (if supported)
-config.bind(',p', 'spawn --userscript qute-pass')
+config.bind(',p', "spawn --userscript qute-pass")

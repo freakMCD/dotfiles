@@ -7,6 +7,16 @@
     };
     patches = "";
   });
+  newsraft= pkgs.newsraft.overrideAttrs (oldAttrs: {
+    version = "0.29-unstable-2025-04-06";
+    src = pkgs.fetchFromGitea {
+      domain = "codeberg.org";
+      owner = "newsraft";
+      repo = "newsraft";
+      rev = "3dd225a059f3235d6198c228952a6a4b1eeb69cb";
+      hash = "sha256-ZBezAdMiIWw27TcEawduxUkdhJUQahSXiyLTdYkJSzc=";
+    };
+  });
   pinned = inputs.nixpkgs-020425.legacyPackages.${pkgs.system};  # Access pinned packages
 in
 {
@@ -22,8 +32,9 @@ in
   # Pinned
   firefox texlab texlive.combined.scheme-medium
   # Others
-    dig htop inotify-tools streamlink telegram-desktop ffmpeg
-    home-manager nvd pass yadm gnupg simple-scan
+    pdfarranger simple-scan
+    dig htop inotify-tools telegram-desktop ffmpeg
+    home-manager nvd pass yadm gnupg
     gcc bundix perlEnv
     qutebrowser w3m 
     neovim kalker
@@ -83,5 +94,4 @@ in
     Unit="mailsync.service";
     };
   };
-
 }

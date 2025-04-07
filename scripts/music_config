@@ -6,7 +6,6 @@ declare -A PLAYLISTS=(
   ["Kenshi Yonezu"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjLtUqr1f4ozG8e8HGJmemHS"
   ["Phantom Siita"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjIvFs416yAtg9JEqW2lL8b-"
   ["OSTs"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjLgifyNK_xGeMq-NtQ52P7N"
-  ["Sakuzyo"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjKqoUAi5vn1h5NhQLZ9bDWD"
   ["Feryquitous"]="https://www.youtube.com/playlist?list=PLjYilp-bySE1qwXLKHWZZcHbqWaetqyaM"
   ["Xi"]="https://www.youtube.com/watch?v=s7mKnTjl9Pg&list=PLjYilp-bySE3Elmd73Irfp6_qSk0jwaRj"
 )

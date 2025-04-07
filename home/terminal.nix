@@ -34,11 +34,6 @@
           exit
       end
 
-      function ttv
-          nohup streamlink https://twitch.tv/"$argv" --title "{author} - {category}" --player=mpv --twitch-proxy-playlist=https://eu.luminous.dev,https://lb-eu.cdn-perfprod.com best & disown
-          exit
-      end
-
       function rebuild
           # Capture previous system state
           set -l old_system (readlink /run/current-system)
