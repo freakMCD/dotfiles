@@ -4,7 +4,6 @@ https://yadm.io/docs/faq#unconventional-cases Frequently Asked Questions - yadm
 https://aimath.org/textbooks/approved-textbooks/ Approved Textbooks | American Inst. of Mathematics
 https://artofproblemsolving.com/store Math Book Store - Print and Online | AoPS
 https://www.nerdfonts.com/cheat-sheet Nerd Fonts - Iconic font aggregator, glyphs/icons collection, & fonts patcher
-https://wiki.archlinux.org/title/XDG_Base_Directory XDG Base Directory - ArchWiki
 https://tex.stackexchange.com/questions/570711/align-equivalence-arrows-and-equal-signs-without-weird-spacing math mode - Align equivalence arrows and equal signs without weird spacing - TeX - LaTeX Stack Exchange
 https://math.stackexchange.com/questions/2786/companions-to-rudin analysis - Companions to Rudin? - Mathematics Stack Exchange
 https://tex.stackexchange.com/questions/88929/vertical-table-lines-are-discontinuous-with-booktabs rules - Vertical table lines are discontinuous with booktabs - TeX - LaTeX Stack Exchange
@@ -21,15 +20,12 @@ https://git.sr.ht/~pkulak/nix/tree/main/item/home/default.nix#L45 ~pkulak/nix (m
 https://mpv.io/manual/master/ mpv.io
 https://everythingmoe.com/ EverythingMoe - Index of best Anime/Manga sites
 https://stackoverflow.com/questions/19795987/youtube-channel-and-playlist-id-prefixes YouTube channel and playlist ID prefixes - Stack Overflow
-https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-hyprland-settings Garuda Linux 🦅 / Themes and Settings / Settings / Garuda Hyprland Settings · GitLab
 https://yashgarg.dev/posts/nix-tips-tricks/ Nix Tips & Tricks · Yash Garg
 https://bandito.re/dashboard Bandito.re
 https://chat.deepseek.com/ DeepSeek - Into the Unknown
 https://0xerr0r.github.io/blocky/latest/configuration/ Configuration - blocky
 https://search.nixos.org/packages?channel=unstable NixOS Search - Packages
 https://search.nixos.org/options?channel=unstable NixOS Search - Options
-https://www.start.gg/tournament/hollow-knight-any-2025-siksong-is-still-not-out-tournament/event/awesome-sauce/brackets/1901560/2795702 hollow knight any% 2025 siksong is still not out tournament
-https://hk-tournaments.web.app/sign-in HkTournaments
 https://github.com/EightBitApple/dotfiles/blob/8038e73c0a7d7c069443883255b1c926f7647a9f/modules/home-manager/packages/media/video-playback.nix#L39 dotfiles/modules/home-manager/packages/media/video-playback.nix at 8038e73c0a7d7c069443883255b1c926f7647a9f · EightBitApple/dotfiles
 https://drive.google.com/drive/my-drive Mi unidad - Google Drive
 https://github.com/samolego/Canta samolego/Canta: Uninstall any Android app without root (with power of Shizuku). Debloat your device as you wish, no PC required.

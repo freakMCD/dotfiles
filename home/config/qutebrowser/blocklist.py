@@ -1,5 +1,6 @@
 # Content
 c.content.autoplay = False
+c.content.dns_prefetch = False
 c.content.notifications.enabled = False
 c.content.geolocation = False
 c.content.blocking.enabled = True

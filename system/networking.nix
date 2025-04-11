@@ -15,8 +15,12 @@ in
       wants = [ "network-online.target" ];
       after = [ "network-online.target" ];
 
-      startLimitIntervalSec = 1;
-      startLimitBurst = 50;
+      startLimitIntervalSec = 300;
+      startLimitBurst = 5;
+      serviceConfig = {
+        Restart = "on-failure";
+        RestartSec = "5s";
+      };
     };
       services.blocky = {
       enable = true;
@@ -24,7 +28,7 @@ in
         upstreams.groups.default = defaultNameservers;
         bootstrapDns = {
           upstream = "https://dns.quad9.net/dns-query";
-          ips = [ "9.9.9.9" "149.112.112.112" ];
+          ips = [ "9.9.9.9" "149.112.112.112" "1.1.1.1" "1.0.0.1"];
         };
         blocking = {
           denylists = {
@@ -52,9 +56,11 @@ in
           };
         };
         caching = {
-          minTime = "5m";
-          maxTime = "2h";
+          minTime = "60s";
+          maxTime = "4h";
           prefetching = true;
+          prefetchExpires = "2h";
+          prefetchThreshold = 3;
         };
         ports = lib.mkIf config.enableMonitoring {
           http = 4000;
@@ -117,7 +123,7 @@ in
     };
 
     networking = {
-      nameservers = ["127.0.0.1"];
+      nameservers = ["127.0.0.1" "::1"];
       networkmanager = {
         enable = true;
         dns = "none";

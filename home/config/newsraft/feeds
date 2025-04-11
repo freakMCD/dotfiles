@@ -14,14 +14,10 @@ https://www.ams.org/rss/mathmoments.rss
 https://mathvoices.ams.org/teachingandlearning/feed/
 https://mathvoices.ams.org/mathmedia/feed/
 https://mathvoices.ams.org/featurecolumn/feed/
-https://www.youtube.com/feeds/videos.xml?playlist_id=UULFYO_jab_esuFRV4b17AJtAw "3Blue1Brown"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCdwo4k1RQHTcq_-WS7Cazqg "The Bright Side of Mathematics"
 
 
 @ Extra < reload-period 240
-https://twitchrss.appspot.com/vodonly/hollowknightcommunity
-https://twitchrss.appspot.com/vodonly/insym < item-rule strftime('%w', publication_date, 'unixepoch') = '4'
-https://w37.onepiece-manga-online.net/feed
+https://mdrss.tijlvdb.me/feed?q=manga:a1c7c817-4e59-43b7-9365-09675a149a6f,tl:en "One Piece"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "GOT_Extras" < item-rule title LIKE '%NARUTO%' COLLATE NOCASE
 
 

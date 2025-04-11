@@ -14,6 +14,7 @@ bind = {
     "gW": "open -t https://web.whatsapp.com",
 
 	leader + "js": "config-cycle content.javascript.enabled true false",
+    leader + "b": "config-cycle tabs.show always never",
 	leader + leader: "config-cycle colors.webpage.darkmode.enabled true false;; config-cycle content.user_stylesheets [] ['css/gruvbox.css']",
 	leader + "v": "config-source ;; message-info 'qutebrowser reloaded'",
     ## mpv 
