@@ -95,4 +95,11 @@ in
     Unit="mailsync.service";
     };
   };
+
+  services.mediatomb = {
+    enable = true;
+    openFirewall = true;
+    serverName = "Sisko";
+    transcoding = true;
+  };
 }

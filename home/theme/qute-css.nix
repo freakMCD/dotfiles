@@ -147,5 +147,6 @@
         border-bottom: none !important;
         background-color: var(--bg1) !important;
       }
+      .react-blob-print-hide { font-family: LiterationSans Nerd Font !important; }
   '';
 }

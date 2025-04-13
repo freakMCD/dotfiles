@@ -31,7 +31,6 @@ c.qt.highdpi= True
 c.session.lazy_restore = True
 c.statusbar.padding = {"bottom": 0, "left": 0, "right": 0, "top": 0}
 c.statusbar.show = "in-mode"
-c.zoom.default = "100%"
 
 # Hints
 c.hints.padding = {"bottom": 0, "left": 1, "right": 1, "top": 0}
