@@ -65,6 +65,7 @@ c.tabs.padding = {"bottom": 2, "left": 5, "right": 5, "top": 2}
 c.input.insert_mode.auto_enter = True
 c.input.insert_mode.auto_leave = False
 c.input.insert_mode.leave_on_load = True
+c.input.forward_unbound_keys = "none"
 
 # Fonts
 c.fonts.contextmenu = "default_size default_family"

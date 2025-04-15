@@ -1,12 +1,16 @@
 # vim: set nowrap :
 #
 @ News < reload-period 1440
-https://nixos.org/blog/announcements-rss.xml
 https://bandito.re/13b14305-cba7-4fd1-92b6-d5a424169984.atom
 https://codeberg.org/newsraft/newsraft/releases.rss
 https://codeberg.org/dnkl/yambar/releases.rss
 https://adguard.com/blog/rss-en.xml
 https://gitlab.com/nitrohorse/search-engines-compare/-/commits/master?format=atom
+
+@ Nixos < reload-period 60
+https://nixos.org/blog/announcements-rss.xml
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/networking/browsers/qutebrowser/default.nix.atom "qutebrowser commits"
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/hy/hyprland/package.nix.atom "Hyprland commits"
 
 @ Math < reload-period 1440
 https://terrytao.wordpress.com/feed/ "Terence Tao Blog"
@@ -16,7 +20,7 @@ https://mathvoices.ams.org/mathmedia/feed/
 https://mathvoices.ams.org/featurecolumn/feed/
 
 
-@ Extra < reload-period 240
+@ Media < reload-period 240
 https://mdrss.tijlvdb.me/feed?q=manga:a1c7c817-4e59-43b7-9365-09675a149a6f,tl:en "One Piece"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "GOT_Extras" < item-rule title LIKE '%NARUTO%' COLLATE NOCASE
 

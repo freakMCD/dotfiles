@@ -49,12 +49,20 @@ yt-dlp --flat-playlist --get-id "${PLAYLISTS['The Hall']}" | \
     awk '{print "youtube " $1}' | \
     sort > "$HALL_ARCHIVE"
 
+# Update the archives first
+~/nix/scripts/yt-dlp/fixarchive
+
+# Start Downloading
 download_playlist "The Hall" "$HALL_DIR"
 
 # Process Vault playlists
-for playlist_name in "${!PLAYLISTS[@]}"; do
-    [[ "$playlist_name" == "The Hall" ]] && continue
+for playlist_name in "${VAULT_CATEGORIES[@]}"; do
     download_playlist "$playlist_name" "$VAULT_DIR/$playlist_name"
+done
+
+# Process Other Playlists (e.g., Yo Kaze, Ambient Music Japan)
+for playlist_name in "${OTHER_CATEGORIES[@]}"; do
+    download_playlist "$playlist_name" "$BASE_DIR/$playlist_name"
 done
 
 # -- MOVE FILES FIRST --

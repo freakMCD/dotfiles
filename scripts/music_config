@@ -4,7 +4,15 @@ declare -A PLAYLISTS=(
   ["Reol"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjLqv7Z191-7ovzHb6i-dqg-"
   ["Phantom Siita"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjIvFs416yAtg9JEqW2lL8b-"
   ["IU"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjIas-R1MxCNx_saEpMPAsBZ"
+  ["Artcore"]="https://www.youtube.com/playlist?list=PLvoJm-S4aIsyku-i5SCMlYd5mcQqzh3FK"
+  ["Ambient"]="https://www.youtube.com/playlist?list=RDCLAK5uy_kRMtamnVCD4AQaBkMy_ULry_26F3YzYps"
 )
+
+# Playlist categories (excluding The Hall)
+VAULT_CATEGORIES=( "Reol" "Phantom Siita" "IU" )
+OTHER_CATEGORIES=( "Artcore" "Ambient" )
+
+
 BASE_DIR=~/Music
 VAULT_DIR="$BASE_DIR/Vault"
 HALL_DIR="$BASE_DIR/The Hall"

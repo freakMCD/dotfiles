@@ -120,6 +120,12 @@ in
           (generateBindings "togglePAUSE" "SHIFT") ++
           (generateBindings "closeMpvWindow" "CTRL") ++
         [
+
+        "MOD5, F1, exec, mpc clear; mpc add Ambient; mpc play"
+        "MOD5, F2, exec, mpc clear; mpc add Artcore; mpc play"
+        "MOD5, F3, exec, mpc clear; mpc add The\\ Hall; mpc add Vault; mpc play"
+        "MOD5, F4, exec, mpc clear"
+
         ''$mod, semicolon, exec, notify-send -h "string:x-canonical-private-synchronous:weather" "Weather Update" "$(curl -s wttr.in?format=3)"''
 
         "$mod, 1 , workspace, 1"
