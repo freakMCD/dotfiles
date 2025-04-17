@@ -52,11 +52,11 @@
           # Build/switch
           if contains "switch" $argv || contains "test" $argv
               echo "Building and activating..."
-              sudo nixos-rebuild $argv[1] --flake $HOME/nix#edwin || return 1
+              sudo nixos-rebuild $argv[1] --fast --flake $HOME/nix#edwin || return 1
               set new_system (readlink -f /run/current-system)
           else
               echo "Building..."
-              sudo nixos-rebuild build --flake $HOME/nix#edwin || return 1
+              sudo nixos-rebuild build --fast --flake $HOME/nix#edwin || return 1
               set new_system (readlink result)
           end
 
