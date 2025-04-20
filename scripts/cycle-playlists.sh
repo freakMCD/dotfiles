@@ -4,7 +4,6 @@
 # Define your playlists (multi can be comma-separated)
 playlists=(
   "Ambient"
-  "Artcore"
   "The Hall,Vault"
 )
 
@@ -41,7 +40,3 @@ for pl in "${current[@]}"; do
 done
 
 mpc play
-
-
-notify-send -h "string:x-canonical-private-synchronous:playlist" "Now playing" "${playlists[$index]}"
-

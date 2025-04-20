@@ -9,7 +9,6 @@ https://gitlab.com/nitrohorse/search-engines-compare/-/commits/master?format=ato
 https://mdrss.tijlvdb.me/feed?q=manga:a1c7c817-4e59-43b7-9365-09675a149a6f,tl:en "One Piece"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "Naruto" < item-rule title LIKE '%NARUTO%' COLLATE NOCASE
 
-
 @ Nixos < reload-period 60
 https://nixos.org/blog/announcements-rss.xml
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/networking/browsers/qutebrowser/default.nix.atom "qutebrowser commits"
