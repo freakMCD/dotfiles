@@ -4,12 +4,12 @@ declare -A PLAYLISTS=(
   ["Reol"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjLqv7Z191-7ovzHb6i-dqg-"
   ["Phantom Siita"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjIvFs416yAtg9JEqW2lL8b-"
   ["IU"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjIas-R1MxCNx_saEpMPAsBZ"
-  ["Ambient"]="https://www.youtube.com/playlist?list=RDCLAK5uy_kRMtamnVCD4AQaBkMy_ULry_26F3YzYps"
+  ["Ethereal"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjLFhIqJ3w5v6htEwPKMXxBx"
 )
 
 # Playlist categories (excluding The Hall)
 VAULT_CATEGORIES=( "Reol" "Phantom Siita" "IU" )
-OTHER_CATEGORIES=( "Ambient" )
+OTHER_CATEGORIES=( "Ethereal" )
 
 
 BASE_DIR=~/Music

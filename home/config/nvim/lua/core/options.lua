@@ -26,6 +26,7 @@ local options = {
   cmdheight = 0,
   showcmdloc = "statusline",
 	signcolumn = "number",
+  clipboard = "unnamed,unnamedplus",
 }
 
 for k, v in pairs(options) do

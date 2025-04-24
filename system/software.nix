@@ -23,7 +23,8 @@ in
   nixpkgs.overlays = [
     (final: prev: {
       firefox = pinned.firefox;
-      texlive.combined.scheme-medium = pinned.texlive.combined.scheme-medium;
+      kalker = pinned.kalker;
+      texlive.combined.scheme-full = pinned.texlive.combined.scheme-full;
       texlab = pinned.texlab;
       libreoffice = pinned.libreoffice;
     })
@@ -31,14 +32,14 @@ in
 
   environment.systemPackages = with pkgs; [
   # Pinned
-  firefox texlab texlive.combined.scheme-medium libreoffice
+  firefox texlab texlive.combined.scheme-full libreoffice kalker
   # Others
     pdfarranger simple-scan
     dig htop inotify-tools telegram-desktop ffmpeg
     home-manager nvd pass yadm gnupg
     gcc bundix perlEnv
     qutebrowser w3m 
-    neovim kalker
+    neovim 
     curl rclone udiskie bat fd libnotify
     neomutt msmtp isync newsraft
     nomacs playerctl mpc

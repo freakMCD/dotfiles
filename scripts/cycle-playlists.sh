@@ -3,7 +3,7 @@
 
 # Define your playlists (multi can be comma-separated)
 playlists=(
-  "Ambient"
+  "Ethereal"
   "The Hall,Vault"
 )
 

@@ -84,9 +84,32 @@ in
 
       group = {
           "col.border_active" = "rgba(fe8019ee) rgba(fabd2fee) 135deg";
-          groupbar = {
-              render_titles = false;
-          };
+        groupbar = {
+          # Colors
+          text_color = "0xffebdbb2";         # Gruvbox foreground (off-white)
+
+          # Aesthetic tweaks
+          gradients = true;
+          font_family = "JetBrains Mono";
+          font_size = 9;
+          height = 16;
+          indicator_height = 2;
+          
+          # Rounding parameters
+          rounding = 2;
+          gradient_rounding = 3;
+          round_only_edges = true;
+          gradient_round_only_edges = true;
+
+          # Layout
+          stacked = false;
+          
+          # Functional settings
+          enabled = true;
+          render_titles = true;
+          scrolling = true;
+          priority = 2;
+        };
       };
 
       "$mod" = "SUPER";
