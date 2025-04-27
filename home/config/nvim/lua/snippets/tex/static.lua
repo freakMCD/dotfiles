@@ -81,13 +81,4 @@ return
       {t('\\hline {\\rule{0pt}{2.5ex}} \\hspace{-7pt}')},
       {condition = line_begin}
     ),
-    s({ trig = "abc", snippetType = "autosnippet" },
-      { t("[label=\\alph*)] ") },
-      {
-        condition = function(line_to_cursor, matched_trigger, captures)
-          local line = vim.api.nvim_get_current_line()
-          return line:match("\\begin{enumerate}") ~= nil
-        end,
-      }
-    ),
   }
