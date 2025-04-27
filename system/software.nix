@@ -34,7 +34,7 @@ in
   # Pinned
   firefox texlab texlive.combined.scheme-full libreoffice kalker
   # Others
-    pdfarranger simple-scan
+    pdfarranger simple-scan geogebra6
     dig htop inotify-tools telegram-desktop ffmpeg
     home-manager nvd pass yadm gnupg
     gcc bundix perlEnv

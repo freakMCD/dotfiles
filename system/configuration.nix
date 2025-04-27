@@ -67,7 +67,7 @@
 
   # Printing
   nixpkgs.config = {
-    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "hplip" ];
+    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "hplip" "geogebra" ];
 
     packageOverrides = pkgs: {
       hplip = pkgs.hplip.overrideAttrs (oldAttrs: {
