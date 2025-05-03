@@ -78,7 +78,7 @@
       reconfig = "home-manager switch --flake $HOME/nix#edwin";
       df="df -h";
       dus="du -h --max-depth=1 | sort -hr";
-      mp3dl=''yt-dlp --restrict-filenames --extract-audio --audio-format mp3 "https://www.youtube.com/playlist?list=WL" --cookies-from-browser firefox:~/.mozilla/firefox/'';
+      mp3dl=''yt-dlp --restrict-filenames -t mp3 "https://www.youtube.com/playlist?list=WL" --cookies-from-browser firefox:~/.mozilla/firefox/'';
       litedlp="yt-dlp -f 'bestvideo[height<=720]+bestaudio/best'";
       fc-list=''fc-list --format="%{family[0]}\n" | sort | uniq'';
       sortmusic=''cd ~/Music/ && stat --format="%W %n" * | sort -nr'';

@@ -211,9 +211,9 @@ in
 
 # Toggle windowgroup / toggle window group lock
         "$mod, U, moveoutofgroup"
-        "$mod SHIFT, Y, lockactivegroup, toggle"
+        "$smod, Y, lockactivegroup, toggle"
         "$mod, TAB, changegroupactive, f"
-        "$mod SHIFT, TAB, changegroupactive, b"
+        "$smod, TAB, changegroupactive, b"
         "$mod, grave, togglegroup"
         
         "$mod, A, togglespecialworkspace, fastanime"

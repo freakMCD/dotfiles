@@ -32,5 +32,5 @@ cat "$HALL_ARCHIVE" "$VAULT_ARCHIVE" "$OTHER_ARCHIVE" | sort -u > "$GLOBAL_ARCHI
 echo "✅ Archives rebuilt:"
 echo " - Hall: $(wc -l < "$HALL_ARCHIVE") tracks"
 echo " - Vault: $(wc -l < "$VAULT_ARCHIVE") tracks"
-echo " - Global: $(wc -l < "$GLOBAL_ARCHIVE") tracks"
 echo " - Other: $(wc -l < "$OTHER_ARCHIVE") tracks"
+echo " - Global: $(wc -l < "$GLOBAL_ARCHIVE") tracks"

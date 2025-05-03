@@ -56,16 +56,6 @@ function GetModifiedIcon()
 	return icon
 end
 
-vim.opt.statusline = table.concat({
-    "%=",                         -- Right-align everything that follows
-    "%S ",
-    "%{v:lua.GetIndicators()}",   -- Show diagnostic indicators
-    "%{v:lua.GetModifiedIcon()}", -- Show modified/unmodified icon
-    " %t ",     -- Show the filename
-    "%r", -- Readonly flag
-    " %c ", -- Column number
-})
-
 autocmd("FileType", {
     pattern = { "sh", "nix" },
     callback = function()

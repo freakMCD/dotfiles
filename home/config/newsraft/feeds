@@ -6,13 +6,12 @@ https://codeberg.org/newsraft/newsraft/releases.rss
 https://codeberg.org/dnkl/yambar/releases.rss
 https://adguard.com/blog/rss-en.xml
 https://gitlab.com/nitrohorse/search-engines-compare/-/commits/master?format=atom
-https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "Naruto" < item-rule title LIKE '%NARUTO%' COLLATE NOCASE
-https://twitchrss.appspot.com/vodonly/hollowknightcommunity
-
-@ Nixos < reload-period 60
 https://nixos.org/blog/announcements-rss.xml
-https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/networking/browsers/qutebrowser/default.nix.atom "qutebrowser commits"
-https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/hy/hyprland/package.nix.atom "Hyprland commits"
+
+@ Nixpkgs commits < reload-period 60
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/networking/browsers/qutebrowser/default.nix.atom "qutebrowser"
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/hy/hyprland/package.nix.atom "Hyprland"
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/yt/yt-dlp/package.nix.atom "yt-dlp"
 
 @ Math < reload-period 1440
 https://terrytao.wordpress.com/feed/ "Terence Tao Blog"

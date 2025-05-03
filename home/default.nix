@@ -1,6 +1,7 @@
 {config, lib, inputs, pkgs, ... }: 
 {
   imports = [
+    ./tv/renew-token.nix
     ./theme
     ./hyprland
     ./services.nix
