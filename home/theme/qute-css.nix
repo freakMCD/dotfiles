@@ -33,7 +33,7 @@
       * { font-family: LiterationSans Nerd Font !important; }
       /* --- Global Elements --- */
       html, body, table, 
-      #content, #mw-content-text,
+      #mw-content-text,
       .repository-content, .container-lg,
       .commentarea .userfg, .comments-page .panestack-title {
         background: var(--bg0) !important;

@@ -178,14 +178,12 @@ return
           \centering
           \includegraphics[width=<>\linewidth]{<>}
           \caption{<>}
-          \label{fig:<>}
         \end{figure}
         ]],
         {
           i(1),
           i(2),
           i(3),
-          i(4),
         }
       ),
       { condition = line_begin }

@@ -1,5 +1,12 @@
 # vim: set nowrap :
 #
+@ Math < reload-period 1440
+https://terrytao.wordpress.com/feed/ "Terence Tao Blog"
+https://mathvoices.ams.org/teachingandlearning/feed/
+https://mathvoices.ams.org/mathmedia/feed/
+https://mathvoices.ams.org/featurecolumn/feed/
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFLnGGRG__uGSPLBLzyhg8dQ "Oxford Lecture"
+
 @ News < reload-period 1440
 https://bandito.re/13b14305-cba7-4fd1-92b6-d5a424169984.atom
 https://codeberg.org/newsraft/newsraft/releases.rss
@@ -13,8 +20,4 @@ https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/networ
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/hy/hyprland/package.nix.atom "Hyprland"
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/yt/yt-dlp/package.nix.atom "yt-dlp"
 
-@ Math < reload-period 1440
-https://terrytao.wordpress.com/feed/ "Terence Tao Blog"
-https://mathvoices.ams.org/teachingandlearning/feed/
-https://mathvoices.ams.org/mathmedia/feed/
-https://mathvoices.ams.org/featurecolumn/feed/
+

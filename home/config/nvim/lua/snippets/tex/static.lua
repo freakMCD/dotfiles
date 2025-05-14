@@ -37,7 +37,7 @@ return
       },
       {condition = tex.in_mathzone}
     ),
-    s({trig="all", snippetType="autosnippet"},
+    s({trig="fa", snippetType="autosnippet"},
       {
         t("\\forall "),
       },

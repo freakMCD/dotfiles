@@ -519,7 +519,8 @@ return
   s({trig = "::", snippetType="autosnippet"},
     {
       t("\\colon "),
-    }
+    },
+    {condition = tex.in_mathzone}
   ),
   -- IMPLIES, i.e. \implies
   s({trig = ">>", snippetType="autosnippet"},
@@ -527,16 +528,34 @@ return
       t("\\implies "),
     }
   ),
-  -- DOT PRODUCT, i.e. \cdot
-  s({trig = ",.", snippetType="autosnippet"},
-    {
-      t("\\cdot "),
-    }
+  -- ABSOLUTE VALUE
+    s({trig = "abs", snippetType="autosnippet"},
+    fmt("\\left| {} \\right| ",{
+      i(1)
+    }),
+    {condition = tex.in_mathzone}
   ),
-  -- CROSS PRODUCT, i.e. \times
-  s({trig = "xx", snippetType="autosnippet"},
-    {
-      t("\\times "),
-    }
+ 
+  -- NORMA
+   s({trig = "norm", snippetType="autosnippet"},
+    fmt("\\left\\lVert {} \\right\\rVert ",{
+      i(1)
+    }),
+    {condition = tex.in_mathzone}
   ),
+  -- CEIL
+  s({trig = "ceil", snippetType="autosnippet"},
+    fmt("\\left\\lceil {} \\right\\rceil ",{
+      i(1)
+    }),
+    {condition = tex.in_mathzone}
+  ),
+  -- FLOOR
+  s({trig = "floor", snippetType="autosnippet"},
+    fmt("\\left\\lfloor {} \\right\\rfloor",{
+      i(1)
+    }),
+    {condition = tex.in_mathzone}
+  ),
+
 }

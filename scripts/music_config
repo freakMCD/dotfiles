@@ -2,13 +2,13 @@
 declare -A PLAYLISTS=(
   ["The Hall"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjKi1Mtlc3N5pedFJ5UgFobk"
   ["Reol"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjLqv7Z191-7ovzHb6i-dqg-"
-  ["Phantom Siita"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjIvFs416yAtg9JEqW2lL8b-"
   ["IU"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjIas-R1MxCNx_saEpMPAsBZ"
+  ["Chayanne"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjLZFyhn7NgGMlVoD2DtSW_z"
   ["Ethereal"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjLFhIqJ3w5v6htEwPKMXxBx"
 )
 
 # Playlist categories (excluding The Hall)
-VAULT_CATEGORIES=( "Reol" "Phantom Siita" "IU" )
+VAULT_CATEGORIES=( "Reol" "IU" "Chayanne" )
 OTHER_CATEGORIES=( "Ethereal" )
 
 

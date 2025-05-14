@@ -9,7 +9,8 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     settings = let
-      screenarea = ''grim -c -g "$(slurp -d)" - | wl-copy'';
+      screenarea-copy = ''grim -g "$(slurp -d -w 0)" - | wl-copy'';
+      screenarea-save = ''grim -g "$(slurp -d -w 0)" ~/MediaHub/screenshots/$(date +%y-%m-%d_%s).png'';
       screenfull = ''grim -c - | wl-copy'';
       recordarea = "$HOME/nix/scripts/record.sh";
     in 
@@ -28,6 +29,7 @@ in
         "fnott"
         "udiskie"
         "yambar"
+        "hypridle"
       ];
         
       general = {
@@ -179,10 +181,11 @@ in
 
         #screenshot
         ", Print, exec, ${screenfull}"
-        "SHIFT, Print, exec, ${screenarea}"
+        "SHIFT, Print, exec, ${screenarea-copy}"
+        "$mod, Print, exec, ${screenarea-save}"
 
         # Screen Recordings
-        "$mod, Print, exec, ${recordarea}"
+        "$MOD5, Print, exec, ${recordarea}"
 
         #windows managment related
         "$mod, f, fullscreen"

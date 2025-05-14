@@ -1,6 +1,22 @@
 {config, ...}:
 {
   services = {
+    hypridle = {
+      enable = true;
+      settings = {
+        listener = [
+          {
+            timeout = 380;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume= "hyprctl dispatch dpms on";
+          }
+          {
+            timeout = 1200;
+            on-timeout = "systemctl poweroff";
+          }
+        ];
+      };
+    };
     mpd = {
       enable = true;
       musicDirectory = "~/Music/";
