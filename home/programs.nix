@@ -4,7 +4,7 @@
     librewolf.enable = true;
     git = {
       enable = true;
-      extraConfig.credential.helper = "store";
+      extraConfig.credential.helper = "store --file ~/.my-credentials";
       userEmail = "vastagox@gmail.com";
       userName = "Alex";
     };

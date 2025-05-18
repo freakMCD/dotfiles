@@ -7,16 +7,7 @@
     };
     patches = "";
   });
-  newsraft= pkgs.newsraft.overrideAttrs (oldAttrs: {
-    version = "0.29-unstable-2025-04-07";
-    src = pkgs.fetchFromGitea {
-      domain = "codeberg.org";
-      owner = "newsraft";
-      repo = "newsraft";
-      rev = "ffd5c485e525a887d36f928a2d6dc2761f77241a";
-      hash = "sha256-boQnLkc1TseHDB8B0+lFVX8YulfujB3H/tN+XTpFkBk=";
-    };
-  });
+
   pinned = inputs.nixpkgs-020425.legacyPackages.${pkgs.system};  # Access pinned packages
 in
 {

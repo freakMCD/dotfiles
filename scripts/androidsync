@@ -13,7 +13,7 @@ screenshots() {
 }
 
 music() {
-    rsync -rlptP --delete --copy-links --whole-file --stats \
+    rsync -rlptP --delete --copy-links --checksum-choice=xxh3 --stats \
       -e 'ssh -p 8022 -o Compression=no -c aes128-ctr' \
       "$HOME/Music/The Hall" "$HOME/Music/Vault" u0_a157@192.168.1.43:/storage/5DD2-1011/
 }
