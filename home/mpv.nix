@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ...}:
+{ pkgs, pkgs-small, lib, config, ...}:
 {
   programs.mpv = {
     enable = true;
@@ -8,7 +8,6 @@
       keep-open-pause = false;
       idle = "once";
       profile = "fast";
-      video-sync = "display-resample";
       gpu-context = "wayland";
       save-position-on-quit = true;
       watch-later-options = "start";
@@ -134,7 +133,7 @@
         mpvScripts.mpv-playlistmanager
     ];
   };
-  home.packages = with pkgs; [
+  home.packages = with pkgs-small; [
     yt-dlp
     (writeShellApplication {
       name = "mpvl";

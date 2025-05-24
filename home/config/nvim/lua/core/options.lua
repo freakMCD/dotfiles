@@ -112,3 +112,40 @@ function FormatUndotree()
 
   print(vim.inspect(formatted))
 end
+
+
+-- Autocommands to set makeprg based on filetype
+vim.api.nvim_create_augroup("SetMakeprg", { clear = true })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*.cpp",
+    command = "setlocal makeprg=g++\\ -g\\ %\\ -o\\ %<",
+    group = "SetMakeprg"
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*.c",
+    command = "setlocal makeprg=gcc\\ -g\\ %\\ -o\\ %<",
+    group = "SetMakeprg"
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*.py",
+    command = "setlocal makeprg=python\\ %",
+    group = "SetMakeprg"
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*.[rR]",
+    command = "setlocal makeprg=Rscript\\ %",
+    group = "SetMakeprg"
+})
+
+-- F5 mapping to compile current file
+vim.api.nvim_set_keymap('n', '<F5>', ':lua CompileGcc()<CR>', { noremap = true, silent = true })
+
+-- Define the CompileGcc function
+function CompileGcc()
+    vim.cmd("write")
+    vim.cmd("silent make")
+end

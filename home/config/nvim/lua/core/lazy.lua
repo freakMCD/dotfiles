@@ -61,6 +61,7 @@ require("lazy").setup({
         g.ale_linters = {
             lua = {'lua_language_server'},
             tex = {'lacheck'},
+            c = {'gcc'},
         }
     end
 }
