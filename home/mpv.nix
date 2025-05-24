@@ -4,12 +4,12 @@
     enable = true;
     config = {
       hwdec = "auto";
+      gpu-context = "wayland";
       keep-open = true;
       keep-open-pause = false;
       idle = "once";
       profile = "fast";
       video-sync = "display-resample";
-      gpu-context = "wayland";
       save-position-on-quit = true;
       watch-later-options = "start";
       save-watch-history = true;
@@ -31,15 +31,12 @@
       sub-spacing=0.5;
 
       ## Streaming ##
-      ytdl-format = "bv*[vcodec!^=av01][height<=1080]+ba/bv*[height<=1080]+ba";
+      ytdl-format = "bv[height<=?1080]+ba/b";
       demuxer-lavf-o="extension_picky=0";
       force-seekable= true;
       demuxer-max-bytes = "500M";
       demuxer-max-back-bytes="250MiB";
       demuxer-donate-buffer = false;
-      prefetch-playlist= true;
-      cache-pause-initial = true;
-      cache-pause-wait = 3;
     };
 
     profiles = {
@@ -51,7 +48,6 @@
         
       };
       "protocol.http" = {
-        hls-bitrate = "min";
         cache = "yes";
         cache-pause = false;
         force-window = "immediate";
@@ -135,7 +131,6 @@
     ];
   };
   home.packages = with pkgs; [
-    yt-dlp
     (writeShellApplication {
       name = "mpvl";
       runtimeInputs = with pkgs; [ wl-clipboard ];

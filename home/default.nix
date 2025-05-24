@@ -11,6 +11,7 @@
   ];
 
   home = {
+    sessionPath = [ "$HOME/.local/bin"];
     username = "edwin";
     homeDirectory = "/home/edwin/";
     stateVersion = "24.11";

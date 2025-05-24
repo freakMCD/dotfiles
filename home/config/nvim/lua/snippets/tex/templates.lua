@@ -19,6 +19,7 @@ return {
 \usepackage{{graphicx}}
 \graphicspath{{{{./img/}}}}
 \usepackage{{pgfplots}}
+\pgfplotsset{{compat=1.18}}
 \usepackage{{tikz}}
 \usetikzlibrary{{positioning,calc}}
 % --------------------------------------------- %
@@ -35,12 +36,19 @@ return {
 
   s("begindiscreta", fmt([[
 
-\let\oldsection\section
-\renewcommand{{\section}}[1]{{\oldsection*{{#1}}}}
+\setcounter{{tocdepth}}{{1}} % Only sections in TOC
+
+% Disable automatic numbering completely
+\makeatletter
+\renewcommand{{\thesection}}{{}} % removes number
+\renewcommand{{\@seccntformat}}[1]{{}} % removes number in heading
+\makeatother
 
 \let\oldsubsection\subsection
-\renewcommand{{\subsection}}[1]{{\oldsubsection*{{#1}}}}
-
+\renewcommand{{\subsection}}[1]{{%
+  \par\vspace{{1em}}%
+  {{\Large\textbf{{#1}}}}\par\vspace{{0.5em}}%
+}}
 \let\oldsubsubsection\subsubsection
 \renewcommand{{\subsubsection}}[1]{{\oldsubsubsection*{{#1}}}}
 

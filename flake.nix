@@ -15,10 +15,16 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, fastanime, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, fastanime, ... }@inputs:
+  let system = "x86_64-linux";
+    pkgs = import nixpkgs { system = "x86_64-linux"; };
+  in
+  {
     homeConfigurations.edwin = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs { system = "x86_64-linux"; };
-      modules = [ ./home ];
+      inherit pkgs;
+      modules = [
+        ./home  # your ./home.nix file
+      ];
     };
 
     nixosConfigurations.edwin = nixpkgs.lib.nixosSystem {
