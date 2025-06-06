@@ -19,9 +19,9 @@ return {
 \usepackage{{graphicx}}
 \graphicspath{{{{./img/}}}}
 \usepackage{{pgfplots}}
+\usetikzlibrary{{positioning,calc,babel}}
 \pgfplotsset{{compat=1.18}}
 \usepackage{{tikz}}
-\usetikzlibrary{{positioning,calc}}
 % --------------------------------------------- %
 % Lists and Tables
 % --------------------------------------------- %
@@ -30,7 +30,7 @@ return {
 \usepackage{{booktabs}}
 \usepackage{{array}}
 % --------------------------------------------- %
-\usepackage{{xurl}}
+\usepackage{{hyperref}}
 % --------------------------------------------- %
 ]], {})),
 

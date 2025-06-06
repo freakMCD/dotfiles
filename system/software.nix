@@ -30,11 +30,11 @@ in
     dig htop inotify-tools telegram-desktop ffmpeg
     home-manager nvd pass yadm gnupg
     gcc bundix perlEnv
-    qutebrowser w3m 
+    qutebrowser w3m qimgv
     neovim 
     curl rclone udiskie bat fd libnotify
     neomutt msmtp isync newsraft
-    nomacs playerctl mpc
+    playerctl mpc
     wev wl-clipboard grim slurp wf-recorder qbittorrent translate-shell
     chafa inputs.fastanime.packages.${system}.default
     hyprpicker yambar webcord

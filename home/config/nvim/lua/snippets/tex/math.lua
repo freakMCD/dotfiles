@@ -9,28 +9,6 @@ tex.in_text = function() return not tex.in_mathzone() end
 -- Return snippet tables
 return
 {
-  -- SUPERSCRIPT
-  s({trig = "([%w%)%]%}])'", wordTrig=false, regTrig = true, snippetType="autosnippet"},
-    fmta(
-      "<>^{<>}",
-      {
-        f( function(_, snip) return snip.captures[1] end ),
-        d(1, get_visual),
-      }
-    ),
-    {condition = tex.in_mathzone}
-  ),
-  -- SUBSCRIPT
-  s({trig = "([%w%)%]%}]);", wordTrig=false, regTrig = true, snippetType="autosnippet"},
-    fmta(
-      "<>_{<>}",
-      {
-        f( function(_, snip) return snip.captures[1] end ),
-        d(1, get_visual),
-      }
-    ),
-    {condition = tex.in_mathzone}
-  ),
   -- SUBSCRIPT AND SUPERSCRIPT
   s({trig = "([%w%)%]%}])__", wordTrig=false, regTrig = true, snippetType="autosnippet"},
     fmta(

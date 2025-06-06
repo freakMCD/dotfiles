@@ -10,8 +10,7 @@
 //
 GM_addStyle(`
   [aria-label='Estado'],
-  [aria-label='Canales'],
-  [aria-label='Comunidades'] {
+  [aria-label='Canales']{
     display: none !important;
   }
 `);
