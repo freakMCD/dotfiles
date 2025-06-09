@@ -141,8 +141,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
     group = "SetMakeprg"
 })
 
--- F5 mapping to compile current file
-vim.api.nvim_set_keymap('n', '<F5>', ':lua CompileGcc()<CR>', { noremap = true, silent = true })
+-- Set F5 mapping only for C files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "c",
+  callback = function()
+    vim.api.nvim_buf_set_keymap(0, 'n', '<F5>', ':lua CompileGcc()<CR>', { noremap = true, silent = true })
+  end
+})
 
 -- Define the CompileGcc function
 

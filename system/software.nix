@@ -22,22 +22,28 @@ in
   ];
 
   environment.systemPackages = with pkgs; [
-  # Pinned
-  firefox texlab texlive.combined.scheme-full libreoffice kalker
-  # Others
-    ares-cli helvum gimp pipx
-    pdfarranger simple-scan geogebra6
-    dig htop inotify-tools telegram-desktop ffmpeg
-    home-manager nvd pass yadm gnupg
-    gcc bundix perlEnv
-    qutebrowser w3m qimgv
-    neovim 
-    curl rclone udiskie bat fd libnotify
-    neomutt msmtp isync newsraft
-    playerctl mpc
-    wev wl-clipboard grim slurp wf-recorder qbittorrent translate-shell
-    chafa inputs.fastanime.packages.${system}.default
-    hyprpicker yambar webcord
+  #Pinned
+   firefox texlab texlive.combined.scheme-full libreoffice kalker
+  #Browsers
+   qutebrowser w3m webcord
+  #Documents
+   pdfarranger simple-scan neovim 
+  #Media & Graphics
+   gimp qimgv ffmpeg chafa playerctl mpc 
+  #Communication
+   telegram-desktop neomutt msmtp isync newsraft
+  #Dev
+   home-manager nvd pass yadm gnupg dig inotify-tools gcc bundix perlEnv pipx 
+  #Terminal 
+   zip curl rclone udiskie bat fd libnotify ares-cli htop wev
+
+  #hyprland
+   yambar wl-clipboard wf-recorder grim slurp hyprpicker
+
+  #Others
+   helvum qbittorrent translate-shell
+   inputs.fastanime.packages.${system}.default
+   geogebra6
   ];
 
   programs = {
