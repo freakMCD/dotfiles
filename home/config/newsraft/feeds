@@ -13,7 +13,6 @@ https://codeberg.org/newsraft/newsraft/releases.rss
 https://codeberg.org/dnkl/yambar/releases.rss
 https://nixos.org/blog/announcements-rss.xml
 https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "Naruto" < item-rule title LIKE '%NARUTO%' COLLATE NOCASE
-https://www.youtube.com/feeds/videos.xml?channel_id=UCIV18yI07O-9k6baKwt0zIg
 
 @ Nixpkgs commits < reload-period 60
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/networking/browsers/qutebrowser/default.nix.atom "qutebrowser"

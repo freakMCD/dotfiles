@@ -164,6 +164,13 @@ return {
 \end{{document}}
 ]], {})),
 
+s("thebiblio", fmt([[
+\addcontentsline{{toc}}{{section}}{{Referencias}}
+\being{{thebibliography}}{{99}}
+  {}
+\end{{thebibliography}}
+]], {i(1)})),
+
 s("defcontinuidad", fmt([[
 \[
   \forall \epsilon > 0,\ \exists \delta > 0:\ |x - a| < \delta \Rightarrow |f(x) - f(a)| < \epsilon

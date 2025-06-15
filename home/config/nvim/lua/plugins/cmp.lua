@@ -125,17 +125,3 @@ cmp.setup({
         documentation = cmp.config.window.bordered(),
     },
 })
-
--- cmdline setup
-cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-            {
-                name = 'cmdline',
-                option = {
-                    ignore_cmds = { 'Man', '!' }
-                }
-            }
-        })
-})
