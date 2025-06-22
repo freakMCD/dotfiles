@@ -119,12 +119,6 @@
     BUNDLE_FORCE_RUBY_PLATFORM = "true";
   };
 
-  system = {
-    stateVersion = "24.11"; # Did you read the comment?
-    switch = {
-      enable = false;
-      enableNg = true;
-    };
-  };
+  system.stateVersion = "24.11";
 }
 

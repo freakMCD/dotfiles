@@ -64,6 +64,7 @@ in
         kb_layout = "us";
         kb_variant= "altgr-intl";
         mouse_refocus = false;
+        sensitivity = 0.3;
       };
 
       misc = {
@@ -146,8 +147,7 @@ in
           (generateBindings "closeMpvWindow" "CTRL") ++
         [
 
-        "MOD5, bracketleft, exec, ~/nix/scripts/cycle-playlists.sh --prev"
-        "MOD5, bracketright, exec, ~/nix/scripts/cycle-playlists.sh"
+        "MOD5 SHIFT, P, exec, mpc clear && mpc add Ethereal 'The Hall' && notify-send 'Playlist updated'"
 
         ''$mod, semicolon, exec, notify-send -h "string:x-canonical-private-synchronous:weather" "Weather Update" "$(curl -s wttr.in?format=3)"''
 

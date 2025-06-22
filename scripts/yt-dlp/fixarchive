@@ -5,32 +5,24 @@ find "$HALL_DIR" -type f \( -iname '*.m4a' -o -iname '*.mp3' -o -iname '*.webm' 
   sed -E 's/.*\[([A-Za-z0-9_-]{11})\]\..*$/youtube \1/' | \
   sort -u > "$HALL_ARCHIVE"
 
-find "$VAULT_DIR" -type f \( -iname '*.m4a' -o -iname '*.mp3' -o -iname '*.webm' \) -printf 'youtube %f\n' | \
-  sed -E 's/.*\[([A-Za-z0-9_-]{11})\]\..*$/youtube \1/' | \
-  sort -u > "$VAULT_ARCHIVE"
-
-# Rebuild archive for OTHER categories
-OTHER_ARCHIVE="$BASE_DIR/other_downloaded.txt"
+# Rebuild archive for Ethereal playlist
+ETHEREAL_ARCHIVE="$BASE_DIR/Ethereal.txt"
 # Start with an empty file
-> "$OTHER_ARCHIVE"
+> "$ETHEREAL_ARCHIVE"
 
-# Loop over each playlist in the OTHER_CATEGORIES array
-for playlist_name in "${OTHER_CATEGORIES[@]}"; do
-    other_dir="$BASE_DIR/$playlist_name"
-    if [ -d "$other_dir" ]; then
-        find "$other_dir" -type f \( -iname '*.m4a' -o -iname '*.mp3' -o -iname '*.webm' \) -printf 'youtube %f\n' | \
-          sed -E 's/.*\[([A-Za-z0-9_-]{11})\]\..*$/youtube \1/' >> "$OTHER_ARCHIVE"
-    fi
-done
+ethereal_dir="$BASE_DIR/Ethereal"
+if [ -d "$ethereal_dir" ]; then
+    find "$ethereal_dir" -type f \( -iname '*.m4a' -o -iname '*.mp3' -o -iname '*.webm' \) -printf 'youtube %f\n' | \
+      sed -E 's/.*\[([A-Za-z0-9_-]{11})\]\..*$/youtube \1/' >> "$ETHEREAL_ARCHIVE"
+fi
 
 # Make sure the OTHER_ARCHIVE is sorted uniquely
-sort -u "$OTHER_ARCHIVE" -o "$OTHER_ARCHIVE"
+sort -u "$ETHEREAL_ARCHIVE" -o "$ETHEREAL_ARCHIVE"
 
 # Rebuild global archive by concatenating the three archives
-cat "$HALL_ARCHIVE" "$VAULT_ARCHIVE" "$OTHER_ARCHIVE" | sort -u > "$GLOBAL_ARCHIVE"
+cat "$HALL_ARCHIVE" "$ETHEREAL_ARCHIVE" | sort -u > "$GLOBAL_ARCHIVE"
 
 echo "✅ Archives rebuilt:"
 echo " - Hall: $(wc -l < "$HALL_ARCHIVE") tracks"
-echo " - Vault: $(wc -l < "$VAULT_ARCHIVE") tracks"
-echo " - Other: $(wc -l < "$OTHER_ARCHIVE") tracks"
+echo " - Other: $(wc -l < "$ETHEREAL_ARCHIVE") tracks"
 echo " - Global: $(wc -l < "$GLOBAL_ARCHIVE") tracks"

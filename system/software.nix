@@ -25,7 +25,7 @@ in
   #Pinned
    firefox texlab texlive.combined.scheme-full libreoffice kalker
   #Browsers
-   qutebrowser w3m webcord
+   qutebrowser w3m webcord openboard
   #Documents
    pdfarranger simple-scan neovim 
   #Media & Graphics
@@ -35,7 +35,7 @@ in
   #Dev
    home-manager nvd pass yadm gnupg dig inotify-tools gcc bundix perlEnv pipx 
   #Terminal 
-   zip curl rclone udiskie bat fd libnotify ares-cli htop wev
+   zip unzip curl rclone udiskie bat fd libnotify ares-cli htop wev
 
   #hyprland
    yambar wl-clipboard wf-recorder grim slurp hyprpicker

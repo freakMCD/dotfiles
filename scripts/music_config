@@ -1,20 +1,10 @@
 # vim:filetype=bash
 declare -A PLAYLISTS=(
   ["The Hall"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjKi1Mtlc3N5pedFJ5UgFobk"
-  ["Reol"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjLqv7Z191-7ovzHb6i-dqg-"
-  ["IU"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjIas-R1MxCNx_saEpMPAsBZ"
-  ["Chayanne"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjLZFyhn7NgGMlVoD2DtSW_z"
   ["Ethereal"]="https://www.youtube.com/playlist?list=PL4CmunqMOJjLFhIqJ3w5v6htEwPKMXxBx"
 )
 
-# Playlist categories (excluding The Hall)
-VAULT_CATEGORIES=( "Reol" "IU" "Chayanne" )
-OTHER_CATEGORIES=( "Ethereal" )
-
-
 BASE_DIR=~/Music
-VAULT_DIR="$BASE_DIR/Vault"
 HALL_DIR="$BASE_DIR/The Hall"
 GLOBAL_ARCHIVE="$BASE_DIR/downloaded.txt"
 HALL_ARCHIVE="$HALL_DIR/downloaded.txt"
-VAULT_ARCHIVE="$VAULT_DIR/downloaded.txt"

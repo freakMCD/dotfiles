@@ -34,7 +34,7 @@
       ytdl-format = "bv[height<=?1080]+ba/b";
       demuxer-lavf-o="extension_picky=0";
       force-seekable= true;
-      demuxer-max-bytes = "500M";
+      demuxer-max-bytes = "1000M";
       demuxer-max-back-bytes="250MiB";
       demuxer-donate-buffer = false;
     };

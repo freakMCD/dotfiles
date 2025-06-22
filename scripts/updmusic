@@ -42,7 +42,7 @@ download_playlist() {
     fi
 }
 
-mkdir -p "$HALL_DIR" "$VAULT_DIR"
+mkdir -p "$HALL_DIR"
 
 # Process The Hall
 yt-dlp --flat-playlist --get-id "${PLAYLISTS['The Hall']}" | \
@@ -54,43 +54,7 @@ yt-dlp --flat-playlist --get-id "${PLAYLISTS['The Hall']}" | \
 
 # Start Downloading
 download_playlist "The Hall" "$HALL_DIR"
-
-# Process Vault playlists
-for playlist_name in "${VAULT_CATEGORIES[@]}"; do
-    download_playlist "$playlist_name" "$VAULT_DIR/$playlist_name"
-done
-
-# Process Other Playlists (e.g., Yo Kaze, Ambient Music Japan)
-for playlist_name in "${OTHER_CATEGORIES[@]}"; do
-    download_playlist "$playlist_name" "$BASE_DIR/$playlist_name"
-done
-
-# -- MOVE FILES FIRST --
-echo -e "${CYAN}🔄 Syncing Hall with Vault...${NC}"
-
-# Get list of Hall-tracked video IDs from ORIGINAL archive
-mapfile -t hall_ids < <(cut -d' ' -f2 "$HALL_ARCHIVE")
-
-# Find and move files using null-delimiters for safety
-while IFS= read -r -d '' vault_file; do
-    video_id=$(basename "$vault_file" | grep -oE '\[([A-Za-z0-9_-]{11})\]' | tr -d '[]')
-    
-    found=false
-    for id in "${hall_ids[@]}"; do
-        if [[ "$id" == "$video_id" ]]; then
-            found=true
-            break
-        fi
-    done
-
-    if $found; then
-        hall_file="$HALL_DIR/$(basename "$vault_file")"
-        if [ ! -f "$hall_file" ]; then
-            echo -e "${GREEN}♻ Moving ${CYAN}$video_id${GREEN} to Hall${NC}"
-            mv -nv "$vault_file" "$HALL_DIR/"
-        fi
-    fi
-done < <(find "$VAULT_DIR" -type f \( -iname "*.m4a" -o -iname "*.mp3" -o -iname "*.webm" \) -print0)
+download_playlist "Ethereal" "$BASE_DIR/Ethereal"
 
 # -- NOW UPDATE ARCHIVES --
 ~/nix/scripts/yt-dlp/fixarchive
