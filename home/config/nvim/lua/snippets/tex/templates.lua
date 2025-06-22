@@ -16,12 +16,15 @@ return {
 % --------------------------------------------- %
 % Graphics and Figures
 % --------------------------------------------- %
+\usepackage{{caption}}
+\usepackage{{multicol}}
 \usepackage{{graphicx}}
 \graphicspath{{{{./img/}}}}
 \usepackage{{pgfplots}}
-\usetikzlibrary{{positioning,calc,babel}}
+\usetikzlibrary{{positioning,calc,babel, shapes.geometric}}
 \pgfplotsset{{compat=1.18}}
 \usepackage{{tikz}}
+
 % --------------------------------------------- %
 % Lists and Tables
 % --------------------------------------------- %
@@ -29,8 +32,9 @@ return {
 \setlist[enumerate]{{font=\bfseries}}
 \usepackage{{booktabs}}
 \usepackage{{array}}
+\usepackage{{float}}
 % --------------------------------------------- %
-\usepackage{{hyperref}}
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue]{{hyperref}}
 % --------------------------------------------- %
 ]], {})),
 
@@ -47,10 +51,30 @@ return {
 \let\oldsubsection\subsection
 \renewcommand{{\subsection}}[1]{{%
   \par\vspace{{1em}}%
-  {{\Large\textbf{{#1}}}}\par\vspace{{0.5em}}%
+  {{\large\textbf{{#1}}}}\par\vspace{{0.5em}}%
 }}
 \let\oldsubsubsection\subsubsection
 \renewcommand{{\subsubsection}}[1]{{\oldsubsubsection*{{#1}}}}
+
+\usepackage{{xparse}}
+
+% \gnode[⟨label-pos⟩][⟨tikz-style⟩]{{⟨name⟩}}{{⟨coord⟩}}
+\NewDocumentCommand{{\gnode}}{{ o o m m }}{{%
+  \IfValueTF{{#1}}{{% — label was given
+    \IfValueTF{{#2}}{{% — and style too
+      \node[label=#1:#3, #2] (#3) at #4 {{}};
+    }}{{% — label but no style
+      \node[label=#1:#3]      (#3) at #4 {{}};
+    }}%
+  }}{{% — no label
+    \IfValueTF{{#2}}{{% — style but no label
+      \node[#2]               (#3) at #4 {{}};
+    }}{{% — neither label nor style
+      \node                   (#3) at #4 {{}};
+    }}%
+  }}%
+}}
+
 
 \begin{{document}}
 \begin{{titlepage}}
@@ -135,7 +159,6 @@ return {
              \item Gutierrez Estrada Geordy Smit Brayan
              \item Gutierrez Tirado Miluska Olenka
              \item Jimenez Mondragon Manuel Armando
-             \item Nepo Effio Josue Miguel
          \end{{itemize}}}} &
            \begin{{itemize}}
              \item Reluz Oliva Rodrigo Imanol
@@ -166,7 +189,7 @@ return {
 
 s("thebiblio", fmt([[
 \addcontentsline{{toc}}{{section}}{{Referencias}}
-\being{{thebibliography}}{{99}}
+\begin{{thebibliography}}{{99}}
   {}
 \end{{thebibliography}}
 ]], {i(1)})),

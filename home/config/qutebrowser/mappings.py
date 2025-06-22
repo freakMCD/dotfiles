@@ -18,7 +18,7 @@ bind = {
 	leader + leader: "config-cycle colors.webpage.darkmode.enabled true false;; config-cycle content.user_stylesheets [] ['css/gruvbox.css']",
 	leader + "v": "config-source ;; message-info 'qutebrowser reloaded'",
     ## mpv 
-    lleader + "m": "hint videos spawn --detach mpv {hint-url}",
+    lleader + "m": "hint videos spawn --detach mpv --ytdl-raw-options=cookies-from-browser=firefox {hint-url}",
     lleader + "M": "spawn --detach mpv {url}",
 
 
