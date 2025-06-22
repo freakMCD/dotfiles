@@ -12,7 +12,6 @@ https://bandito.re/13b14305-cba7-4fd1-92b6-d5a424169984.atom
 https://codeberg.org/newsraft/newsraft/releases.rss
 https://codeberg.org/dnkl/yambar/releases.rss
 https://nixos.org/blog/announcements-rss.xml
-https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "Naruto" < item-rule title LIKE '%NARUTO%' COLLATE NOCASE
 
 @ Nixpkgs commits < reload-period 60
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/networking/browsers/qutebrowser/default.nix.atom "qutebrowser"

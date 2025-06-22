@@ -29,8 +29,9 @@ return {
 \setlist[enumerate]{{font=\bfseries}}
 \usepackage{{booktabs}}
 \usepackage{{array}}
+\usepackage{{float}}
 % --------------------------------------------- %
-\usepackage{{hyperref}}
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue]{{hyperref}}
 % --------------------------------------------- %
 ]], {})),
 
@@ -166,7 +167,7 @@ return {
 
 s("thebiblio", fmt([[
 \addcontentsline{{toc}}{{section}}{{Referencias}}
-\being{{thebibliography}}{{99}}
+\begin{{thebibliography}}{{99}}
   {}
 \end{{thebibliography}}
 ]], {i(1)})),
