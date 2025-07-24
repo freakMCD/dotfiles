@@ -9,13 +9,9 @@
       url = "github:nix-community/home-manager/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    fastanime = {
-      url = "github:Benex254/fastanime";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { nixpkgs, home-manager, fastanime, ... }@inputs:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
   let system = "x86_64-linux";
     pkgs = import nixpkgs { system = "x86_64-linux"; };
   in

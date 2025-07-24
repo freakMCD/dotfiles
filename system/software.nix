@@ -42,7 +42,6 @@ in
 
   #Others
    helvum qbittorrent translate-shell
-   inputs.fastanime.packages.${system}.default
    geogebra6
   ];
 
