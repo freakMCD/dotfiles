@@ -11,13 +11,18 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
-  let system = "x86_64-linux";
-    pkgs = import nixpkgs { system = "x86_64-linux"; };
+  outputs = { nixpkgs, nixpkgs-020425, home-manager, ... }@inputs:
+  let 
+    system = "x86_64-linux";
+    pkgs = import nixpkgs { inherit system; };
+    stablePkgs = import nixpkgs-020425 { inherit system; };
   in
   {
     homeConfigurations.edwin = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
+      extraSpecialArgs = {
+        stablePkgs = stablePkgs;
+      };
       modules = [
         ./home  # your ./home.nix file
       ];

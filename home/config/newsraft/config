@@ -3,6 +3,7 @@ set scrolloff 5
 set menu-item-sorting rowid-desc
 set notification-command notify-send 'Newsraft brought %q news!'
 set item-limit 50
+set global-section-hide true
 
 # Bindings
 bind o mark-read; exec nohup qutebrowser "%l" >/dev/null 2>&1 &

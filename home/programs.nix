@@ -1,4 +1,4 @@
-{config, ...}:
+{config, stablePkgs, ...}:
 {
   programs = {
     librewolf.enable = true;
@@ -37,6 +37,7 @@
 
     ncmpcpp = {
       enable = true;
+      package = stablePkgs.ncmpcpp;
       settings = {
         user_interface = "alternative";
         lyrics_directory = "~/Music/lyrics";

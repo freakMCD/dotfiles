@@ -26,7 +26,6 @@ c.completion.shrink = True
 c.completion.open_categories = ["quickmarks", "bookmarks", "searchengines"]
 c.history_gap_interval = -1
 c.messages.timeout = 2000
-c.qt.args = [ "disable-logging", "enable-gpu-rasterization", "ignore-gpu-blocklist", "disable-features=FFmpegAllowLists" ] # Other qt flag: "disable-remote-fonts"
 c.qt.highdpi= True
 c.session.lazy_restore = True
 c.statusbar.padding = {"bottom": 0, "left": 0, "right": 0, "top": 0}
