@@ -13,7 +13,6 @@ networking = {
   nameservers = [ "127.0.0.1" ];
   stevenBlackHosts = {
     enableIPv6 = true;
-    blockPorn = true;
   };
   extraHosts = builtins.readFile ./hosts/social/hosts;
 };

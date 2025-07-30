@@ -12,12 +12,13 @@ https://bandito.re/13b14305-cba7-4fd1-92b6-d5a424169984.atom
 https://codeberg.org/newsraft/newsraft/releases.rss
 https://codeberg.org/dnkl/yambar/releases.rss
 https://nixos.org/blog/announcements-rss.xml
-https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "Naruto" < item-rule title LIKE '%NARUTO%' COLLATE NOCASE; reload-period 60
+https://www.youtube.com/feeds/videos.xml?channel_id=UC97I55D2HsW1nfA_1QgJ3IA "Hiertogame"
 
 @ Nixpkgs commits < reload-period 60
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/qu/qutebrowser/package.nix.atom "qutebrowser"
-https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/hy/hyprland/package.nix.atom "Hyprland"
-https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ne/newsraft/package.nix.atom "Newsraft"
-https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ya/yambar/package.nix.atom "Yambar"
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/hy/hyprland/package.nix.atom "hyprland"
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ne/newsraft/package.nix.atom "newsraft"
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ya/yambar/package.nix.atom "yambar"
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/video/mpv/default.nix.atom "mpv"
 
 

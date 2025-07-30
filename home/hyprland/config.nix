@@ -30,6 +30,7 @@ in
         "udiskie"
         "yambar"
         "hypridle"
+        "fastanime worker"
       ];
         
       general = {

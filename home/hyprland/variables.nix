@@ -3,7 +3,7 @@ let
   screen = { width = 1920; height = 1080; };
   
   # Mpv dimensions
-  mpv = { width = screen.width * 15 / 64; height = screen.height * 10 / 36; };
+  mpv = { width = screen.width * 16 / 64; height = screen.height * 12 / 36; };
 
   # Coordinates (centered directly on screen)
   x = (screen.width - mpv.width);
@@ -12,7 +12,7 @@ in builtins.mapAttrs (_name: builtins.toString) {
   inherit (mpv) width height;
   inherit x y;
 
-  rounding = 50;
-  high = 0.05;
+  rounding = 150;
+  high = 0.2;
   low = 0;
 }
