@@ -9,9 +9,14 @@
       url = "github:nix-community/home-manager/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hosts = {
+      url = "github:StevenBlack/hosts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nixpkgs-020425, home-manager, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-020425, home-manager, hosts, ... }@inputs:
   let 
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
@@ -31,7 +36,12 @@
     nixosConfigurations.edwin = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
-      modules = [ ./system ];
+      modules = [ 
+        ./system
+        hosts.nixosModule {
+          networking.stevenBlackHosts.enable = true;
+        }
+      ];
     };
   };
 }
