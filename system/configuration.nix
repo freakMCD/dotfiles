@@ -2,9 +2,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ system, plugins, pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   boot.loader = {
+    timeout = 1;
     systemd-boot = {
       enable = true;
       configurationLimit = 10;
@@ -37,7 +38,6 @@
   };
 
   services = {
-    getty.autologinUser = "edwin";
     dbus.implementation = "broker";
     fstrim.enable = true;
     udisks2.enable = true;
@@ -63,21 +63,6 @@
       layout = "us";
       variant = "altgr-intl";
       };
-  };
-
-  # Printing
-  nixpkgs.config = {
-    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "hplip" "geogebra" ];
-
-    packageOverrides = pkgs: {
-      hplip = pkgs.hplip.overrideAttrs (oldAttrs: {
-        # Override the plugin fetch directly in derivation
-        HPLIP_PLUGIN = pkgs.fetchurl {
-          url = "https://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/hplip-3.24.4-plugin.run";
-          hash = "sha256-Hzxr3SVmGoouGBU2VdbwbwKMHZwwjWnI7P13Z6LQxao="; # Keep this updated!
-        };
-      });
-    };
   };
 
   hardware.sane = {
@@ -108,16 +93,6 @@
     roboto
     material-symbols
   ];
-
-  environment.variables = {
-    GNUPGHOME="$HOME/.local/share/gnupg";
-    TEXMFVAR="$HOME/.cache/texlive/texmf-var";
-    W3M_DIR="$HOME/.local/share/w3m";
-    BROWSER="qutebrowser";
-    EDITOR="nvim";	
-    MANPAGER="nvim +Man!";
-    BUNDLE_FORCE_RUBY_PLATFORM = "true";
-  };
 
   system.stateVersion = "24.11";
 }

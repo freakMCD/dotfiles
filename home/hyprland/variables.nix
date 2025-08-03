@@ -12,7 +12,7 @@ in builtins.mapAttrs (_name: builtins.toString) {
   inherit (mpv) width height;
   inherit x y;
 
-  rounding = 150;
-  high = 0.2;
+  rounding = 50;
+  high = 0.3;
   low = 0;
 }

@@ -13,6 +13,7 @@ https://codeberg.org/newsraft/newsraft/releases.rss
 https://codeberg.org/dnkl/yambar/releases.rss
 https://nixos.org/blog/announcements-rss.xml
 https://www.youtube.com/feeds/videos.xml?channel_id=UC97I55D2HsW1nfA_1QgJ3IA "Hiertogame"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCWcEgYIOqq1BVr4Qm1sPuVg
 
 @ Nixpkgs commits < reload-period 60
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/qu/qutebrowser/package.nix.atom "qutebrowser"

@@ -12,7 +12,6 @@ echo "Removing the ‘# Whatsapp’ and ‘# Twitch’ sections…"
 awk '
   # When we hit a removal header, start skipping and record its line number
   /^# *Whatsapp/ { skip=1; last_hdr=NR; next }
-  /^# *Twitch/   { skip=1; last_hdr=NR; next }
 
   # On any header while skipping:
   /^# / {

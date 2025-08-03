@@ -10,8 +10,8 @@ in
     enable = true;
     settings = let
       screenarea-copy = ''grim -g "$(slurp -d -w 0)" - | wl-copy'';
-      screenarea-save = ''grim -g "$(slurp -d -w 0)" ~/MediaHub/screenshots/$(date +%y-%m-%d_%s).png'';
-      screenfull = ''grim -c - | wl-copy'';
+      screenarea-save = ''grim -g "$(slurp -d -w 0)" ~/MediaHub/screenshots/$(date +%y-%m-%d_NF).png'';
+      screenfull = ''grim -c - | ~/MediaHub/screenshots/$(date +%y-%m-%d_F).png'';
       recordarea = "$HOME/nix/scripts/record.sh";
     in 
     { env = mapAttrsToList (name: value: "${name},${toString value}") {

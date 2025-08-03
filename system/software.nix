@@ -1,29 +1,11 @@
-{lib, inputs, pkgs, ... }: let
+{lib, stablePkgs, pkgs, ... }: let
   perlEnv = pkgs.perl.withPackages (p: with p; [ MIMEEncWords ]);
-  libnotify = pkgs.libnotify.overrideAttrs (old: {
-    src = pkgs.fetchurl {
-      url = "mirror://gnome/sources/libnotify/0.8/libnotify-0.8.6.tar.xz";
-      hash = "sha256-xVQKrvtg4dY7HFh8BfIoTr5y7OfQwOXkp3jP1YRLa1g=";
-    };
-    patches = "";
-  });
-
-  pinned = inputs.nixpkgs-020425.legacyPackages.${pkgs.system};  # Access pinned packages
 in
 {
-  nixpkgs.overlays = [
-    (final: prev: {
-      firefox = pinned.firefox;
-      kalker = pinned.kalker;
-      texlive.combined.scheme-full = pinned.texlive.combined.scheme-full;
-      texlab = pinned.texlab;
-      libreoffice = pinned.libreoffice;
-    })
-  ];
-
   environment.systemPackages = with pkgs; [
-  #Pinned
-   firefox texlab texlive.combined.scheme-full libreoffice kalker
+  #Pinned from stablePkgs 
+   texlab texlive.combined.scheme-full libreoffice kalker
+
   #Browsers
    qutebrowser w3m webcord openboard
   #Documents

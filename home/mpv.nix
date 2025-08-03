@@ -43,7 +43,7 @@
       "not fullscreen" = {
         profile-restore = "copy";
         profile-cond = "(osd_width < 1280)";
-        video-zoom = 0.6;
+        video-zoom = 0.3;
         sub-visibility = false;
         
       };

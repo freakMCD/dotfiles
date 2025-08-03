@@ -3087,6 +3087,33 @@
 0.0.0.0 web.snapchat.com
 0.0.0.0 www.snapchat.com
 
+# Twitch
+# from https://www.netify.ai/resources/applications/twitch & Browser Networktraffic
+0.0.0.0 twitch.tv
+0.0.0.0 www.twitch.tv
+0.0.0.0 ttvnw.net
+0.0.0.0 live-video.net
+0.0.0.0 jtvnw.net
+0.0.0.0 twitchcdn.net
+0.0.0.0 ext-twitch.tv
+0.0.0.0 twitch-shadow.net
+0.0.0.0 twitch.a2z.com
+0.0.0.0 twitchcdn-shadow.net
+0.0.0.0 twitchsvc-staging.tech
+0.0.0.0 twitchsvc.net
+0.0.0.0 assets.twitch.tv
+0.0.0.0 k.twitchcdn.net
+0.0.0.0 hermes.twitch.tv
+0.0.0.0 irc-ws.chat.twitch.tv
+0.0.0.0 gql.twitch.tv
+0.0.0.0 static-cdn.jtvnw.net
+0.0.0.0 pubsub-edge.twitch.tv
+0.0.0.0 usher.ttvnw.net
+0.0.0.0 global.poe.live-video.net
+0.0.0.0 supervisor.ext-twitch.tv
+0.0.0.0 extensions-discovery-images.twitch.tv
+0.0.0.0 panels.twitch.tv
+
 # Other
 0.0.0.0 pinpages.alwaysdata.net
 0.0.0.0 allotalk.com

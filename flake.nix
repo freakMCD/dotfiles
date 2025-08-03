@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-020425.url = "github:NixOS/nixpkgs/77b584d61ff80b4cef9245829a6f1dfad5afdfa3";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     home-manager = {
       url = "github:nix-community/home-manager/";
@@ -16,11 +16,16 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-020425, home-manager, hosts, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-stable, home-manager, hosts, ... }@inputs:
   let 
     system = "x86_64-linux";
-    pkgs = import nixpkgs { inherit system; };
-    stablePkgs = import nixpkgs-020425 { inherit system; };
+    stablePkgs = import nixpkgs-stable { inherit system; };
+    pkgs = import nixpkgs {
+      inherit system; 
+      overlays = [
+        (import ./overlays/stablePkgs.nix stablePkgs)
+      ];
+    };
   in
   {
     homeConfigurations.edwin = home-manager.lib.homeManagerConfiguration {
@@ -34,8 +39,8 @@
     };
 
     nixosConfigurations.edwin = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
+      inherit system;
+      specialArgs = { inherit inputs stablePkgs; };
       modules = [ 
         ./system
         hosts.nixosModule {

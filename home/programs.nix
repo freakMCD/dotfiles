@@ -81,6 +81,7 @@
 
     zathura = {
       enable = true;
+      package = stablePkgs.zathura;
       options = {
         adjust-open = "width";
         scroll-step = 50;

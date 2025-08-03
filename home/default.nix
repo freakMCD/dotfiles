@@ -12,6 +12,15 @@
 
   home = {
     sessionPath = [ "$HOME/.local/bin"];
+    sessionVariables = {
+      GNUPGHOME="$HOME/.local/share/gnupg";
+      TEXMFVAR="$HOME/.cache/texlive/texmf-var";
+      W3M_DIR="$HOME/.local/share/w3m";
+      BROWSER="qutebrowser";
+      EDITOR="nvim";	
+      MANPAGER="nvim +Man!";
+      BUNDLE_FORCE_RUBY_PLATFORM = "true";
+    };
     username = "edwin";
     homeDirectory = "/home/edwin/";
     stateVersion = "24.11";
