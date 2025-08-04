@@ -57,7 +57,24 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
+        "stevenblack": "stevenblack",
         "zen-browser": "zen-browser"
+      }
+    },
+    "stevenblack": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1754239761,
+        "narHash": "sha256-GLQLaiWBVdRatbq6OaydAddDREHPlHs/kr1QvQp/n1g=",
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "rev": "b093dd1ef0ea19544ac5eb31bcb30be1b95891d5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "type": "github"
       }
     },
     "zen-browser": {

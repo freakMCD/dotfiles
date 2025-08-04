@@ -1,17 +1,14 @@
 {lib, stablePkgs, inputs, pkgs, ... }: let
   perlEnv = pkgs.perl.withPackages (p: with p; [ MIMEEncWords ]);
   zenBrowser = inputs.zen-browser.packages.${pkgs.system}.default;
-
 in
 {
   environment.systemPackages = with pkgs; [
-  zenBrowser 
-
   #Pinned from stablePkgs 
    texlab texlive.combined.scheme-full libreoffice kalker
 
   #Browsers
-   qutebrowser w3m webcord openboard
+   zenBrowser w3m webcord openboard
   #Documents
    pdfarranger simple-scan neovim 
   #Media & Graphics

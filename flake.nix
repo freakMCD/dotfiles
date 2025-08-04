@@ -14,6 +14,11 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stevenblack = {
+      url = "github:StevenBlack/hosts";
+      flake = false;
+    };
   };
 
   outputs = { nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
