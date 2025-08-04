@@ -1,7 +1,6 @@
 {config, stablePkgs, ...}:
 {
   programs = {
-    librewolf.enable = true;
     git = {
       enable = true;
       extraConfig.credential.helper = "store --file ~/.my-credentials";
@@ -28,7 +27,7 @@
         log = {
           enabled = false;
         };
-        manager = {
+        mgr = {
           show_hidden = false;
           sort_dir_first = true;
         };

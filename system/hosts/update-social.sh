@@ -8,7 +8,7 @@ URL=https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/social
 echo "Downloading StevenBlack social list…"
 curl -fsSL "$URL" > "$OUT.tmp"
 
-echo "Removing the ‘# Whatsapp’ and ‘# Twitch’ sections…"
+echo "Removing the ‘# Whatsapp’"
 awk '
   # When we hit a removal header, start skipping and record its line number
   /^# *Whatsapp/ { skip=1; last_hdr=NR; next }

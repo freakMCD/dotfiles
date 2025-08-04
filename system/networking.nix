@@ -11,10 +11,14 @@ in
 
 networking = {
   nameservers = [ "127.0.0.1" ];
-  stevenBlackHosts = {
-    enableIPv6 = true;
-  };
-  extraHosts = builtins.readFile ./hosts/social/hosts;
+  extraHosts =
+    let
+      hostsFile = builtins.fetchurl {
+        url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts";
+        sha256 = "14vwnqamh48fqjkc0860wfdynqzn8r6dnpppndhmn6669cvb89qx";
+      };
+    in
+    builtins.readFile "${hostsFile}";
 };
 
 services.dnsmasq = {
