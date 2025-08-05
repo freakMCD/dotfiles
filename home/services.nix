@@ -40,8 +40,8 @@
               # Layout and sizing
               max-width = 380;
               max-height = 600;
-              default-timeout = 60;
-              idle-timeout = 60;
+              default-timeout = 20;
+              idle-timeout = 30;
               layer = "overlay";
               padding-vertical = 20;
               padding-horizontal = 20;

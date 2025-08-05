@@ -28,7 +28,7 @@
         log = {
           enabled = false;
         };
-        manager = {
+        mgr = {
           show_hidden = false;
           sort_dir_first = true;
         };
@@ -43,6 +43,7 @@
         lyrics_directory = "~/Music/lyrics";
         mpd_crossfade_time = 5;
         allow_for_physical_item_deletion = "yes";
+        connected_message_on_startup = "no";
         };
     };
 

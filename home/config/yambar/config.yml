@@ -32,7 +32,7 @@ paused_title_str: &paused_title_str
   foreground: *gray
 
 bar:
- location: top
+ location: bottom
  margin: 10
  spacing: 12
  font: JetBrainsMono Nerd Font Mono:size=12:style=bold

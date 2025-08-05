@@ -10,15 +10,12 @@ video_selector = ', '.join([f'a[href*="{part}"]' for part in ['youtu', 'share/',
 config.set('hints.selectors', {'videos': [video_selector]}, pattern='*')
 
 bind = {
-    "gw": "open https://web.whatsapp.com",
-    "gW": "open -t https://web.whatsapp.com",
-
 	leader + "js": "config-cycle content.javascript.enabled true false",
     leader + "b": "config-cycle tabs.show always never",
 	leader + leader: "config-cycle colors.webpage.darkmode.enabled true false;; config-cycle content.user_stylesheets [] ['css/gruvbox.css']",
 	leader + "v": "config-source ;; message-info 'qutebrowser reloaded'",
     ## mpv 
-    lleader + "m": "hint videos spawn --detach mpv --ytdl-raw-options=cookies-from-browser=firefox {hint-url}",
+    lleader + "m": "hint videos spawn --detach mpv --ytdl-raw-options=cookies-from-browser=firefox:~/.librewolf/bixoef6e.default {hint-url}",
     lleader + "M": "spawn --detach mpv {url}",
 
 

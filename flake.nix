@@ -10,13 +10,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hosts = {
+    stevenblack = {
       url = "github:StevenBlack/hosts";
-      inputs.nixpkgs.follows = "nixpkgs";
+      flake = false;
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, home-manager, hosts, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
   let 
     system = "x86_64-linux";
     stablePkgs = import nixpkgs-stable { inherit system; };
@@ -43,9 +43,6 @@
       specialArgs = { inherit inputs stablePkgs; };
       modules = [ 
         ./system
-        hosts.nixosModule {
-          networking.stevenBlackHosts.enable = true;
-        }
       ];
     };
   };

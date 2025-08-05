@@ -31,7 +31,7 @@ else
 end
 
 # Download best 480p version
-yt-dlp -f "bestvideo[height<=480]+bestaudio" --cookies-from-browser firefox \
+yt-dlp -f "bestvideo[height<=480]+bestaudio" --cookies-from-browser firefox:~/.librewolf/bixoef6e.default \
     --merge-output-format mp4 \
     --sub-langs "es,en" --write-subs --convert-subs srt \
     -o "$temp_dir/video.mp4" \

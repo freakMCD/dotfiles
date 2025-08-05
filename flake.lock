@@ -20,26 +20,6 @@
         "type": "github"
       }
     },
-    "hosts": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1754183568,
-        "narHash": "sha256-7PV7s5JtPRClmtgbKmaRh2o1ShcFk8yQsAZWw1n9vd4=",
-        "owner": "StevenBlack",
-        "repo": "hosts",
-        "rev": "90ab32da7b21741090b12ec6b829e363a4213de3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "StevenBlack",
-        "repo": "hosts",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1753939845,
@@ -75,9 +55,25 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "hosts": "hosts",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-stable": "nixpkgs-stable"
+        "nixpkgs-stable": "nixpkgs-stable",
+        "stevenblack": "stevenblack"
+      }
+    },
+    "stevenblack": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1754239761,
+        "narHash": "sha256-GLQLaiWBVdRatbq6OaydAddDREHPlHs/kr1QvQp/n1g=",
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "rev": "b093dd1ef0ea19544ac5eb31bcb30be1b95891d5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "type": "github"
       }
     }
   },
