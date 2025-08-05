@@ -17,6 +17,7 @@
       screenshot-directory = "~/MediaHub/screenshots/mpv";
       osd-bar= false;
       osd-font-size = 18;
+      cursor-autohide = "always";
 
       ## Languages ##
       slang="eng,en,enUS,en-US,spa,es";
@@ -34,7 +35,7 @@
       ytdl-format = "bv[height<=?1080]+ba/b";
       demuxer-lavf-o="extension_picky=0";
       force-seekable= true;
-      demuxer-max-bytes = "1000M";
+      demuxer-max-bytes = "600M";
       demuxer-max-back-bytes="250MiB";
       demuxer-donate-buffer = false;
     };
@@ -43,7 +44,7 @@
       "not fullscreen" = {
         profile-restore = "copy";
         profile-cond = "(osd_width < 1280)";
-        video-zoom = 0.3;
+        video-zoom = 0.6;
         sub-visibility = false;
         
       };
@@ -71,11 +72,11 @@
         seekbarstyle = "knob";
         seekbarhandlesize = 0.6;
         valign = -0.9;
-        seekrangestyle = "bar";
         deadzonesize = 0;
         scrollcontrols = false;
-        scalewindowed = 2;
-        hidetimeout = 2000;
+        hidetimeout = 500;
+        vidscale = false;
+        minmousemove = 4;
       };
       playlistmanager = {
         playlist_display_timeout = 10;
@@ -115,10 +116,6 @@
             text = ''
               mp.observe_property("seeking", "native", function(_, seeking)
                 if seeking then
-                    if mp.get_property_bool("fullscreen") then
-                        local title = mp.get_property("media-title") or mp.get_property("filename")
-                        mp.osd_message(title, 2)  -- Display title for 2 seconds
-                    end
                     mp.command("script-message osc-show")
                 end
               end)

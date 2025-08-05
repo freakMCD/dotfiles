@@ -7,7 +7,7 @@ in
    texlab texlive.combined.scheme-full libreoffice kalker
 
   #Browsers
-   qutebrowser w3m webcord openboard
+   qutebrowser w3m openboard
   #Documents
    pdfarranger simple-scan neovim 
   #Media & Graphics

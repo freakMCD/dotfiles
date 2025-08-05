@@ -27,7 +27,7 @@ download_playlist() {
         
         echo -e "${GREEN}✔ ${CYAN}$title ${YELLOW}[$video_id]${NC}"
     done < <(
-        yt-dlp --quiet --cookies-from-browser firefox \
+        yt-dlp --quiet --cookies-from-browser firefox:~/.librewolf/bixoef6e.default \
             --download-archive "$GLOBAL_ARCHIVE" \
             -o "$output_dir/%(title)s [%(id)s].%(ext)s" \
             --parse-metadata " $playlist_name: %(meta_artist)s" \

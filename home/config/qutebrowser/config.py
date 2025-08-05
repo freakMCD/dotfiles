@@ -13,21 +13,18 @@ config.source('websites.py')
 
 # General
 c.qt.chromium.process_model = "process-per-site"
+c.qt.args=["ignore-gpu-blocklist","enable-zero-copy","enable-features=VaapiIgnoreDriverChecks"]
 c.auto_save.session = False
 c.downloads.location.directory = "/home/edwin/Downloads/"
 c.downloads.location.prompt = True
 c.downloads.remove_finished = 300000
 c.downloads.open_dispatcher = "xdg-open {}"
-c.fileselect.folder.command = ["foot","yazi", "--cwd-file={}"]
-c.fileselect.multiple_files.command = ["foot","yazi", "--chooser-file={}"]
-c.fileselect.single_file.command = ["foot","yazi", "--chooser-file={}"]
 c.completion.height = "25%"
 c.completion.scrollbar.padding = 2
 c.completion.shrink = True
 c.completion.open_categories = ["quickmarks", "bookmarks", "searchengines"]
 c.history_gap_interval = -1
 c.messages.timeout = 2000
-c.qt.highdpi= True
 c.session.lazy_restore = True
 c.statusbar.padding = {"bottom": 0, "left": 0, "right": 0, "top": 0}
 c.statusbar.show = "in-mode"
