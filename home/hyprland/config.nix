@@ -2,8 +2,7 @@
 let 
 playerctl = "${pkgs.playerctl}/bin/playerctl -p mpv";
 terminal = "foot";
-rounding = "50";
-opacity = "0";
+var = import ./variables.nix;
 inherit (lib) mkEnableOption mkIf mkMerge mapAttrsToList;
 in
 {
@@ -212,7 +211,7 @@ in
         "$smod, k, movewindow, u"
         "$smod, j, movewindow, d"
 
-        "$mod, F12, exec, pkill -15 '(zen|zathura)'; hyprctl notify 0 5000 'rgb(ff0088)' '   Shutting down'; pw-cat -p /usr/share/sounds/freedesktop/stereo/service-logout.oga; sleep 3; shutdown now"
+        "$mod, F12, exec, pkill -15 '(qutebrowser|zathura)'; hyprctl notify 0 5000 'rgb(ff0088)' '   Shutting down'; pw-cat -p /usr/share/sounds/freedesktop/stereo/service-logout.oga; sleep 3; shutdown now"
 
 # Toggle windowgroup / toggle window group lock
         "$mod, U, moveoutofgroup"
@@ -265,7 +264,7 @@ in
         "float,class:(^(org-geogebra-desktop)),title:(Algebra)"
         "float,class:(^(org-geogebra-desktop)),title:(^(win))"
         "tile,title:(^(GeoGebra Classic))"
-        "workspace 1,class:(zen|firefox)"
+        "workspace 1,class:(org.qutebrowser.qutebrowser|firefox)"
         "workspace 1,class:(${terminal})"
         "workspace 2,class:(org.pwmt.zathura)"
         "workspace 3,class:(libreoffice)"
@@ -278,10 +277,11 @@ in
         "noanim, class:(^(mpv))"
         "nofocus, class:(^(mpv))"
         "noborder, class:(^(mpv))"
-        "rounding ${rounding}, class:(^(mpv))"
-        "opacity 1 ${opacity}, class:(^(mpv))"
+        "rounding ${var.rounding}, class:(^(mpv))"
+        "opacity 1 ${var.high}, class:(^(mpv))"
         "opacity 1 1 0.97, class:(^(${terminal}))"
         "opacity 1 1, class:(^(org.pwmt.zathura))"
+        "size ${var.width} ${var.height}, class:(^(mpv))"
       ];
     };
   };

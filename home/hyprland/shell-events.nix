@@ -1,7 +1,8 @@
 {pkgs, ...}:
 {
   systemd.user.services.shellevents = let hyprevents = 
-   pkgs.writers.writeFish "shellevents" ''
+  let var = import ./variables.nix;
+  in pkgs.writers.writeFish "shellevents" ''
     set mpv_socket_dir "/tmp/mpvSockets"
     set mpv_addresses_file "/tmp/mpv_addresses"
     set mpv_titles_file "/tmp/mpv_titles"
@@ -18,6 +19,7 @@
             set idx (contains -i "$address" $mpv_addresses)
             set mpv_states[$idx] "paused"
             echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid" &
+            set -ga cmds "dispatch setprop address:$address alphainactive ${var.low}"
         end
     end
 
@@ -49,6 +51,8 @@
 
         set -g cmds
         test (count $mpv_addresses) -gt 1 && cycle_pause
+
+        set -a cmds "dispatch movewindowpixel exact ${var.x} ${var.y}, address:0x$WINDOWADDRESS"
 
         set batch_cmd (string join ";" $cmds)
         hyprctl --batch "$batch_cmd"

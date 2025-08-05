@@ -16,7 +16,7 @@
       GNUPGHOME="$HOME/.local/share/gnupg";
       TEXMFVAR="$HOME/.cache/texlive/texmf-var";
       W3M_DIR="$HOME/.local/share/w3m";
-      BROWSER="zen";
+      BROWSER="qutebrowser";
       EDITOR="nvim";	
       MANPAGER="nvim +Man!";
       BUNDLE_FORCE_RUBY_PLATFORM = "true";
@@ -36,6 +36,7 @@
       "nvim".source = "${dotfiles}/nvim";
       "fastanime/config.ini".source = "${dotfiles}/fastanime/config.ini";
       "neomutt".source = "${dotfiles}/neomutt";
+      "qutebrowser".source = "${dotfiles}/qutebrowser";
       "newsraft".source = "${dotfiles}/newsraft";
       "yambar".source = "${dotfiles}/yambar";
     };
@@ -64,6 +65,45 @@
         "text/x-c"
         "text/x-c++"
       ];
+    };
+
+    desktopEntries."org.qutebrowser.qutebrowser" = {
+      name = "qutebrowser";
+      genericName = "Web Browser";
+      comment = "A keyboard-driven, vim-like browser based on Python and Qt";
+      icon = "qutebrowser";
+      type = "Application";
+      categories = [
+        "Network"
+        "WebBrowser"
+      ];
+      exec = "sh -c \"source ~/.local/share/linuxfedora && qutebrowser \"";
+      terminal = false;
+      startupNotify = false;
+      mimeType = [
+        "text/html"
+        "text/xml"
+        "application/xhtml+xml"
+        "application/xml"
+        "application/rdf+xml"
+        "image/gif"
+        "image/jpeg"
+        "image/png"
+        "x-scheme-handler/http"
+        "x-scheme-handler/https"
+        "x-scheme-handler/qute"
+      ];
+      actions = {
+        new-window = {
+          name = "New Window";
+          exec = "qutebrowser";
+        };
+        preferences = {
+          name = "Preferences";
+          exec = ''qutebrowser "qute://settings"'';
+        };
+      };
+      settings.StartupWMClass = "qutebrowser";
     };
   };
 }

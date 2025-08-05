@@ -14,7 +14,7 @@
 
   config = {
     colors = {
-      bg0            = "090505"; # Bg
+      bg0            = "090505";
       bg1            = "0F0F0F";
       bg2            = "1d2021";
       bg3            = "282828";
@@ -30,19 +30,24 @@
       yellow         = "d79921";
       blue           = "458588";
       magenta        = "b16286";
-      cyan           = "689d6a"; 
-      white          = "d5c4a1"; # Fg
+      cyan           = "689d6a";
+      white          = "d5c4a1";
 
       b_red     = "fb4934";
       b_green   = "b8bb26";
       b_yellow  = "fabd2f";
       b_blue    = "83a598";
-      b_magenta = "d3869b"; # visited
-      b_cyan    = "8ec07c"; # unvisited
-      b_white   = "a89984"; 
+      b_magenta = "d3869b";
+      b_cyan    = "8ec07c";
+      b_white   = "a89984";
 
       orange         = "d65d0e";
       b_orange  = "fe8019";
     };
   };
+
+  imports = [
+   ./qute-py.nix
+   ./qute-css.nix
+  ];
 }

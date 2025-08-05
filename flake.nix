@@ -10,18 +10,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    stevenblack = {
+    hosts = {
       url = "github:StevenBlack/hosts";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-stable, home-manager, hosts, ... }@inputs:
   let 
     system = "x86_64-linux";
     stablePkgs = import nixpkgs-stable { inherit system; };
@@ -48,6 +43,9 @@
       specialArgs = { inherit inputs stablePkgs; };
       modules = [ 
         ./system
+        hosts.nixosModule {
+          networking.stevenBlackHosts.enable = true;
+        }
       ];
     };
   };

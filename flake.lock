@@ -20,6 +20,26 @@
         "type": "github"
       }
     },
+    "hosts": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1754183568,
+        "narHash": "sha256-7PV7s5JtPRClmtgbKmaRh2o1ShcFk8yQsAZWw1n9vd4=",
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "rev": "90ab32da7b21741090b12ec6b829e363a4213de3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1753939845,
@@ -55,46 +75,9 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "hosts": "hosts",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-stable": "nixpkgs-stable",
-        "stevenblack": "stevenblack",
-        "zen-browser": "zen-browser"
-      }
-    },
-    "stevenblack": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1754239761,
-        "narHash": "sha256-GLQLaiWBVdRatbq6OaydAddDREHPlHs/kr1QvQp/n1g=",
-        "owner": "StevenBlack",
-        "repo": "hosts",
-        "rev": "b093dd1ef0ea19544ac5eb31bcb30be1b95891d5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "StevenBlack",
-        "repo": "hosts",
-        "type": "github"
-      }
-    },
-    "zen-browser": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1753676490,
-        "narHash": "sha256-XeifEftxYGP/gzp6O1yO1S1W+MEx4Xvrgeu84ryRPNQ=",
-        "owner": "youwen5",
-        "repo": "zen-browser-flake",
-        "rev": "77024f4557204bb4d526893d42db2e6f50727fab",
-        "type": "github"
-      },
-      "original": {
-        "owner": "youwen5",
-        "repo": "zen-browser-flake",
-        "type": "github"
+        "nixpkgs-stable": "nixpkgs-stable"
       }
     }
   },
