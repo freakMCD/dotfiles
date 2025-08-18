@@ -5,7 +5,6 @@ in
   environment.systemPackages = with pkgs; [
   #Pinned from stablePkgs 
    texlab texlive.combined.scheme-full libreoffice kalker
-
   #Browsers
    qutebrowser w3m openboard
   #Documents

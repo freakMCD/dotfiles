@@ -93,17 +93,6 @@
         "x-scheme-handler/https"
         "x-scheme-handler/qute"
       ];
-      actions = {
-        new-window = {
-          name = "New Window";
-          exec = "qutebrowser";
-        };
-        preferences = {
-          name = "Preferences";
-          exec = ''qutebrowser "qute://settings"'';
-        };
-      };
-      settings.StartupWMClass = "qutebrowser";
     };
   };
 }
