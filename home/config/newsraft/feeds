@@ -5,6 +5,9 @@ https://terrytao.wordpress.com/feed/ "Terence Tao Blog"
 https://mathvoices.ams.org/teachingandlearning/feed/
 https://mathvoices.ams.org/mathmedia/feed/
 https://mathvoices.ams.org/featurecolumn/feed/
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFLnGGRG__uGSPLBLzyhg8dQ "Oxford Lecture"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCnm7Tojum-6wCpkYO4SUmhA "Matemáticas en la PUCP"
+
 
 @ News < reload-period 1440
 https://bandito.re/13b14305-cba7-4fd1-92b6-d5a424169984.atom
@@ -19,10 +22,3 @@ https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/hy/hyprland
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ne/newsraft/package.nix.atom "newsraft"
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ya/yambar/package.nix.atom "yambar"
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/video/mpv/default.nix.atom "mpv"
-
-@ Youtube < reload-period 240
-https://www.youtube.com/feeds/videos.xml?channel_id=UC97I55D2HsW1nfA_1QgJ3IA "Hiertogame"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "Naruto" < item-rule title LIKE '%naruto%'
-https://www.youtube.com/feeds/videos.xml?playlist_id=UULFLnGGRG__uGSPLBLzyhg8dQ "Oxford Lecture"
-
-

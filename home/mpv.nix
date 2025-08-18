@@ -17,7 +17,6 @@
       screenshot-directory = "~/MediaHub/screenshots/mpv";
       osd-bar= false;
       osd-font-size = 18;
-      cursor-autohide = "always";
 
       ## Languages ##
       slang="eng,en,enUS,en-US,spa,es";

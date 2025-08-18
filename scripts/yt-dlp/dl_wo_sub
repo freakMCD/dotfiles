@@ -23,29 +23,62 @@ set temp_dir (mktemp -d)
 set video_title (yt-dlp --get-title -- "$url" | string replace -ra '[^a-zA-Z0-9]' '_' | string sub -l 50)
 set output_name "$video_title"(date +"_%Y%m%d")".mp4"
 
-# Download best 480p version
-yt-dlp -f "bestvideo[height<=480]+bestaudio" --cookies-from-browser firefox \
-    --merge-output-format mp4 \
-    --sub-langs "es,en" --write-subs --convert-subs srt \
-    -o "$temp_dir/video.mp4" \
-    -- "$url"
+function try_download
+    yt-dlp -f "bestvideo[height<=480]+bestaudio/best" \
+        $argv \
+        --merge-output-format mp4 \
+        --sub-langs "es,en" --write-subs --convert-subs srt \
+        -o "$temp_dir/video.%(ext)s" \
+        -- "$url"
+end
 
-# Find subtitle file with priority
-set sub_file ""
-if set -q _flag_embed_subs
-    for lang in es en
-        set sub_file "$temp_dir/video.$lang.srt"
-        if test -f "$sub_file"
+# --- First attempt: with cookies (most reliable for private/age restricted) ---
+try_download --cookies-from-browser firefox:~/.librewolf/bixoef6e.default
+
+# Detect video
+set downloaded ""
+for f in $temp_dir/video.*
+    if test -f "$f"
+        set downloaded "$f"
+        break
+    end
+end
+
+# --- Fallback: if nothing downloaded, try android client (no cookies) ---
+if test -z "$downloaded"
+    echo "Retrying with android client (no cookies)..."
+    try_download --extractor-args "youtube:player_client=android"
+
+    for f in $temp_dir/video.*
+        if test -f "$f"
+            set downloaded "$f"
             break
-        else
-            set sub_file ""
         end
     end
 end
 
-# Always process through FFmpeg for compatibility
+# Abort if still nothing
+if test -z "$downloaded"
+    echo "Error: Download failed, no video file produced"
+    rm -rf "$temp_dir"
+    return 1
+end
+
+# Pick subtitle if requested
+set sub_file ""
+if set -q _flag_embed_subs
+    for lang in es en
+        set sub_candidate "$temp_dir/video.$lang.srt"
+        if test -f "$sub_candidate"
+            set sub_file "$sub_candidate"
+            break
+        end
+    end
+end
+
+# --- Encode with FFmpeg ---
 if set -q _flag_embed_subs; and test -n "$sub_file"
-    ffmpeg -hide_banner -i "$temp_dir/video.mp4" \
+    ffmpeg -hide_banner -i "$downloaded" \
         -vf "subtitles='$sub_file':force_style='Fontname=Dejavu Sans,OutlineColour=&H40000000,BorderStyle=3'" \
         -tune zerolatency \
         -profile:v main -level 4.0 \
@@ -57,8 +90,7 @@ if set -q _flag_embed_subs; and test -n "$sub_file"
         -movflags +faststart \
         -y "$output_name"
 else
-    # Process without subtitles but maintain compatibility settings
-    ffmpeg -hide_banner -i "$temp_dir/video.mp4" \
+    ffmpeg -hide_banner -i "$downloaded" \
         -profile:v main -level 4.0 \
         -tune zerolatency \
         -preset medium \
@@ -73,3 +105,4 @@ end
 # Cleanup
 rm -rf "$temp_dir"
 echo "Created: "(realpath "$output_name")
+

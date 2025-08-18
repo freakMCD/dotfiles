@@ -30,7 +30,6 @@ in
         "udiskie"
         "yambar"
         "hypridle"
-        "fastanime worker"
       ];
         
       general = {
@@ -220,7 +219,7 @@ in
         "$smod, TAB, changegroupactive, b"
         "$mod, grave, togglegroup"
         
-        "$mod, A, togglespecialworkspace, fastanime"
+        "$mod, A, togglespecialworkspace, viu"
         "$mod SHIFT, KP_End, togglespecialworkspace, trans"
         "$mod, KP_End, togglespecialworkspace, transI"
         "$mod, KP_Down, togglespecialworkspace, neomutt"
@@ -249,7 +248,7 @@ in
       ];
 
       workspace = [
-        "special:fastanime, on-created-empty: ${terminal} --app-id=fastanime fastanime anilist"
+        "special:viu, on-created-empty: ${terminal} --app-id=viu viu anilist"
         "special:trans, on-created-empty: ${terminal} --app-id=trans trans -b -I :es"
         "special:transI, on-created-empty: ${terminal} --app-id=transI trans -b -I :@es"
         "special:neomutt, on-created-empty: ${terminal} --app-id=neomutt neomutt"
