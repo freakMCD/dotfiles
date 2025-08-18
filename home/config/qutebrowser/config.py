@@ -12,7 +12,7 @@ config.source('blocklist.py')
 config.source('websites.py')
 
 # General
-c.qt.chromium.process_model = "process-per-site"
+c.qt.chromium.process_model = "process-per-site-instance"
 c.qt.args=["ignore-gpu-blocklist","enable-zero-copy","enable-features=VaapiIgnoreDriverChecks"]
 c.auto_save.session = False
 c.downloads.location.directory = "/home/edwin/Downloads/"

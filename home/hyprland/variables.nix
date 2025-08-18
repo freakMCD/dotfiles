@@ -7,7 +7,7 @@ let
 
   # Coordinates (centered directly on screen)
   x = (screen.width - mpv.width) / 2 ;
-  y = (screen.height - mpv.height) + 10;
+  y = (screen.height - mpv.height);
 in builtins.mapAttrs (_name: builtins.toString) {
   inherit (mpv) width height;
   inherit x y;

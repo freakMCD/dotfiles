@@ -27,7 +27,7 @@
         string replace -r ' - mpv$' "" "$argv[1]" |
         string replace '_' ' ' |  # Underscores to spaces
         string trim |                        # Remove whitespace
-        string replace -r '(.{45}).+' '$1'  # Truncate and add ellipsis
+        string replace -r '(.{40}).+' '$1'  # Truncate and add ellipsis
     end
 
     function update_files

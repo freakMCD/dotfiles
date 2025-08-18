@@ -3,7 +3,7 @@ set -euo pipefail
 trap 'echo -e "\nScript interrupted. Exiting..."; exit' SIGINT
 
 BASE_DIR="$HOME/Music"
-COOKIES_FROM_BROWSER="firefox:~/.librewolf/bixoef6e.default"
+COOKIES_FROM_BROWSER="firefox"
 YTDLP_CONF="$HOME/nix/scripts/yt-dlp/yt-dlp.conf"
 
 # --- Playlists: "Name|URL" ---

@@ -31,21 +31,25 @@
       sub-spacing=0.5;
 
       ## Streaming ##
-      ytdl-format = "bv[height<=?1080]+ba/b";
-      demuxer-lavf-o="extension_picky=0";
+      ytdl-format = "bv*[height<=1080]+ba/b[height<=1080]";
+      ytdl-raw-options = "cookies-from-browser=firefox";
       force-seekable= true;
-      demuxer-max-bytes = "600M";
+      demuxer-max-bytes = "500M";
       demuxer-max-back-bytes="250MiB";
       demuxer-donate-buffer = false;
     };
 
     profiles = {
+      "youtubemusic" = {
+        profile-cond = "string.match(path, 'music%.youtube%.com')";
+        ytdl-format = "bestaudio/b";
+        force-window = "immediate";
+      };
       "not fullscreen" = {
         profile-restore = "copy";
         profile-cond = "(osd_width < 1280)";
         video-zoom = 0.6;
         sub-visibility = false;
-        
       };
       "protocol.http" = {
         cache = "yes";
@@ -66,6 +70,9 @@
     };
 
     scriptOpts = {
+      ytdl_hook = {
+        ytdl_path = "/home/edwin/.local/share/pipx/venvs/yt-dlp/bin/yt-dlp";
+      };
       osc = {
         layout = "slimbox";
         seekbarstyle = "knob";

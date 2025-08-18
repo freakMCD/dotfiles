@@ -11,7 +11,7 @@ in
     settings = let
       screenarea-copy = ''grim -g "$(slurp -d -w 0)" - | wl-copy'';
       screenarea-save = ''grim -g "$(slurp -d -w 0)" ~/MediaHub/screenshots/$(date +%y-%m-%d_NF).png'';
-      screenfull = ''grim -c - | ~/MediaHub/screenshots/$(date +%y-%m-%d_F).png'';
+      screenfull = ''grim -c - | tee ~/MediaHub/screenshots/$(date +%y-%m-%d_%H-%M-%S).png | wl-copy'';
       recordarea = "$HOME/nix/scripts/record.sh";
     in 
     { env = mapAttrsToList (name: value: "${name},${toString value}") {
@@ -42,6 +42,8 @@ in
         "col.inactive_border" = "rgba(595959aa)";
         "snap:enabled" = 1;
       };
+
+      xwayland.enabled = false;
 
       binds = {
         allow_pin_fullscreen = 1;
@@ -263,13 +265,11 @@ in
         "float,class:(^(org-geogebra-desktop)),title:(Algebra)"
         "float,class:(^(org-geogebra-desktop)),title:(^(win))"
         "tile,title:(^(GeoGebra Classic))"
-        "workspace 1,class:(org.qutebrowser.qutebrowser|firefox)"
-        "workspace 1,class:(${terminal})"
+        "workspace 1,class:(org.qutebrowser.qutebrowser)"
         "workspace 2,class:(org.pwmt.zathura)"
         "workspace 3,class:(libreoffice)"
         "workspace 4,class:(^(org-geogebra-desktop))"
-        "workspace 5,class:(^(puddletag)$)"
-        "workspace 5,class:(^(WebCord)$)"
+        "workspace 5,class:(^(firefox|webcord)$)"
         "suppressevent maximize,class:^(libreoffice.*)$"
 # 
         "pin, class:(^(mpv))"
