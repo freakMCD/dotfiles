@@ -9,7 +9,7 @@ c.content.fullscreen.window = True
 c.content.geolocation = False
 c.content.webgl = False
 
-# Disable protocol handler for specified websites
-config.set('content.register_protocol_handler', False, 'mail.google.com')
-
+# Javascript
+c.content.javascript.enabled = True
+c.content.javascript.clipboard = "access-paste"
 

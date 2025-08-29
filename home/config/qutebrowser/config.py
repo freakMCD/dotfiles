@@ -1,31 +1,40 @@
 import os
 from urllib.request import urlopen
 
-# load your autoconfig, use this, if the rest of your config is empty!
+# Load defaults & modular configs
 config.load_autoconfig(False)
-
 c.content.user_stylesheets = ["/home/edwin/.config/qutebrowser/css/gruvbox.css"]
 
 config.source('mappings.py')
 config.source('colors.py')
-config.source('blocklist.py')
+config.source('content.py')
+config.source('site_overrides.py')
 config.source('websites.py')
 
-# General
+# Chromium
 c.qt.chromium.process_model = "process-per-site-instance"
 c.qt.args=["ignore-gpu-blocklist","enable-zero-copy","enable-features=VaapiIgnoreDriverChecks"]
+
+# General
 c.auto_save.session = False
+c.history_gap_interval = -1
+c.messages.timeout = 2000
+c.session.lazy_restore = True 
+
+
+# Downloads
 c.downloads.location.directory = "/home/edwin/Downloads/"
 c.downloads.location.prompt = True
 c.downloads.remove_finished = 300000
 c.downloads.open_dispatcher = "xdg-open {}"
+
+# Completion
 c.completion.height = "25%"
 c.completion.scrollbar.padding = 2
 c.completion.shrink = True
 c.completion.open_categories = ["quickmarks", "bookmarks", "searchengines"]
-c.history_gap_interval = -1
-c.messages.timeout = 2000
-c.session.lazy_restore = True
+
+# Statusbar
 c.statusbar.padding = {"bottom": 0, "left": 0, "right": 0, "top": 0}
 c.statusbar.show = "in-mode"
 
@@ -70,12 +79,14 @@ c.fonts.default_family = "LiterationSans Nerd Font"
 c.fonts.default_size = "11pt"
 c.fonts.prompts = "default_size default_family"
 c.fonts.tooltip = "default_size default_family"
+
 c.fonts.web.family.cursive = "default_family"
 c.fonts.web.family.fantasy = "default_family"
 c.fonts.web.family.fixed = "default_family"
 c.fonts.web.family.sans_serif = "default_family"
 c.fonts.web.family.serif = "default_family"
 c.fonts.web.family.standard = "default_family"
+
 c.fonts.web.size.default = 16
 c.fonts.web.size.default_fixed = 16
 c.fonts.web.size.minimum = 16
