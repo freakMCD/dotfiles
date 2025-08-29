@@ -2,7 +2,7 @@
 let 
 playerctl = "${pkgs.playerctl}/bin/playerctl -p mpv";
 terminal = "foot";
-var = import ./variables.nix;
+mpv_opacity = 0;
 inherit (lib) mkEnableOption mkIf mkMerge mapAttrsToList;
 in
 {
@@ -258,11 +258,9 @@ in
         "noanim, class:(^(mpv))"
         "nofocus, class:(^(mpv))"
         "noborder, class:(^(mpv))"
-        "rounding ${var.rounding}, class:(^(mpv))"
-        "opacity 1 ${var.high}, class:(^(mpv))"
+        "opacity 1 ${mpv_opacity}, class:(^(mpv))"
         "opacity 1 1 0.97, class:(^(${terminal}))"
         "opacity 1 1, class:(^(org.pwmt.zathura))"
-        "size ${var.width} ${var.height}, class:(^(mpv))"
       ];
     };
   };

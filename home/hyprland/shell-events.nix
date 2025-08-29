@@ -1,8 +1,7 @@
 {pkgs, ...}:
 {
   systemd.user.services.shellevents = let hyprevents = 
-  let var = import ./variables.nix;
-  in pkgs.writers.writeFish "shellevents" ''
+  pkgs.writers.writeFish "shellevents" ''
     set mpv_socket_dir "/tmp/mpvSockets"
     set mpv_addresses_file "/tmp/mpv_addresses"
     set mpv_titles_file "/tmp/mpv_titles"
@@ -11,7 +10,7 @@
     set -g mpv_titles
     set -g mpv_states
 
-    function cycle_pause
+    function pause_old
         hyprctl clients -j | jq -r --arg target "0x$WINDOWADDRESS" '
             .[] | select(.class=="mpv" and .address != $target) |
             (.pid|tostring) + " " + .address
@@ -19,7 +18,6 @@
             set idx (contains -i "$address" $mpv_addresses)
             set mpv_states[$idx] "paused"
             echo '{"command":["set_property","pause",true]}' | socat - UNIX-CONNECT:"$mpv_socket_dir/$pid" &
-            set -ga cmds "dispatch setprop address:$address alphainactive ${var.low}"
         end
     end
 
@@ -49,15 +47,10 @@
         set mpv_titles[$idx] (format_title "$WINDOWTITLE")
         set mpv_states[$idx] "playing"
 
-        set -g cmds
-        test (count $mpv_addresses) -gt 1 && cycle_pause
+        test (count $mpv_addresses) -gt 1 && pause_old
 
-        set -a cmds "dispatch movewindowpixel exact ${var.x} ${var.y}, address:0x$WINDOWADDRESS"
-
-        set batch_cmd (string join ";" $cmds)
-        hyprctl --batch "$batch_cmd"
         update_files
-        end
+    end
 
     function event_closewindow
         set idx (contains -i "0x$WINDOWADDRESS" $mpv_addresses)
