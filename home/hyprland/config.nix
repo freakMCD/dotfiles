@@ -44,16 +44,9 @@ in
       };
 
       xwayland.enabled = false;
-
-      binds = {
-        allow_pin_fullscreen = 1;
-      };
-
-      decoration = {
-        blur = {
-          enabled = false;
-        };
-      };
+      decoration.blur.enabled = false;
+      animations.enabled = false;
+      binds.allow_pin_fullscreen = 1;
 
       dwindle = {
         special_scale_factor = 0.5;
@@ -75,18 +68,7 @@ in
         disable_hyprland_logo = true;
       };
 
-      animations = {
-        enabled = true;
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-        animation = [
-              "windows, 1, 3, myBezier"
-              "windowsOut, 1, 6, default, popin 80%"
-              "border, 1, 6, default"
-              "fade, 1, 3, default"
-              "workspaces, 1, 2, default"
-        ];
-      };
-
+      
       group = {
           "col.border_active" = "rgba(fe8019ee) rgba(fabd2fee) 135deg";
         groupbar = {

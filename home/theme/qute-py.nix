@@ -148,6 +148,5 @@
     web.whatsapp.com
     whatsapp.net
     whatsapp.com
-    allkpop.com
   '';
 }

@@ -11,12 +11,7 @@
             "browser.uidensity" = 1;
             "browser.cache.disk.enable" = false; # Be kind to hard drive
             "ui.key.menuAccessKeyFocuses" = false;
-            "network.proxy.type" = 1;
-            "network.proxy.http" = "0.0.0.0";
-            "network.proxy.http_port" = 48;
-            "network.proxy.share_proxy_settings" = true;
-            "network.proxy.no_proxies_on" = "youtube.com,ytimg.com,googleapis.com,googlevideo.com,gstatic.com,web.whatsapp.com,whatsapp.net";
-        };
+           };
 
       };
 
