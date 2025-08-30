@@ -2,7 +2,7 @@
 let 
 playerctl = "${pkgs.playerctl}/bin/playerctl -p mpv";
 terminal = "foot";
-mpv_opacity = 0;
+mpv_opacity = toString 0;
 inherit (lib) mkEnableOption mkIf mkMerge mapAttrsToList;
 in
 {

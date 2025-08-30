@@ -14,12 +14,13 @@ https://codeberg.org/dnkl/yambar/releases.rss
 https://nixos.org/blog/announcements-rss.xml
 
 @ Nixpkgs < reload-period 60
-https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/qu/qutebrowser/package.nix.atom "qutebrowser"
-https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/hy/hyprland/package.nix.atom "hyprland"
-https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ne/newsraft/package.nix.atom "newsraft"
-https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ya/yambar/package.nix.atom "yambar"
-https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/video/mpv/default.nix.atom "mpv"
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/networking/browsers/floorp/default.nix.atom "floorp"
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/hy/hyprland/package.nix.atom "hyprland"
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/video/mpv/default.nix.atom "mpv"
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ne/newsraft/package.nix.atom "newsraft"
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/op/openboard/package.nix.atom "openboard"
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/qu/qutebrowser/package.nix.atom "qutebrowser"
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ya/yambar/package.nix.atom "yambar"
 
 @ Youtube < reload-period 240
 https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "Naruto" < item-rule title LIKE '%naruto%'

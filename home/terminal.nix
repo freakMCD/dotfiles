@@ -34,10 +34,13 @@
           exit
       end
 
+
       function rebuild
           # Capture previous system state
           set -l old_system (readlink /run/current-system)
           set -l update_requested 0
+          set -l show_trace 0
+          set -l rebuild_args
           cd $HOME
 
           # Parse arguments
@@ -46,17 +49,29 @@
                   set update_requested 1
                   echo "Updating flake..."
                   nix flake update --flake $HOME/nix || return 1
+              else if [ "$arg" = "--show-trace" ]
+                  set show_trace 1
+              else
+                  set rebuild_args $rebuild_args $arg
               end
           end
 
           # Build/switch
-          if contains "switch" $argv || contains "test" $argv
+          if contains "switch" $rebuild_args || contains "test" $rebuild_args
               echo "Building and activating..."
-              sudo nixos-rebuild $argv[1] --flake $HOME/nix#edwin || return 1
+              if [ $show_trace -eq 1 ]
+                  sudo nixos-rebuild $rebuild_args --flake $HOME/nix#edwin --show-trace || return 1
+              else
+                  sudo nixos-rebuild $rebuild_args --flake $HOME/nix#edwin || return 1
+              end
               set new_system (readlink -f /run/current-system)
           else
               echo "Building..."
-              sudo nixos-rebuild build --flake $HOME/nix#edwin || return 1
+              if [ $show_trace -eq 1 ]
+                  sudo nixos-rebuild build --flake $HOME/nix#edwin --show-trace || return 1
+              else
+                  sudo nixos-rebuild build --flake $HOME/nix#edwin || return 1
+              end
               set new_system (readlink result)
           end
 

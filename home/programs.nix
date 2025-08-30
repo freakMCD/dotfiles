@@ -11,11 +11,10 @@
             "browser.uidensity" = 1;
             "browser.cache.disk.enable" = false; # Be kind to hard drive
             "ui.key.menuAccessKeyFocuses" = false;
+            "widget.use-xdg-desktop-portal.file-picker" = 2;
            };
 
       };
-
-
     };
     git = {
       enable = true;

@@ -145,8 +145,5 @@
     i.ytimg.com
     ytimg.com
     googlevideo.com
-    web.whatsapp.com
-    whatsapp.net
-    whatsapp.com
   '';
 }

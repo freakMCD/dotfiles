@@ -3,28 +3,39 @@
 in
 {
   environment.systemPackages = with pkgs; [
-  #Pinned from stablePkgs 
-   texlab texlive.combined.scheme-full libreoffice kalker
-  #Browsers
-   qutebrowser w3m openboard
-  #Documents
-   pdfarranger simple-scan neovim 
-  #Media & Graphics
-   gimp qimgv ffmpeg chafa playerctl mpc 
-  #Communication
-   telegram-desktop neomutt msmtp isync newsraft
-  #Dev
-   home-manager nvd pass yadm gnupg dig inotify-tools gcc bundix perlEnv pipx 
-  #Terminal 
-   zip unzip curl rclone udiskie bat fd libnotify ares-cli htop wev
+   libreoffice kalker
+#Browsers
+  qutebrowser w3m
+#Documents
+  pdfarranger simple-scan neovim 
+#Media & Graphics
+  gimp qimgv ffmpeg chafa playerctl mpc 
+#Communication
+  telegram-desktop neomutt msmtp isync newsraft
+#Dev
+  home-manager nvd pass yadm gnupg dig inotify-tools gcc perlEnv pipx 
+#Terminal 
+  zip unzip curl rclone udiskie bat fd libnotify ares-cli htop wev
 
-  #hyprland
-   yambar wl-clipboard wf-recorder grim slurp hyprpicker
+#hyprland
+  yambar wl-clipboard wf-recorder grim slurp hyprpicker
 
-  #Others
-   helvum qbittorrent translate-shell
-   geogebra6
-  ];
+#Others
+  qbittorrent translate-shell geogebra6
+
+#Latex
+  texlab
+  (texlive.combine {
+    inherit (texlive)
+      scheme-small
+      koma-script
+      collection-langeuropean
+      collection-mathscience
+      collection-pictures
+      collection-latexextra
+      latexmk;
+  })
+];
 
   programs = {
     appimage = {
