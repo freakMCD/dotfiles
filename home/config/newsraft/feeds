@@ -14,7 +14,6 @@ https://codeberg.org/dnkl/yambar/releases.rss
 https://nixos.org/blog/announcements-rss.xml
 
 @ Nixpkgs < reload-period 60
-https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/networking/browsers/floorp/default.nix.atom "floorp"
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/hy/hyprland/package.nix.atom "hyprland"
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/video/mpv/default.nix.atom "mpv"
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ne/newsraft/package.nix.atom "newsraft"

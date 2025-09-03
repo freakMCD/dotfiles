@@ -8,12 +8,7 @@ in
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    settings = let
-      screenarea-copy = ''grim -g "$(slurp -d -w 0)" - | wl-copy'';
-      screenarea-save = ''grim -g "$(slurp -d -w 0)" ~/MediaHub/screenshots/$(date +%y-%m-%d_NF).png'';
-      screenfull = ''grim -c - | tee ~/MediaHub/screenshots/$(date +%y-%m-%d_%H-%M-%S).png | wl-copy'';
-      recordarea = "$HOME/nix/scripts/record.sh";
-    in 
+    settings = 
     { env = mapAttrsToList (name: value: "${name},${toString value}") {
         XDG_CURRENT_DESKTOP = "Hyprland";
         XDG_SESSION_DESKTOP = "Hyprland";
@@ -43,7 +38,7 @@ in
         "snap:enabled" = 1;
       };
 
-      xwayland.enabled = false;
+      xwayland.enabled = true;
       decoration.blur.enabled = false;
       animations.enabled = false;
       binds.allow_pin_fullscreen = 1;
@@ -66,6 +61,7 @@ in
         enable_swallow = true; # hide windows that spawn other windows
         disable_splash_rendering = true;
         disable_hyprland_logo = true;
+        enable_anr_dialog = false;
       };
 
       
@@ -164,12 +160,12 @@ in
         "$mod, R, exec, fuzzel"
 
         #screenshot
-        ", Print, exec, ${screenfull}"
-        "SHIFT, Print, exec, ${screenarea-copy}"
-        "$mod, Print, exec, ${screenarea-save}"
+        ", Print, exec, hyprshot -m output"
+        "SHIFT, Print, exec, hyprshot -m window"
+        "$mod, Print, exec, hyprshot -z -m region"
 
         # Screen Recordings
-        "$MOD5, Print, exec, ${recordarea}"
+        "$MOD5, Print, exec, $HOME/nix/scripts/record.sh"
 
         #windows managment related
         "$mod, f, fullscreen"

@@ -1,6 +1,13 @@
 {config, stablePkgs, ...}:
 {
   programs = {
+    freetube = {
+      enable = true;
+    };
+    hyprshot = {
+      enable = true;
+      saveLocation = "$HOME/MediaHub/screenshots/";
+    };
     firefox = {
       enable = true;
       profiles.default = {
