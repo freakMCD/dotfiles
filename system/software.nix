@@ -3,7 +3,7 @@
 in
 {
   environment.systemPackages = with pkgs; [
-   libreoffice kalker openboard slurp
+   libreoffice kalker openboard slurp kitty
 #Browsers
   qutebrowser w3m
 #Documents
@@ -38,6 +38,12 @@ in
 ];
 
   programs = {
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    };
     appimage = {
       enable = true;
       binfmt = true;
