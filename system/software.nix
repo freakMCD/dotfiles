@@ -3,7 +3,7 @@
 in
 {
   environment.systemPackages = with pkgs; [
-   libreoffice kalker openboard slurp
+   libreoffice kalker openboard slurp kitty
 #Browsers
   qutebrowser w3m
 #Documents
@@ -38,7 +38,7 @@ in
 ];
 
   programs = {
-    appimage = {
+      appimage = {
       enable = true;
       binfmt = true;
     };

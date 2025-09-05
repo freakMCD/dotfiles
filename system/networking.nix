@@ -40,6 +40,12 @@ let
   manualBlockedDomains = [
     "allkpop.com"
     "sudoku.coach"
+    "pcgamer.com"
+    "steamdb.info"
+    "fandom.com"
+    "rateyourmusic.com"
+    "albumoftheyear.org"
+    "speedrun.com"
   ];
 
   # produce dnsmasq address entries (wildcard) for both IPv4 and IPv6

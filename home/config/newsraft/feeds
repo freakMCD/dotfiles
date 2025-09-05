@@ -23,7 +23,5 @@ https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ya/yambar/p
 
 @ Youtube < reload-period 240
 https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "Naruto" < item-rule title LIKE '%naruto%'
-https://www.youtube.com/feeds/videos.xml?playlist_id=UULFLnGGRG__uGSPLBLzyhg8dQ "Oxford Lecture"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCnm7Tojum-6wCpkYO4SUmhA "Matemáticas en la PUCP"
 
 
