@@ -182,7 +182,6 @@
   rclone $RCLONE_OPTS sync Documents mega:Documents
   rclone $RCLONE_OPTS sync MediaHub mega:MediaHub
   rclone $RCLONE_OPTS sync MathCareer mega:MathCareer
-  rclone $RCLONE_OPTS sync Music mega:Music
 '')
 ];
 }

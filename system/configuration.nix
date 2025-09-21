@@ -4,6 +4,7 @@
 
 { pkgs, ... }:
 {
+  users.groups.libvirtd.members = ["edwin"];
   boot.loader = {
     timeout = 1;
     systemd-boot = {

@@ -20,8 +20,5 @@ https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ne/newsraft
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/op/openboard/package.nix.atom "openboard"
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/qu/qutebrowser/package.nix.atom "qutebrowser"
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ya/yambar/package.nix.atom "yambar"
-
-@ Youtube < reload-period 240
-https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "Naruto" < item-rule title LIKE '%naruto%'
-
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/fr/freetube/package.nix.atom "freetube"
 

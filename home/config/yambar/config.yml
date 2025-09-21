@@ -88,25 +88,6 @@ bar:
                          state == down:
                            string: { text: ⛔ }
 
-   - script:
-       path: /run/current-system/sw/bin/playerctl
-       args:
-         - "--follow"
-         - "-p"
-         - "mpd" 
-         - "metadata"
-         - "-f"
-         - |
-           status|string|{{status}}
-           artist|string|{{artist}}
-           title|string|{{title}}
-       content:
-         map:
-           conditions:
-             status == Paused: {empty: {}}
-             status == Playing:
-                 string: {text: "{artist} - {title}", foreground: *muted_green}
-
  right:
     - script:
         path: ~/nix/scripts/yambar/mpv-watcher.sh

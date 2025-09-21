@@ -1,6 +1,5 @@
 { pkgs,lib, ...}:
 let 
-playerctl = "${pkgs.playerctl}/bin/playerctl -p mpv";
 terminal = "foot";
 mpv_opacity = toString 0;
 inherit (lib) mkEnableOption mkIf mkMerge mapAttrsToList;
@@ -127,19 +126,17 @@ in
           (generateBindings "closeMpvWindow" "CTRL") ++
         [
 
-        "MOD5 SHIFT, P, exec, mpc clear && mpc add Ethereal 'The Hall' && notify-send 'Playlist updated'"
-
         ''$mod, semicolon, exec, notify-send -h "string:x-canonical-private-synchronous:weather" "Weather Update" "$(curl -s wttr.in?format=3)"''
 
-        "$mod, 1 , workspace, 1"
-        "$mod, 2, workspace, 2"
-        "$mod, 3, workspace,  3"
-        "$mod, 4, workspace,  4"
-        "$mod, F1, workspace,  5"
-        "$mod, F2, workspace,  6"
-        "$mod, F3, workspace,  7"
-        "$mod, F4, workspace,  8"
-        "$mod, Z, workspace,  9"
+        "$mod, 1,  workspace, 1"
+        "$mod, 2,  workspace, 2"
+        "$mod, 3,  workspace, 3"
+        "$mod, 4,  workspace, 4"
+        "$mod, F1, workspace, 5"
+        "$mod, F2, workspace, 6"
+        "$mod, F3, workspace, 7"
+        "$mod, F4, workspace, 8"
+        "$mod, Z,  workspace, 9"
 
         # move window to another workspace
         "$smod, 1, movetoworkspace, 1"
@@ -174,11 +171,6 @@ in
         "$mod, q, exec, ${terminal}"
         "$smod, c, killactive"
 
-        # Media control
-        "MOD5, P, exec, mpc toggle"
-        "MOD5, left, exec, mpc prev"
-        "MOD5, right, exec, mpc next"
-
         #change focus keys
         "$mod, h, movefocus, l"
         "$mod, l, movefocus, r"
@@ -199,13 +191,9 @@ in
         "$smod, TAB, changegroupactive, b"
         "$mod, grave, togglegroup"
         
-        "$mod, A, togglespecialworkspace, viu"
-        "$mod SHIFT, KP_End, togglespecialworkspace, trans"
-        "$mod, KP_End, togglespecialworkspace, transI"
-        "$mod, KP_Down, togglespecialworkspace, neomutt"
-        "$mod, KP_Next, togglespecialworkspace, newsraft"
-        "$mod, KP_Left, togglespecialworkspace, kalker"
-        "$mod, KP_Begin, togglespecialworkspace, androidsync"
+        "$mod, KP_End, togglespecialworkspace, neomutt"
+        "$mod, KP_Down, togglespecialworkspace, newsraft"
+        "$mod, KP_Next, togglespecialworkspace, kalker"
         "$mod, O, togglespecialworkspace, openfile"
         "$mod, R, exec, fuzzel"
       ];
@@ -228,13 +216,9 @@ in
       ];
 
       workspace = [
-        "special:viu, on-created-empty: ${terminal} --app-id=viu viu anilist"
-        "special:trans, on-created-empty: ${terminal} --app-id=trans trans -b -I :es"
-        "special:transI, on-created-empty: ${terminal} --app-id=transI trans -b -I :@es"
         "special:neomutt, on-created-empty: ${terminal} --app-id=neomutt neomutt"
         "special:newsraft, on-created-empty: ${terminal} --app-id=newsraftsilent newsraft"
         "special:kalker, on-created-empty: ${terminal} --app-id=kalker kalker"
-        "special:androidsync, on-created-empty: ${terminal} --app-id=androidsync $HOME/nix/scripts/androidsync"
         "special:openfile, on-created-empty: ${terminal} --app-id=openfile open_file"
       ];
 
@@ -243,11 +227,14 @@ in
         "float,class:(^(org-geogebra-desktop)),title:(Algebra)"
         "float,class:(^(org-geogebra-desktop)),title:(^(win))"
         "tile,title:(^(GeoGebra Classic))"
-        "workspace 1,class:(org.qutebrowser.qutebrowser)"
+
+        "workspace 1,class:(org.qutebrowser.qutebrowser|firefox)"
         "workspace 2,class:(org.pwmt.zathura)"
         "workspace 3,class:(libreoffice)"
         "workspace 4,class:(^(org-geogebra-desktop))"
-        "workspace 5,class:(^(firefox|webcord)$)"
+
+        "workspace 5,class:(.qemu-system-x86_64-wrapped)"
+
         "suppressevent maximize,class:^(libreoffice.*)$"
 # 
         "pin, class:(^(mpv))"

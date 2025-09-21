@@ -3,25 +3,26 @@
 in
 {
   environment.systemPackages = with pkgs; [
-   libreoffice kalker openboard slurp kitty
+  samba
+  libreoffice kalker openboard slurp kitty
 #Browsers
   qutebrowser w3m
 #Documents
   pdfarranger simple-scan neovim 
 #Media & Graphics
-  gimp qimgv ffmpeg chafa playerctl mpc 
+  gimp qimgv ffmpeg chafa
 #Communication
   telegram-desktop neomutt msmtp isync newsraft
 #Dev
   home-manager nvd pass yadm gnupg dig inotify-tools gcc perlEnv pipx 
 #Terminal 
-  zip unzip curl rclone udiskie bat fd libnotify ares-cli htop wev
+  zip unzip curl rclone udiskie bat fd libnotify ares-cli htop wev unrar
 
 #hyprland
   yambar wf-recorder hyprpicker
 
 #Others
-  qbittorrent translate-shell geogebra6
+  qbittorrent geogebra6
 
 #Latex
   texlab
@@ -35,8 +36,17 @@ in
       collection-latexextra
       latexmk;
   })
+  quickemu
 ];
 
+# virtualization 
+#programs.virt-manager.enable = true;
+
+users.groups.libvirtd.members = ["edwin"];
+virtualisation.libvirtd.enable = true;
+virtualisation.spiceUSBRedirection.enable = true;
+
+services.spice-vdagentd.enable = true;
   programs = {
       appimage = {
       enable = true;

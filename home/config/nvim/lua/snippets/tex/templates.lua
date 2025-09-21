@@ -11,8 +11,7 @@ return {
 \usepackage[T1]{{fontenc}}
 \usepackage[spanish]{{babel}}
 % --------------------------------------------- %
-\usepackage{{amsmath, amsthm, amsfonts, amssymb, mathtools}}
-\renewcommand{{\epsilon}}{{\varepsilon}}
+\usepackage{{amsthm, amsfonts, amssymb, mathtools}}
 % --------------------------------------------- %
 % Graphics and Figures
 % --------------------------------------------- %
@@ -38,7 +37,7 @@ return {
 % --------------------------------------------- %
 ]], {})),
 
-  s("begindiscreta", fmt([[
+s("begindiscreta", fmt([[
 
 \setcounter{{tocdepth}}{{1}} % Only sections in TOC
 
@@ -124,7 +123,7 @@ return {
 ]], {})),
 
 
-  s("beginanalisis", fmt([[
+s("beginanalisis", fmt([[
 \begin{{document}}
 \begin{{titlepage}}
     \begin{{center}}
@@ -154,14 +153,13 @@ return {
              \item Avalos Gamboa Jholberth Isai
              \item Baca Hilario Heli Arturo
              \item Briceño García Jefferson Smith
+             \item Canchachi Luna Fabiola Esther
              \item Castillo Alva Miguel Alexander Del Piero
              \item Chacón Reyes Diego Fernando
-             \item Gutierrez Estrada Geordy Smit Brayan
              \item Gutierrez Tirado Miluska Olenka
              \item Jimenez Mondragon Manuel Armando
          \end{{itemize}}}} &
            \begin{{itemize}}
-             \item Reluz Oliva Rodrigo Imanol
              \item Rodriguez Gamboa Patrick Jhofreth
              \item Roncal Cruz Steev Alexander
              \item Sanchez Barrios Gerson Farid
@@ -176,9 +174,9 @@ return {
 
         \vfill
         \vspace{{0.3cm}}
-        \textbf{{Curso:}} Análisis Matemático I \\
+        \textbf{{Curso:}} Análisis Matemático II \\
         \vspace{{0.3cm}}
-        \textbf{{Ciclo:}} III
+        \textbf{{Ciclo:}} IV
         \vfill
         Trujillo, Perú - 2025
     \end{{center}}

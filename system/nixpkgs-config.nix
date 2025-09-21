@@ -3,7 +3,7 @@
 {
   nixpkgs.config = {
     allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkg) [ "hplip" "geogebra" ];
+      builtins.elem (lib.getName pkg) [ "hplip" "geogebra" "unrar"];
 
     packageOverrides = pkgs: {
       hplip = pkgs.hplip.overrideAttrs (oldAttrs: {

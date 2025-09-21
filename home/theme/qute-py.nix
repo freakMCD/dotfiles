@@ -135,15 +135,4 @@
     c.colors.tabs.pinned.selected.odd.bg = c.colors.tabs.pinned.selected.even.bg
     c.colors.tabs.pinned.selected.odd.fg = c.colors.tabs.pinned.selected.odd.fg
   '';
-  home.file."nix/home/config/qutebrowser/blocked-hosts".text = ''
-    youtube.com
-    www.youtube.com
-    m.youtube.com
-    youtu.be
-    www.youtube-nocookie.com
-    s.ytimg.com
-    i.ytimg.com
-    ytimg.com
-    googlevideo.com
-  '';
 }
