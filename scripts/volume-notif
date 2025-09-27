@@ -12,22 +12,21 @@ case $1 in
         exit 2 ;;
 esac
 
-{ read vol muted; } <<< $(wpctl get-volume $node | awk '{
-    v=int($2*100); m=$3~/MUTED/?1:0; print v,m }')
+read vol muted < <(wpctl get-volume "$node" | awk '{v=int($2*100); m=$3~/MUTED/?1:0; print v,m}')
 
 case $1 in
     up|down)
-        wpctl set-mute $node 0 && muted=0
+        wpctl set-mute "$node" 0 && muted=0
         if [[ $1 == up ]]; then
             new_vol=$((vol + 5))
         else
             new_vol=$((vol - 5))
         fi
         new_vol=$((new_vol < 0 ? 0 : new_vol > 100 ? 100 : new_vol))
-        wpctl set-volume $node "$new_vol%"
+        wpctl set-volume "$node" "$new_vol%"
         vol=$new_vol ;;
     mute*)
-        wpctl set-mute $node toggle && muted=$((1 - muted)) ;;
+        wpctl set-mute "$node" toggle && muted=$((1 - muted)) 
 esac
 
 if ((muted)); then

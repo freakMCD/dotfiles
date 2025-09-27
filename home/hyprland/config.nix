@@ -1,7 +1,6 @@
 { pkgs,lib, ...}:
 let 
 terminal = "foot";
-mpv_opacity = toString 0;
 inherit (lib) mkEnableOption mkIf mkMerge mapAttrsToList;
 in
 {
@@ -162,7 +161,7 @@ in
         "$mod, Print, exec, hyprshot -z -m region"
 
         # Screen Recordings
-        "$MOD5, Print, exec, $HOME/nix/scripts/record.sh"
+        "MOD5, Print, exec, $HOME/nix/scripts/record.sh"
 
         #windows managment related
         "$mod, f, fullscreen"
@@ -200,16 +199,12 @@ in
 
 #  notifications
       binde = [
-        "MOD5, up, exec, $HOME/nix/scripts/volume_notif up"
-        "MOD5, down, exec, $HOME/nix/scripts/volume_notif down"
-        "MOD5, delete, exec, $HOME/nix/scripts/volume_notif mute"
-        "$mod, delete, exec, $HOME/nix/scripts/volume_notif mute-mic"
-        "$mod, left, exec, mpvSeek -9"
-        "$mod, right, exec, mpvSeek 9"
-        "$smod, left, exec, mpvSeek -54"
-        "$smod, right, exec, mpvSeek 54"
-
+        "MOD5, Up, exec, $HOME/nix/scripts/volume-notif up"
+        "MOD5, Down, exec, $HOME/nix/scripts/volume-notif down"
+        "MOD5, Delete, exec, $HOME/nix/scripts/volume-notif mute"
+        "$mod, Delete, exec, $HOME/nix/scripts/volume-notif mute-mic"
       ];
+
       bindm =[
         "$mod, mouse:272, movewindow"  
         "$mod, mouse:273, resizewindow"  
@@ -223,7 +218,6 @@ in
       ];
 
       windowrule = [
-        "float,class:^(floating|mpv)$"
         "float,class:(^(org-geogebra-desktop)),title:(Algebra)"
         "float,class:(^(org-geogebra-desktop)),title:(^(win))"
         "tile,title:(^(GeoGebra Classic))"
@@ -236,12 +230,7 @@ in
         "workspace 5,class:(.qemu-system-x86_64-wrapped)"
 
         "suppressevent maximize,class:^(libreoffice.*)$"
-# 
-        "pin, class:(^(mpv))"
-        "noanim, class:(^(mpv))"
-        "nofocus, class:(^(mpv))"
-        "noborder, class:(^(mpv))"
-        "opacity 1 ${mpv_opacity}, class:(^(mpv))"
+ 
         "opacity 1 1 0.97, class:(^(${terminal}))"
         "opacity 1 1, class:(^(org.pwmt.zathura))"
       ];
