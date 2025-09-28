@@ -99,32 +99,7 @@ in
       "$cmod" = "CONTROL+$mod";
       "$scmod" = "CONTROL+SHIFT+$mod";
 
-      bind = let
-        # Define the keypad keys for 1 to 9
-        keypadKeys = [
-          "KP_End"    # 1
-          "KP_Down"   # 2
-          "KP_Next"   # 3
-          "KP_Left"   # 4
-          "KP_Begin"  # 5
-          "KP_Right"  # 6
-          "KP_Home"   # 7
-          "KP_Up"     # 8
-          "KP_Prior"  # 9
-        ];
-
-        # Generate keybindings for toggleFS, togglePAUSE, and closeMpvWindow
-        generateBindings = command: modifier:
-          builtins.genList (i:
-            let key = builtins.elemAt keypadKeys i;
-            in "${modifier},${key},exec,${command} ${toString (i+1)}"
-        ) 9;
-        in   
-          (generateBindings "toggleFS" "") ++
-          (generateBindings "togglePAUSE" "SHIFT") ++
-          (generateBindings "closeMpvWindow" "CTRL") ++
-        [
-
+      bind = [
         ''$mod, semicolon, exec, notify-send -h "string:x-canonical-private-synchronous:weather" "Weather Update" "$(curl -s wttr.in?format=3)"''
 
         "$mod, 1,  workspace, 1"
@@ -181,7 +156,8 @@ in
         "$smod, k, movewindow, u"
         "$smod, j, movewindow, d"
 
-        "$mod, F12, exec, pkill -15 '(qutebrowser|zathura)'; hyprctl notify 0 5000 'rgb(ff0088)' '   Shutting down'; pw-cat -p /usr/share/sounds/freedesktop/stereo/service-logout.oga; sleep 3; shutdown now"
+
+        "$scmod, F12, exec, hyprctl notify 0 30000 'rgb(ff0088)' '   Shutting down in 30s'; systemctl poweroff --when=+30"
 
 # Toggle windowgroup / toggle window group lock
         "$mod, U, moveoutofgroup"
@@ -190,9 +166,9 @@ in
         "$smod, TAB, changegroupactive, b"
         "$mod, grave, togglegroup"
         
-        "$mod, KP_End, togglespecialworkspace, neomutt"
-        "$mod, KP_Down, togglespecialworkspace, newsraft"
-        "$mod, KP_Next, togglespecialworkspace, kalker"
+        "$mod, C, togglespecialworkspace, kalker"
+        "$mod, M, togglespecialworkspace, neomutt"
+        "$mod, N, togglespecialworkspace, newsraft"
         "$mod, O, togglespecialworkspace, openfile"
         "$mod, R, exec, fuzzel"
       ];

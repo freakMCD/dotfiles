@@ -82,7 +82,7 @@ services.spice-vdagentd.enable = true;
     };
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "%h/nix/scripts/mailboxes_sync";
+      ExecStart = "%h/nix/scripts/mailboxes-sync";
     };
     wantedBy = [ "user.target" ];
   };

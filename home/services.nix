@@ -17,21 +17,6 @@
         ];
       };
     };
-    mpd = {
-      enable = true;
-      musicDirectory = "~/Music/";
-      network.startWhenNeeded = true;
-      extraConfig = ''
-        auto_update "yes"
-        zeroconf_enabled "no"
-        audio_output {
-          type "pulse"
-          name "My Pulse Output"
-        }
-      '';
-    };
-
-    mpd-mpris.enable = true;
 
     fnott = {
       enable = true;
@@ -40,8 +25,9 @@
               # Layout and sizing
               max-width = 380;
               max-height = 600;
-              default-timeout = 20;
+              default-timeout = 15;
               idle-timeout = 30;
+              max-timeout = 30;
               layer = "overlay";
               padding-vertical = 20;
               padding-horizontal = 20;
