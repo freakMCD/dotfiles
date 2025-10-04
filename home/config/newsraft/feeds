@@ -1,12 +1,5 @@
 # vim: set nowrap :
 #
-@ Math < reload-period 1440
-https://terrytao.wordpress.com/feed/ "Terence Tao Blog"
-https://mathvoices.ams.org/teachingandlearning/feed/
-https://mathvoices.ams.org/mathmedia/feed/
-https://mathvoices.ams.org/featurecolumn/feed/
-
-
 @ News < reload-period 1440
 https://bandito.re/13b14305-cba7-4fd1-92b6-d5a424169984.atom
 https://codeberg.org/newsraft/newsraft/releases.rss

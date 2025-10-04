@@ -1,22 +1,18 @@
-{ pkgs,lib, ...}:
+{ pkgs, ...}:
 let 
-terminal = "foot";
-inherit (lib) mkEnableOption mkIf mkMerge mapAttrsToList;
+term= "foot";
 in
 {
-  wayland.windowManager.hyprland = {
-    enable = true;
-    settings = 
-    { env = mapAttrsToList (name: value: "${name},${toString value}") {
-        XDG_CURRENT_DESKTOP = "Hyprland";
-        XDG_SESSION_DESKTOP = "Hyprland";
-
-        HYPRLAND_NO_SD_NOTIFY = 1;
-        
-        HYPRCURSOR_THEME = "Future-Cyan-Hyprcursor_Theme";
-        HYPRCURSOR_SIZE = 32;
-        XCURSOR_SIZE = 16;
-      };
+  wayland.windowManager.hyprland = {  enable = true;
+    settings = {     
+      env = [
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "XDG_SESSION_DESKTOP,Hyprland"
+        "HYPRLAND_NO_SD_NOTIFY,1"
+        "HYPRCURSOR_THEME,Future-Cyan-Hyprcursor_Theme"
+        "HYPRCURSOR_SIZE,32"
+        "XCURSOR_SIZE,16"
+      ];
 
       exec-once = [
         "fnott"
@@ -42,7 +38,7 @@ in
       binds.allow_pin_fullscreen = 1;
 
       dwindle = {
-        special_scale_factor = 0.5;
+        special_scale_factor = 0.9;
         force_split = 2;
         default_split_ratio = 1;
       };
@@ -100,8 +96,10 @@ in
       "$scmod" = "CONTROL+SHIFT+$mod";
 
       bind = [
+# Weather
         ''$mod, semicolon, exec, notify-send -h "string:x-canonical-private-synchronous:weather" "Weather Update" "$(curl -s wttr.in?format=3)"''
 
+# Workspaces
         "$mod, 1,  workspace, 1"
         "$mod, 2,  workspace, 2"
         "$mod, 3,  workspace, 3"
@@ -112,7 +110,6 @@ in
         "$mod, F4, workspace, 8"
         "$mod, Z,  workspace, 9"
 
-        # move window to another workspace
         "$smod, 1, movetoworkspace, 1"
         "$smod, 2, movetoworkspace, 2"
         "$smod, 3, movetoworkspace, 3"
@@ -123,29 +120,7 @@ in
         "$smod, F4, movetoworkspace, 8"
         "$smod, Z, movetoworkspace, 9"
 
-        # change workspace with scroll
-        "$mod, mouse_down, workspace, e-1"
-        "$mod, mouse_up, workspace, e+1"
-
-        #Programs related
-        "$mod, R, exec, fuzzel"
-
-        #screenshot
-        ", Print, exec, hyprshot -m output"
-        "SHIFT, Print, exec, hyprshot -m window"
-        "$mod, Print, exec, hyprshot -z -m region"
-
-        # Screen Recordings
-        "MOD5, Print, exec, $HOME/nix/scripts/record.sh"
-
-        #windows managment related
-        "$mod, f, fullscreen"
-        "$mod, Space, togglefloating"
-
-        "$mod, q, exec, ${terminal}"
-        "$smod, c, killactive"
-
-        #change focus keys
+# Change ws with keys
         "$mod, h, movefocus, l"
         "$mod, l, movefocus, r"
         "$mod, k, movefocus, u"
@@ -155,21 +130,35 @@ in
         "$smod, l, movewindow, r"
         "$smod, k, movewindow, u"
         "$smod, j, movewindow, d"
+# Change ws with scroll
+        "$mod, mouse_down, workspace, e-1"
+        "$mod, mouse_up, workspace, e+1"
 
+# Screenshot 
+        ", Print, exec, hyprshot -m output"
+        "SHIFT, Print, exec, hyprshot -m window"
+        "$mod, Print, exec, hyprshot -z -m region"
+        "MOD5, Print, exec, $HOME/nix/scripts/record.sh" # Recording
+        "$scmod, F12, exec, hyprctl notify 0 30000 'rgb(ff0088)' '   Shutting down in 30s'; systemctl poweroff --when=+30" # Shutdown
 
-        "$scmod, F12, exec, hyprctl notify 0 30000 'rgb(ff0088)' '   Shutting down in 30s'; systemctl poweroff --when=+30"
-
-# Toggle windowgroup / toggle window group lock
+# Windows
+        "$mod, f, fullscreen"
+        "$mod, Space, togglefloating"
+        "$smod, c, killactive"
+# Groups
         "$mod, U, moveoutofgroup"
         "$smod, Y, lockactivegroup, toggle"
         "$mod, TAB, changegroupactive, f"
         "$smod, TAB, changegroupactive, b"
         "$mod, grave, togglegroup"
         
+# programs
         "$mod, C, togglespecialworkspace, kalker"
         "$mod, M, togglespecialworkspace, neomutt"
         "$mod, N, togglespecialworkspace, newsraft"
         "$mod, O, togglespecialworkspace, openfile"
+        "$mod, q, togglespecialworkspace, ${term}"
+        "$smod, q, exec, ${term}"
         "$mod, R, exec, fuzzel"
       ];
 
@@ -187,10 +176,12 @@ in
       ];
 
       workspace = [
-        "special:neomutt, on-created-empty: ${terminal} --app-id=neomutt neomutt"
-        "special:newsraft, on-created-empty: ${terminal} --app-id=newsraftsilent newsraft"
-        "special:kalker, on-created-empty: ${terminal} --app-id=kalker kalker"
-        "special:openfile, on-created-empty: ${terminal} --app-id=openfile open_file"
+        "special:neomutt, on-created-empty: ${term} --app-id=neomutt neomutt"
+        "special:newsraft, on-created-empty: ${term} --app-id=newsraftsilent newsraft"
+        "special:kalker, on-created-empty: ${term} --app-id=kalker kalker"
+        "special:openfile, on-created-empty: ${term} --app-id=openfile open_file"
+        "special:${term}, on-created-empty: ${term} --app-id=${term}"
+
       ];
 
       windowrule = [
@@ -207,8 +198,7 @@ in
 
         "suppressevent maximize,class:^(libreoffice.*)$"
  
-        "opacity 1 1 0.97, class:(^(${terminal}))"
-        "opacity 1 1, class:(^(org.pwmt.zathura))"
+        "opacity 1 1 0.97, class:(^(${term}))"
       ];
     };
   };
