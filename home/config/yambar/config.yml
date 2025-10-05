@@ -10,27 +10,6 @@ blue: &blue 61AFEFff          # Vivid azure
 lavender: &lavender e6e6faff # Bright cyan for accents
 gray: &gray 5C6370aa          # Cool gray with transparency
 
-mpv_overline: &mpv_overline
-  overline:
-    size: 2
-    color: *violet
-
-# Playing state
-num_str: &num_str
-  foreground: *yellow
-  deco: *mpv_overline
-
-title_str: &title_str
-  foreground: *lavender
-  deco: *mpv_overline
-
-# Paused state
-paused_num_str: &paused_num_str
-  foreground: *yellow
-
-paused_title_str: &paused_title_str
-  foreground: *gray
-
 bar:
  location: bottom
  margin: 10
@@ -87,60 +66,4 @@ bar:
                            string: { text: ⏳ }
                          state == down:
                            string: { text: ⛔ }
-
- right:
-    - script:
-        path: ~/nix/scripts/yambar/mpv-watcher.sh
-        content:
-          - list:
-              spacing: 0
-              items:
-                - map:
-                    conditions:
-                      "mpv1_state == playing":
-                        list:
-                          spacing: 0
-                          items:
-                          - string: {<<: *num_str, text: "  1 "}
-                          - string: {<<: *title_str, text: "{mpv1_title}  "}
-                      "mpv1_state == paused":
-                        list:
-                          spacing: 0
-                          items:
-                          - string: {<<: *paused_num_str, text: "  1 "}
-                          - string: {<<: *paused_title_str, text: "{mpv1_title}  "}
-                    default:
-                      string: {text: ""}
-                - map:
-                    conditions:
-                      "mpv2_state == playing":
-                        list:
-                          spacing: 0
-                          items:
-                          - string: {<<: *num_str, text: "  2 "}
-                          - string: {<<: *title_str, text: "{mpv2_title}  "}
-                      "mpv2_state == paused":
-                        list:
-                          spacing: 0
-                          items:
-                          - string: {<<: *paused_num_str, text: "  2 "}
-                          - string: {<<: *paused_title_str, text: "{mpv2_title}  "}
-                    default:
-                      string: {text: ""}
-                - map:
-                    conditions:
-                      "mpv3_state == playing":
-                        list:
-                          spacing: 0
-                          items:
-                          - string: {<<: *num_str, text: "  3 "}
-                          - string: {<<: *title_str, text: "{mpv3_title}  "}
-                      "mpv3_state == paused":
-                        list:
-                          spacing: 0
-                          items:
-                          - string: {<<: *paused_num_str, text: "  3 "}
-                          - string: {<<: *paused_title_str, text: "{mpv3_title}  "}
-                    default:
-                      string: {text: ""}
 

@@ -3,7 +3,7 @@
   imports = [
     ./tv/renew-token.nix
     ./theme
-    ./hyprland
+    ./shell-scripts.nix
     ./services.nix
     ./programs.nix
     ./terminal.nix
@@ -34,11 +34,12 @@
     in
     {
       "nvim".source = "${dotfiles}/nvim";
-      "fastanime/config.ini".source = "${dotfiles}/fastanime/config.ini";
       "neomutt".source = "${dotfiles}/neomutt";
       "qutebrowser".source = "${dotfiles}/qutebrowser";
       "newsraft".source = "${dotfiles}/newsraft";
       "yambar".source = "${dotfiles}/yambar";
+      "conky".source = "${dotfiles}/conky";
+      "hypr".source = "${dotfiles}/hypr";
     };
 
     desktopEntries.nvim = {

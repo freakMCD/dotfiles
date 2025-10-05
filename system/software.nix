@@ -3,8 +3,7 @@
 in
 {
   environment.systemPackages = with pkgs; [
-  samba
-  libreoffice kalker openboard slurp kitty
+  libreoffice kalker openboard slurp kitty baobab
 #Browsers
   qutebrowser w3m
 #Documents
@@ -36,7 +35,8 @@ in
       collection-latexextra
       latexmk;
   })
-  quickemu
+  # Windows
+  quickemu  samba
 ];
 
 # virtualization 
