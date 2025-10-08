@@ -59,7 +59,7 @@ else
     timeout="-t 1500"
 fi
 
-notify-send -u low \
+notify-send -u normal \
     -h "string:x-canonical-private-synchronous:${type,,}" \
     "${progress_hint[@]}" \
     "$msg" $timeout

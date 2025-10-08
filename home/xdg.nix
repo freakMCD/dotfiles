@@ -8,11 +8,10 @@ xdg = {
   configFile =
   {
     "nvim".source = "${dotfiles}/nvim";
-    "fastanime/config.ini".source = "${dotfiles}/fastanime/config.ini";
     "neomutt".source = "${dotfiles}/neomutt";
     "qutebrowser".source = "${dotfiles}/qutebrowser";
     "newsraft".source = "${dotfiles}/newsraft";
-    "yambar".source = "${dotfiles}/yambar";
+    "hypr".source = "${dotfiles}/hypr";
   };
 
   desktopEntries.nvim = {

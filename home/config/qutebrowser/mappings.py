@@ -7,7 +7,6 @@ c.hints.chars = "qweasdzxc"
 config.bind('f', 'mode-leave', mode='hint')
 
 c.hints.selectors["video"] = ["video"]
-
 bind = {
     # Toggles
 	leader + "js": "config-cycle content.javascript.enabled true false",

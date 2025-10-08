@@ -1,7 +1,6 @@
 {config, ...}:
 {
   services = {
-    conky.enable = true;
     fnott = {
       enable = true;
       settings = {

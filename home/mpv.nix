@@ -40,25 +40,12 @@
     };
 
     profiles = {
-      "youtubemusic" = {
-        profile-cond = "string.match(path, 'music%.youtube%.com')";
-        ytdl-format = "bestaudio/b";
-        force-window = "immediate";
-      };
-      "not fullscreen" = {
-        profile-restore = "copy";
-        profile-cond = "(osd_width < 1280)";
-        video-zoom = 0.6;
-        sub-visibility = false;
-      };
       "protocol.http" = {
         cache = "yes";
         cache-pause = false;
         force-window = "immediate";
       };
       "protocol.https" = { profile = "protocol.http"; };
-      "protocol.ytdl" = { profile = "protocol.http"; };
-
     };
 
     bindings = {

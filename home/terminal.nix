@@ -84,7 +84,6 @@
               echo "No changes detected."
           end
       end
-    
     '';
     shellAbbrs = {
       rm = "rm -I";

@@ -18,7 +18,7 @@ in
   zip unzip curl rclone udiskie bat fd libnotify ares-cli htop wev unrar
 
 #hyprland
-  yambar wf-recorder hyprpicker
+  wf-recorder hyprpicker
 
 #Others
   qbittorrent geogebra6
