@@ -37,7 +37,6 @@
       "neomutt".source = "${dotfiles}/neomutt";
       "qutebrowser".source = "${dotfiles}/qutebrowser";
       "newsraft".source = "${dotfiles}/newsraft";
-      "yambar".source = "${dotfiles}/yambar";
       "conky".source = "${dotfiles}/conky";
       "hypr".source = "${dotfiles}/hypr";
     };
