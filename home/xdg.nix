@@ -12,6 +12,7 @@ xdg = {
     "qutebrowser".source = "${dotfiles}/qutebrowser";
     "newsraft".source = "${dotfiles}/newsraft";
     "hypr".source = "${dotfiles}/hypr";
+    "yambar".source = "${dotfiles}/yambar";
   };
 
   desktopEntries.nvim = {

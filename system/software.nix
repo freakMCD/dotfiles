@@ -3,6 +3,7 @@
 in
 {
   environment.systemPackages = with pkgs; [
+  yambar
   libreoffice kalker openboard slurp kitty baobab
 #Browsers
   qutebrowser w3m
