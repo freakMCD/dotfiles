@@ -3,8 +3,7 @@
 in
 {
   environment.systemPackages = with pkgs; [
-  yambar
-  libreoffice kalker openboard slurp kitty baobab
+  libreoffice kalker openboard slurp kitty scilab-bin
 #Browsers
   qutebrowser w3m
 #Documents
@@ -19,7 +18,7 @@ in
   zip unzip curl rclone udiskie bat fd libnotify ares-cli htop wev unrar
 
 #hyprland
-  wf-recorder hyprpicker
+  wf-recorder hyprpicker yambar
 
 #Others
   qbittorrent geogebra6
