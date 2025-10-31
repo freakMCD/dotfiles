@@ -7,7 +7,6 @@ for site in [
     'wikipedia.org',
     'genius.com',
     '*.fandom.com',
-    'math.stackexchange.com',
 ]:
     config.set('content.javascript.enabled', False, site)
 

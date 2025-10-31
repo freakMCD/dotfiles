@@ -1,9 +1,9 @@
-{lib, stablePkgs, pkgs, ... }: let
+{lib, pkgs, ... }: let
   perlEnv = pkgs.perl.withPackages (p: with p; [ MIMEEncWords ]);
 in
 {
   environment.systemPackages = with pkgs; [
-  libreoffice kalker openboard slurp kitty scilab-bin
+  octaveFull libreoffice-fresh kalker openboard slurp kitty scilab-bin
 #Browsers
   qutebrowser w3m
 #Documents

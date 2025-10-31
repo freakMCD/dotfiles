@@ -6,8 +6,7 @@ set item-limit 50
 set global-section-hide true
 
 # Bindings
-bind o mark-read; exec nohup qutebrowser "%l" >/dev/null 2>&1 &
-bind m mark-read; exec nohup mpv --ytdl-raw-options=cookies-from-browser=firefox "%l" >/dev/null 2>&1 &
+bind o mark-read; exec nohup firefox "%l" >/dev/null 2>&1 &
 bind q navigate-back
 
 # Format

@@ -49,12 +49,6 @@ in
     ];
 
     # Combine StevenBlack + manual blocked domains
-    extraHosts = ''
-      ${builtins.readFile extrahostsfromsteve}
-
-      # Manual blocked domains
-      ${manualHosts}
-    '';
   };
 }
 

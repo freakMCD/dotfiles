@@ -1,4 +1,4 @@
-{config, stablePkgs, ...}:
+{config, ...}:
 {
   programs = {
     hyprshot = {

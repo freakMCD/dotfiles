@@ -16,7 +16,7 @@ c.qt.chromium.process_model = "process-per-site-instance"
 c.qt.args=["ignore-gpu-blocklist","enable-zero-copy","enable-features=VaapiIgnoreDriverChecks"]
 
 # General
-c.auto_save.session = False
+c.auto_save.session = True
 c.history_gap_interval = -1
 c.messages.timeout = 2000
 c.session.lazy_restore = True 
