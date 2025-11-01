@@ -22,9 +22,13 @@
     };
     git = {
       enable = true;
-      extraConfig.credential.helper = "store --file ~/.my-credentials";
-      userEmail = "vastagox@gmail.com";
-      userName = "Alex";
+      settings = {
+        credential.helper = "store --file ~/.my-credentials";
+        user = {
+          email = "vastagox@gmail.com";
+          name = "Alex";
+        };
+      };
     };
 
     fzf = let command="--color=always . /mnt/DATA ~/nix"; in {
@@ -88,7 +92,6 @@
 
     zathura = {
       enable = true;
-      package = stablePkgs.zathura;
       options = {
         adjust-open = "width";
         scroll-step = 50;

@@ -3,7 +3,7 @@
 in
 {
   environment.systemPackages = with pkgs; [
-  octaveFull libreoffice-fresh kalker openboard slurp kitty scilab-bin
+  octaveFull libreoffice-fresh kalker openboard slurp kitty scilab-bin zoom
 #Browsers
   qutebrowser w3m
 #Documents
@@ -108,4 +108,5 @@ services.spice-vdagentd.enable = true;
       "-g"
     ];
   };
+  services.hypridle.enable = true;
 }

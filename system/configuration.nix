@@ -89,7 +89,7 @@
     nerd-fonts.liberation
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     roboto
     material-symbols
   ];
