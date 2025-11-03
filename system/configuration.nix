@@ -59,10 +59,10 @@
     };
 
     # Keyboard Layout
-     xserver.xkb = {
-      layout = "us";
-      variant = "altgr-intl";
-      };
+    xserver.xkb = {
+     layout = "us";
+     variant = "altgr-intl";
+    };
   };
 
   hardware.sane = {

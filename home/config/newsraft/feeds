@@ -4,11 +4,9 @@
 https://bandito.re/13b14305-cba7-4fd1-92b6-d5a424169984.atom
 https://codeberg.org/newsraft/newsraft/releases.rss
 https://nixos.org/blog/announcements-rss.xml
-https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg "Naruto" < item-rule title LIKE '%naruto%'
 https://www.webtoons.com/en/sports/skool-of-street/rss?title_no=6743
 
-
-@ Nixpkgs < reload-period 60
+@ Nixpkgs < reload-period 720
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/hy/hyprland/package.nix.atom "hyprland"
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/video/mpv/default.nix.atom "mpv"
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ne/newsraft/package.nix.atom "newsraft"

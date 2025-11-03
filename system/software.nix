@@ -3,7 +3,7 @@
 in
 {
   environment.systemPackages = with pkgs; [
-  octaveFull libreoffice-fresh kalker openboard slurp kitty scilab-bin zoom
+  octaveFull libreoffice-fresh kalker openboard slurp kitty scilab-bin zoom pavucontrol
 #Browsers
   qutebrowser w3m
 #Documents
@@ -46,7 +46,6 @@ users.groups.libvirtd.members = ["edwin"];
 virtualisation.libvirtd.enable = true;
 virtualisation.spiceUSBRedirection.enable = true;
 
-services.spice-vdagentd.enable = true;
   programs = {
       appimage = {
       enable = true;

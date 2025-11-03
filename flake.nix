@@ -7,11 +7,6 @@
       url = "github:nix-community/home-manager/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    stevenblack = {
-      url = "github:StevenBlack/hosts";
-      flake = false;
-    };
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
@@ -25,7 +20,7 @@
     homeConfigurations.edwin = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [
-        ./home  # your ./home.nix file
+        ./home
       ];
     };
 

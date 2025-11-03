@@ -39,7 +39,12 @@
       changeDirWidgetCommand = "fd -t d ${command}";
       fileWidgetOptions = ["--delimiter / --with-nth 4.."];
       defaultOptions = [
-        "--ansi --height 60% --reverse --inline-info --color=16" 
+        "--ansi"
+        "--height" "60%"
+        "--reverse"
+        "--inline-info"
+        "--color" "fg:-1,bg:-1,hl:230,fg+:3,bg+:233,hl+:229"
+        "--color" "info:150,prompt:110,spinner:150,pointer:167,marker:174"
       ];
     };
 

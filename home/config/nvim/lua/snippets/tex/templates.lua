@@ -4,7 +4,7 @@ local fmt = require("luasnip.extras.fmt").fmt
 
 return {
   s("preamble", fmt([[
-\documentclass[parskip=half,DIV=12]{{scrartcl}}
+\documentclass[parskip=half]{{scrartcl}}
 % --------------------------------------------- %
 % Font and language settings
 % --------------------------------------------- %

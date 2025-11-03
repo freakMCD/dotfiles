@@ -9,7 +9,7 @@
               max-width = 380;
               max-height = 600;
               default-timeout = 15;
-              max-timeout = 30;
+              max-timeout = 0;
               layer = "overlay";
               padding-vertical = 20;
               padding-horizontal = 20;
