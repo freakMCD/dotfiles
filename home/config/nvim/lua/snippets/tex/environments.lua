@@ -174,7 +174,7 @@ return
     s({trig = "fig"},
       fmta(
         [[
-        \begin{figure}[htb!]
+        \begin{figure}[H]
           \centering
           \includegraphics[width=<>\linewidth]{<>}
           \caption{<>}

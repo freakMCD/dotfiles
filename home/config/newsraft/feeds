@@ -11,6 +11,13 @@ https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/hy/hyprland
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/video/mpv/default.nix.atom "mpv"
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/ne/newsraft/package.nix.atom "newsraft"
 https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/op/openboard/package.nix.atom "openboard"
-https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/by-name/qu/qutebrowser/package.nix.atom "qutebrowser"
-https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/misc/zathura/default.nix.atom "zathura"
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/misc/zathura.atom "zathura"
+https://github.com/NixOS/nixpkgs/commits/nixos-unstable/pkgs/applications/networking/browsers/firefox-bin.atom "firefox"
+
+@ Youtube < reload-period 30
+https://www.youtube.com/feeds/videos.xml?channel_id=UCMKEfHfJqztU1G09KMKnmKg < item-rule title LIKE '%naruto%'
+https://www.youtube.com/feeds/videos.xml?channel_id=UCvnNkJsbONVhdXuHY_LpsdA < item-rule title LIKE '%UHC%'
+https://www.youtube.com/feeds/videos.xml?channel_id=UCG12MSSjfu1K-U1A2keWgmg 
+
+
 

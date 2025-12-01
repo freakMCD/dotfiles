@@ -26,10 +26,10 @@
   # From https://kokada.dev/blog/an-unordered-list-of-hidden-gems-inside-nixos/
   boot.tmp.cleanOnBoot = true;
 
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-  };
+#  zramSwap = {
+ #   enable = true;
+  #  algorithm = "zstd";
+  #};
 
   # rtkit is optional but recommended
   security = {

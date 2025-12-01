@@ -3,9 +3,9 @@
 in
 {
   environment.systemPackages = with pkgs; [
-  octaveFull libreoffice-fresh kalker openboard slurp kitty scilab-bin zoom pavucontrol
+  octaveFull libreoffice-fresh kalker openboard slurp kitty pavucontrol
 #Browsers
-  qutebrowser w3m
+  w3m
 #Documents
   pdfarranger simple-scan neovim 
 #Media & Graphics
@@ -15,7 +15,7 @@ in
 #Dev
   home-manager nvd pass yadm gnupg dig inotify-tools gcc perlEnv pipx 
 #Terminal 
-  zip unzip curl rclone udiskie bat fd libnotify ares-cli htop wev unrar
+  zip unzip curl rclone udiskie bat fd libnotify htop wev unrar
 
 #hyprland
   wf-recorder hyprpicker yambar hypridle

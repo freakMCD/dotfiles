@@ -9,7 +9,7 @@ return {
 % Font and language settings
 % --------------------------------------------- %
 \usepackage[T1]{{fontenc}}
-\usepackage[spanish]{{babel}}
+\usepackage[spanish,es-minimal]{{babel}}
 % --------------------------------------------- %
 \usepackage{{amsthm, amsfonts, amssymb, mathtools}}
 % --------------------------------------------- %

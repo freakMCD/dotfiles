@@ -8,6 +8,8 @@ set global-section-hide true
 # Bindings
 bind o mark-read; exec nohup firefox "%l" >/dev/null 2>&1 &
 bind q navigate-back
+unbind r
+unbind R
 
 # Format
 set menu-item-entry-format " %u │ %o"
