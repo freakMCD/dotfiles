@@ -40,33 +40,5 @@ xdg = {
       "text/x-c++"
     ];
   };
-
-  desktopEntries."org.qutebrowser.qutebrowser" = {
-    name = "qutebrowser";
-    genericName = "Web Browser";
-    comment = "A keyboard-driven, vim-like browser based on Python and Qt";
-    icon = "qutebrowser";
-    type = "Application";
-    categories = [
-      "Network"
-      "WebBrowser"
-    ];
-    exec = "sh -c \"source ~/.local/share/linuxfedora && qutebrowser \"";
-    terminal = false;
-    startupNotify = false;
-    mimeType = [
-      "text/html"
-      "text/xml"
-      "application/xhtml+xml"
-      "application/xml"
-      "application/rdf+xml"
-      "image/gif"
-      "image/jpeg"
-      "image/png"
-      "x-scheme-handler/http"
-      "x-scheme-handler/https"
-      "x-scheme-handler/qute"
-    ];
-  };
 };
 }

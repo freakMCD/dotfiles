@@ -18,13 +18,13 @@ in
   zip unzip curl rclone udiskie bat fd libnotify htop wev unrar
 
 #hyprland
-  wf-recorder hyprpicker yambar hypridle
+  wf-recorder hyprpicker yambar hypridle shotcut
 
 #Others
-  qbittorrent geogebra6
+  qbittorrent geogebra6 
+  obs-studio obs-studio-plugins.wlrobs
 
 #Latex
-  texlab
   (texlive.combine {
     inherit (texlive)
       scheme-small
@@ -35,8 +35,11 @@ in
       collection-latexextra
       latexmk;
   })
-  # Windows
-  quickemu  samba
+
+# Linters
+ruff pylint texlab
+# Windows
+#  quickemu  samba
 ];
 
 # virtualization 
@@ -47,7 +50,7 @@ virtualisation.libvirtd.enable = true;
 virtualisation.spiceUSBRedirection.enable = true;
 
   programs = {
-      appimage = {
+    appimage = {
       enable = true;
       binfmt = true;
     };

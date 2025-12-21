@@ -58,6 +58,7 @@
         mgr = {
           show_hidden = false;
           sort_dir_first = true;
+          sort_by = "natural";
         };
       };
     };

@@ -86,7 +86,7 @@
       end
     '';
     shellAbbrs = {
-      windows10 = ''quickemu --vm windows-10.conf --public-dir ~/Share --keyboard "virtio" --mouse "virtio"'';
+      windows10 = ''quickemu --vm windows-10.conf --public-dir ~/Share --mouse "virtio"'';
       rm = "rm -I";
       top = "htop";
       yamend = "yadm commit --amend --no-edit && yadm push -f";

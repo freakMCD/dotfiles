@@ -21,7 +21,7 @@ require("lazy").setup({
 
       configs.setup({
           ensure_installed = { "c", "lua", "html", "css", "fish", "bash", "python", "nix" },
-          sync_install = false,
+          sync_install = true,
           highlight = { enable = true },
           indent = { enable = false },  
         })
@@ -43,7 +43,10 @@ require("lazy").setup({
  'hrsh7th/cmp-path',
    --LuaSnip
    'saadparwaiz1/cmp_luasnip',
-   'L3MON4D3/LuaSnip',
+   {
+     'L3MON4D3/LuaSnip',
+     dependencies = {"rafamadriz/friendly-snippets"}
+   },
   },
 },
 
@@ -62,6 +65,7 @@ require("lazy").setup({
             lua = {'lua_language_server'},
             tex = {'lacheck'},
             c = {'gcc'},
+            python = {'ruff', 'pylint'},
         }
     end
 }

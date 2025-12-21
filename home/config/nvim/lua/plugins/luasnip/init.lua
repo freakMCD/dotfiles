@@ -123,7 +123,7 @@ ls.config.setup({
     }, 
 
 }) 
-
+require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_lua").load({ paths = {"~/.config/nvim/lua/snippets/"}, fs_event_providers = {libuv=true}})
 ls.filetype_extend("tex", { "cpp", "python" })
 vim.cmd([[silent command! LuaSnipEdit :lua require("luasnip.loaders").edit_snippet_files()]])
