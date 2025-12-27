@@ -45,9 +45,4 @@
       b_orange  = "fe8019";
     };
   };
-
-  imports = [
-   ./qute-py.nix
-   ./qute-css.nix
-  ];
 }

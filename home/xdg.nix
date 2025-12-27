@@ -9,8 +9,6 @@ xdg = {
   {
     "nvim".source = "${dotfiles}/nvim";
     "neomutt".source = "${dotfiles}/neomutt";
-    "qutebrowser".source = "${dotfiles}/qutebrowser";
-    "newsraft".source = "${dotfiles}/newsraft";
     "hypr".source = "${dotfiles}/hypr";
     "yambar".source = "${dotfiles}/yambar";
   };

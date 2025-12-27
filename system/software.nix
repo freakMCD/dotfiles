@@ -11,7 +11,7 @@ in
 #Media & Graphics
   gimp qimgv ffmpeg chafa
 #Communication
-  telegram-desktop neomutt msmtp isync newsraft
+  telegram-desktop neomutt msmtp isync
 #Dev
   home-manager nvd pass yadm gnupg dig inotify-tools gcc perlEnv pipx 
 #Terminal 

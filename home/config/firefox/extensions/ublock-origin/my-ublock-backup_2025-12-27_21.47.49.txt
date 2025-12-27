@@ -1,0 +1,51 @@
+{
+  "timeStamp": 1766890649262,
+  "version": "1.68.0",
+  "userSettings": {
+    "advancedUserEnabled": true,
+    "cloudStorageEnabled": true,
+    "externalLists": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt\nhttps://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/main/list.txt\nhttps://raw.githubusercontent.com/yokoffing/filterlists/main/block_third_party_fonts.txt\nhttps://raw.githubusercontent.com/yokoffing/filterlists/main/youtube_clear_view.txt",
+    "ignoreGenericCosmeticFilters": true,
+    "importedLists": [
+      "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt",
+      "https://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/main/list.txt",
+      "https://raw.githubusercontent.com/yokoffing/filterlists/main/block_third_party_fonts.txt",
+      "https://raw.githubusercontent.com/yokoffing/filterlists/main/youtube_clear_view.txt"
+    ],
+    "popupPanelSections": 31
+  },
+  "selectedFilterLists": [
+    "user-filters",
+    "ublock-filters",
+    "ublock-badware",
+    "ublock-privacy",
+    "ublock-quick-fixes",
+    "ublock-unbreak",
+    "easylist",
+    "easyprivacy",
+    "adguard-spyware-url",
+    "urlhaus-1",
+    "plowe-0",
+    "fanboy-cookiemonster",
+    "ublock-cookies-easylist",
+    "fanboy-social",
+    "easylist-chat",
+    "easylist-newsletters",
+    "easylist-notifications",
+    "easylist-annoyances",
+    "ublock-annoyances",
+    "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt",
+    "https://raw.githubusercontent.com/yokoffing/filterlists/main/block_third_party_fonts.txt",
+    "https://raw.githubusercontent.com/yokoffing/filterlists/main/youtube_clear_view.txt",
+    "https://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/main/list.txt"
+  ],
+  "hiddenSettings": {},
+  "whitelist": [
+    "chrome-extension-scheme",
+    "moz-extension-scheme"
+  ],
+  "dynamicFilteringString": "",
+  "urlFilteringString": "",
+  "hostnameSwitchesString": "no-csp-reports: * true\nno-cosmetic-filtering: meet.google.com true",
+  "userFilters": "! Aug 20, 2025 https://web.whatsapp.com\nweb.whatsapp.com##div.xjpr12u.xr9ek0c.x13i9f1t.x1277o0a.xj21bgg.xum4auv.x1143rjc.x1ekkm8c.xhgddhk.x1vqgdyp.x100vrsf.x1cy8zhl.x1q0g3np.x1nhvcw1.x2lwn1j.xeuugli.x12fk4p8.x1oa3qoh.xozqiw3.x78zum5.x1g77sc7.xdl72j9.xs83m0k.x1c4vz4f:nth-of-type(2)\nweb.whatsapp.com##div.xjpr12u.xr9ek0c.x13i9f1t.x1277o0a.xj21bgg.xum4auv.x1143rjc.x1ekkm8c.xhgddhk.x1vqgdyp.x100vrsf.x1cy8zhl.x1q0g3np.x1nhvcw1.x2lwn1j.xeuugli.x12fk4p8.x1oa3qoh.xozqiw3.x78zum5.x1g77sc7.xdl72j9.xs83m0k.x1c4vz4f:nth-of-type(3)\n\n! Dec 23, 2025 https://www.youtube.com\nwww.youtube.com###panels-full-bleed-container\n\n! Dec 27, 2025 https://www.google.com\nwww.google.com##.Wt5Tfe\nwww.google.com##.ULSxyf"
+}
