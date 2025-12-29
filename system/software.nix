@@ -3,15 +3,15 @@
 in
 {
   environment.systemPackages = with pkgs; [
-  octaveFull libreoffice-fresh kalker openboard slurp kitty pavucontrol
+  octaveFull libreoffice-fresh kalker openboard slurp kitty pavucontrol 
 #Browsers
-  w3m
+  w3m googleearth-pro
 #Documents
   pdfarranger simple-scan neovim 
 #Media & Graphics
-  gimp qimgv ffmpeg chafa
+  gimp qimgv ffmpeg chafa grim slurp
 #Communication
-  telegram-desktop neomutt msmtp isync
+  telegram-desktop neomutt msmtp isync conky
 #Dev
   home-manager nvd pass yadm gnupg dig inotify-tools gcc perlEnv pipx 
 #Terminal 
@@ -44,10 +44,9 @@ ruff pylint texlab
 
 # virtualization 
 #programs.virt-manager.enable = true;
-
-users.groups.libvirtd.members = ["edwin"];
-virtualisation.libvirtd.enable = true;
-virtualisation.spiceUSBRedirection.enable = true;
+#users.groups.libvirtd.members = ["edwin"];
+#virtualisation.libvirtd.enable = true;
+#virtualisation.spiceUSBRedirection.enable = true;
 
   programs = {
     appimage = {

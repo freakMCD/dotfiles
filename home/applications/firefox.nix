@@ -22,7 +22,7 @@
           #nav-bar {
             position: relative !important;
             z-index: 1 !important;
-            margin-top: -40px !important; /* Adjust to match nav-bar height */
+            margin-top: -34px !important; /* Adjust to match nav-bar height */
             opacity: 0 !important;
             transition: opacity 0.2s, margin-top 0.2s !important;
           }

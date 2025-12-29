@@ -2,14 +2,14 @@
 
 source ~/.local/share/linuxfedora
 
-[ ! -r ~/nix/home/config/neomutt/.mbsyncrc ] && exit 0
+[ ! -r ~/nix/dotfiles/neomutt/.mbsyncrc ] && exit 0
 
 if ps -C mbsync > /dev/null; then
     exit 0
 fi
 
 touch ~/.config/neomutt/.mailsynclast
-mbsync -c ~/nix/home/config/neomutt/.mbsyncrc gmail
+mbsync -c ~/nix/dotfiles/neomutt/.mbsyncrc gmail
 prefix="${HOME}/.local/share/email/gmail"
 
 for file in "$prefix"/*; do

@@ -1,14 +1,17 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, ... }:
 {
-  networking = {
-    nameservers = [
-      "9.9.9.9"
-      "149.112.112.112"
-      "2620:fe::fe"
-      "2620:fe::9"
-    ];
-    stevenblack.enable = true;   
-    useNetworkd = true;
+  # Enable and configure systemd-resolved
+  services.resolved = {
+    enable = true;
+    extraConfig = ''
+      DNS=45.90.28.0#4457ba.dns.nextdns.io
+      DNS=2a07:a8c0::#4457ba.dns.nextdns.io
+      DNS=45.90.30.0#4457ba.dns.nextdns.io
+      DNS=2a07:a8c1::#4457ba.dns.nextdns.io
+      DNSOverTLS=yes
+    '';
   };
-}
 
+  # Make resolved the primary resolver
+  networking.nameservers = [ "127.0.0.1" "::1" ];
+}

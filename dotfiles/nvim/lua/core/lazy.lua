@@ -20,7 +20,7 @@ require("lazy").setup({
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-          ensure_installed = { "c", "lua", "html", "css", "fish", "bash", "python", "nix" },
+          ensure_installed = { "c", "lua", "html", "css", "fish", "bash", "nix" },
           sync_install = true,
           highlight = { enable = true },
           indent = { enable = false },  
@@ -65,7 +65,8 @@ require("lazy").setup({
             lua = {'lua_language_server'},
             tex = {'lacheck'},
             c = {'gcc'},
-            python = {'ruff', 'pylint'},
+            --            python = {'ruff', 'pylint'},
+            python = {},
         }
     end
 }

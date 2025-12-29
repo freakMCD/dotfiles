@@ -3,7 +3,7 @@
 {
   nixpkgs.config = {
     allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkg) [ "hplip" "geogebra" "unrar"];
+      builtins.elem (lib.getName pkg) [ "hplip" "geogebra" "unrar" "googleearth-pro"];
 
     packageOverrides = pkgs: {
       hplip = pkgs.hplip.overrideAttrs (oldAttrs: {
@@ -13,5 +13,8 @@
         };
       });
     };
+    permittedInsecurePackages = [
+      "googleearth-pro-7.3.6.10201"
+    ];
   };
 }
