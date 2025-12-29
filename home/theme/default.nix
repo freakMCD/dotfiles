@@ -4,7 +4,7 @@
   options.dotfiles = lib.mkOption {
       type = lib.types.path;
       apply = toString;
-      default = "${config.home.homeDirectory}/nix/home/config/";
+      default = "${config.home.homeDirectory}/nix/dotfiles/";
   };
   
   options.colors = lib.mkOption {
