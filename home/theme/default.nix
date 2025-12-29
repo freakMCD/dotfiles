@@ -41,7 +41,7 @@
       b_cyan    = "8ec07c";
       b_white   = "a89984";
 
-      orange         = "d65d0e";
+      orange    = "d65d0e";
       b_orange  = "fe8019";
     };
   };
