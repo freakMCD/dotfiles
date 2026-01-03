@@ -45,6 +45,26 @@
           sort_dir_first = true;
           sort_by = "natural";
         };
+        opener = {
+          image = [{run = ''gthumb "$@"'';}];
+          pdf = [{ run = ''zathura "$@"''; }];
+          video = [{ run = ''mpv "$@"''; }];
+          text = [{run=''nvim "$@"'';}];
+          markdown= [{run=''nvim "$@"'';}];
+        };
+        open = {
+          prepend_rules = [
+            { name = "*.tif"; use = "image"; }
+            { name = "*.jpg"; use = "image"; }
+            { name = "*.jpeg"; use = "image"; }
+            { name = "*.png"; use = "image"; }
+            { name = "*.gif"; use = "image"; }
+            { name = "*.bmp"; use = "image"; }
+            { name = "*.svg"; use = "image"; }
+            { name = "*.pdf";  use = "pdf"; }
+            { name = "*.mp4";  use = "video"; }
+          ];
+        };
       };
     };
 
