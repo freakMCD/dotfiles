@@ -84,6 +84,7 @@
             "toolkit.telemetry.hybridContent.enabled" = false;
             "toolkit.telemetry.newProfilePing.enabled" = false;
             "toolkit.telemetry.reportingpolicy.firstRun" = false;
+            "toolkit.telemetry.server" = "0.0.0.0";
             "toolkit.telemetry.shutdownPingSender.enabled" = false;
             "toolkit.telemetry.unified" = false;
             "toolkit.telemetry.updatePing.enabled" = false;
