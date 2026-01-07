@@ -9,7 +9,7 @@ in
 #Documents
   pdfarranger simple-scan neovim 
 #Media & Graphics
-  gimp qimgv ffmpeg chafa grim slurp
+  gimp ffmpeg chafa grim slurp
 #Communication
   telegram-desktop neomutt msmtp isync conky
 #Dev

@@ -54,15 +54,15 @@
         };
         open = {
           prepend_rules = [
-            { name = "*.tif"; use = "image"; }
-            { name = "*.jpg"; use = "image"; }
-            { name = "*.jpeg"; use = "image"; }
-            { name = "*.png"; use = "image"; }
-            { name = "*.gif"; use = "image"; }
-            { name = "*.bmp"; use = "image"; }
-            { name = "*.svg"; use = "image"; }
-            { name = "*.pdf";  use = "pdf"; }
-            { name = "*.mp4";  use = "video"; }
+            { url = "*.tif"; use = "image"; }
+            { url = "*.jpg"; use = "image"; }
+            { url = "*.jpeg"; use = "image"; }
+            { url = "*.png"; use = "image"; }
+            { url = "*.gif"; use = "image"; }
+            { url = "*.bmp"; use = "image"; }
+            { url = "*.svg"; use = "image"; }
+            { url = "*.pdf";  use = "pdf"; }
+            { url = "*.mp4";  use = "video"; }
           ];
         };
       };
@@ -109,7 +109,7 @@
         selection-clipboard = "clipboard";
         selection-notification = false;
         show-recent = 20;
-        recolor-lightcolor = "rgba(241,228,181,0.6)" ;
+        recolor-lightcolor = "rgba(245,232,190,0.7)" ;
         recolor-darkcolor = "#000000";
         recolor = true;
         recolor-keephue = true;

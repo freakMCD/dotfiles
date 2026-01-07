@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   # Enable and configure systemd-resolved
   services.resolved = {

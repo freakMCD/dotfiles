@@ -17,6 +17,7 @@ home.packages = with pkgs; [
   --fast-list \
   --timeout 300s --contimeout 60s \
   --exclude=auxfiles/** \
+  --exclude=screenshots/** \
   --log-level INFO"
 
   cd ~

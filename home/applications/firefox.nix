@@ -72,16 +72,6 @@
 
 
 ###----- From user.js -------#
-/** NETWORK ***/
-"network.http.max-connections"= 1800;
-"network.http.max-persistent-connections-per-server"= 10;
-"network.http.max-urgent-start-excessive-connections-per-host"= 5;
-"network.http.request.max-start-delay"= 5;
-"network.http.pacing.requests.enabled"= false;
-"network.dnsCacheEntries"= 10000;
-"network.dnsCacheExpiration"= 3600;
-"network.ssl_tokens_cache_capacity"= 10240;
-
 /** SPECULATIVE LOADING ***/
 "network.http.speculative-parallel-limit"= 0;
 "network.dns.disablePrefetch"= true;
