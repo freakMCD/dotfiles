@@ -7,30 +7,84 @@
         name = "edwin";
         isDefault = true;
         userChrome = ''
-          #TabsToolbar {
-            visibility: collapse;
-          }
-
-          #nav-bar, .urlbar-background, #sidebar-box, findbar {
+          /* Nav bar */
+          #nav-bar, .urlbar-background, #sidebar-box, findbar, #nav-bar, #navigator-toolbox {
             background: #${config.colors.bg0} !important;
           }
 
-          .urlbar-background {
-            outline: none !important;
-          }
-
           #nav-bar {
-            position: relative !important;
-            z-index: 1 !important;
-            margin-top: -34px !important; /* Adjust to match nav-bar height */
-            opacity: 0 !important;
-            transition: opacity 0.2s, margin-top 0.2s !important;
+            margin-left: 80vw !important;
+            margin-top: -36px !important;
+            margin-bottom: -5px !important;
           }
 
-          #nav-bar:hover,
-          #nav-bar:focus-within {
-            margin-top: 0 !important;
-            opacity: 1 !important;
+          #navigator-toolbox {
+            border: 0px !important;  
+          }
+
+          #TabsToolbar {
+            margin-right: 20vw !important;
+            min-height: 32px !important;
+            max-height: 32px !important;
+          }
+
+          /* Single tab styling */
+          .tabbrowser-tab:only-of-type {
+            width: max-content !important;
+            max-width: 80% !important;
+            flex: unset !important;
+            margin-inline-end: auto !important;
+            --toolbar-bgcolor: transparent !important;
+            --tab-selected-bgimage: transparent !important;
+          }
+          .tabbrowser-tab:only-of-type .tab-text {
+            font-weight: 600 !important;
+          }
+          .tabbrowser-tab:only-of-type .tab-background {
+            opacity: 0;
+          }
+
+          /* Hide buttons*/
+          #reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button {
+              display: none !important;
+          }
+
+          /* URL bar */
+          #back-button, #forward-button, #tracking-protection-icon-container, #page-action-buttons {
+              display: none !important;
+          }
+
+          #urlbar {
+            position: relative !important;
+            top: unset !important;
+            margin-block: auto !important;
+          }
+          #urlbar[breakout-extend] {
+            position: absolute !important;
+            inset-inline: 20vw !important;
+            width: unset !important;
+            align-self: flex-start !important;
+          }
+
+          #urlbar-container {
+              width: auto !important;
+          }
+
+          #urlbar-container:not(:hover) :where(
+            toolbarbutton,
+            #userContext-label,
+            #star-button-box,
+            .verifiedDomain,
+            #tracking-protection-icon-container,
+            #pageAction-urlbar-_testpilot-containers,
+            #pageActionButton,
+          ) {
+            font-size: 0 !important;
+            max-width: 0 !important;
+            padding-inline: 0 !important;
+            margin-inline: 0 !important;
+            opacity: 0 !important;
+            transition: var(--out-transition) !important;
           }
 
           menupopup {
@@ -47,6 +101,7 @@
 
         settings = {
 ###----- Personal -----###
+"accessibility.browsewithcaret_shortcut.enabled" = false;
 "browser.cache.disk.enable" = false;
 "browser.newtabpage.enabled" = false;
 "browser.sessionhistory.max_total_viewers" = 4;
@@ -173,7 +228,7 @@
 
         search = {
           force = true;
-          default = "google";
+          default = "duckduckgo";
           engines = {
             "Nixpkgs" = {
               urls = [ { template = "https://search.nixos.org/packages?&query={searchTerms}"; } ];
