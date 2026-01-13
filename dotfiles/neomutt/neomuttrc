@@ -20,7 +20,7 @@ set spool_file = +INBOX
 set postponed = +Drafts 
 set trash= +[Gmail].Papelera
 unset record
-mailboxes +INBOX +Github +Interbank
+mailboxes +INBOX +Github +Interbank +Patreon
 
 ## Generic
 set editor=`echo \$EDITOR`

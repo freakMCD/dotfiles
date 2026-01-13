@@ -22,7 +22,7 @@ Subfolders Verbatim
 Channel gmail
 Far :gmail-remote:
 Near :gmail-local:
-Patterns INBOX "[Gmail]/Destacados" "[Gmail]/Enviados" "[Gmail]/Papelera" "Github" "Interbank"
+Patterns INBOX "[Gmail]/Destacados" "[Gmail]/Enviados" "[Gmail]/Papelera" "Github" "Interbank" "Patreon"
 Create Both
 Expunge Both
 SyncState *

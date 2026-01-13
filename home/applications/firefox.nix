@@ -8,9 +8,7 @@
         isDefault = true;
         userChrome = ''
           /* Nav bar */
-          #nav-bar, .urlbar-background, #sidebar-box, findbar, #nav-bar, #navigator-toolbox {
-            background: #${config.colors.bg0} !important;
-          }
+          #nav-bar, .urlbar-background, #sidebar-box, findbar, #nav-bar, #navigator-toolbox { background: #${config.colors.bg0} !important; }
 
           #nav-bar {
             margin-left: 80vw !important;
@@ -18,15 +16,20 @@
             margin-bottom: -5px !important;
           }
 
-          #navigator-toolbox {
-            border: 0px !important;  
-          }
+          #navigator-toolbox { border: 0px !important; }
 
           #TabsToolbar {
             margin-right: 20vw !important;
             min-height: 32px !important;
             max-height: 32px !important;
           }
+
+          .tabbrowser-tab {
+            padding-inline: 1px !important;
+            margin-inline: -1px !important;
+          }
+          .tab-content { padding-inline: 4px !important; }
+          .tab-background { border-radius: 0px !important; }
 
           /* Single tab styling */
           .tabbrowser-tab:only-of-type {
@@ -37,22 +40,14 @@
             --toolbar-bgcolor: transparent !important;
             --tab-selected-bgimage: transparent !important;
           }
-          .tabbrowser-tab:only-of-type .tab-text {
-            font-weight: 600 !important;
-          }
-          .tabbrowser-tab:only-of-type .tab-background {
-            opacity: 0;
-          }
+          .tabbrowser-tab:only-of-type .tab-text { font-weight: 600 !important; }
+          .tabbrowser-tab:only-of-type .tab-background { opacity: 0; }
 
           /* Hide buttons*/
-          #reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button {
-              display: none !important;
-          }
+          #reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button { display: none !important; }
 
           /* URL bar */
-          #back-button, #forward-button, #tracking-protection-icon-container, #page-action-buttons {
-              display: none !important;
-          }
+          #back-button, #forward-button, #tracking-protection-icon-container, #page-action-buttons { display: none !important; }
 
           #urlbar {
             position: relative !important;
@@ -66,9 +61,7 @@
             align-self: flex-start !important;
           }
 
-          #urlbar-container {
-              width: auto !important;
-          }
+          #urlbar-container { width: auto !important; }
 
           #urlbar-container:not(:hover) :where(
             toolbarbutton,
@@ -228,7 +221,7 @@
 
         search = {
           force = true;
-          default = "duckduckgo";
+          default = "ddg";
           engines = {
             "Nixpkgs" = {
               urls = [ { template = "https://search.nixos.org/packages?&query={searchTerms}"; } ];

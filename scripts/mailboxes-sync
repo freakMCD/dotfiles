@@ -14,7 +14,7 @@ prefix="${HOME}/.local/share/email/gmail"
 
 for file in "$prefix"/*; do
     folder="${file#"$prefix"/}"
-    if [[ "$folder" =~ (INBOX|Github|Interbank) ]]; then
+    if [[ "$folder" =~ (INBOX|Github|Interbank|Patreon) ]]; then
         # Find all unread mail whose file is newer than the last time this script was run
         newemails=$(find "$file"/new -type f -newer ~/.config/neomutt/.mailsynclast 2> /dev/null)
 
