@@ -21,13 +21,13 @@ home.packages = with pkgs; [
   --log-level INFO"
 
   cd ~
-  rclone $RCLONE_OPTS sync Documents mega:Documents
-  rclone $RCLONE_OPTS sync MediaHub mega:MediaHub
-  rclone $RCLONE_OPTS sync MathCareer mega:MathCareer
-
   rclone $RCLONE_OPTS sync Documents drive:BACKUP/Documents
   rclone $RCLONE_OPTS sync MediaHub drive:BACKUP/MediaHub
   rclone $RCLONE_OPTS sync MathCareer drive:BACKUP/MathCareer
+
+  rclone $RCLONE_OPTS sync Documents mega:Documents
+  rclone $RCLONE_OPTS sync MediaHub mega:MediaHub
+  rclone $RCLONE_OPTS sync MathCareer mega:MathCareer
 '')
 ];
 }

@@ -52,7 +52,6 @@
       "ESC" = "ignore";
       "WHEEL_UP" = "ignore";
       "WHEEL_DOWN" = "ignore";
-      "f" = "ignore";
       "Shift+d" = "playlist-remove current";
     };
 

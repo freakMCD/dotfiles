@@ -3,7 +3,7 @@
 in
 {
   environment.systemPackages = with pkgs; [
-  octaveFull libreoffice-fresh kalker openboard kitty pavucontrol gthumb imagemagick
+  octaveFull libreoffice-fresh kalker openboard kitty pavucontrol gthumb imagemagick helvum
 #Browsers
   w3m googleearth-pro
 #Documents
@@ -18,7 +18,7 @@ in
   zip unzip curl rclone udiskie bat fd libnotify htop wev unrar
 
 #hyprland
-  wl-copy wf-recorder hyprpicker yambar hypridle shotcut
+  wl-clipboard wf-recorder hyprpicker yambar hypridle shotcut
 
 #Others
   qbittorrent geogebra6 
@@ -38,6 +38,8 @@ in
 
 # Linters
 ruff pylint texlab
+
+streamlink
 # Windows
 #  quickemu  samba
 ];
