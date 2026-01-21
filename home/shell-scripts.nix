@@ -16,7 +16,7 @@ home.packages = with pkgs; [
   --retries 3 --retries-sleep 10s \
   --fast-list \
   --timeout 300s --contimeout 60s \
-  --exclude=auxfiles/** \
+  --exclude=.auxfiles/** \
   --exclude=screenshots/** \
   --log-level INFO"
 

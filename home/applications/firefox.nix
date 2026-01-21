@@ -1,9 +1,22 @@
-{ config, pkgs, ...}:
+{ config, pkgs, lib, ...}:
 {
     programs.firefox = {
       enable = true;
-      package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-        extraPolicies = {
+      policies = {
+            ExtensionSettings = with builtins;
+              let extension = shortId: uuid: {
+                name = uuid;
+                value = {
+                  install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
+                  installation_mode = "normal_installed";
+                };
+              };
+              in listToAttrs [
+                (extension "ublock-origin" "uBlock0@raymondhill.net")
+                (extension "youtube-recommended-videos" "myallychou@gmail.com")
+              ];
+          
+          BlockAboutConfig = true;
           DisplayBookmarksToolbar = "never";
           NoDefaultBookmarks = true;
 
@@ -19,8 +32,8 @@
           SearchSuggestEnabled = false;
           StartDownloadsInTempDirectory = true;
           TranslateEnabled = false;
-        };
       };
+
       profiles.default = {
         id=0;
         name = "edwin";
@@ -100,34 +113,34 @@
         '';
 
         settings = {
-# Accessibility, Input & Scrolling
-"accessibility.browsewithcaret_shortcut.enabled" = false;
-"general.smoothScroll" = false;
-"ui.key.menuAccessKey" = 17;        # Alt key
-"ui.key.menuAccessKeyFocuses" = false;
+        # Accessibility, Input & Scrolling
+        "accessibility.browsewithcaret_shortcut.enabled" = false;
+        "general.smoothScroll" = false;
+        "ui.key.menuAccessKey" = 17;        # Alt key
+        "ui.key.menuAccessKeyFocuses" = false;
 
-# Accounts & UI Customization
-"toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        # Accounts & UI Customization
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 
-# Core UX, Layout & Startup
-"browser.uidensity" = 1;
-"browser.aboutConfig.showWarning" = false;
-"media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
+        # Core UX, Layout & Startup
+        "browser.uidensity" = 1;
+        "browser.aboutConfig.showWarning" = false;
+        "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
 
-# Disk Usage & Downloads v/
-"browser.cache.disk.enable" = false;
-"browser.sessionstore.interval" = 300000; # ms
-"widget.use-xdg-desktop-portal.file-picker" = 2;
+        # Disk Usage & Downloads v/
+        "browser.cache.disk.enable" = false;
+        "browser.sessionstore.interval" = 300000; # ms
+        "widget.use-xdg-desktop-portal.file-picker" = 2;
 
-# URL Bar, Search & Suggestions v/
-"browser.urlbar.suggest.engines" = false;
-"browser.urlbar.suggest.history" = false;
-"browser.urlbar.shortcuts.tabs" = false;
+        # URL Bar, Search & Suggestions v/
+        "browser.urlbar.suggest.engines" = false;
+        "browser.urlbar.suggest.history" = false;
+        "browser.urlbar.shortcuts.tabs" = false;
 
-# Mozilla UI, Discovery & Promotions
-"browser.discovery.enabled" = false;
-"extensions.htmlaboutaddons.recommendations.enabled" = false;
-};
+        # Mozilla UI, Discovery & Promotions
+        "browser.discovery.enabled" = false;
+        "extensions.htmlaboutaddons.recommendations.enabled" = false;
+        };
 
         search = {
           force = true;
@@ -148,8 +161,62 @@
             };
           };
         };
-
-
+      extensions = {
+        force = true;
+        settings = {
+          "uBlock0@raymondhill.net".settings =
+            let
+              importedLists = [
+                "https://raw.githubusercontent.com/DandelionSprout/adfilt/refs/heads/master/LegitimateURLShortener.txt"
+                "https://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/main/list.txt"
+              ];
+            in
+            {
+              advancedUserEnabled = true;
+              cloudStorageEnabled = false;
+              importedLists = importedLists;
+              externalLists = lib.concatStringsSep "\n" importedLists;
+              selectedFilterLists = [
+                ## ----- Builtin -----
+                "ublock-filters"
+                "ublock-badware"
+                "ublock-privacy"
+                "ublock-quick-fixes"
+                "ublock-unbreak"
+                ## ----- Ads -----
+                "easylist"
+                ## ----- Privacy -----
+                "easyprivacy"
+                "LegitimateURLShortener"
+                "adguard-spyware-url"
+                "block-lan"
+                ## ----- Malware -----
+                "urlhaus-1"
+                # "curben-phishing"
+                ## ----- Multipurpose -----
+                "plowe-0"
+                "dpollock-0"
+                ## ----- Cookie Notices -----
+                ### ----- Easylist -----
+                "fanboy-cookiemonster"
+                "ublock-cookies-easylist"
+                ## ----- Social -----
+                "fanboy-social"
+                # "adguard-social"
+                "fanboy-thirdparty_social"
+                ## ----- Annoyances -----
+                ### ----- Easylist -----
+                "easylist-chat"
+                "easylist-newsletters"
+                "easylist-notifications"
+                "easylist-annoyances"
+                ### ----- uBlock -----
+                "ublock-annoyances"
+              ]
+              ++ importedLists;
+            };
+        };
+       };
       };
     };
 }
