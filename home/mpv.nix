@@ -6,8 +6,8 @@
       hwdec = "auto";
       gpu-context = "wayland";
       keep-open = true;
-      keep-open-pause = false;
-      idle = "once";
+      keep-open-pause = true;
+      idle = "yes";
       profile = "fast";
       video-sync = "display-resample";
       save-position-on-quit = true;
@@ -34,8 +34,8 @@
       ytdl-format = "bv*[height<=1080]+ba/b[height<=1080]";
       ytdl-raw-options = "cookies-from-browser=firefox";
       force-seekable= true;
-      demuxer-max-bytes = "500M";
-      demuxer-max-back-bytes="250MiB";
+      demuxer-max-bytes = "1500M";
+      demuxer-max-back-bytes="750MiB";
       demuxer-donate-buffer = false;
     };
 

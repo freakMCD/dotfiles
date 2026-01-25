@@ -38,8 +38,6 @@ in
 
 # Linters
 ruff pylint texlab
-
-streamlink
 # Windows
 #  quickemu  samba
 ];

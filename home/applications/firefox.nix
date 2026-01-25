@@ -15,11 +15,6 @@
                 (extension "ublock-origin" "uBlock0@raymondhill.net")
                 (extension "youtube-recommended-videos" "myallychou@gmail.com")
               ];
-          
-          BlockAboutConfig = true;
-          DisplayBookmarksToolbar = "never";
-          NoDefaultBookmarks = true;
-
           DisableFirefoxAccounts = true;
           DisableFirefoxStudies = true;
           DisableTelemetry = true;
