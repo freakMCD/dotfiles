@@ -2,7 +2,7 @@
   services.resolved = {
     enable = true;
     settings.Resolve = {
-      fallbackDns = [];
+      DNSSEC = false;
       DNSOverTLS = true;
       LLMNR = false;
       MulticastDNS = false;
@@ -16,14 +16,12 @@
   };
   networking.useDHCP = false;
   networking.dhcpcd.enable = false;
-
   networking.useNetworkd = true;
+
   systemd.network.networks."40-wired" = {
     matchConfig = {Type = "ether";};
     DHCP = "yes";
-    networkConfig = {
-      IPv6PrivacyExtensions = "yes";
-    };
+    dhcpV4Config.UseDNS = false;
   };
 }
 
