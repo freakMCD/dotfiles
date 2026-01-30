@@ -31,7 +31,7 @@
               border-radius = 6;
 
               # Progress bar customization
-              progress-bar-color = "${config.colors.yellow}cc";
+              progress-color = "${config.colors.yellow}cc";
               progress-bar-height = 8;
 
               # Text formatting

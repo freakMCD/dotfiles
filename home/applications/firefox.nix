@@ -173,6 +173,7 @@
               externalLists = lib.concatStringsSep "\n" importedLists;
               selectedFilterLists = [
                 ## ----- Builtin -----
+                "user-filters"
                 "ublock-filters"
                 "ublock-badware"
                 "ublock-privacy"

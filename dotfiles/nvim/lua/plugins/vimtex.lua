@@ -5,4 +5,10 @@ vim.g.vimtex_compiler_latexmk = {
   aux_dir = '.auxfiles',
   out_dir = 'pdffiles',
 }
-
+vim.g.vimtex_toc_custom_matchers = {
+  {
+    title = "Problema",
+    prefilter_cmds = { "begin" },
+    re = [[\v^\s*\\begin\{problem\}]],
+  },
+}

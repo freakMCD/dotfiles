@@ -3,7 +3,7 @@
 in
 {
   environment.systemPackages = with pkgs; [
-  octaveFull libreoffice-fresh kalker openboard kitty pavucontrol gthumb imagemagick helvum 
+  octaveFull libreoffice-fresh kalker openboard kitty pavucontrol gthumb imagemagick helvum avidemux mkvtoolnix
 #Browsers
   w3m
 #Documents
@@ -41,6 +41,14 @@ ruff pylint texlab
 
 # Windows
 #  quickemu  samba
+
+# Python
+(pkgs.python3.withPackages (ps: with ps; [
+  numpy
+  matplotlib
+  opencv4
+  scipy
+]))
 ];
 
 # virtualization 

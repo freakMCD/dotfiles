@@ -5,36 +5,20 @@ local fmt = require("luasnip.extras.fmt").fmt
 return {
   s("preamble", fmt([[
 \documentclass[parskip=half]{{scrartcl}}
-% --------------------------------------------- %
-% Font and language settings
-% --------------------------------------------- %
+% --- Encoding and language ---
 \usepackage[T1]{{fontenc}}
 \usepackage[spanish,es-minimal]{{babel}}
-% --------------------------------------------- %
+% --- Math ---
 \usepackage{{amsthm, amsfonts, amssymb, mathtools}}
-% --------------------------------------------- %
-% Graphics and Figures
-% --------------------------------------------- %
-\usepackage{{caption}}
-\usepackage{{multicol}}
+% --- Graphics and tables ---
 \usepackage{{graphicx}}
+\usepackage{{booktabs}}
 \graphicspath{{{{./img/}}}}
-\usepackage{{pgfplots}}
-\usetikzlibrary{{positioning,calc,babel, shapes.geometric}}
-\pgfplotsset{{compat=1.18}}
-\usepackage{{tikz}}
-
-% --------------------------------------------- %
-% Lists and Tables
-% --------------------------------------------- %
+% --- Lists ---
 \usepackage[shortlabels]{{enumitem}}
 \setlist[enumerate]{{font=\bfseries}}
-\usepackage{{booktabs}}
-\usepackage{{array}}
-\usepackage{{float}}
-% --------------------------------------------- %
+% --- Hyperlinks ---
 \usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue]{{hyperref}}
-% --------------------------------------------- %
 ]], {})),
 
 s("begindiscreta", fmt([[
