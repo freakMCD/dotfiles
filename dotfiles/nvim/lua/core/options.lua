@@ -23,7 +23,7 @@ local options = {
   -- Status bar
 	laststatus = 2,
   ruler = false,
-  cmdheight = 0,
+  cmdheight = 1,
   showcmdloc = "statusline",
 	signcolumn = "number",
 }

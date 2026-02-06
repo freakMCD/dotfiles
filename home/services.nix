@@ -46,7 +46,7 @@
             title-color = "${config.colors.gray}ff";
             summary-color = "${config.colors.gray}ff";
             body-color = "${config.colors.gray}dd";
-            progress-bar-color = "${config.colors.gray}66";
+            progress-color = "${config.colors.gray}66";
           };
 
           critical = {
@@ -55,7 +55,7 @@
             title-color = "${config.colors.red}ff";
             summary-color = "${config.colors.yellow}ff";
             border-size = 2;
-            progress-bar-color = "${config.colors.red}ff";
+            progress-color = "${config.colors.red}ff";
           };
         };
       };

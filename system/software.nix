@@ -3,7 +3,7 @@
 in
 {
   environment.systemPackages = with pkgs; [
-  octaveFull libreoffice-fresh kalker openboard kitty pavucontrol gthumb imagemagick helvum avidemux mkvtoolnix
+  octaveFull libreoffice-fresh kalker openboard kitty pavucontrol gthumb imagemagick helvum avidemux mkvtoolnix ethtool streamlink
 #Browsers
   w3m
 #Documents
@@ -112,6 +112,8 @@ ruff pylint texlab
     serverName = "Sisko";
     transcoding = true;
   };
+  systemd.services.mediatomb.wantedBy = lib.mkForce [ ];
+
   services.earlyoom = {
     enable = true;
     extraArgs = [

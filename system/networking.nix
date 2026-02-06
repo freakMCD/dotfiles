@@ -3,6 +3,10 @@
     enable = true;
     settings.Resolve = {
       DNSOverTLS = true;
+      MulticastDNS = false;
+      LLMNR = false;
+      DNSSEC = "allow-downgrade";
+      FallbackDNS = [];
       DNS = [
         "45.90.28.0#4457ba.dns.nextdns.io"
         "2a07:a8c0::#4457ba.dns.nextdns.io"
@@ -11,7 +15,6 @@
       ];
     };
   };
-  networking.networkmanager.enable = true;
-  networking.useDHCP = false;
+  networking.useDHCP = true;
 }
 

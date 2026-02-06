@@ -26,7 +26,6 @@
           PasswordManagerEnabled = false;
           SearchSuggestEnabled = false;
           StartDownloadsInTempDirectory = true;
-          TranslateEnabled = false;
       };
 
       profiles.default = {
@@ -108,6 +107,9 @@
         '';
 
         settings = {
+        "network.trr.mode" = 5;
+        "network.dnsCacheEntries" = 0;
+        "network.dnsCacheExpiration" = 0;
         # Accessibility, Input & Scrolling
         "accessibility.browsewithcaret_shortcut.enabled" = false;
         "general.smoothScroll" = false;
@@ -120,7 +122,7 @@
         # Core UX, Layout & Startup
         "browser.uidensity" = 1;
         "browser.aboutConfig.showWarning" = false;
-        "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
+        "media.videocontrols.picture-in-picture.video-toggle.enabled" = true;
 
         # Disk Usage & Downloads v/
         "browser.cache.disk.enable" = false;

@@ -40,14 +40,5 @@ return {
     i(1, "// code here"),
   })),
 
-  -- Autosnippet: struct
-  s({ trig = "struct", name = "typedef struct", snippetType = "autosnippet" }, fmt([[
-    typedef struct {{
-        {1}
-    }} {2};
-  ]], {
-    i(1, "int field;"),
-    i(2, "MyStruct"),
-  })),
 }
 
