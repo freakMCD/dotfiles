@@ -9,16 +9,15 @@ return {
 \usepackage[T1]{{fontenc}}
 \usepackage[spanish,es-minimal]{{babel}}
 % --- Math ---
-\usepackage{{amsthm, amsfonts, amssymb, mathtools}}
-% --- Graphics and tables ---
-\usepackage{{graphicx}}
-\usepackage{{booktabs}}
-\graphicspath{{{{./img/}}}}
+\usepackage{{amsthm, amssymb, mathtools}}
 % --- Lists ---
 \usepackage[shortlabels]{{enumitem}}
 \setlist[enumerate]{{font=\bfseries}}
-% --- Hyperlinks ---
-\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue]{{hyperref}}
+% --------------------------------------------- %
+%\usepackage{{graphicx}}
+%\usepackage{{booktabs}}
+%\graphicspath{{{{./img/}}}}
+%\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue]{{hyperref}}
 ]], {})),
 
 s("begindiscreta", fmt([[

@@ -11,7 +11,6 @@
       ];
     };
   };
-  networking.networkmanager.enable = true;
-  networking.useDHCP = false;
+  networking.useDHCP = true;
 }
 

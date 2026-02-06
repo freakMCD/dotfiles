@@ -108,6 +108,7 @@
         '';
 
         settings = {
+        "network.trr.mode" = 5;
         # Accessibility, Input & Scrolling
         "accessibility.browsewithcaret_shortcut.enabled" = false;
         "general.smoothScroll" = false;

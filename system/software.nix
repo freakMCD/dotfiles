@@ -3,7 +3,7 @@
 in
 {
   environment.systemPackages = with pkgs; [
-  octaveFull libreoffice-fresh kalker openboard kitty pavucontrol gthumb imagemagick helvum avidemux mkvtoolnix
+  octaveFull libreoffice-fresh kalker openboard kitty pavucontrol gthumb imagemagick helvum avidemux mkvtoolnix ethtool
 #Browsers
   w3m
 #Documents
