@@ -10,26 +10,21 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
-  let 
+  let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system; 
-    };
+    pkgs = nixpkgs.legacyPackages.${system};
   in
   {
     homeConfigurations.edwin = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [
-        ./home
-      ];
-    };
+        inherit pkgs;
+        modules = [ ./home ];
+      };
 
     nixosConfigurations.edwin = nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = { inherit inputs; };
-      modules = [ 
-        ./system
-      ];
-    };
+        inherit system;
+        specialArgs = { inherit inputs; };
+        modules = [ ./system ];
+      };
   };
 }
+
