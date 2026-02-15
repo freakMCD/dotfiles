@@ -11,19 +11,24 @@
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
   let
+    username = "edwin";
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
   in
   {
-    homeConfigurations.edwin = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./home ];
-      };
-
-    nixosConfigurations.edwin = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.${username} = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
-        modules = [ ./system ];
+        modules = [ 
+          ./system 
+
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.users.edwin = import ./home;
+          }
+        ];
+
       };
   };
 }

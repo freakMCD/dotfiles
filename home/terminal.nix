@@ -88,9 +88,7 @@
     shellAbbrs = {
       windows10 = ''quickemu --vm windows-10.conf --public-dir ~/Share --mouse "virtio"'';
       rm = "rm -I";
-      top = "htop";
       yamend = "yadm commit --amend --no-edit && yadm push -f";
-      reconfig = "home-manager switch --flake $HOME/nix#edwin";
       df="df -h";
       dus="du -h --max-depth=1 | sort -hr";
       fc-list=''fc-list --format="%{family[0]}\n" | sort | uniq'';

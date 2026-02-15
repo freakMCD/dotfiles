@@ -23,7 +23,6 @@
       BUNDLE_FORCE_RUBY_PLATFORM = "true";
     };
     username = "edwin";
-    homeDirectory = "/home/edwin/";
     stateVersion = "24.11";
   };
 }
