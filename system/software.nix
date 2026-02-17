@@ -2,8 +2,11 @@
   perlEnv = pkgs.perl.withPackages (p: with p; [ MIMEEncWords ]);
 in
 {
+  nixpkgs.config.allowUnfreePredicate = pkg:
+      builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar" ];
+
   environment.systemPackages = with pkgs; [
-  octaveFull libreoffice-fresh kalker openboard kitty pavucontrol gthumb imagemagick helvum avidemux mkvtoolnix ethtool streamlink
+  octaveFull libreoffice-fresh kalker openboard kitty pavucontrol gthumb imagemagick helvum avidemux mkvtoolnix ethtool
 #Browsers
   w3m
 #Documents
@@ -13,7 +16,7 @@ in
 #Communication
   telegram-desktop neomutt msmtp isync conky
 #Dev
-  home-manager nvd pass yadm gnupg dig inotify-tools gcc perlEnv pipx 
+  home-manager nvd pass yadm gnupg dig inotify-tools gcc perlEnv pipx
 #Terminal 
   zip unzip curl rclone udiskie bat fd libnotify htop wev unrar
 

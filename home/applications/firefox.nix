@@ -13,7 +13,6 @@
               };
               in listToAttrs [
                 (extension "ublock-origin" "uBlock0@raymondhill.net")
-                (extension "youtube-recommended-videos" "myallychou@gmail.com")
               ];
           DisableFirefoxAccounts = true;
           DisableFirefoxStudies = true;
