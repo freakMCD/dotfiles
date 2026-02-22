@@ -6,28 +6,20 @@ in
       builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar" ];
 
   environment.systemPackages = with pkgs; [
-  octaveFull libreoffice-fresh kalker openboard kitty pavucontrol gthumb imagemagick helvum avidemux mkvtoolnix ethtool
-#Browsers
-  w3m
-#Documents
-  pdfarranger simple-scan neovim 
-#Media & Graphics
-  gimp ffmpeg chafa grim slurp
-#Communication
-  telegram-desktop neomutt msmtp isync conky
-#Dev
-  home-manager nvd pass yadm gnupg dig inotify-tools gcc perlEnv pipx
-#Terminal 
-  zip unzip curl rclone udiskie bat fd libnotify htop wev unrar
+# Utils
+  zip unzip curl htop fd rclone udiskie unrar unrar libnotify imagemagick
+# Apps
+  neovim openboard gthumb avidemux mkvtoolnix geogebra6 pdfarranger simple-scan kalker
+# Communication
+  neomutt msmtp isync w3m
+# Dev
+  home-manager nvd pass yadm gnupg dig gcc perlEnv
+# Linters
+  ruff pylint texlab
+# hyprland
+  kitty wl-clipboard wf-recorder grim slurp hyprpicker hypridle yambar wev conky 
 
-#hyprland
-  wl-clipboard wf-recorder hyprpicker yambar hypridle shotcut
-
-#Others
-  qbittorrent geogebra6 
-  obs-studio obs-studio-plugins.wlrobs
-
-#Latex
+# Latex
   (texlive.combine {
     inherit (texlive)
       scheme-small
@@ -38,9 +30,6 @@ in
       collection-latexextra
       latexmk;
   })
-
-# Linters
-ruff pylint texlab
 
 # Windows
 #  quickemu  samba
@@ -108,14 +97,6 @@ ruff pylint texlab
     Unit="mailsync.service";
     };
   };
-
-  services.mediatomb = {
-    enable = true;
-    openFirewall = true;
-    serverName = "Sisko";
-    transcoding = true;
-  };
-  systemd.services.mediatomb.wantedBy = lib.mkForce [ ];
 
   services.earlyoom = {
     enable = true;

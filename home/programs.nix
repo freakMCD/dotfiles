@@ -1,4 +1,4 @@
-{config, ...}:
+{config, pkgs, ...}:
 {
   programs = {
     hyprshot = {
@@ -138,4 +138,7 @@
       };
     };
   };
+  home.packages = with pkgs; [
+    chafa
+  ];
 }

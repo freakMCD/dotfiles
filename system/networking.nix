@@ -5,8 +5,7 @@
       DNSOverTLS = true;
       MulticastDNS = false;
       LLMNR = false;
-      DNSSEC = "allow-downgrade";
-      FallbackDNS = [];
+      FallbackDNS = "";
       DNS = [
         "45.90.28.0#4457ba.dns.nextdns.io"
         "2a07:a8c0::#4457ba.dns.nextdns.io"

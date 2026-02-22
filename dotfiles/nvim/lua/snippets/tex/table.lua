@@ -1,99 +1,29 @@
-local rec_ls
-rec_ls = function()
-	return sn(nil, {
-		c(1, {
-			t({""}),
-			sn(nil, {t({"", "\t\\item "}), i(1), d(2, rec_ls, {})}),
-		}),
-	})
+local tex = {}
+tex.in_mathzone = function()
+  return vim.fn['vimtex#syntax#in_mathzone']() == 1
 end
 
-local function column_count_from_string(descr)
-	return #(descr:gsub("[^clmrp]", ""))
-end
+return {
+s({ trig = "([bpv])mat_(%d)(%d)", regTrig = true, snippetType = "autosnippet" }, {
+  d(1, function(_, snip)
+    local type = snip.captures[1] .. "matrix"
+    local rows, cols = snip.captures[2], snip.captures[3]
+    local nodes = {}
+    local ts = 1
+    table.insert(nodes, t("\\begin{" .. type .. "}"))
+    for _ = 1, rows, 1 do
+      table.insert(nodes, t({ "", "\t" }))
+      for _ = 1, cols, 1 do
+        table.insert(nodes, i(ts))
+        table.insert(nodes, t(" & "))
+        ts = ts + 1
+      end
+      table.remove(nodes, #nodes)
+      table.insert(nodes, t(" \\\\"))
+    end
+    table.remove(nodes, #nodes)
+    table.insert(nodes, t({ "", "\\end{" .. type .. "}" }))
+    return sn(1, nodes)
+  end),
+}, { condition = tex.in_mathzone })}
 
-local tab = function(args, snip)
-	local cols = column_count_from_string(args[1][1])
-	if not snip.rows then
-		snip.rows = 1
-	end
-	local nodes = {}
-	local ins_indx = 1
-	for j = 1, snip.rows do
-		table.insert(nodes, r(ins_indx, tostring(j).."x1", i(1)))
-		ins_indx = ins_indx+1
-		for k = 2, cols do
-			table.insert(nodes, t" & ")
-			table.insert(nodes, r(ins_indx, tostring(j).."x"..tostring(k), i(1)))
-			ins_indx = ins_indx+1
-		end
-		table.insert(nodes, t{"\\\\", ""})
-	end
-	-- fix last node.
-	nodes[#nodes] = t""
-	return sn(nil, nodes)
-end
-
-local mat = function(_, snip)
-	if not snip.rows then
-		-- one not set -> both not set.
-		snip.rows = 3
-		snip.cols = 3
-	end
-	local nodes = {}
-	local ins_indx = 1
-	for j = 1, snip.rows do
-		table.insert(nodes, r(ins_indx, tostring(j).."x1", i(1)))
-		ins_indx = ins_indx+1
-		for k = 2, snip.cols do
-			table.insert(nodes, t" & ")
-			table.insert(nodes, r(ins_indx, tostring(j).."x"..tostring(k), i(1)))
-			ins_indx = ins_indx+1
-		end
-		table.insert(nodes, t{"\\\\", ""})
-	end
-	-- fix last node.
-	nodes[#nodes] = t""
-	return sn(nil, nodes)
-end
-return{
-	s("ls", {
-		t({"\\begin{"}), c(1, {
-			t"itemize",
-			t"enumerate",
-			i(nil)
-		}), t({"}", "\t\\item "}),
-		i(2), d(3, rec_ls, {}),
-		t({"", "\\end{"}), rep(1), t"}", i(0)
-	}),
-	s("tab", fmt([[
-	\begin{{tabular}}{{{}}}
-    \toprule
-	{}
-    \bottomrule
-	\end{{tabular}}
-	]], {i(1, "c"), d(2, tab, {1}, {
-		user_args = {
-			function(snip) snip.rows = snip.rows + 1 end,
-			-- don't drop below one.
-			function(snip) snip.rows = math.max(snip.rows - 1, 1) end
-		}
-	} )})),
-	s("mat", fmt([[
-	\begin{{{}}}
-	{}
-	\end{{{}}}
-	]], {c(1, {t"matrix", t"pmatrix", t"bmatrix", t"Bmatrix", t"vmatrix", t"Vmatrix"}),
-		d(2, mat, {}, {
-			user_args = {
-				function(snip) snip.rows = snip.rows + 1 end,
-				-- don't drop below one.
-				function(snip) snip.rows = math.max(snip.rows - 1, 1) end,
-				function(snip) snip.cols = snip.cols + 1 end,
-				-- don't drop below one.
-				function(snip) snip.cols = math.max(snip.cols - 1, 1) end
-			}
-		}),
-		rep(1)
-	})),
-}

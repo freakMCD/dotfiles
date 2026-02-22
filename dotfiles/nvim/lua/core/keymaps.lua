@@ -26,7 +26,6 @@ end
 -- Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 keymap('x', '<C-r>', '"hy:s/<C-r>h/')
-
 keymap("n", "<F2>", toggle_quickfix, { silent = true })
 
 

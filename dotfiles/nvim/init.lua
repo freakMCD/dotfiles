@@ -10,3 +10,4 @@ require("plugins.luasnip")
 
 -- ft specific 
 require("plugins.vimtex") -- latex
+

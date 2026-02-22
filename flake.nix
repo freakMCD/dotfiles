@@ -15,6 +15,7 @@
     system = "x86_64-linux";
   in
   {
+    packages.${system} = nixpkgs.legacyPackages.${system};
     nixosConfigurations.${username} = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
