@@ -7,10 +7,8 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" "r8168" ];
-  boot.extraModulePackages = with config.boot.kernelPackages; [ r8168 ];  # ← Add this
-  boot.blacklistedKernelModules = [ "r8169" ];  # ← Add this
-  boot.kernelParams = [ "pcie_aspm=off" ];  # ← Add this
+  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelParams = [ "pcie_aspm=off" ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/2bec06f2-f957-4ef7-bb0d-fa2cb606907c";

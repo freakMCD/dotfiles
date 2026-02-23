@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SC_USER=nixepsilon
+SC_LIKES_URL="https://soundcloud.com/$SC_USER/likes"
+
+OUTDIR="$HOME/Music"
+ARCHIVE_FILE="$OUTDIR/downloaded.txt"
+
+mkdir -p "$OUTDIR"
+touch "$ARCHIVE_FILE"
+
+rebuild_archive_from_dir() {
+  find -L "$OUTDIR" -maxdepth 1 -type f \
+    \( -iname '*.m4a' -o -iname '*.mp3' -o -iname '*.opus' -o -iname '*.webm' \) \
+    -printf '%f\n' 2>/dev/null \
+  | awk '
+      match($0, /\[([0-9]+)\]/, m) {
+        print "soundcloud " m[1]
+      }
+    ' | sort -u > "$ARCHIVE_FILE"
+}
+rebuild_archive_from_dir
+
+echo "Downloading new likes..."
+
+yt-dlp \
+  -f bestaudio \
+  --add-metadata \
+  --embed-thumbnail \
+  --download-archive "$ARCHIVE_FILE" \
+  -ciw \
+  -o "$OUTDIR/%(title)s [%(id)s].%(ext)s" \
+  "$SC_LIKES_URL"
+
+echo "Sync complete."

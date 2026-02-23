@@ -7,7 +7,7 @@ in
 
   environment.systemPackages = with pkgs; [
 # Utils
-  zip unzip curl htop fd rclone udiskie unrar unrar libnotify imagemagick
+  ffmpeg zip unzip curl htop fd rclone udiskie unrar unrar libnotify imagemagick
 # Apps
   neovim openboard gthumb avidemux mkvtoolnix geogebra6 pdfarranger simple-scan kalker
 # Communication
@@ -17,8 +17,7 @@ in
 # Linters
   ruff pylint texlab
 # hyprland
-  kitty wl-clipboard wf-recorder grim slurp hyprpicker hypridle yambar wev conky 
-
+  kitty wl-clipboard wf-recorder grim slurp hyprpicker hypridle wev conky 
 # Latex
   (texlive.combine {
     inherit (texlive)
@@ -40,6 +39,7 @@ in
   matplotlib
   opencv4
   scipy
+  mutagen # for thumbnails on opus
 ]))
 ];
 
