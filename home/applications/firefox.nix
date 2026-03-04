@@ -165,6 +165,8 @@
               importedLists = [
                 "https://raw.githubusercontent.com/DandelionSprout/adfilt/refs/heads/master/LegitimateURLShortener.txt"
                 "https://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/main/list.txt"
+                "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/YouTubeEvenMorePureVideoExperience.txt"
+                "https://raw.githubusercontent.com/hadig/Focus-for-Youtube/master/focus4yt.txt"
               ];
             in
             {

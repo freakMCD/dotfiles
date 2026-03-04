@@ -1,19 +1,12 @@
 {
-  services.resolved = {
+  services.nextdns = {
     enable = true;
-    settings.Resolve = {
-      DNSOverTLS = true;
-      MulticastDNS = false;
-      LLMNR = false;
-      FallbackDNS = "";
-      DNS = [
-        "45.90.28.0#4457ba.dns.nextdns.io"
-        "2a07:a8c0::#4457ba.dns.nextdns.io"
-        "45.90.30.0#4457ba.dns.nextdns.io"
-        "2a07:a8c1::#4457ba.dns.nextdns.io"
-      ];
-    };
+    arguments = [
+      "-config" "4457ba"
+      "-report-client-info"
+    ];
   };
+  networking.nameservers = ["127.0.0.1" "::1"];
   networking.useDHCP = true;
 }
 
