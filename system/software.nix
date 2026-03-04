@@ -6,10 +6,11 @@ in
       builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar" ];
 
   environment.systemPackages = with pkgs; [
+deno
 # Utils
   ffmpeg zip unzip curl htop fd rclone udiskie unrar unrar libnotify imagemagick
 # Apps
-  neovim openboard gthumb avidemux mkvtoolnix geogebra6 pdfarranger simple-scan kalker
+  pipx neovim openboard gthumb avidemux mkvtoolnix geogebra6 pdfarranger simple-scan kalker
 # Communication
   neomutt msmtp isync w3m
 # Dev

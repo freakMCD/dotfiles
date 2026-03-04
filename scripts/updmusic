@@ -1,36 +1,59 @@
 #!/usr/bin/env bash
 set -euo pipefail
+trap 'echo -e "\nScript interrupted. Exiting..."; kill 0; exit' SIGINT
 
-SC_USER=nixepsilon
-SC_LIKES_URL="https://soundcloud.com/$SC_USER/likes"
+BASE_DIR="$HOME/Music"
+PLAYLIST_NAME="Bboy"
+PLAYLIST_URL="https://youtube.com/playlist?list=PL4CmunqMOJjImxEKlE5vCDShbTbF3Fd2h"
 
-OUTDIR="$HOME/Music"
-ARCHIVE_FILE="$OUTDIR/downloaded.txt"
+COOKIES_FROM_BROWSER="firefox"
+YTDLP_CONF="$HOME/nix/scripts/yt-dlp.conf"
+
+# --- Colors ---
+CYAN='\033[0;36m'; YELLOW='\033[1;33m'; GREEN='\033[0;32m'
+MAGENTA='\033[0;35m'; DIM='\033[2;37m'; NC='\033[0m'
+
+OUTDIR="$BASE_DIR/$PLAYLIST_NAME"
+ARCHIVE="$OUTDIR/downloaded.txt"
 
 mkdir -p "$OUTDIR"
-touch "$ARCHIVE_FILE"
 
 rebuild_archive_from_dir() {
-  find -L "$OUTDIR" -maxdepth 1 -type f \
-    \( -iname '*.m4a' -o -iname '*.mp3' -o -iname '*.opus' -o -iname '*.webm' \) \
-    -printf '%f\n' 2>/dev/null \
-  | awk '
-      match($0, /\[([0-9]+)\]/, m) {
-        print "soundcloud " m[1]
-      }
-    ' | sort -u > "$ARCHIVE_FILE"
+  find -L "$OUTDIR" -type f \( -iname '*.m4a' -o -iname '*.opus' -o -iname '*.webm' \) -printf '%f\n' 2>/dev/null \
+    | sed -nE 's/.*\[([A-Za-z0-9_-]{11})\]\..*$/youtube \1/p' \
+    | sort -u > "$ARCHIVE"
 }
+
+download_playlist() {
+  local counter=0
+  echo -e "⭐ Downloading ${YELLOW}$PLAYLIST_NAME${NC}…"
+
+  while IFS= read -r line; do
+    ((++counter))
+    file=$(basename "$line")
+    title="${file% \[*}"
+    video_id=$(grep -oE '\[([A-Za-z0-9_-]{11})\]' <<<"$file" | tr -d '[]')
+
+    echo -e "${GREEN}✔ ${CYAN}$title ${YELLOW}[$video_id]${NC}"
+  done < <(
+    yt-dlp --quiet \
+      --config-locations "$YTDLP_CONF" \
+      --cookies-from-browser "$COOKIES_FROM_BROWSER" \
+      --download-archive "$ARCHIVE" \
+      -o "$OUTDIR/%(title)s [%(id)s].%(ext)s" \
+      --print after_move:"%(_filename)s" \
+      "$PLAYLIST_URL" || true
+  )
+
+  if ((counter > 0)); then
+    echo -e "${GREEN}✓ Added ${YELLOW}$counter${GREEN} track$([ $counter -ne 1 ] && echo "s")${NC}\n"
+  else
+    echo -e "${MAGENTA}↳ ${DIM}$PLAYLIST_NAME is already up to date${NC}\n"
+  fi
+}
+
 rebuild_archive_from_dir
+download_playlist
 
-echo "Downloading new likes..."
-
-yt-dlp \
-  -f bestaudio \
-  --add-metadata \
-  --embed-thumbnail \
-  --download-archive "$ARCHIVE_FILE" \
-  -ciw \
-  -o "$OUTDIR/%(title)s [%(id)s].%(ext)s" \
-  "$SC_LIKES_URL"
-
-echo "Sync complete."
+total_count=$(wc -l < "$ARCHIVE" 2>/dev/null || echo 0)
+echo -e "✅ Total: $total_count"

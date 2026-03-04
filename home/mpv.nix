@@ -56,6 +56,9 @@
     };
 
     scriptOpts = {
+      ytdl_hook = {
+        ytdl_path = "/home/edwin/.local/share/pipx/venvs/yt-dlp/bin/yt-dlp";
+      };
       osc = {
         layout = "slimbox";
         seekbarstyle = "knob";
