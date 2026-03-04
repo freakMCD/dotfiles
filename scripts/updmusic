@@ -16,7 +16,7 @@ rebuild_archive_from_dir() {
     -printf '%f\n' 2>/dev/null \
   | awk '
       match($0, /\[([0-9]+)\]/, m) {
-        print "soundcloud " m[1]
+        print "youtube " m[1]
       }
     ' | sort -u > "$ARCHIVE_FILE"
 }
@@ -27,7 +27,6 @@ echo "Downloading new likes..."
 yt-dlp \
   -f bestaudio \
   --add-metadata \
-  --embed-thumbnail \
   --download-archive "$ARCHIVE_FILE" \
   -ciw \
   -o "$OUTDIR/%(title)s [%(id)s].%(ext)s" \

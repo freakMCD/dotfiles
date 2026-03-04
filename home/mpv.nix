@@ -34,8 +34,8 @@
       ytdl-format = "bv*[height<=1080]+ba/b[height<=1080]";
       ytdl-raw-options = "cookies-from-browser=firefox";
       force-seekable= true;
-      demuxer-max-bytes = "1500M";
-      demuxer-max-back-bytes="750MiB";
+      demuxer-max-bytes = "3000MiB";
+      demuxer-max-back-bytes="500MiB";
       demuxer-donate-buffer = false;
     };
 
@@ -56,6 +56,9 @@
     };
 
     scriptOpts = {
+      ytdl_hook = {
+        ytdl_path = "/home/edwin/.local/share/pipx/venvs/yt-dlp/bin/yt-dlp";
+      };
       osc = {
         layout = "slimbox";
         seekbarstyle = "knob";

@@ -9,7 +9,7 @@ in
 # Utils
   ffmpeg zip unzip curl htop fd rclone udiskie unrar unrar libnotify imagemagick
 # Apps
-  neovim openboard gthumb avidemux mkvtoolnix geogebra6 pdfarranger simple-scan kalker
+  pipx neovim openboard gthumb avidemux mkvtoolnix geogebra6 pdfarranger simple-scan kalker qbittorrent
 # Communication
   neomutt msmtp isync w3m
 # Dev
@@ -103,5 +103,12 @@ in
     extraArgs = [
       "-g"
     ];
+  };
+
+  services.mediatomb = {
+    enable = true;
+    openFirewall = true;
+    serverName = "PC";
+    transcoding = true;
   };
 }
