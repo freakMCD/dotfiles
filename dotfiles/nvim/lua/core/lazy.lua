@@ -65,8 +65,7 @@ require("lazy").setup({
             lua = {'lua_language_server'},
             tex = {'lacheck'},
             c = {'gcc'},
-            --            python = {'ruff', 'pylint'},
-            python = {},
+            python = {'ruff'},
         }
     end
 }

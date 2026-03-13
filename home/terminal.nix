@@ -12,6 +12,21 @@
       fish_config prompt choose nim
       source ~/.local/share/linuxfedora
 
+      function ttv
+          set -l channel $argv[1]
+          if test -z "$channel"
+              echo "Usage: ttv <twitch_channel>"
+              return 1
+          end
+
+          nohup streamlink https://www.twitch.tv/$channel \
+              --twitch-proxy-playlist=https://eu.luminous.dev,https://lb-eu.cdn-perfprod.com \
+              --player-no-close \
+              -p mpv best >/dev/null 2>&1 &
+          disown
+          exit
+      end
+
       function fe
           set -l files (fzf --delimiter / --with-nth 4.. --query="$argv" --multi --select-1 --exit-0 | string split0)
           if test -n "$files"
