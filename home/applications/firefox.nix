@@ -55,7 +55,6 @@
           }
           .tab-content { padding-inline: 4px !important; }
           .tab-background { border-radius: 0px !important; }
-          .tab-label { font-size: 12px !important; }
 
           /* Hide buttons of Tab bar*/
           #reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button { display:none !important; }
