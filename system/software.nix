@@ -3,13 +3,13 @@
 in
 {
   nixpkgs.config.allowUnfreePredicate = pkg:
-      builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" ];
+      builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
 
   environment.systemPackages = with pkgs; [
 # Utils
-  ffmpeg p7zip curl htop fd rclone udiskie libnotify imagemagick
+  ffmpeg p7zip curl htop fd rclone udiskie libnotify imagemagick unrar
 # Apps
-  pipx neovim openboard gthumb avidemux mkvtoolnix geogebra6 pdfarranger simple-scan kalker qbittorrent
+  pipx neovim openboard gthumb avidemux mkvtoolnix geogebra6 pdfarranger simple-scan kalker qbittorrent gimp
 # Communication
   neomutt msmtp isync w3m
 # Dev

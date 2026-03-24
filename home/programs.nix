@@ -77,7 +77,7 @@
                 font = "JetBrainsMono Nerd Font Mono:size=12";
                 workers = 0;
             };
-            colors = {
+            colors-dark = {
                 alpha = 0.92;
                 background = config.colors.bg0;
                 foreground = config.colors.white;

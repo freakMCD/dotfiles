@@ -21,7 +21,7 @@
 
           nohup streamlink https://www.twitch.tv/$channel \
               --twitch-proxy-playlist=https://eu.luminous.dev,https://lb-eu.cdn-perfprod.com \
-              --player-no-close \
+              --player-no-close --twitch-low-latency \
               -p mpv best >/dev/null 2>&1 &
           disown
           exit

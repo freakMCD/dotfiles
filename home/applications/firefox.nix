@@ -36,7 +36,7 @@
           #nav-bar, .urlbar-background, #sidebar-box, findbar, #nav-bar, #navigator-toolbox { background: #${config.colors.bg0} !important; }
 
           #nav-bar {
-            margin-left: 80vw !important;
+            margin-left: 70vw !important;
             margin-top: -36px !important;
             margin-bottom: -5px !important;
           }
@@ -44,7 +44,7 @@
           #navigator-toolbox { border: 0px !important; }
 
           #TabsToolbar {
-            margin-right: 20vw !important;
+            margin-right: 30vw !important;
             min-height: 32px !important;
             max-height: 32px !important;
           }
@@ -55,12 +55,20 @@
           }
           .tab-content { padding-inline: 4px !important; }
           .tab-background { border-radius: 0px !important; }
+          .tab-label { font-size: 12px !important; }
 
-          /* Hide buttons*/
-          #reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button { display: none !important; }
+          /* Hide buttons of Tab bar*/
+          #reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button { display:none !important; }
+
+          /* Hide buttons of urlbar */
+          toolbarbutton, #identity-box, #tracking-protection-icon-container, #page-action-buttons, #stop-button { display: none !important; }
 
           /* URL bar */
-          #back-button, #forward-button, #tracking-protection-icon-container, #page-action-buttons { display: none !important; }
+          #urlbar-container { width: auto !important; }
+
+          #urlbar-input {
+              font-size: 0.85em !important;
+          }
 
           #urlbar {
             position: relative !important;
@@ -72,25 +80,6 @@
             inset-inline: 20vw !important;
             width: unset !important;
             align-self: flex-start !important;
-          }
-
-          #urlbar-container { width: auto !important; }
-
-          #urlbar-container:not(:hover) :where(
-            toolbarbutton,
-            #userContext-label,
-            #star-button-box,
-            .verifiedDomain,
-            #tracking-protection-icon-container,
-            #pageAction-urlbar-_testpilot-containers,
-            #pageActionButton,
-          ) {
-            font-size: 0 !important;
-            max-width: 0 !important;
-            padding-inline: 0 !important;
-            margin-inline: 0 !important;
-            opacity: 0 !important;
-            transition: var(--out-transition) !important;
           }
 
           menupopup {
