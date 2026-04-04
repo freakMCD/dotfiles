@@ -8,7 +8,7 @@ in
   environment.systemPackages = with pkgs; [
   deno mpc
 # Utils
-  ffmpeg p7zip curl htop fd rclone udiskie libnotify imagemagick unrar
+  ffmpeg p7zip curl htop fd rclone udiskie libnotify imagemagick unrar ethtool
 # Apps
   pipx neovim xournalpp gthumb avidemux mkvtoolnix geogebra6 pdfarranger simple-scan kalker qbittorrent gimp
 # Communication
