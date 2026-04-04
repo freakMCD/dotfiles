@@ -1,6 +1,19 @@
 {config, ...}:
 {
   services = {
+    mpd = {
+      enable = true;
+      musicDirectory = "~/Music";
+      network.startWhenNeeded = true;
+      extraConfig = ''
+        auto_update "yes"
+        zeroconf_enabled "no"
+        audio_output {
+          type "pipewire"
+          name "My PipeWire Output"
+        }
+      '';
+    };
     fnott = {
       enable = true;
       settings = {

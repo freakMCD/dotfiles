@@ -33,7 +33,7 @@
         isDefault = true;
         userChrome = ''
           /* Nav bar */
-          #nav-bar, .urlbar-background, #sidebar-box, findbar, #nav-bar, #navigator-toolbox { background: #${config.colors.bg0} !important; }
+          #nav-bar, .urlbar-background, #sidebar-box, findbar, #navigator-toolbox { background: #${config.colors.bg0} !important; }
 
           #nav-bar {
             margin-left: 80vw !important;
@@ -60,7 +60,16 @@
           #reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button { display:none !important; }
 
           /* Hide buttons of urlbar */
-          #urlbar-searchmode-switcher, #back-button, #forward-button, #PanelUI-button, #identity-box, #tracking-protection-icon-container, #page-action-buttons, #stop-button { display: none !important; }
+          #urlbar-searchmode-switcher, #back-button, #forward-button, #PanelUI-button, #tracking-protection-icon-container, #page-action-buttons, #stop-button { display: none !important; }
+
+          #identity-icon-box {
+            width: 0 !important;
+            min-width: 0 !important;
+            max-width: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+          }
 
           /* URL bar */
           #urlbar-container { width: auto !important; }
