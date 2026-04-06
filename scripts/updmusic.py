@@ -1,123 +1,169 @@
 #!/usr/bin/env python3
-
+import os
 import re
 import subprocess
 from pathlib import Path
 
-MUSIC_DIR = Path.home() / "Music"
+BASE_DIR = Path.home() / "Music"
+COOKIES = "firefox"
 
 PLAYLISTS = {
     "IU": "https://youtube.com/playlist?list=PL4CmunqMOJjLgSDqC8hShU51YH_ORsCXA",
     "Sakuzyo": "https://youtube.com/playlist?list=PL4CmunqMOJjJi3tbYxKbWV1HUzI6ZhsPZ",
     "Feryquitous": "https://youtube.com/playlist?list=PLjYilp-bySE1qwXLKHWZZcHbqWaetqyaM",
+    "Reol": "https://youtube.com/playlist?list=PL4CmunqMOJjLl9hS23NjOE2ye0w0NPB4q",
 }
 
-def get_playlist_ids(url):
-    result = subprocess.run(
-        ["yt-dlp", "--flat-playlist", "--print", "id", url],
-        capture_output=True,
-        text=True,
-    )
-    return {line for line in result.stdout.splitlines() if line}
+MAX_NAME_LEN = max(len(name) for name in PLAYLISTS)
 
-def extract_id(filename):
-    m = re.search(r"\[([a-zA-Z0-9_-]{11})\]", filename)
-    return m.group(1) if m else None
+parse_title = r"title:^(?i:)(?:[\【\[].*?[\】\]]\s*)*(?P<title>.*?)(?:\s*(?:[\【\[].*?[\】\]]|\(Audio\)|Official))*$"
+clear_metadata = r":(?P<meta_synopsis>)(?P<meta_description>)(?P<meta_purl>)"
 
 
-def clean_archive(archive_file, removed_ids):
-    if not archive_file.exists() or not removed_ids:
-        return
+# --- State extraction ---
 
-    lines = archive_file.read_text().splitlines()
-    with open(archive_file, "w") as f:
-        for line in lines:
-            if not any(vid in line for vid in removed_ids):
-                f.write(line + "\n")
+def get_remote_ids(url: str) -> set[str]:
+    cmd = [
+        "yt-dlp",
+        "--flat-playlist",
+        "--cookies-from-browser", COOKIES,
+        "--print", "%(id)s",
+        "--compat-options", "no-youtube-unavailable-videos",
+        url
+    ]
 
-    print("Archive cleaned")
+    result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+    return set(line.strip() for line in result.stdout.splitlines() if line.strip())
 
 
-try:
-    for name, url in PLAYLISTS.items():
-        print(f"\n== {name} ==")
+def get_local_files(directory: Path) -> dict[str, Path]:
+    """
+    Returns mapping: video_id -> file_path
+    """
+    mapping = {}
 
-        playlist_dir = MUSIC_DIR / name
-        playlist_dir.mkdir(parents=True, exist_ok=True)
+    for file in directory.iterdir():
+        if file.suffix.lower() in (".m4a", ".mp3", ".webm"):
+            m = re.search(r"\[([A-Za-z0-9_-]{11})\]", file.name)
+            if m:
+                mapping[m.group(1)] = file
 
-        archive_file = playlist_dir / ".archive"
-        output_template = playlist_dir / "%(title)s [%(id)s].%(ext)s"
+    return mapping
 
-        # --- Fetch remote playlist IDs ---
-        playlist_ids = get_playlist_ids(url)
 
-        if not playlist_ids:
-            print("[!] Failed to fetch playlist IDs. Skipping to avoid data loss.")
-            continue
+# --- Actions ---
 
-        # --- Scan local files and extract video IDs ---
-        local_ids = set()
-        files = list(playlist_dir.glob("*.*"))
+def delete_stale(local_map: dict[str, Path], to_delete: set[str]) -> list[str]:
+    removed = []
 
-        for file in files:
-            vid = extract_id(file.name)
-            if vid:
-                local_ids.add(vid)
+    for vid in to_delete:
+        path = local_map.get(vid)
+        if path and path.exists():
+            path.unlink()
+            removed.append(path.name)
 
-        # --- Differences ---
-        missing_ids = playlist_ids - local_ids
-        removed_ids = local_ids - playlist_ids
+    return removed
 
-        # Allow re-download of missing files by updating the archive
-        if archive_file.exists() and missing_ids:
-            lines = archive_file.read_text().splitlines()
-            with open(archive_file, "w") as f:
-                for line in lines:
-                    if not any(vid in line for vid in missing_ids):
-                        f.write(line + "\n")
+def download_missing(to_download: set[str], outdir: Path) -> list[str]:
+    if not to_download:
+        return []
 
-            print(f"Restoring {len(missing_ids)} missing files")
+    video_urls = [f"https://www.youtube.com/watch?v={vid}" for vid in to_download]
 
-        parse_title = r"title:^(?i:)(?:[\【\[].*?[\】\]]\s*)*(?P<title>.*?)(?:\s*(?:[\【\[].*?[\】\]]|\(Audio\)|Official))*$"
-        clear_metadata = r":(?P<meta_synopsis>)(?P<meta_description>)(?P<meta_purl>)"
+    cmd = [
+        "yt-dlp",
+        "-f", "bestaudio[ext=m4a]/bestaudio",
+        "--remux-video", "m4a",
+        "--cookies-from-browser", COOKIES,
+        "--restrict-filenames",
 
-        # --- download ---
-        print("Downloading...\n")
+        "--parse-metadata", parse_title,
+        "--parse-metadata", clear_metadata,
+        "--embed-metadata",
+        "--embed-thumbnail",
 
-        proc = subprocess.Popen([
-            "yt-dlp",
-            "-f", "bestaudio[ext=m4a]/bestaudio",
-            "--remux-video", "m4a",
-            "--cookies-from-browser", "firefox",
-            "--restrict-filenames",
+        "--compat-options", "no-youtube-unavailable-videos",
+        "--no-simulate",
 
-            "--parse-metadata", parse_title,
-            "--parse-metadata", clear_metadata, 
-            "--embed-metadata", 
-            "--embed-thumbnail",
+        "--print", "after_move:%(title)s|||%(id)s",
 
-            "--compat-options", "no-youtube-unavailable-videos",
-            "--yes-playlist",
-            "--print", "%(playlist_index)s - %(title)s", "--no-simulate",
-            "--download-archive", str(archive_file),
-            "-o", str(output_template),
-            url
-        ])
+        "-o", str(outdir / "%(title)s [%(id)s].%(ext)s"),
+        *video_urls
+    ]
+
+    added: list[str] = []
+
+    with subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True) as proc:
+        for line in proc.stdout:
+            line = line.strip()
+            if "|||" in line:
+                title, vid = line.split("|||", 1)
+                added.append(title)
 
         proc.wait()
 
-        # Remove local files that were deleted from the remote playlist
-        if removed_ids:
-            print(f"\nRemoving {len(removed_ids)} files...")
-            for file in files:
-                vid = extract_id(file.name)
-                if vid in removed_ids:
-                    print(f"  - {file.name}")
-                    file.unlink()
+    return added
 
-        # --- archive consistency ---
-        clean_archive(archive_file, removed_ids)
+# --- Core reconciliation ---
 
+def sync_playlist(name: str, url: str):
+    outdir = BASE_DIR / name
+    outdir.mkdir(parents=True, exist_ok=True)
 
-except KeyboardInterrupt:
-    print("\n[!] Interrupted. Exiting cleanly.")
+    remote_ids = get_remote_ids(url)
+    local_map = get_local_files(outdir)
+
+    local_ids = set(local_map.keys())
+
+    to_delete = local_ids - remote_ids
+    to_download = remote_ids - local_ids
+
+    # --- delete phase ---
+    removed = delete_stale(local_map, to_delete)
+
+    added = download_missing(to_download, outdir)
+
+    # --- OUTPUT ---
+    if added or removed:
+        print(f"✔️ {name:<{MAX_NAME_LEN}}")
+
+        for r in removed:
+            print(f"  - {r}")
+
+        for a in added:
+            print(f"  + {a}")
+
+        print(f"   → +{len(added)} / -{len(removed)} ({len(remote_ids)})\n")
+    else:
+        print(f"✔️ {name:<{MAX_NAME_LEN}} ({len(remote_ids)})")
+
+    final_map = get_local_files(outdir)
+    final_ids = set(final_map.keys())
+
+    if final_ids != remote_ids:
+        missing = remote_ids - final_ids
+        extra = final_ids - remote_ids
+
+        print(f"[WARN] {name} out of sync")
+        if missing:
+            print(f"  missing: {len(missing)}")
+        if extra:
+            print(f"  extra: {len(extra)}")
+
+    return len(remote_ids)
+
+# --- Main ---
+
+def main():
+    BASE_DIR.mkdir(parents=True, exist_ok=True)
+    os.chdir(BASE_DIR)
+
+    total = 0
+
+    for name, url in PLAYLISTS.items():
+        total += sync_playlist(name, url)
+
+    print(f"Total: {total}")
+
+if __name__ == "__main__":
+    main()
