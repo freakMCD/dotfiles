@@ -10,7 +10,6 @@ COOKIES = "firefox"
 PLAYLISTS = {
     "IU": "https://youtube.com/playlist?list=PL4CmunqMOJjLgSDqC8hShU51YH_ORsCXA",
     "Sakuzyo": "https://youtube.com/playlist?list=PL4CmunqMOJjJi3tbYxKbWV1HUzI6ZhsPZ",
-    "Reol": "https://youtube.com/playlist?list=PL4CmunqMOJjLl9hS23NjOE2ye0w0NPB4q",
 }
 
 MAX_NAME_LEN = max(len(name) for name in PLAYLISTS)
