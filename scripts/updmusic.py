@@ -8,11 +8,9 @@ BASE_DIR = Path.home() / "Music"
 COOKIES = "firefox"
 
 PLAYLISTS = {
-    "IU": "https://youtube.com/playlist?list=PL4CmunqMOJjLgSDqC8hShU51YH_ORsCXA",
-    "Sakuzyo": "https://youtube.com/playlist?list=PL4CmunqMOJjJi3tbYxKbWV1HUzI6ZhsPZ",
+    "sakuzyo": "https://youtube.com/playlist?list=PL4CmunqMOJjJi3tbYxKbWV1HUzI6ZhsPZ",
+    "bboy": "https://youtube.com/playlist?list=PL4CmunqMOJjL-x9SNOBgpseVVEYVzVbVM"
 }
-
-MAX_NAME_LEN = max(len(name) for name in PLAYLISTS)
 
 parse_title = r"title:^(?i:)(?:[\【\[].*?[\】\]]\s*)*(?P<title>.*?)(?:\s*(?:[\【\[].*?[\】\]]|\(Audio\)|Official))*$"
 clear_metadata = r":(?P<meta_synopsis>)(?P<meta_description>)(?P<meta_purl>)"
@@ -96,6 +94,7 @@ def download_missing(to_download: set[str], outdir: Path) -> list[str]:
             line = line.strip()
             if "|||" in line:
                 title, vid = line.split("|||", 1)
+                print(f"  + {title}")
                 added.append(title)
 
         proc.wait()
@@ -119,21 +118,18 @@ def sync_playlist(name: str, url: str):
     # --- delete phase ---
     removed = delete_stale(local_map, to_delete)
 
+    print(f"\033[93mSyncing {name}\033[0m") # Print header in yellow
     added = download_missing(to_download, outdir)
 
     # --- OUTPUT ---
     if added or removed:
-        print(f"✔️ {name:<{MAX_NAME_LEN}}")
-
         for r in removed:
             print(f"  - {r}")
 
-        for a in added:
-            print(f"  + {a}")
-
         print(f"   → +{len(added)} / -{len(removed)} ({len(remote_ids)})\n")
+        print(f"✔️ {name} updated")
     else:
-        print(f"✔️ {name:<{MAX_NAME_LEN}} ({len(remote_ids)})")
+        print(f"✔️ {name} is up to date ({len(remote_ids)})")
 
     final_map = get_local_files(outdir)
     final_ids = set(final_map.keys())
@@ -158,8 +154,10 @@ def main():
 
     total = 0
 
-    for name, url in PLAYLISTS.items():
+    for i, (name, url) in enumerate(PLAYLISTS.items()):
         total += sync_playlist(name, url)
+        if i < len(PLAYLISTS) - 1:
+            print()
 
     print(f"Total: {total}")
 
