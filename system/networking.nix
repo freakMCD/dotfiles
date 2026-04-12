@@ -6,11 +6,8 @@ in
 {
   services.resolved = {
     enable = true;
-
-    # Use systemd-resolved's global DNS servers instead of per-interface.
-    domains = [ "~." ];
-
     settings.Resolve = {
+      Domains = [ "~." ];
       DNSOverTLS = true;
       FallbackDNS = [];
       DNS = [

@@ -7,17 +7,17 @@ in
 
   environment.systemPackages = with pkgs; [
 # Utils
-  ffmpeg p7zip curl htop fd rclone udiskie libnotify imagemagick unrar ethtool
+  p7zip curl htop fd rclone udiskie libnotify imagemagick unrar ethtool ghostscript
 # Apps
-  neovim xournalpp gthumb avidemux mkvtoolnix geogebra6 pdfarranger simple-scan kalker qbittorrent gimp
+  neovim xournalpp gthumb geogebra6 pdfarranger simple-scan gimp
 # Communication
-  neomutt msmtp isync w3m
+  neomutt msmtp isync w3m perlEnv
 # Dev
-  home-manager nvd pass yadm gnupg dig gcc perlEnv
+  home-manager nvd pass yadm gnupg gcc
 # Linters
   texlab ruff
 # hyprland
-  kitty wl-clipboard wf-recorder grim slurp hyprpicker hypridle wev conky 
+  kitty grimblast wl-clipboard grim slurp hyprpicker hypridle wev conky
 # Latex
   (texlive.combine {
     inherit (texlive)
@@ -39,8 +39,6 @@ in
   matplotlib
   opencv4
   scipy
-  mutagen # for thumbnails on opus
-  # linters
 ]))
 ];
 
@@ -104,12 +102,5 @@ in
     extraArgs = [
       "-g"
     ];
-  };
-
-  services.mediatomb = {
-    enable = true;
-    openFirewall = true;
-    serverName = "PC";
-    transcoding = true;
   };
 }

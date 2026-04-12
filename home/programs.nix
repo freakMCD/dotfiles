@@ -1,10 +1,6 @@
 {config, pkgs, ...}:
 {
   programs = {
-    hyprshot = {
-      enable = true;
-      saveLocation = "$HOME/MediaHub/screenshots/";
-    };
     git = {
       enable = true;
       settings = {
@@ -35,6 +31,7 @@
 
     yazi = {
       enable = true;
+      shellWrapperName = "yy";
       enableFishIntegration= true;
       settings = {
         log = {

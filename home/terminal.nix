@@ -19,22 +19,6 @@
           end
       end
 
-      function fmpc
-          set -l song_position (mpc -f "%position%) %artist% - %title%" playlist | \
-              fzf --query="$argv" --reverse --select-1 --exit-0 | \
-              sed -n 's/^\([0-9]\+\)).*/\1/p')
-
-          if test -n "$song_position"
-              mpc -q play $song_position
-          end
-      end
-
-      function mpv
-          nohup mpv $argv >/dev/null 2>&1 & disown
-          exit
-      end
-
-
       function rebuild
           # Capture previous system state
           set -l old_system (readlink /run/current-system)
@@ -92,7 +76,6 @@
       df="df -h";
       dus="du -h --max-depth=1 | sort -hr";
       fc-list=''fc-list --format="%{family[0]}\n" | sort | uniq'';
-      sortmusic=''cd ~/Music/ && stat --format="%W %n" * | sort -nr'';
 
       gpg-list="gpg --list-secret-keys --keyid-format LONG";
       gpg-backup="gpg -o private.gpg --export-options backup --export-secret-keys";
