@@ -60,7 +60,7 @@
           #reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button { display:none !important; }
 
           /* Hide buttons of urlbar */
-          #urlbar-searchmode-switcher, #back-button, #forward-button, #PanelUI-button, #tracking-protection-icon-container, #page-action-buttons, #stop-button { display: none !important; }
+          #urlbar-searchmode-switcher, #back-button, #forward-button, #PanelUI-button, #tracking-protection-icon-container, #stop-button { display: none !important; }
 
           #identity-icon-box {
             width: 0 !important;

@@ -7,9 +7,9 @@
     ./services.nix
     ./programs.nix
     ./terminal.nix
-    ./mpv.nix
     ./xdg.nix
     ./applications/firefox.nix
+    ./applications/mpv.nix
   ];
 
   home = {

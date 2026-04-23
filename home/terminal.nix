@@ -63,7 +63,7 @@
           # 1. --update was used, or
           # 2. The system actually changed
           if [ "$update_requested" -eq 1 ] || [ "$old_system" != "$new_system" ]
-              nvd diff $old_system $new_system
+              nvd diff $old_system $new_system | grep -E '^\[(U\*|R\.)'
           else
               echo "No changes detected."
           end
