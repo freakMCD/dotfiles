@@ -39,6 +39,13 @@ home.packages = with pkgs; [
       rclone ${rcloneOpts} sync MediaHub mega:MediaHub
       rclone ${rcloneOpts} sync MathCareer mega:MathCareer
     '')
+
+    (writeShellScriptBin "syncMusic" ''
+      cd "$HOME"
+      
+      echo "Syncing Music to drive..."
+      rclone ${rcloneOpts} sync Music drive:Music
+    '')
 ];
 }
 
