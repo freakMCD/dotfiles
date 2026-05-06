@@ -11,7 +11,7 @@ in
 # Utils
   p7zip curl htop fd rclone udiskie libnotify imagemagick unrar ethtool ghostscript 
 # Apps
-  neovim xournalpp gthumb geogebra6 pdfarranger simple-scan gimp
+  neovim xournalpp gthumb geogebra6 pdfarranger simple-scan gimp octaveFull
 # Communication
   neomutt msmtp isync w3m perlEnv
 # Dev

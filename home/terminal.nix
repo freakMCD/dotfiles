@@ -12,6 +12,40 @@
       fish_config prompt choose nim
       source ~/.local/share/linuxfedora
 
+      function zipm
+          if test (count $argv) -ne 1
+              echo "Usage: zipm archive.zip"
+              return 1
+          end
+
+          set -l archive $argv[1]
+
+          set -l choice (
+              printf "selected files\nall files\n" \
+              | fzf --prompt="zip mode > "
+          )
+
+          switch $choice
+              case "selected files"
+                  set -l files (
+                      fd --type f . \
+                      | fzf --multi
+                  )
+
+                  if test -z "$files"
+                      return 1
+                  end
+
+                  7z a $archive $files
+
+              case "all files"
+                  7z a $archive .
+
+              case '*'
+                  return 1
+          end
+      end
+
       function fe
           set -l files (fzf --delimiter / --with-nth 4.. --query="$argv" --multi --select-1 --exit-0 | string split0)
           if test -n "$files"

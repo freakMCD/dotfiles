@@ -15,6 +15,7 @@
   home = {
     sessionPath = [ "$HOME/.local/bin"];
     sessionVariables = {
+      LIBGL_ALWAYS_SOFTWARE = "1";
       GNUPGHOME="$HOME/.local/share/gnupg";
       TEXMFVAR="$HOME/.cache/texlive/texmf-var";
       W3M_DIR="$HOME/.local/share/w3m";
