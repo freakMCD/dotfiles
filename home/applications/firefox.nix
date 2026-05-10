@@ -60,7 +60,11 @@
           #reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button { display:none !important; }
 
           /* Hide buttons of urlbar */
-          #reader-mode-button, #identity-box, #trust-icon-container, #permissions-granted-icon, #translations-button-icon, #urlbar-searchmode-switcher, #back-button, #forward-button, #PanelUI-button, #tracking-protection-icon-container, #stop-button { display: none !important; }
+          #reader-mode-button, #trust-icon-container, #permissions-granted-icon, #translations-button-icon, #urlbar-searchmode-switcher, #back-button, #forward-button, #PanelUI-button, #tracking-protection-icon-container, #stop-button { display: none !important; }
+
+          .identity-box-button {
+            display: none !important;
+          }
 
           /* URL bar */
           #urlbar-container { width: auto !important; }
