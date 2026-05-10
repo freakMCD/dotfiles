@@ -60,10 +60,18 @@
           #reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button { display:none !important; }
 
           /* Hide buttons of urlbar */
-          #reader-mode-button, #trust-icon-container, #permissions-granted-icon, #translations-button-icon, #urlbar-searchmode-switcher, #back-button, #forward-button, #PanelUI-button, #tracking-protection-icon-container, #stop-button { display: none !important; }
+          #urlbar-zoom-button, #reader-mode-button, #trust-icon-container, #permissions-granted-icon, #translations-button-icon, #urlbar-searchmode-switcher, #back-button, #forward-button, #PanelUI-button, #tracking-protection-icon-container, #stop-button { display: none !important; }
 
           .identity-box-button {
             display: none !important;
+          }
+
+          #star-button-box,
+          .unified-extensions-item-row-wrapper {
+              padding: 0 !important;
+              margin: 0 !important;
+              width: 14px !important;
+              align-items: center !important;
           }
 
           /* URL bar */
