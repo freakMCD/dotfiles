@@ -112,14 +112,6 @@ return
       ),
       {condition = line_begin}
     ),
-    s({trig="sii", snippetType="autosnippet"},
-      fmta(
-        [[\si{<>}]],
-        {
-          i(1),
-        }
-      )
-    ),
     s({trig="qtt"},
       fmta(
         [[\qty{<>}{<>}]],

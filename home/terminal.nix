@@ -12,6 +12,48 @@
       fish_config prompt choose nim
       source ~/.local/share/linuxfedora
 
+      function fmpc --description "Fuzzy MPD selector for The Stage"
+          set -l folder "The Stage"
+
+          set -l selection (
+              mpc --format "%position%\t%artist%\t%title%\t%file%" playlist | \
+              awk -F '\t' -v folder="$folder/" '
+                  $4 ~ "^" folder {
+                      file = $4
+                      sub("^" folder, "", file)
+
+                      artist = ($2 == "" ? "Unknown Artist" : $2)
+                      title  = ($3 == "" ? file : $3)
+
+                      printf "%s\t%s — %s\n", $1, artist, title
+                  }
+              ' | \
+              fzf \
+                  --query="$argv" \
+                  --ansi \
+                  --reverse \
+                  --cycle \
+                  --height=75% \
+                  --border \
+                  --prompt="🎵  " \
+                  --pointer="▶" \
+                  --marker="✓" \
+                  --delimiter='\t' \
+                  --with-nth=2 \
+                  --nth=2 \
+                  --tiebreak=index \
+                  --bind='enter:accept' \
+                  --select-1 \
+                  --exit-0
+          )
+
+          test -z "$selection"; and return
+
+          set -l position (string split \t -- $selection)[1]
+
+          mpc -q play $position
+      end
+
       function zipm
           if test (count $argv) -ne 1
               echo "Usage: zipm archive.zip"

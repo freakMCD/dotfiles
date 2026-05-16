@@ -25,13 +25,6 @@ return
         d(1, get_visual),
         t("}"),
       }),
-    -- Paired square brackets
-    s({trig="[", wordTrig = false, snippetType="autosnippet"},
-      {
-        t("["),
-        d(1, get_visual),
-        t("]"),
-      }),
     -- Paired back ticks
     s({trig="sf", snippetType="autosnippet"},
       {

@@ -25,8 +25,8 @@ RCLONE_OPTS = [
 ]
 
 PLAYLISTS = {
-        "IU": "https://youtube.com/playlist?list=PL4CmunqMOJjIx9FVH6nkaCZ-Iqwt6RjjM",
-        "The Hall": "https://youtube.com/playlist?list=PL4CmunqMOJjKV-YIN5He2Bq08gFMLSOs9",
+    "The Hall": "https://youtube.com/playlist?list=PL4CmunqMOJjKV-YIN5He2Bq08gFMLSOs9",
+    "The Stage": "https://youtube.com/playlist?list=PL4CmunqMOJjJbVnfnP_MW6OmuXYvpWcVi",
 }
 
 parse_title = r"title:^(?i:)(?:[\【\[].*?[\】\]]\s*)*(?P<title>.*?)(?:\s*(?:[\【\[].*?[\】\]]|\(Audio\)|Official))*$"

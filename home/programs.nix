@@ -106,7 +106,7 @@
         selection-clipboard = "clipboard";
         selection-notification = false;
         show-recent = 20;
-        recolor-lightcolor = "rgba(245,232,190,0.7)" ;
+        recolor-lightcolor = "rgba(245,232,190,0.8)" ;
         recolor-darkcolor = "#000000";
         recolor = true;
         recolor-keephue = true;
