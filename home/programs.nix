@@ -1,6 +1,19 @@
 {config, pkgs, ...}:
 {
   programs = {
+    ncmpcpp = {
+      enable = true;
+      mpdMusicDir = "~/Music";
+      settings = {
+        user_interface = "alternative";
+        lyrics_directory = "~/Music/.lyrics";
+        lyrics_fetchers = "internet";
+        mpd_crossfade_time = 3;
+        connected_message_on_startup = "no";
+        external_editor = "nvim";
+        follow_now_playing_lyrics = "yes";
+        };
+    };
     git = {
       enable = true;
       settings = {
@@ -44,7 +57,7 @@
         };
         opener = {
           image = [{run = ''gthumb "$@"'';}];
-          pdf = [{ run = ''zathura "$@"''; }];
+          pdf = [{ run = ''zathura "$@" &''; }];
           video = [{ run = ''mpv "$@"''; }];
           text = [{run=''nvim "$@"'';}];
           markdown= [{run=''nvim "$@"'';}];
@@ -135,6 +148,7 @@
       };
     };
   };
+
   home.packages = with pkgs; [
     chafa
   ];

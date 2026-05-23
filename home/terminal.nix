@@ -146,6 +146,7 @@
       end
     '';
     shellAbbrs = {
+      ncmpc = "ncmpcpp";
       windows10 = ''quickemu --vm windows-10.conf --public-dir ~/Share --mouse "virtio"'';
       rm = "rm -I";
       yamend = "yadm commit --amend --no-edit && yadm push -f";

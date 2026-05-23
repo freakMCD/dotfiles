@@ -20,6 +20,22 @@ return {
 %\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue]{{hyperref}}
 ]], {})),
 
+  s("exercises", fmt([[
+\usepackage{{tcolorbox}}
+\tcbuselibrary{{breakable}}
+
+\newtcolorbox{{problem}}[1]{{
+    breakable,
+    colback=blue!5,
+    colframe=blue!50!black,
+    colbacktitle=blue!50!black,
+    coltitle=white,
+    fonttitle=\bfseries,
+    title={{#1}},
+    fontupper=\small
+}}
+]], {})),
+
 s("begindiscreta", fmt([[
 
 \setcounter{{tocdepth}}{{1}} % Only sections in TOC

@@ -514,13 +514,6 @@ return
     {condition = tex.in_mathzone}
   ),
  
-  -- NORMA
-   s({trig = "norm", snippetType="autosnippet"},
-    fmt("\\lVert {} \\rVert ",{
-      i(1)
-    }),
-    {condition = tex.in_mathzone}
-  ),
   -- NORMA ampliada
    s({trig = "lnorm", snippetType="autosnippet"},
     fmt("\\left\\lVert {} \\right\\rVert ",{

@@ -42,7 +42,10 @@
     udisks2.enable = true;
     
     # Printing
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = [ pkgs.hplipWithPlugin ];
+    };
 
     # Audio
     pipewire = {
@@ -72,7 +75,7 @@
   users.users.edwin = {
     isNormalUser = true;
     description = "Edwin";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "scanner" "lp" "wheel"];
     packages = with pkgs; [];
   };
 
