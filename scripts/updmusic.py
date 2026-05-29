@@ -26,7 +26,8 @@ RCLONE_OPTS = [
 
 PLAYLISTS = {
     "The Hall": "https://youtube.com/playlist?list=PL4CmunqMOJjKV-YIN5He2Bq08gFMLSOs9",
-    "The Stage": "https://youtube.com/playlist?list=PL4CmunqMOJjJbVnfnP_MW6OmuXYvpWcVi",
+    "Diverse System Works": "https://youtube.com/playlist?list=PLBO2h-GzDvIbiBQtfWK-SiBG07lHIjqlu",
+    "Diverse System Palette": "https://www.youtube.com/playlist?list=PLBO2h-GzDvIaQnXb1IKzb5q3P7fSHegOA",
 }
 
 parse_title = r"title:^(?i:)(?:[\【\[].*?[\】\]]\s*)*(?P<title>.*?)(?:\s*(?:[\【\[].*?[\】\]]|\(Audio\)|Official))*$"

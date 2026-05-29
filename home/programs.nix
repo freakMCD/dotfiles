@@ -8,7 +8,6 @@
         user_interface = "alternative";
         lyrics_directory = "~/Music/.lyrics";
         lyrics_fetchers = "internet";
-        mpd_crossfade_time = 3;
         connected_message_on_startup = "no";
         external_editor = "nvim";
         follow_now_playing_lyrics = "yes";
