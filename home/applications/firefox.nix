@@ -14,6 +14,7 @@
               in listToAttrs [
                 (extension "ublock-origin" "uBlock0@raymondhill.net")
               ];
+          BlockAboutAddons = true;
           DisableFirefoxAccounts = true;
           DisableFirefoxStudies = true;
           DisableTelemetry = true;
@@ -25,6 +26,16 @@
           PasswordManagerEnabled = false;
           SearchSuggestEnabled = false;
           StartDownloadsInTempDirectory = true;
+
+          WebsiteFilter = {
+            Block = [
+              "*://youtube.com/*"
+              "*://music.youtube.com/*"
+              "*://www.youtube.com/*"
+              "*://m.youtube.com/*"
+              "*://youtu.be/*"
+            ];
+          };
       };
 
       profiles.default = {
@@ -204,7 +215,7 @@
                 ### ----- Easylist -----
                 "fanboy-cookiemonster"
                 "ublock-cookies-easylist"
-                ## ----- Social -----
+                ## --e--- Social -----
                 "fanboy-social"
                 # "adguard-social"
                 "fanboy-thirdparty_social"

@@ -40,18 +40,7 @@ return
     ),
     {condition = tex.in_mathzone}
   ),
-  -- SUBSCRIPT SHORTCUT
-  -- Places the first alphanumeric character after the trigger into a subscript.
-  s({trig = '([%w%)%]%}]):([%w])', regTrig = true, wordTrig = false, snippetType="autosnippet"},
-    fmta(
-      "<>_{<>}",
-      {
-        f( function(_, snip) return snip.captures[1] end ),
-        f( function(_, snip) return snip.captures[2] end ),
-      }
-    ),
-    {condition = tex.in_mathzone}
-  ),
+
   -- EULER'S NUMBER SUPERSCRIPT SHORTCUT
   s({trig = '([^%a])ee', regTrig = true, wordTrig = false, snippetType="autosnippet"},
     fmta(
