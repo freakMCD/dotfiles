@@ -175,7 +175,7 @@ def sync_playlist(name: str, url: str):
         if extra:
             print(f"  extra: {len(extra)}")
 
-    return len(remote_ids), len(added)
+    return len(remote_ids), len(added) + len(removed)
 
 # --- Main ---
 
@@ -184,22 +184,22 @@ def main():
     os.chdir(BASE_DIR)
 
     total = 0
-    total_downloaded = 0
+    total_changes = 0
 
     for i, (name, url) in enumerate(PLAYLISTS.items()):
         playlist_total, downloaded = sync_playlist(name, url)
         total += playlist_total
-        total_downloaded += downloaded
+        total_changes += downloaded
 
         if i < len(PLAYLISTS) - 1:
             print()
 
     print(f"Total: {total}\n")
 
-    if total_downloaded > 0:
+    if total_changes > 0:
         rclone_sync()
     else:
-        print("No new downloads. Skipping rclone sync.")
+        print("No changes. Skipping rclone sync.")
 
 if __name__ == "__main__":
     main()
