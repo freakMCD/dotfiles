@@ -4,14 +4,14 @@ IFACE="enp34s0"
 NOTIF_ID=9999
 RENEGOTIATING=0
 
-nmcli monitor | while read -r line; do
+while read -r line; do
     case "$line" in
-        *"Connectivity is now 'full'"*)
+        *LOWER_UP*)
 
             speed=""
 
             for _ in {1..5}; do
-                speed=$(cat "/sys/class/net/$IFACE/speed" 2>/dev/null)
+                speed=$(<"/sys/class/net/$IFACE/speed" 2>/dev/null)
 
                 if [[ "$speed" =~ ^[0-9]+$ ]]; then
                     break
@@ -20,9 +20,9 @@ nmcli monitor | while read -r line; do
                 sleep 1
             done
 
-            if [ "$speed" = "10" ]; then
+            if [[ "$speed" == "10" ]]; then
 
-                if [ "$RENEGOTIATING" -eq 0 ]; then
+                if [[ "$RENEGOTIATING" -eq 0 ]]; then
                     RENEGOTIATING=1
 
                     notify-send \
@@ -35,16 +35,27 @@ nmcli monitor | while read -r line; do
                     sudo ethtool -r "$IFACE"
                 fi
 
-            elif [[ "$speed" =~ ^[0-9]+$ ]]; then
+            elif [[ "$speed" == "100" ]]; then
 
                 RENEGOTIATING=0
 
                 notify-send \
                     -r "$NOTIF_ID" \
+                    -t 3000 \
+                    "Network" \
+                    "Connected at ${speed} Mb/s"
+
+            elif [[ "$speed" == "1000" ]]; then
+
+                RENEGOTIATING=0
+
+                notify-send \
+                    -r "$NOTIF_ID" \
+                    -t 3000 \
                     "Network" \
                     "Connected at ${speed} Mb/s"
 
             fi
             ;;
     esac
-done
+done < <(ip monitor link dev "$IFACE")
