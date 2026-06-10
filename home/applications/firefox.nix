@@ -1,20 +1,24 @@
 { config, pkgs, lib, ...}:
+let
+  lockedPrefs = prefs:
+    builtins.mapAttrs (_: value: {
+      Value = value;
+      Status = "locked";
+    }) prefs;
+in
 {
     programs.firefox = {
       enable = true;
       policies = {
-            ExtensionSettings = with builtins;
-              let extension = shortId: uuid: {
-                name = uuid;
-                value = {
-                  install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
-                  installation_mode = "force_installed";
-                };
-              };
-              in listToAttrs [
-                (extension "ublock-origin" "uBlock0@raymondhill.net")
-              ];
+          ExtensionSettings = {
+            "uBlock0@raymondhill.net" = {
+              install_url =
+                "https://addons.mozilla.org/en-US/firefox/downloads/latest/ublock-origin/latest.xpi";
+              installation_mode = "force_installed";
+            };
+          };
           BlockAboutAddons = true;
+          BlockAboutConfig = true;
           DisableFirefoxAccounts = true;
           DisableFirefoxStudies = true;
           DisableTelemetry = true;
@@ -24,6 +28,7 @@
           NewTabPage = false;
           OfferToSaveLogins = false;
           PasswordManagerEnabled = false;
+          PictureInPicture = false;
           SearchSuggestEnabled = false;
           StartDownloadsInTempDirectory = true;
 
@@ -32,7 +37,24 @@
               "*://*.youtube.com/*"
               "*://youtu.be/*"
             ];
-};
+          };
+
+          Preferences = lockedPrefs {
+            "accessibility.browsewithcaret_shortcut.enabled" = false;
+            "browser.aboutConfig.showWarning" = false;
+            "browser.cache.disk.enable" = false;
+            "browser.sessionstore.resume_from_crash" = false;
+            "browser.tabs.groups.enabled" = false;
+            "browser.urlbar.suggest.engines" = false;
+            "browser.urlbar.suggest.history" = false;
+            "browser.uidensity" = 1;
+            "general.smoothScroll" = false;
+            "media.autoplay.default" = 5;
+            "network.trr.mode" = 5;
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+            "ui.key.menuAccessKeyFocuses" = false;
+            "widget.use-xdg-desktop-portal.file-picker" = 2;
+          };
       };
 
       profiles.default = {
@@ -64,15 +86,8 @@
           .tab-content { padding-inline: 4px !important; }
           .tab-background { border-radius: 0px !important; }
 
-          /* Hide buttons of Tab bar*/
-          #reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button { display:none !important; }
-
-          /* Hide buttons of urlbar */
-          #urlbar-zoom-button, #reader-mode-button, #trust-icon-container, #permissions-granted-icon, #translations-button-icon, #urlbar-searchmode-switcher, #back-button, #forward-button, #PanelUI-button, #tracking-protection-icon-container, #stop-button { display: none !important; }
-
-          .identity-box-button {
-            display: none !important;
-          }
+          /* Hide buttons of Tabbar and urlbar */
+          .searchmode-switcher, #reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button, #urlbar-zoom-button, #reader-mode-button, #trust-icon-container, #permissions-granted-icon, #translations-button-icon, #urlbar-searchmode-switcher, #back-button, #forward-button, #PanelUI-button, #tracking-protection-icon-container, #stop-button, .identity-box-button { display: none !important; }
 
           #star-button-box,
           .unified-extensions-item-row-wrapper {
@@ -112,39 +127,6 @@
             background: #${config.colors.bg0} !important;
           }
         '';
-
-        settings = {
-        "network.trr.mode" = 5;
-        "network.dnsCacheEntries" = 0;
-        "network.dnsCacheExpiration" = 0;
-        # Accessibility, Input & Scrolling
-        "accessibility.browsewithcaret_shortcut.enabled" = false;
-        "general.smoothScroll" = false;
-        "ui.key.menuAccessKey" = 17;        # Alt key
-        "ui.key.menuAccessKeyFocuses" = false;
-
-        # Accounts & UI Customization
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-
-        # Core UX, Layout & Startup
-        "browser.uidensity" = 1;
-        "browser.aboutConfig.showWarning" = false;
-        "media.videocontrols.picture-in-picture.video-toggle.enabled" = true;
-
-        # Disk Usage & Downloads v/
-        "browser.cache.disk.enable" = false;
-        "browser.sessionstore.interval" = 300000; # ms
-        "widget.use-xdg-desktop-portal.file-picker" = 2;
-
-        # URL Bar, Search & Suggestions v/
-        "browser.urlbar.suggest.engines" = false;
-        "browser.urlbar.suggest.history" = false;
-        "browser.urlbar.shortcuts.tabs" = false;
-
-        # Mozilla UI, Discovery & Promotions
-        "browser.discovery.enabled" = false;
-        "extensions.htmlaboutaddons.recommendations.enabled" = false;
-        };
 
         search = {
           force = true;
@@ -197,15 +179,14 @@
                 "block-lan"
                 ## ----- Malware -----
                 "urlhaus-1"
-                # "curben-phishing"
                 ## ----- Multipurpose -----
                 "plowe-0"
                 "dpollock-0"
                 ## ----- Cookie Notices -----
-                ### ----- Easylist -----
+                ## ----- Easylist -----
                 "fanboy-cookiemonster"
                 "ublock-cookies-easylist"
-                ## --e--- Social -----
+                ## ------ Social -----
                 "fanboy-social"
                 # "adguard-social"
                 "fanboy-thirdparty_social"

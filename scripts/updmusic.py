@@ -25,9 +25,8 @@ RCLONE_OPTS = [
 ]
 
 PLAYLISTS = {
-    "The Hall": "https://youtube.com/playlist?list=PL4CmunqMOJjKV-YIN5He2Bq08gFMLSOs9",
-    "Diverse System Works": "https://youtube.com/playlist?list=PLBO2h-GzDvIbiBQtfWK-SiBG07lHIjqlu",
-    "Diverse System Palette": "https://www.youtube.com/playlist?list=PLBO2h-GzDvIaQnXb1IKzb5q3P7fSHegOA",
+    "ES Sister": "https://youtube.com/playlist?list=PLaB6792oq6TsSUpdUJHera9WsjffA_zkp",
+    "ES Brother": "https://youtube.com/playlist?list=PLaB6792oq6TuIO9LKtnPc2pnGKqAr3t2F",
 }
 
 parse_title = r"title:^(?i:)(?:[\【\[].*?[\】\]]\s*)*(?P<title>.*?)(?:\s*(?:[\【\[].*?[\】\]]|\(Audio\)|Official))*$"
