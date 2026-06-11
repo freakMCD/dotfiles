@@ -468,20 +468,6 @@ return
       t("\\subset "),
     }
   ),
-  -- APPROX, i.e. \approx
-  s({trig = "px", snippetType="autosnippet"},
-    {
-      t("\\approx "),
-    },
-    {condition = tex.in_mathzone}
-  ),
-  -- PROPTO, i.e. \propto
-  s({trig = "pt", snippetType="autosnippet"},
-    {
-      t("\\propto "),
-    },
-    {condition = tex.in_mathzone}
-  ),
   -- COLON, i.e. \colon
   s({trig = "::", snippetType="autosnippet"},
     {

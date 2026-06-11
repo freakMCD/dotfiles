@@ -16,7 +16,7 @@ return
       fmta(
         [[
         \begin{<>}
-            <>
+         <>
         \end{<>}
       ]],
         {
@@ -32,7 +32,7 @@ return
       fmta(
         [[
         \begin{<>}{<>}
-            <>
+         <>
         \end{<>}
       ]],
         {
@@ -49,7 +49,7 @@ return
       fmta(
         [[
         \begin{<>}{<>}{<>}
-            <>
+         <>
         \end{<>}
       ]],
         {
@@ -67,7 +67,7 @@ return
       fmta(
         [[
         \begin{topic}{<>}{<>}
-            <>
+         <>
         \end{topic}
       ]],
         {
@@ -83,7 +83,7 @@ return
       fmta(
         [[
         \[
-            <>
+          <>
         \]
       ]],
         {
@@ -113,7 +113,7 @@ return
       fmta(
         [[
         \begin{align*}
-            <>
+         <>
         \end{align*}
       ]],
         {
@@ -128,7 +128,7 @@ return
         [[
         \begin{itemize}
 
-            \item <>
+         \item <>
 
         \end{itemize}
       ]],
