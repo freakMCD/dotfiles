@@ -1,18 +1,6 @@
 {config, pkgs, ...}:
 {
   programs = {
-    ncmpcpp = {
-      enable = true;
-      mpdMusicDir = "~/Music";
-      settings = {
-        user_interface = "alternative";
-        lyrics_directory = "~/Music/.lyrics";
-        lyrics_fetchers = "internet";
-        connected_message_on_startup = "no";
-        external_editor = "nvim";
-        follow_now_playing_lyrics = "yes";
-        };
-    };
     git = {
       enable = true;
       settings = {
@@ -55,11 +43,12 @@
           sort_by = "natural";
         };
         opener = {
-          image = [{run = ''gthumb "$@"'';}];
-          pdf = [{ run = ''zathura "$@" &''; }];
-          video = [{ run = ''mpv "$@"''; }];
-          text = [{run=''nvim "$@"'';}];
-          markdown= [{run=''nvim "$@"'';}];
+          default = [{ run = ''xdg-open "$@"''; orphan = true; }];
+          image = [{ run = ''gthumb "$@"''; orphan = true; }];
+          pdf = [{ run = ''zathura "$@"''; orphan = true; }];
+          video = [{ run = ''mpv "$@"''; orphan = true; }];
+          audio = [{ run = ''mpv "$@"''; orphan = true; }];
+          text = [{ run = ''nvim "$@"''; }];
         };
         open = {
           prepend_rules = [
@@ -70,8 +59,23 @@
             { url = "*.gif"; use = "image"; }
             { url = "*.bmp"; use = "image"; }
             { url = "*.svg"; use = "image"; }
-            { url = "*.pdf";  use = "pdf"; }
+            { url = "*.webp"; use = "image"; }
+            { url = "*.avif"; use = "image"; }
+
+            { url = "*.pdf"; use = "pdf"; }
+
             { url = "*.mp4";  use = "video"; }
+            { url = "*.mkv";  use = "video"; }
+            { url = "*.webm"; use = "video"; }
+
+            { url = "*.mp3";  use = "audio"; }
+            { url = "*.flac"; use = "audio"; }
+            { url = "*.wav";  use = "audio"; }
+            { url = "*.ogg";  use = "audio"; }
+            { url = "*.m4a";  use = "audio"; }
+
+            { url = "*.txt";  use = "text"; }
+            { url = "*.md";   use = "text"; }
           ];
         };
       };

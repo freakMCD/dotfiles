@@ -9,7 +9,6 @@
       keep-open-pause = true;
       idle = "yes";
       profile = "fast";
-      video-sync = "display-resample";
       save-position-on-quit = true;
       watch-later-options = "start";
       save-watch-history = true;
@@ -116,13 +115,4 @@
         mpvScripts.mpv-playlistmanager
     ];
   };
-  home.packages = with pkgs; [
-    (writeShellApplication {
-      name = "mpvl";
-      runtimeInputs = with pkgs; [ wl-clipboard ];
-      text = ''
-        mpv "$(wl-paste)"
-      '';
-    })
-  ];
 }

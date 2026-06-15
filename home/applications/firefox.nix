@@ -32,12 +32,7 @@ in
           SearchSuggestEnabled = false;
           StartDownloadsInTempDirectory = true;
 
-          WebsiteFilter = {
-            Block = [
-              "*://*.youtube.com/*"
-              "*://youtu.be/*"
-            ];
-          };
+          WebsiteFilter = { Block = ["*://*.nextdns.io/*" ];};
 
           Preferences = lockedPrefs {
             "accessibility.browsewithcaret_shortcut.enabled" = false;
