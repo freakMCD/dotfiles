@@ -6,7 +6,7 @@ in
       builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
   environment.systemPackages = with pkgs; [
 # Music
-  yt-dlp deno mpc
+  deno mpc ffmpeg
 # Utils
   p7zip curl htop fd rclone udiskie libnotify imagemagick unrar ethtool ghostscript 
 # Apps

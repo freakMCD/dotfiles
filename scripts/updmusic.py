@@ -25,8 +25,8 @@ RCLONE_OPTS = [
 ]
 
 PLAYLISTS = {
-    "ES Sister": "https://youtube.com/playlist?list=PLaB6792oq6TsSUpdUJHera9WsjffA_zkp",
     "ES Brother": "https://youtube.com/playlist?list=PLaB6792oq6TuIO9LKtnPc2pnGKqAr3t2F",
+    "The Hall": "https://youtube.com/playlist?list=PL4CmunqMOJjLdhvhCILv7kwHRMSzdKLIm&si=FLqb1AwQ73ZjQNAk",
 }
 
 parse_title = r"title:^(?i:)(?:[\【\[].*?[\】\]]\s*)*(?P<title>.*?)(?:\s*(?:[\【\[].*?[\】\]]|\(Audio\)|Official))*$"
