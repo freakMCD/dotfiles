@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+hyprctl notify 0 10000 "rgb(ff0088)" "   Shutting down in 10s"
+systemctl poweroff --when=+10

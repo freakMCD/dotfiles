@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+dir="$HOME/MediaHub/screenshots/$(date +%Y-%m)"
+file="$dir/$(date +%Y-%m-%d_%H-%M-%S).png"
+
+mkdir -p "$dir"
+
+grimblast --notify copysave area "$file"
