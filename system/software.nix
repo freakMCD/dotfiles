@@ -84,7 +84,7 @@ in
     };
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "%h/nix/scripts/mailboxes-sync";
+      ExecStart = "%h/nix/scripts/mail-sync";
     };
     wantedBy = [ "user.target" ];
   };

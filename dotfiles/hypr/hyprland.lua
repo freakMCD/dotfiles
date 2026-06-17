@@ -2,7 +2,9 @@ hl.config(require("config"))
 
 local mod = "SUPER"
 local smod = mod .. " + SHIFT"
-local cmod = mod .. " + CONTROL"
+local scripts = "~/nix/scripts"
+local volume = scripts .. "/volume-notif"
+local screenshots = scripts .. "/screenshots"
 
 -- Environment
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
@@ -20,7 +22,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("udiskie")
     hl.exec_cmd("hypridle")
     hl.exec_cmd("mpc clear && mpc add \"ES Brother\" \"ES Sister\" && mpc random on")
-    hl.exec_cmd("~/nix/scripts/network-notify.sh")
+    hl.exec_cmd(scripts .. "/network-notify")
 end)
 
 -- Workspace Navigation
@@ -50,16 +52,16 @@ hl.bind(mod .. " + grave", hl.dsp.group.toggle())
 hl.bind(smod .. " + Y", hl.dsp.group.lock_active({ action = "toggle" }))
 
 -- Misc
-hl.bind("MOD5 + Up", hl.dsp.exec_cmd("~/nix/scripts/volume-notif up"), { repeating = true })
-hl.bind("MOD5 + Down", hl.dsp.exec_cmd("~/nix/scripts/volume-notif down"), { repeating = true })
-hl.bind("MOD5 + Delete", hl.dsp.exec_cmd("~/nix/scripts/volume-notif mute"))
-hl.bind(mod .. " + Delete", hl.dsp.exec_cmd("~/nix/scripts/volume-notif mute-mic"))
+hl.bind("MOD5 + Up", hl.dsp.exec_cmd(volume .. " up"), { repeating = true })
+hl.bind("MOD5 + Down", hl.dsp.exec_cmd(volume .. " down"), { repeating = true })
+hl.bind("MOD5 + Delete", hl.dsp.exec_cmd(volume .. " mute"))
+hl.bind(mod .. " + Delete", hl.dsp.exec_cmd(volume .. " mute-mic"))
 
-hl.bind("Print", hl.dsp.exec_cmd("~/nix/scripts/screenshots/screen"))
-hl.bind(mod .. " + Print", hl.dsp.exec_cmd("~/nix/scripts/screenshots/area"))
+hl.bind("Print", hl.dsp.exec_cmd(screenshots .. "/screen"))
+hl.bind(mod .. " + Print", hl.dsp.exec_cmd(screenshots .. "/area"))
 
-hl.bind(cmod .. " + F12", hl.dsp.exec_cmd("~/nix/scripts/shutdown-delay"))
-hl.bind("KP_Down", hl.dsp.exec_cmd("~/nix/scripts/toggle-clock"))
+hl.bind(mod .. " + CONTROL + F12", hl.dsp.exec_cmd(scripts .. "/shutdown-delay"))
+hl.bind("KP_Down", hl.dsp.exec_cmd(scripts .. "/toggle-clock"))
 
 hl.bind(mod .. " + q", hl.dsp.exec_cmd("foot"))
 hl.bind(mod .. " + r", hl.dsp.exec_cmd("fuzzel"))
