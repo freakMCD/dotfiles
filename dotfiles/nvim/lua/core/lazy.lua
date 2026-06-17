@@ -22,9 +22,9 @@ require("lazy").setup({
       configs.setup({
           ensure_installed = { "c", "lua", "html", "css", "fish", "bash", "nix" },
           sync_install = true,
-          highlight = { enable = true },
+          highlight = { enable = true, disable = { "bash" } },
           indent = { enable = false },  
-        })
+      })
 	end
 },
 { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true} ,
