@@ -5,12 +5,12 @@ in
   nixpkgs.config.allowUnfreePredicate = pkg:
       builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
   environment.systemPackages = with pkgs; [
-# Music
-  deno mpc ffmpeg
+# yt-dlp
+  deno
 # Utils
-  p7zip curl htop fd rclone udiskie libnotify imagemagick unrar ethtool ghostscript 
+  p7zip curl htop fd rclone udiskie libnotify imagemagick unrar ethtool ghostscript ffmpeg
 # Apps
-  neovim xournalpp gthumb geogebra6 pdfarranger simple-scan gimp octaveFull
+  neovim xournalpp gthumb geogebra6 pdfarranger simple-scan gimp octaveFull mpc
 # Communication
   neomutt msmtp isync w3m perlEnv
 # Dev
@@ -18,7 +18,7 @@ in
 # Linters
   texlab ruff
 # hyprland
-  kitty grimblast wl-clipboard grim slurp hyprpicker hypridle wev conky
+  kitty grimblast wl-clipboard hyprpicker hypridle wev conky
 # Latex
   (texlive.combine {
     inherit (texlive)

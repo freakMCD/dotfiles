@@ -33,10 +33,18 @@
       enable = true;
       shellWrapperName = "yy";
       enableFishIntegration= true;
+      keymap = {
+        mgr.prepend_keymap = [
+          {
+            on = [ "g" "x" ];
+            run = "cd /mnt/DATA/XDG";
+            desc = "Go to XDG";
+          }
+        ];
+      };
+
       settings = {
-        log = {
-          enabled = false;
-        };
+        log = { enabled = false; };
         mgr = {
           show_hidden = false;
           sort_dir_first = true;
@@ -48,7 +56,7 @@
           pdf = [{ run = ''zathura "$@"''; orphan = true; }];
           video = [{ run = ''mpv "$@"''; orphan = true; }];
           audio = [{ run = ''mpv "$@"''; orphan = true; }];
-          text = [{ run = ''nvim "$@"''; }];
+          text = [{ run = ''nvim "$@"''; block = true; }];
         };
         open = {
           prepend_rules = [

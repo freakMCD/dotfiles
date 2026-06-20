@@ -24,6 +24,18 @@
       BUNDLE_FORCE_RUBY_PLATFORM = "true";
     };
     username = "edwin";
-    stateVersion = "24.11";
+    stateVersion = "26.05";
+
+    file = {
+      ".local/bin/ytclip" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/scripts/dev/ytclip";
+      };
+
+      ".local/bin/updmusic" = {
+        source = ../scripts/dev/updmusic.py;
+        executable = true;
+      };
+    };
+
   };
 }

@@ -21,7 +21,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("fnott")
     hl.exec_cmd("udiskie")
     hl.exec_cmd("hypridle")
-    hl.exec_cmd("mpc clear && mpc add \"ES Brother\" \"ES Sister\" && mpc random on")
+    hl.exec_cmd("mpc clear && mpc add \"The Chamber\" && mpc random on")
     hl.exec_cmd(scripts .. "/network-notify")
 end)
 

@@ -38,5 +38,19 @@ xdg = {
       "text/x-c++"
     ];
   };
+
+  userDirs = let xdg = "/mnt/DATA/XDG"; in {
+    enable = true;
+
+    desktop = "${xdg}/Desktop";
+    documents = "${xdg}/Documents";
+    download = "${xdg}/Downloads";
+    music = "${xdg}/Music";
+    pictures = "${xdg}/Pictures";
+    videos = "${xdg}/Videos";
+    projects = "${xdg}/Projects";
+    templates = "${xdg}/Templates";
+    publicShare = "${xdg}/Public";
+  };
 };
 }

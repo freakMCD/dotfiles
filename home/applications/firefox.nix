@@ -12,6 +12,7 @@ in
       policies = {
           ExtensionSettings = {
             "uBlock0@raymondhill.net" = {
+              default_area = "menupanel";
               install_url =
                 "https://addons.mozilla.org/en-US/firefox/downloads/latest/ublock-origin/latest.xpi";
               installation_mode = "force_installed";
@@ -32,7 +33,7 @@ in
           SearchSuggestEnabled = false;
           StartDownloadsInTempDirectory = true;
 
-          WebsiteFilter = { Block = ["*://*.nextdns.io/*" ];};
+          WebsiteFilter = import ./.policy.nix;
 
           Preferences = lockedPrefs {
             "accessibility.browsewithcaret_shortcut.enabled" = false;

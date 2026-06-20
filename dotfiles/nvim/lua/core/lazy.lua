@@ -54,7 +54,7 @@ require("lazy").setup({
   'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp,  
 
 -- tex
-{ 'lervag/vimtex', ft = "tex" },
+{ 'lervag/vimtex', lazy = false, },
 {
     'dense-analysis/ale',
     config = function()
