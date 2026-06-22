@@ -5,20 +5,24 @@ in
   nixpkgs.config.allowUnfreePredicate = pkg:
       builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
   environment.systemPackages = with pkgs; [
-# yt-dlp
-  deno
-# Utils
-  p7zip curl htop fd rclone udiskie libnotify imagemagick unrar ethtool ghostscript ffmpeg
-# Apps
-  neovim xournalpp gthumb geogebra6 pdfarranger simple-scan gimp octaveFull
-# Communication
+# System
+  home-manager nvd yadm gnupg pass gcc
+# Terminal
+  curl ethtool fd htop p7zip rclone udiskie unrar
+# Desktop
+  conky grimblast hypridle hyprpicker kitty libnotify wev wl-clipboard 
+# Documents
+  xournalpp pdfarranger simple-scan ghostscript
+# Writing
+  neovim texlab ruff
+# Email
   neomutt msmtp isync w3m perlEnv
-# Dev
-  home-manager nvd pass yadm gnupg gcc
-# Linters
-  texlab ruff
-# hyprland
-  kitty grimblast wl-clipboard hyprpicker hypridle wev conky
+# Images
+  gimp gthumb imagemagick
+# Mathematics
+  geogebra6 octaveFull
+# yt-dlp
+  ffmpeg deno
 # Latex
   (texlive.combine {
     inherit (texlive)
@@ -30,17 +34,15 @@ in
       collection-latexextra
       latexmk;
   })
-
 # Windows
-#  quickemu  samba
-
+# quickemu  samba
 # Python
-(pkgs.python3.withPackages (ps: with ps; [
-  numpy
-  matplotlib
-  opencv4
-  scipy
-]))
+  (pkgs.python3.withPackages (ps: with ps; [
+    numpy
+    matplotlib
+    opencv4
+    scipy
+  ]))
 ];
 
 # virtualization 
