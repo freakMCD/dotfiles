@@ -21,7 +21,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("fnott")
     hl.exec_cmd("udiskie")
     hl.exec_cmd("hypridle")
-    hl.exec_cmd("mpc clear && mpc add \"The Chamber\" && mpc random on")
     hl.exec_cmd(scripts .. "/network-notify")
 end)
 
@@ -65,8 +64,6 @@ hl.bind("KP_Down", hl.dsp.exec_cmd(scripts .. "/toggle-clock"))
 
 hl.bind(mod .. " + q", hl.dsp.exec_cmd("foot"))
 hl.bind(mod .. " + r", hl.dsp.exec_cmd("fuzzel"))
-hl.bind("MOD5 + P", hl.dsp.exec_cmd("mpc toggle"))
-hl.bind("KP_Next", hl.dsp.exec_cmd("notify-send -r 9999 -t 1250 \"Now Playing\" \"$(mpc current)\""))
 
 -- Special workspaces
 hl.workspace_rule({ workspace = "special:mail", on_created_empty = "foot --app-id=neomutt neomutt" })

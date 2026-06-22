@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-import os
 import re
 import subprocess
 from pathlib import Path
 
-BASE_DIR = Path.home() / "Music"
-COOKIES = "firefox"
-
+OUTDIR = Path.home() / "Music"
 RCLONE_REMOTE = "drive:Music"
+
+PLAYLIST_URL = "https://youtube.com/playlist?list=PL4CmunqMOJjLdhvhCILv7kwHRMSzdKLIm"
+COOKIES = "firefox"
 
 RCLONE_OPTS = [
     "--transfers", "8",
@@ -18,23 +18,13 @@ RCLONE_OPTS = [
     "--fast-list",
     "--timeout", "300s",
     "--contimeout", "60s",
-    "--exclude=.auxfiles/**",
-    "--exclude=screenshots/**",
-    "--log-level", "INFO",
     "--size-only",
 ]
-
-PLAYLISTS = {
-    "The Hall": "https://youtube.com/playlist?list=PL4CmunqMOJjLdhvhCILv7kwHRMSzdKLIm&si=FLqb1AwQ73ZjQNAk",
-    "The Chamber": "https://youtube.com/playlist?list=PL4CmunqMOJjKy9rV4TZH0l1cApwgQ98zj",
-}
 
 parse_title = r"title:^(?i:)(?:[\【\[].*?[\】\]]\s*)*(?P<title>.*?)(?:\s*(?:[\【\[].*?[\】\]]|\(Audio\)|Official))*$"
 clear_metadata = r":(?P<meta_synopsis>)(?P<meta_description>)(?P<meta_purl>)"
 
-
 # --- State extraction ---
-
 def get_remote_ids(url: str) -> set[str]:
     cmd = [
         "yt-dlp",
@@ -47,7 +37,6 @@ def get_remote_ids(url: str) -> set[str]:
 
     result = subprocess.run(cmd, capture_output=True, text=True, check=True)
     return set(line.strip() for line in result.stdout.splitlines() if line.strip())
-
 
 def get_local_files(directory: Path) -> dict[str, Path]:
     """
@@ -62,9 +51,6 @@ def get_local_files(directory: Path) -> dict[str, Path]:
                 mapping[m.group(1)] = file
 
     return mapping
-
-
-# --- Actions ---
 
 def delete_stale(local_map: dict[str, Path], to_delete: set[str]) -> list[str]:
     removed = []
@@ -110,7 +96,7 @@ def download_missing(to_download: set[str], outdir: Path) -> list[str]:
         for line in proc.stdout:
             line = line.strip()
             if "|||" in line:
-                title, vid = line.split("|||", 1)
+                title, _ = line.split("|||", 1)
                 print(f"  + {title}")
                 added.append(title)
 
@@ -123,7 +109,7 @@ def rclone_sync():
         "rclone",
         *RCLONE_OPTS,
         "sync",
-        str(BASE_DIR),
+        str(OUTDIR),
         RCLONE_REMOTE,
     ]
 
@@ -133,23 +119,20 @@ def rclone_sync():
 
 # --- Core reconciliation ---
 
-def sync_playlist(name: str, url: str):
-    outdir = BASE_DIR / name
-    outdir.mkdir(parents=True, exist_ok=True)
+def sync_playlist():
+    OUTDIR.mkdir(parents=True, exist_ok=True)
 
-    remote_ids = get_remote_ids(url)
-    local_map = get_local_files(outdir)
+    remote_ids = get_remote_ids(PLAYLIST_URL)
+    local_map = get_local_files(OUTDIR)
 
-    local_ids = set(local_map.keys())
+    local_ids = set(local_map)
 
     to_delete = local_ids - remote_ids
     to_download = remote_ids - local_ids
 
     # --- delete phase ---
     removed = delete_stale(local_map, to_delete)
-
-    print(f"\033[93mSyncing {name}\033[0m") # Print header in yellow
-    added = download_missing(to_download, outdir)
+    added = download_missing(to_download, OUTDIR)
 
     # --- OUTPUT ---
     if added or removed:
@@ -157,45 +140,27 @@ def sync_playlist(name: str, url: str):
             print(f"  - {r}")
 
         print(f"   → +{len(added)} / -{len(removed)} ({len(remote_ids)})\n")
-        print(f"✔️ {name} updated")
+        print("✔️ Updated")
     else:
-        print(f"✔️ {name} is up to date ({len(remote_ids)})")
+        print(f"✔️ Playlist is up to date ({len(remote_ids)})")
 
-    final_map = get_local_files(outdir)
-    final_ids = set(final_map.keys())
+    final_map = get_local_files(OUTDIR)
+    final_ids = set(final_map)
 
     if final_ids != remote_ids:
         missing = remote_ids - final_ids
         extra = final_ids - remote_ids
 
-        print(f"[WARN] {name} out of sync")
+        print("[WARN] Playlist out of sync")
         if missing:
             print(f"  missing: {len(missing)}")
         if extra:
             print(f"  extra: {len(extra)}")
 
-    return len(remote_ids), len(added) + len(removed)
-
-# --- Main ---
+    return bool(added or removed)
 
 def main():
-    BASE_DIR.mkdir(parents=True, exist_ok=True)
-    os.chdir(BASE_DIR)
-
-    total = 0
-    total_changes = 0
-
-    for i, (name, url) in enumerate(PLAYLISTS.items()):
-        playlist_total, downloaded = sync_playlist(name, url)
-        total += playlist_total
-        total_changes += downloaded
-
-        if i < len(PLAYLISTS) - 1:
-            print()
-
-    print(f"Total: {total}\n")
-
-    if total_changes > 0:
+    if sync_playlist():
         rclone_sync()
     else:
         print("No changes. Skipping rclone sync.")
