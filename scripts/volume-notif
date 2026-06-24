@@ -1,20 +1,18 @@
 #!/usr/bin/env bash
 
-case $1 in
-    up|down|mute)
-        node="@DEFAULT_SINK@"
-        type="Volume" ;;
-    mute-mic)
-        node="@DEFAULT_SOURCE@"
-        type="Microphone" ;;
-    *)
-        echo "Usage: $0 {up|down|mute|mute-mic}"
-        exit 2 ;;
+get_state() {
+    wpctl get-volume "$1" |
+    awk '{v=int($2*100); m=$3~/MUTED/?1:0; print v,m}'
+}
+
+case "$1" in
+    up|down|mute) node="@DEFAULT_SINK@"    type="volume" ;;
+    mute-mic)     node="@DEFAULT_SOURCE@"  type="microphone" ;;
 esac
 
-read vol muted < <(wpctl get-volume "$node" | awk '{v=int($2*100); m=$3~/MUTED/?1:0; print v,m}')
+read vol muted < <(get_state "$node")
 
-case $1 in
+case "$1" in
     up|down)
         wpctl set-mute "$node" 0 && muted=0
         if [[ $1 == up ]]; then
@@ -26,40 +24,35 @@ case $1 in
         wpctl set-volume "$node" "$new_vol%"
         vol=$new_vol ;;
     mute*)
-        wpctl set-mute "$node" toggle && muted=$((1 - muted)) 
+        wpctl set-mute "$node" toggle
+        read vol muted < <(get_state "$node")
+        ;;
 esac
 
 if ((muted)); then
-    if [[ $type == "Volume" ]]; then
-        symbol="🔇"  # Speaker mute
-        msg="$symbol muted"
+    if [[ $type == "volume" ]]; then
+        msg="🔇 muted"
     else
-        symbol="🤐"  # Mic mute
-        msg="$symbol mic muted"
+        msg="🤐 mic muted"
     fi
     timeout="-t 0"
 else
-    if [[ $type == "Volume" ]]; then
+    if [[ $type == "volume" ]]; then
         if ((vol <= 30)); then
-            symbol="🔈"
+            msg="🔈 $vol%"
         elif ((vol <= 60)); then
-            symbol="🔉"
+            msg="🔉 $vol%"
         else
-            symbol="🔊"
+            msg="🔊 $vol%"
         fi
-        msg="$symbol $vol%"
-        # Progress hint for volume
         progress_hint=(-h "int:value:$vol")
     else
-        symbol="🎤"  # Active mic
-        msg="$symbol mic unmuted"
-        # No progress hint for mic
-        progress_hint=()
+        msg="🎤 mic unmuted"
     fi
-    timeout="-t 1500"
+    timeout="-t 1000"
 fi
 
 notify-send -u normal \
-    -h "string:x-canonical-private-synchronous:${type,,}" \
+    -h "string:x-canonical-private-synchronous:${type}" \
     "${progress_hint[@]}" \
     "$msg" $timeout

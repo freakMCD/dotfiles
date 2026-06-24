@@ -60,7 +60,7 @@ hl.bind("Print", hl.dsp.exec_cmd(screenshots .. "/screen"))
 hl.bind(mod .. " + Print", hl.dsp.exec_cmd(screenshots .. "/area"))
 
 hl.bind(mod .. " + CONTROL + F12", hl.dsp.exec_cmd(scripts .. "/shutdown-delay"))
-hl.bind("KP_Down", hl.dsp.exec_cmd([[hyprctl dismissnotify 1; hyprctl notify -1 1500 "rgb(c0b070)" "fontsize:20 $(date "+%H:%M")"]]))
+hl.bind("KP_Down", hl.dsp.exec_cmd([[notify-send -u low -r 9998 -t 1500 "<b>$(date '+%H:%M')</b>"]]))
 
 hl.bind(mod .. " + q", hl.dsp.exec_cmd("foot"))
 hl.bind(mod .. " + r", hl.dsp.exec_cmd("fuzzel"))

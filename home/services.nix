@@ -5,54 +5,42 @@
       enable = true;
       settings = {
           main = {
-              # Layout and sizing
-              max-width = 380;
-              max-height = 600;
+              # Layout
+              border-radius = 6;
+              max-width = 320;
+              padding-vertical = 8;
+              padding-horizontal = 12;
               default-timeout = 15;
-              max-timeout = 0;
-              layer = "top";
-              padding-vertical = 20;
-              padding-horizontal = 20;
-              edge-margin-vertical = 30;
-              edge-margin-horizontal = 10;
-              dpi-aware="yes";
 
               # Fonts
               summary-font = "JetBrainsMono Nerd Font:weight=bold:size=13";
               body-font = "JetBrainsMono Nerd Font:size=12";
-              title-font = "JetBrainsMono Nerd Font:size=14";
 
               # Colors
-              background = "${config.colors.bg1}ee";
-              summary-color = "${config.colors.yellow}ff";
+              background = "${config.colors.bg0}ee";
+              border-color = "${config.colors.gray}aa";
+              summary-color = "${config.colors.white}ff";
               body-color = "${config.colors.white}dd";
-              border-color = "${config.colors.bg3}66";
-              border-size = 2;
-              border-radius = 6;
 
               # Progress bar customization
-              progress-color = "${config.colors.yellow}cc";
-              progress-bar-height = 8;
+              progress-color = "${config.colors.gray}cc";
+              progress-bar-height = 6;
 
               # Text formatting
-              title-format = "";  # No title formatting
-              summary-format = "<b><i>%s</i></b>";  # Summary text
-              body-format = "%b";  # Underlined action indicator
+              title-format = "";
+              summary-format = "<b>%s</b>";
           };
 
           # Urgency-specific overrides
           low = {
-            background = "${config.colors.bg2}ee";
-            title-color = "${config.colors.gray}ff";
-            summary-color = "${config.colors.gray}ff";
-            body-color = "${config.colors.gray}dd";
-            progress-color = "${config.colors.gray}66";
+            background = "${config.colors.bg0}cc";
+            summary-color = "${config.colors.b_cyan}ff";
+            border-size = 0;
           };
 
           critical = {
-            background = "${config.colors.red}22";  # Subtle red overlay
+            background = "${config.colors.red}22";
             border-color = "${config.colors.red}ff";
-            title-color = "${config.colors.red}ff";
             summary-color = "${config.colors.yellow}ff";
             border-size = 2;
             progress-color = "${config.colors.red}ff";

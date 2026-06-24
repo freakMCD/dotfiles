@@ -30,7 +30,7 @@
       yellow         = "d79921";
       blue           = "458588";
       magenta        = "b16286";
-      cyan           = "689d6a";
+      cyan           = "4fa8b8";
       white          = "d5c4a1";
 
       b_red     = "fb4934";
@@ -38,7 +38,7 @@
       b_yellow  = "fabd2f";
       b_blue    = "83a598";
       b_magenta = "d3869b";
-      b_cyan    = "8ec07c";
+      b_cyan    = "7cc9d6";
       b_white   = "a89984";
 
       orange    = "d65d0e";
