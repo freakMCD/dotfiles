@@ -22,7 +22,7 @@
       EDITOR="nvim";	
       MANPAGER="nvim +Man!";
       BUNDLE_FORCE_RUBY_PLATFORM = "true";
-      TEXINPUTS = "/mnt/DATA/MathCareer/Latex/preamble:";
+      TEXINPUTS = "$HOME/nix/latex/preamble:";
     };
     username = "edwin";
     stateVersion = "26.05";

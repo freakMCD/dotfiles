@@ -10,7 +10,7 @@ in
 # Terminal
   curl ethtool fd htop p7zip rclone udiskie unrar
 # Desktop
-  conky grimblast hypridle hyprpicker kitty libnotify wev wl-clipboard 
+  grimblast hypridle hyprpicker kitty libnotify wev wl-clipboard 
 # Documents
   xournalpp pdfarranger simple-scan ghostscript
 # Writing

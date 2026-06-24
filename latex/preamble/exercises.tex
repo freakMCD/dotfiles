@@ -1,0 +1,71 @@
+\usepackage[most]{tcolorbox}
+
+\definecolor{ProblemDark}{HTML}{1B263B}
+\definecolor{ProblemBack}{HTML}{F8FAFC}
+
+\definecolor{SolutionDark}{HTML}{6B1E1E}
+\definecolor{SolutionBack}{HTML}{FCF8F8}
+
+\newtcolorbox{problem}[1]{
+    before upper={
+        \phantomsection
+        \addcontentsline{toc}{section}{#1}
+    },
+    enhanced, 
+    breakable,
+    colframe=ProblemDark,
+    colback=ProblemBack,
+    title={#1},
+    fonttitle=\bfseries,
+}
+
+\newtcolorbox{solution}[1][]{%
+    enhanced,
+    skin first = enhanced,
+    skin middle = enhanced,
+    skin last = enhanced,
+    breakable,
+    boxrule = 0pt,
+    borderline west = {4pt}{0pt}{SolutionDark},
+    colback = SolutionBack,
+    coltitle = white,
+    sharp corners,
+    rounded corners = southeast,
+    rounded corners = northeast,
+    arc is angular,
+    arc = 3mm,
+    attach boxed title to top left,
+    boxed title style = {%
+        enhanced,
+        colback = SolutionDark,
+        colframe = SolutionDark,
+        top = 0pt,
+        bottom = 0pt,
+        sharp corners,
+        rounded corners = northeast,
+        arc is angular,
+        arc = 2mm,
+        rightrule = 0pt,
+        bottomrule = 0pt,
+        toprule = 0pt,
+    },
+    title = {\bfseries Solución:}, 
+    overlay unbroken = {%
+        \node[anchor=west, color=black!70] at (title.east) {#1};
+    },
+    overlay first = {%
+        \node[anchor=west, color=black!70] at (title.east) {#1};
+        \path[fill = tcbcolback!80!black] 
+            ([yshift = 3mm]interior.south east) -- ++(-0.4,-0.1) -- ++(0.1,-0.2);
+    },
+    overlay middle = {%
+        \path[fill = tcbcolback!80!black] 
+            ([yshift = -3mm]interior.north east) -- ++(-0.4,0.1) -- ++(0.1,0.2);
+        \path[fill = tcbcolback!80!black] 
+            ([yshift = 3mm]interior.south east) -- ++(-0.4,-0.1) -- ++(0.1,-0.2);
+    },
+    overlay last = {%
+        \path[fill = tcbcolback!80!black] 
+            ([yshift = -3mm]interior.north east) -- ++(-0.4,0.1) -- ++(0.1,0.2);
+    }
+}

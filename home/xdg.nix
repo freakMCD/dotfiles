@@ -10,7 +10,6 @@ xdg = {
     "nvim".source = "${dotfiles}/nvim";
     "neomutt".source = "${dotfiles}/neomutt";
     "hypr".source = "${dotfiles}/hypr";
-    "conky".source = "${dotfiles}/conky";
   };
 
   desktopEntries.nvim = {

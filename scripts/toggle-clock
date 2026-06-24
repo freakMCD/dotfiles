@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-if pgrep conky >/dev/null; then
-    pkill conky
-else
-    conky &
-fi

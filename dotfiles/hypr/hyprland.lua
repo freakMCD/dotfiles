@@ -60,7 +60,7 @@ hl.bind("Print", hl.dsp.exec_cmd(screenshots .. "/screen"))
 hl.bind(mod .. " + Print", hl.dsp.exec_cmd(screenshots .. "/area"))
 
 hl.bind(mod .. " + CONTROL + F12", hl.dsp.exec_cmd(scripts .. "/shutdown-delay"))
-hl.bind("KP_Down", hl.dsp.exec_cmd(scripts .. "/toggle-clock"))
+hl.bind("KP_Down", hl.dsp.exec_cmd([[hyprctl dismissnotify 1; hyprctl notify -1 1500 "rgb(c0b070)" "fontsize:20 $(date "+%H:%M")"]]))
 
 hl.bind(mod .. " + q", hl.dsp.exec_cmd("foot"))
 hl.bind(mod .. " + r", hl.dsp.exec_cmd("fuzzel"))
@@ -85,13 +85,4 @@ end
 
 hl.window_rule({ match = { class = "libreoffice.*" }, suppress_event = "maximize" })
 hl.window_rule({ match = { class = "foot" }, group = "override barred" })
-hl.window_rule({
-    match = { class = "conky" },
-    float = true,
-    pin = true,
-    border_size = 0,
-    no_focus = true,
-    no_shadow = true,
-})
-
 
