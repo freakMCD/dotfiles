@@ -106,7 +106,7 @@
     shellAbbrs = {
       windows10 = ''quickemu --vm windows-10.conf --public-dir ~/Share --mouse "virtio"'';
       rm = "rm -I";
-      yamend = "yadm commit --amend --no-edit && yadm push -f";
+      yamend = "yadm commit --amend && yadm push -f";
       df="df -h";
       dus="du -h --max-depth=1 | sort -hr";
       fc-list=''fc-list --format="%{family[0]}\n" | sort | uniq'';
