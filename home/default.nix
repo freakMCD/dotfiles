@@ -12,6 +12,12 @@
     ./applications/mpv.nix
   ];
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
   home = {
     sessionPath = [ "$HOME/.local/bin"];
     sessionVariables = {
