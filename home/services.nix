@@ -34,7 +34,7 @@
           # Urgency-specific overrides
           low = {
             background = "${config.colors.bg0}cc";
-            summary-color = "${config.colors.b_cyan}ff";
+            summary-color = "${config.colors.b_true_cyan}ff";
             border-size = 0;
           };
 

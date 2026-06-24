@@ -2,17 +2,18 @@
   perlEnv = pkgs.perl.withPackages (p: with p; [ MIMEEncWords ]);
 in
 {
-  nixpkgs.config.allowUnfreePredicate = pkg:
-      builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
-  environment.systemPackages = with pkgs; [
+nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
+environment.systemPackages = with pkgs; [
 # System
-  home-manager nvd yadm gnupg pass gcc
+  home-manager yadm gnupg pass gcc
 # Terminal
   curl ethtool fd htop p7zip rclone udiskie unrar
 # Desktop
   grimblast hypridle hyprpicker kitty libnotify wev wl-clipboard 
 # Documents
-  xournalpp pdfarranger simple-scan ghostscript
+  xournalpp pdfarranger simple-scan 
+  ghostscript # compress pdf
 # Writing
   neovim texlab ruff
 # Email
@@ -51,59 +52,55 @@ in
 #virtualisation.libvirtd.enable = true;
 #virtualisation.spiceUSBRedirection.enable = true;
 
-  programs = {
-    appimage = {
-      enable = true;
-      binfmt = true;
-    };
-
-    hyprland.enable = true;
-
-    fish.enable = true;
-
-    gnupg.agent = {
-      enable = true;
-      };
-
-    bash = {
-      interactiveShellInit = ''
-        if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
-        then
-          shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-          exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
-        fi
-      '';
-    };
-  };
-
-  systemd.user.services.mailsync = {
+programs = {
+  appimage = {
     enable = true;
-    description = "Mailboxes sync";
-    path = [pkgs.bash pkgs.procps pkgs.pass pkgs.isync pkgs.perl pkgs.libnotify];
-    environment = {
-      GNUPGHOME="%h/.local/share/gnupg";
-      PERL5LIB = "${perlEnv}/lib/perl5/site_perl";
-    };
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "%h/nix/scripts/mail-sync";
-    };
-    wantedBy = [ "user.target" ];
+    binfmt = true;
   };
 
-  systemd.user.timers.mailsync = {
-  wantedBy = [ "timers.target" ];
-    timerConfig = {
-    OnBootSec= "1m";
-    OnUnitActiveSec="15m";
-    Unit="mailsync.service";
-    };
-  };
+  hyprland.enable = true;
+  fish.enable = true;
+  gnupg.agent.enable = true;
 
-  services.earlyoom = {
-    enable = true;
-    extraArgs = [
-      "-g"
-    ];
+  bash = {
+    interactiveShellInit = ''
+      if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+      then
+        shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+        exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+      fi
+    '';
   };
+};
+
+systemd.user.services.mailsync = {
+  enable = true;
+  description = "Mailboxes sync";
+  path = [pkgs.bash pkgs.procps pkgs.pass pkgs.isync pkgs.perl pkgs.libnotify];
+  environment = {
+    GNUPGHOME = "%h/.local/share/gnupg";
+    PERL5LIB = "${perlEnv}/lib/perl5/site_perl";
+  };
+  serviceConfig = {
+    Type = "oneshot";
+    ExecStart = "%h/nix/scripts/mail-sync";
+  };
+  wantedBy = [ "user.target" ];
+};
+
+systemd.user.timers.mailsync = {
+wantedBy = [ "timers.target" ];
+  timerConfig = {
+  OnBootSec = "1m";
+  OnUnitActiveSec = "15m";
+  Unit = "mailsync.service";
+  };
+};
+
+services.earlyoom = {
+  enable = true;
+  extraArgs = [
+    "-g"
+  ];
+};
 }

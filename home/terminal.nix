@@ -54,69 +54,36 @@
       end
 
       function rebuild
-          # Capture previous system state
-          set -l old_system (readlink /run/current-system)
-          set -l update_requested 0
-          set -l show_trace 0
-          set -l rebuild_args
-          cd $HOME
+          set -l old_system (readlink -f /run/current-system)
 
-          # Parse arguments
-          for arg in $argv
-              if [ "$arg" = "--update" ]
-                  set update_requested 1
-                  echo "Updating flake..."
-                  nix flake update --flake $HOME/nix || return 1
-              else if [ "$arg" = "--show-trace" ]
-                  set show_trace 1
-              else
-                  set rebuild_args $rebuild_args $arg
-              end
+          if contains -- --update $argv
+              echo "updating flake..."
+              nix flake update --flake ~/nix
+              or return 1
           end
 
-          # Build/switch
-          if contains "switch" $rebuild_args || contains "test" $rebuild_args
-              echo "Building and activating..."
-              if [ $show_trace -eq 1 ]
-                  sudo nixos-rebuild $rebuild_args --flake $HOME/nix#edwin --show-trace || return 1
-              else
-                  sudo nixos-rebuild $rebuild_args --flake $HOME/nix#edwin || return 1
-              end
-              set new_system (readlink -f /run/current-system)
-          else
-              echo "Building..."
-              if [ $show_trace -eq 1 ]
-                  sudo nixos-rebuild build --flake $HOME/nix#edwin --show-trace || return 1
-              else
-                  sudo nixos-rebuild build --flake $HOME/nix#edwin || return 1
-              end
-              set new_system (readlink result)
-          end
+          sudo nixos-rebuild switch --flake ~/nix#edwin
+          or return 1
 
-          # Only show diff if:
-          # 1. --update was used, or
-          # 2. The system actually changed
-          if [ "$update_requested" -eq 1 ] || [ "$old_system" != "$new_system" ]
-              nvd diff $old_system $new_system | grep -E '^\[(U\*|R\.)'
-          else
-              echo "No changes detected."
+          if contains -- --update $argv
+              nix store diff-closures $old_system /run/current-system
           end
       end
     '';
     shellAbbrs = {
       windows10 = ''quickemu --vm windows-10.conf --public-dir ~/Share --mouse "virtio"'';
       rm = "rm -I";
+      df = "df -h";
+      dus = "du -h --max-depth=1 | sort -hr";
+      fc-list = ''fc-list --format="%{family[0]}\n" | sort | uniq'';
+
+      gpg-list = "gpg --list-secret-keys --keyid-format LONG";
+      gpg-backup = "gpg -o private.gpg --export-options backup --export-secret-keys";
+      gpg-restore = "gpg --import-options restore --import private.gpg";
+
       yamend = "yadm commit --amend && yadm push -f";
-      df="df -h";
-      dus="du -h --max-depth=1 | sort -hr";
-      fc-list=''fc-list --format="%{family[0]}\n" | sort | uniq'';
-
-      gpg-list="gpg --list-secret-keys --keyid-format LONG";
-      gpg-backup="gpg -o private.gpg --export-options backup --export-secret-keys";
-      gpg-restore="gpg --import-options restore --import private.gpg";
-
-      rclone="rclone -P --transfers 45 --checkers 65";
-      compresspdf="gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dColorImageResolution=170 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf"; 
+      rclone = "rclone -P --transfers 45 --checkers 65";
+      compresspdf = "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dColorImageResolution=170 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf"; 
     };
   };
 }
