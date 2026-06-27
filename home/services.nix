@@ -8,6 +8,7 @@
               # Layout
               border-radius = 6;
               max-width = 320;
+              max-height = 400;
               padding-vertical = 8;
               padding-horizontal = 12;
               default-timeout = 15;
@@ -39,7 +40,7 @@
           };
 
           critical = {
-            background = "${config.colors.red}22";
+            background = "${config.colors.red}cc";
             border-color = "${config.colors.red}ff";
             summary-color = "${config.colors.yellow}ff";
             border-size = 2;
