@@ -1,112 +1,103 @@
--- Install lazy.nvim automatically
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.mapleader = " "
+
 require("lazy").setup({
-{
-   "nvim-treesitter/nvim-treesitter",
+  {
+    "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    config = function () 
+    config = function ()
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-          ensure_installed = { "c", "lua", "html", "css", "fish", "bash", "nix" },
-          sync_install = true,
-          highlight = { enable = true, disable = { "bash" } },
-          indent = { enable = false },  
+        ensure_installed = { "c", "lua", "html", "css", "fish", "bash", "nix" },
+        sync_install = false,
+        highlight = { enable = true, disable = { "bash" } },
+        indent = { enable = false }
       })
-	end
-},
-{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true} ,
-{
-  "ibhagwan/fzf-lua",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  opts = {}
-},
+    end
+  },
 
   {
-  'hrsh7th/nvim-cmp', 
-  -- load cmp on InsertEnter
-  event = "InsertEnter",
-  dependencies = {
- 'hrsh7th/cmp-buffer',
- 'hrsh7th/cmp-path',
-   --LuaSnip
-   'saadparwaiz1/cmp_luasnip',
-   {
-     'L3MON4D3/LuaSnip',
-     dependencies = {"rafamadriz/friendly-snippets"}
-   },
-  },
-},
-
-  'neovim/nvim-lspconfig',
-  'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp,  
-
--- tex
-{ 'lervag/vimtex', lazy = false, },
-{
-    'dense-analysis/ale',
+    "ellisonleao/gruvbox.nvim",
+    priority = 1000,
     config = function()
-        -- Configuration goes here.
-        local g = vim.g
+      require("plugins/gruvbox")()
+    end,
+  },
 
-        g.ale_linters = {
-            lua = {'lua_language_server'},
-            tex = {'lacheck'},
-            c = {'gcc'},
-            python = {'ruff'},
-        }
-    end
-}
-})
-
-require("fzf-lua").setup{
-  files = {
-    fd_opts = [[--color=always -t f  . /mnt/DATA ~/nix ]],
-    fzf_opts = {  
-      ["--delimiter"] = "/";
-      ["--with-nth"] = "4..";
+  {
+    "ibhagwan/fzf-lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      files = {
+        fd_opts = "--color=always -t f . /mnt/DATA ~/nix",
+        fzf_opts = {
+          ["--delimiter"] = "/",
+          ["--with-nth"] = "4..",
+        },
+      },
     },
   },
-}
 
-vim.g.mapleader = " "
-vim.api.nvim_set_keymap('n', '<Leader>f', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>b', "<cmd>lua require('fzf-lua').buffers()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>l', "<cmd>lua require('fzf-lua').lines()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>o', "<cmd>lua require('fzf-lua').oldfiles()<CR>", { noremap = true, silent = true })
-
-
-require("gruvbox").setup({
-  italic = {
-    strings = false,
-    emphasis = true,
-    comments = true,
-    operators = false,
-    folds = true,
+  {
+    'hrsh7th/nvim-cmp',
+    event = "InsertEnter",
+    dependencies = {
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'saadparwaiz1/cmp_luasnip',
+      {
+        'L3MON4D3/LuaSnip',
+        config = function()
+          require("plugins.luasnip")
+        end
+      },
+    },
+    config = function()
+      require("plugins.cmp")
+    end
   },
-  strikethrough = true,
-  invert_selection = false,
-  invert_signs = false,
-  invert_tabline = false,
-  invert_intend_guides = false,
-  inverse = true, -- invert background for search, diffs, statuslines and errors
-  contrast = "hard", -- can be "hard", "soft" or empty string
+
+  {
+    'lervag/vimtex',
+    lazy = false,
+    init = function()
+      require("plugins.vimtex")
+    end
+  },
+
+  {
+    'dense-analysis/ale',
+    config = function()
+      local g = vim.g
+      g.ale_disable_lsp = 1
+      g.ale_linters_explicit = 1
+
+      g.ale_linters = {
+        python = {'ruff'},
+        c = {'gcc'},
+        nix = {'nix'},
+      }
+
+      g.ale_fix_on_save = 1
+      g.ale_fixers = { ["*"] = { "trim_whitespace" } }
+    end
+  }
 })
-vim.cmd[[ 
-    colorscheme gruvbox
-    highlight Normal ctermbg=NONE guibg=NONE
-]]
-vim.api.nvim_set_hl(0, "StatusLine", { bg = 'NvimDarkGray1', bold = true })
-vim.api.nvim_set_hl(0, "StatusLineNC", { bg = 'NvimDarkGray2' })
+

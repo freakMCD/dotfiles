@@ -1,4 +1,4 @@
-{config, lib, inputs, pkgs, ... }: 
+{config, lib, inputs, pkgs, ... }:
 {
   imports = [
     ./tv/renew-token.nix
@@ -25,20 +25,12 @@
       GNUPGHOME="$HOME/.local/share/gnupg";
       TEXMFVAR="$HOME/.cache/texlive/texmf-var";
       W3M_DIR="$HOME/.local/share/w3m";
-      EDITOR="nvim";	
+      EDITOR="nvim";
       MANPAGER="nvim +Man!";
       BUNDLE_FORCE_RUBY_PLATFORM = "true";
       TEXINPUTS = "$HOME/nix/latex/preamble:";
     };
     username = "edwin";
     stateVersion = "26.05";
-
-    file = {
-      ".local/bin/updmusic" = {
-        source = ../scripts/dev/updmusic.py;
-        executable = true;
-      };
-    };
-
   };
 }

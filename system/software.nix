@@ -15,7 +15,7 @@ environment.systemPackages = with pkgs; [
   xournalpp pdfarranger simple-scan 
   ghostscript # compress pdf
 # Writing
-  neovim texlab ruff
+  neovim texlab ruff lua-language-server
 # Email
   neomutt msmtp isync w3m perlEnv
 # Images
