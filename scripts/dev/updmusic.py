@@ -21,11 +21,15 @@ RCLONE_OPTS = [
         "--size-only",
         ]
 
+MOMENTUM = {
+    "Korean": "https://youtube.com/playlist?list=PLIezlQjSDDHQ",
+    "Japanese": "https://youtube.com/playlist?list=PLF2OjHLf89co",
+    "English": "https://youtube.com/playlist?list=PLAKUPxjXy7d0",
+}
+
 PLAYLISTS = {
-        "Korean": "https://youtube.com/playlist?list=PLIezlQjSDDHQ",
-        "Japanese": "https://youtube.com/playlist?list=PLF2OjHLf89co",
-        "The Hall": "https://youtube.com/playlist?list=PLAKUPxjXy7d0",
-        "Momentum": "https://youtube.com/playlist?list=PLDNIxwDlDrgI",
+    **{f"Momentum/{lang}": url for lang, url in MOMENTUM.items()},
+    "Equilibrium": "https://youtube.com/playlist?list=PLVDydioIhLPc",
 }
 
 PARSE_TITLE = r"title:^(?i:)(?:[\【\[].*?[\】\]]\s*)*(?P<title>.*?)(?:\s*[\【\[].*?[\】\]]|\s*\([^)]*\))*$"
