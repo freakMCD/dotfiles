@@ -1,6 +1,19 @@
 {config, ...}:
 {
   services = {
+    mpd = {
+      enable = true;
+      musicDirectory = "~/Music/";
+      network.startWhenNeeded = true;
+      extraConfig = ''
+        auto_update "yes"
+        zeroconf_enabled "no"
+        audio_output {
+          type "pulse"
+          name "My Pulse Output"
+        }
+      '';
+    };
     fnott = {
       enable = true;
       settings = {
@@ -12,6 +25,7 @@
               padding-vertical = 8;
               padding-horizontal = 12;
               default-timeout = 15;
+              max-icon-size = 64;
 
               # Fonts
               summary-font = "JetBrainsMono Nerd Font:weight=bold:size=13";
@@ -35,7 +49,6 @@
           # Urgency-specific overrides
           low = {
             background = "${config.colors.bg0}cc";
-            summary-color = "${config.colors.b_true_cyan}ff";
             border-size = 0;
           };
 

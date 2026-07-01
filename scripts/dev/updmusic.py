@@ -25,14 +25,16 @@ PLAYLISTS = {
         "Korean": "https://youtube.com/playlist?list=PLIezlQjSDDHQ",
         "Japanese": "https://youtube.com/playlist?list=PLF2OjHLf89co",
         "The Hall": "https://youtube.com/playlist?list=PLAKUPxjXy7d0",
-        }
+        "Momentum": "https://youtube.com/playlist?list=PLDNIxwDlDrgI",
+}
 
-PARSE_TITLE = r"title:^(?i:)(?:[\【\[].*?[\】\]]\s*)*(?P<title>.*?)(?:\s*(?:[\【\[].*?[\】\]]|\(Audio\)|Official))*$"
+PARSE_TITLE = r"title:^(?i:)(?:[\【\[].*?[\】\]]\s*)*(?P<title>.*?)(?:\s*[\【\[].*?[\】\]]|\s*\([^)]*\))*$"
+PARSE_ARTIST = r"artist:^(?P<artist>[^,\-\(]+?)\s*(?:[,\-\(].*)?$"
+
 CLEAR_METADATA = r":(?P<meta_synopsis>)(?P<meta_description>)(?P<meta_purl>)"
 
 
 # --- State extraction ---
-
 def get_remote_ids(url: str) -> set[str]:
     cmd = [
             "yt-dlp",
@@ -84,6 +86,7 @@ def download_missing(to_download: set[str], outdir: Path) -> list[str]:
             "--restrict-filenames",
 
             "--parse-metadata", PARSE_TITLE,
+            "--parse-metadata", PARSE_ARTIST,
             "--parse-metadata", CLEAR_METADATA,
             "--embed-metadata",
             "--embed-thumbnail",

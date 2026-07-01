@@ -6,13 +6,13 @@ nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
 environment.systemPackages = with pkgs; [
 # System
-  home-manager yadm gnupg pass gcc
+  home-manager yadm gnupg pass gcc mpc
 # Terminal
   curl ethtool fd htop p7zip rclone udiskie unrar
 # Desktop
-  grimblast hypridle hyprpicker kitty libnotify wev wl-clipboard 
+  grimblast hypridle hyprpicker kitty libnotify wev wl-clipboard
 # Documents
-  xournalpp pdfarranger simple-scan 
+  xournalpp pdfarranger simple-scan
   ghostscript # compress pdf
 # Writing
   neovim texlab ruff lua-language-server
@@ -46,7 +46,7 @@ environment.systemPackages = with pkgs; [
   ]))
 ];
 
-# virtualization 
+# virtualization
 #programs.virt-manager.enable = true;
 #users.groups.libvirtd.members = ["edwin"];
 #virtualisation.libvirtd.enable = true;

@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+set -u
+
+music_dir="$HOME/Music"
+cache_dir="$HOME/.cache/mpd-notify/covers"
+mkdir -p "$cache_dir"
+
+file_rel="$(mpc current --format '%file%')"
+
+# If nothing is playing, exit
+[ -z "$file_rel" ] && exit 0
+
+file="$music_dir/$file_rel"
+
+artist="$(mpc current --format '%artist%')"
+title="$(mpc current --format '%title%')"
+album="$(mpc current --format '%album%')"
+
+# Fallbacks if tags are missing
+[ -z "$artist" ] && artist="Unknown Artist"
+[ -z "$title" ] && title="$(mpc current --format '%file%')"
+
+# Cache key: the file path itself. Can't rely on album tags matching
+# shared art -- these are YouTube rips, so two tracks tagged with the
+# same album can easily have different embedded thumbnails.
+cache_key="$file_rel"
+cache_hash="$(printf '%s' "$cache_key" | sha256sum | cut -d' ' -f1)"
+cover="$cache_dir/${cache_hash}.png"
+
+# Extract and cache art only if we haven't already got this track.
+if [ ! -s "$cover" ] && [ -f "$file" ]; then
+    ffmpeg -loglevel error -y \
+        -i "$file" \
+        -map 0:1 \
+        -vf "scale=500:500:force_original_aspect_ratio=increase,crop=500:500" \
+        "$cover" 2>/dev/null
+
+    if [ ! -s "$cover" ]; then
+        rm -f "$cover"
+        : > "${cover}.none"
+    fi
+fi
+
+tmp_cover=""
+if [ -s "$cover" ]; then
+    tmp_cover="$cover"
+fi
+
+# Truncate long strings with an ellipsis for consistent notification sizing
+max_len=40
+truncate() {
+    local s="$1" max="$2"
+    if [ "${#s}" -gt "$max" ]; then
+        printf '%s…' "${s:0:$((max - 1))}"
+    else
+        printf '%s' "$s"
+    fi
+}
+artist="$(truncate "$artist" "$max_len")"
+title="$(truncate "$title" "$max_len")"
+
+icon_args=()
+[ -n "$tmp_cover" ] && icon_args=(-i "$tmp_cover")
+
+notify-send \
+    -r 9998 \
+    -t 3000 \
+    "${icon_args[@]}" \
+    "$artist" \
+    "$title"

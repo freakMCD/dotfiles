@@ -51,6 +51,7 @@ hl.bind(mod .. " + grave", hl.dsp.group.toggle())
 hl.bind(smod .. " + Y", hl.dsp.group.lock_active({ action = "toggle" }))
 
 -- Misc
+hl.bind("MOD5 + p", hl.dsp.exec_cmd("mpc toggle"), { repeating = true })
 hl.bind("MOD5 + Up", hl.dsp.exec_cmd(volume .. " up"), { repeating = true })
 hl.bind("MOD5 + Down", hl.dsp.exec_cmd(volume .. " down"), { repeating = true })
 hl.bind("MOD5 + Delete", hl.dsp.exec_cmd(volume .. " mute"))
@@ -60,8 +61,8 @@ hl.bind("Print", hl.dsp.exec_cmd(screenshots .. "/screen"))
 hl.bind(mod .. " + Print", hl.dsp.exec_cmd(screenshots .. "/area"))
 
 hl.bind(mod .. " + CONTROL + F12", hl.dsp.exec_cmd(scripts .. "/shutdown-delay"))
-hl.bind("KP_Down", hl.dsp.exec_cmd([[notify-send -u low -r 9998 -t 1500 "<b>$(date '+%H:%M')</b>"]]))
-
+hl.bind("KP_Down", hl.dsp.exec_cmd([[notify-send -u low -r 9997 -t 1500 "<b>$(date '+%H:%M')</b>"]]))
+hl.bind( "KP_Next", hl.dsp.exec_cmd(scripts .. "/song_notify"))
 hl.bind(mod .. " + q", hl.dsp.exec_cmd("foot"))
 hl.bind(mod .. " + r", hl.dsp.exec_cmd("fuzzel"))
 

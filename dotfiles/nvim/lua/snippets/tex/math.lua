@@ -1,7 +1,7 @@
 local helpers = require('luasnip-helper-funcs')
 local get_visual = helpers.get_visual
 
--- Math context detection 
+-- Math context detection
 local tex = {}
 tex.in_mathzone = function() return vim.fn['vimtex#syntax#in_mathzone']() == 1 end
 tex.in_text = function() return not tex.in_mathzone() end
@@ -432,12 +432,7 @@ return
     },
     {condition = tex.in_mathzone}
   ),
-  -- PARALLEL SYMBOL, i.e. \parallel
-  s({trig = "||", snippetType="autosnippet"},
-    {
-      t("\\parallel"),
-    }
-  ),
+
   -- CDOTS, i.e. \cdots
   s({trig = "cdd", snippetType="autosnippet"},
     {
@@ -488,7 +483,7 @@ return
     }),
     {condition = tex.in_mathzone}
   ),
- 
+
   -- NORMA ampliada
    s({trig = "lnorm", snippetType="autosnippet"},
     fmt("\\left\\lVert {} \\right\\rVert ",{
