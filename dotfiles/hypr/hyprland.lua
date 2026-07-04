@@ -91,4 +91,4 @@ end
 
 hl.window_rule({ match = { class = "libreoffice.*" }, suppress_event = "maximize" })
 hl.window_rule({ match = { class = "foot" }, group = "override barred" })
-hl.window_rule({ match = { class = "org.octave.Octave", title = "Figure*" }, float = 1, suppress_event = "maximize" })
+hl.window_rule({ match = { class = "^org.octave.Octave", title = "^Figure.*" }, float = 1, suppress_event = "maximize" })

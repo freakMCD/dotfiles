@@ -18,17 +18,18 @@ RCLONE_OPTS = [
         "--fast-list",
         "--timeout", "300s",
         "--contimeout", "60s",
-        "--size-only",
         ]
 
 MOMENTUM = {
-    "Korean": "https://youtube.com/playlist?list=PLIezlQjSDDHQ",
-    "Japanese": "https://youtube.com/playlist?list=PLF2OjHLf89co",
-    "English": "https://youtube.com/playlist?list=PLAKUPxjXy7d0",
+    "Resonance": "https://youtube.com/playlist?list=PLW2vM0BtePls",
+    "Afterimage": "https://youtube.com/playlist?list=PLCS7V9uaSFlA",
 }
 
 EQUILIBRIUM = {
-    "Sakuzyo": "https://youtube.com/playlist?list=PLSJZ_4OYJRE0",
+    "IU": "https://youtube.com/playlist?list=PLWtYMNfhrYGM",
+    "Sakuzyo": "https://youtube.com/playlist?list=PLGMHPJkSVnos",
+    "Sennzai": "https://youtube.com/playlist?list=PLJ0hTVb5gQ2k",
+    "Ano": "https://youtube.com/playlist?list=PLaf0GGE-g7GM",
 }
 
 PLAYLISTS = {
@@ -37,28 +38,37 @@ PLAYLISTS = {
 }
 
 METADATA_REPLACEMENTS = [
+    # Collapse duplicated titles: X (X) -> X
+    (r"^(.+)\s+\(\1\)$", r"\1"),
+
+    # Strip everything after a comma
     (r"\s*,.*", ""),
-    (r"\s*\(.*", ""),
-    (r"\s*[\[\【][^\]\】]*[\]\】]", ""),
-    (r"\s{2,}", " "),
-    (r"^\s+|\s+$", ""),
+
+    # Strip everything after a parenthesis/bracket preceded by whitespace
+    (r"\s+[\(\[【].*$", "")
 ]
 
+# Force these embedded metadata fields to empty values
 CLEAR_METADATA = r":(?P<meta_synopsis>)(?P<meta_description>)(?P<meta_purl>)"
 
 # --- State extraction ---
 def get_youtube_ids(url: str) -> set[str]:
     cmd = [
-            "yt-dlp",
-            "--flat-playlist",
-            "--cookies-from-browser", COOKIES,
-            "--print", "%(id)s",
-            "--compat-options", "no-youtube-unavailable-videos",
-            url
-            ]
+        "yt-dlp",
+        "--flat-playlist",
+        "--cookies-from-browser", COOKIES,
+        "--print", "%(id)s",
+        "--compat-options", "no-youtube-unavailable-videos",
+        url,
+    ]
 
-    result = subprocess.run(cmd, capture_output=True, text=True, check=True)
-    return {line.strip() for line in result.stdout.splitlines() if line.strip()}
+    try:
+        stdout = subprocess.run(cmd,capture_output=True,text=True,check=True,).stdout
+    except subprocess.CalledProcessError as e:
+        error = (e.stderr or e.stdout or str(e)).strip()
+        raise RuntimeError(f"yt-dlp failed reading playlist:\n{error}") from e
+
+    return {line for line in map(str.strip, stdout.splitlines()) if line}
 
 
 VIDEO_ID = re.compile(r" \[([A-Za-z0-9_-]{11})\]$")
@@ -84,33 +94,53 @@ def delete_stale(local_map: dict[str, Path], to_delete: set[str]) -> list[str]:
 
     return removed
 
-def download_missing(to_download: set[str], outdir: Path) -> list[str]:
+def download_missing(
+    to_download: set[str],
+    outdir: Path,
+    artist_override: str | None = None,
+) -> list[str]:
     if not to_download:
         return []
 
     video_urls = [f"https://www.youtube.com/watch?v={vid}" for vid in to_download]
 
     cmd = [
-            "yt-dlp",
-            "-f", "bestaudio[ext=m4a]/bestaudio",
-            "--remux-video", "m4a",
-            "--cookies-from-browser", COOKIES,
-            "--restrict-filenames",
-            "--parse-metadata", CLEAR_METADATA,
-            "--embed-metadata",
-            "--embed-thumbnail",
+        "yt-dlp",
+        "-f", "bestaudio[ext=m4a]/bestaudio",
+        "--remux-video", "m4a",
+        "--cookies-from-browser", COOKIES,
+        "--restrict-filenames",
+        "--compat-options", "no-youtube-unavailable-videos",
+        "--no-simulate",
+    ]
 
-            "--compat-options", "no-youtube-unavailable-videos",
-            "--no-simulate",
+    cmd += [
+        "--parse-metadata", "%(title)s:%(meta_title)s",
+    ]
 
-            "--print", "after_move:%(title)s|||%(id)s",
+    if artist_override is not None:
+        cmd += [
+            "--parse-metadata", f" {artist_override}: %(meta_artist)s",
+        ]
+    else:
+        cmd += [
+            "--parse-metadata",
+            "%(artist,artists,creator,creators,uploader,uploader_id|)s:%(meta_artist)s",
+        ]
 
-            "-o", str(outdir / "%(title)s [%(id)s].%(ext)s"),
-            *video_urls
-            ]
-    for field in ("title", "artist"):
+    for field in ("meta_title", "meta_artist"):
         for pattern, replacement in METADATA_REPLACEMENTS:
             cmd += ["--replace-in-metadata", field, pattern, replacement]
+
+    cmd += [
+        "--parse-metadata", CLEAR_METADATA,
+        "--embed-metadata",
+        "--embed-thumbnail",
+        "--print", "after_move:%(meta_title)s|||%(id)s",
+
+        "-o", str(outdir / "%(meta_title)s [%(id)s].%(ext)s"),
+        *video_urls,
+    ]
 
     added: list[str] = []
 
@@ -120,7 +150,7 @@ def download_missing(to_download: set[str], outdir: Path) -> list[str]:
         for line in proc.stdout:
             line = line.strip()
             if "|||" in line:
-                title, vid = line.split("|||", 1)
+                title, _ = line.split("|||", 1)
                 print(f"  + {title}")
                 added.append(title)
 
@@ -149,7 +179,8 @@ def sync_playlist(name: str, url: str):
     outdir = BASE_DIR / name
     outdir.mkdir(parents=True, exist_ok=True)
 
-    print(f"\033[93mSyncing {name}\033[0m") # Print header in yellow
+    print(f"\033[93mSyncing {name}\033[0m")
+
     youtube_ids = get_youtube_ids(url)
     local_map = get_local_files(outdir)
     local_ids = set(local_map)
@@ -157,9 +188,12 @@ def sync_playlist(name: str, url: str):
     to_delete = local_ids - youtube_ids
     to_download = youtube_ids - local_ids
 
-    # --- delete phase ---
+    artist_override = None
+    if name.startswith("Equilibrium/"):
+        artist_override = Path(name).name
+
     removed = delete_stale(local_map, to_delete)
-    added = download_missing(to_download, outdir)
+    added = download_missing(to_download, outdir, artist_override=artist_override)
 
     # --- OUTPUT ---
     if added or removed:
