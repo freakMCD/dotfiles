@@ -6,9 +6,9 @@ nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
 environment.systemPackages = with pkgs; [
 # System
-  home-manager yadm gnupg pass gcc mpc puddletag
+  home-manager yadm gnupg pass gcc mpc kid3
 # Terminal
-  curl ethtool fd htop p7zip rclone udiskie unrar
+  curl ethtool fd p7zip rclone udiskie unrar jq
 # Desktop
   grimblast hypridle hyprpicker kitty libnotify wev wl-clipboard
 # Documents
@@ -96,12 +96,5 @@ wantedBy = [ "timers.target" ];
   OnUnitActiveSec = "15m";
   Unit = "mailsync.service";
   };
-};
-
-services.earlyoom = {
-  enable = true;
-  extraArgs = [
-    "-g"
-  ];
 };
 }

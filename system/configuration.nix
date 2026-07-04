@@ -25,10 +25,19 @@
   # From https://kokada.dev/blog/an-unordered-list-of-hidden-gems-inside-nixos/
   boot.tmp.cleanOnBoot = true;
 
-#  zramSwap = {
- #   enable = true;
-  #  algorithm = "zstd";
-  #};
+  services.earlyoom = {
+    enable = true;
+
+    extraArgs = [
+      "--prefer"
+      "firefox|Web Content|Isolated Web Co"
+
+      "--avoid"
+      "[Hh]yprland|foot|nvim"
+    ];
+  };
+
+  systemd.oomd.enable = false;
 
   # rtkit is optional but recommended
   security = {
@@ -40,7 +49,7 @@
     dbus.implementation = "broker";
     fstrim.enable = true;
     udisks2.enable = true;
-    
+
     # Printing
     printing = {
       enable = true;
@@ -79,7 +88,7 @@
   };
 
   # Enable automatic login for the user.
- 
+
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     nerd-fonts.liberation
@@ -90,6 +99,6 @@
     material-symbols
   ];
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "26.05";
 }
 
