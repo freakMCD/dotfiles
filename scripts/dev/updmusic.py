@@ -27,19 +27,27 @@ MOMENTUM = {
     "English": "https://youtube.com/playlist?list=PLAKUPxjXy7d0",
 }
 
-PLAYLISTS = {
-    **{f"Momentum/{lang}": url for lang, url in MOMENTUM.items()},
-    "Equilibrium": "https://youtube.com/playlist?list=PLVDydioIhLPc",
+EQUILIBRIUM = {
+    "Sakuzyo": "https://youtube.com/playlist?list=PLSJZ_4OYJRE0",
 }
 
-PARSE_TITLE = r"title:^(?i:)(?:[\【\[].*?[\】\]]\s*)*(?P<title>.*?)(?:\s*[\【\[].*?[\】\]]|\s*\([^)]*\))*$"
-PARSE_ARTIST = r"artist:^(?P<artist>[^,\-\(]+?)\s*(?:[,\-\(].*)?$"
+PLAYLISTS = {
+    **{f"Momentum/{lang}": url for lang, url in MOMENTUM.items()},
+    **{f"Equilibrium/{lang}": url for lang, url in EQUILIBRIUM.items()},
+}
+
+METADATA_REPLACEMENTS = [
+    (r"\s*,.*", ""),
+    (r"\s*\(.*", ""),
+    (r"\s*[\[\【][^\]\】]*[\]\】]", ""),
+    (r"\s{2,}", " "),
+    (r"^\s+|\s+$", ""),
+]
 
 CLEAR_METADATA = r":(?P<meta_synopsis>)(?P<meta_description>)(?P<meta_purl>)"
 
-
 # --- State extraction ---
-def get_remote_ids(url: str) -> set[str]:
+def get_youtube_ids(url: str) -> set[str]:
     cmd = [
             "yt-dlp",
             "--flat-playlist",
@@ -50,17 +58,17 @@ def get_remote_ids(url: str) -> set[str]:
             ]
 
     result = subprocess.run(cmd, capture_output=True, text=True, check=True)
-    return set(line.strip() for line in result.stdout.splitlines() if line.strip())
+    return {line.strip() for line in result.stdout.splitlines() if line.strip()}
 
 
-VIDEO_ID = re.compile(r"\[([A-Za-z0-9_-]{11})\]")
+VIDEO_ID = re.compile(r" \[([A-Za-z0-9_-]{11})\]$")
 
 def get_local_files(directory: Path) -> dict[str, Path]:
     return {
             match.group(1): file
             for file in directory.iterdir()
             if file.suffix.lower() in AUDIO_EXTENSIONS
-            if (match := VIDEO_ID.search(file.name))
+            if (match := VIDEO_ID.search(file.stem))
             }
 
 
@@ -88,9 +96,6 @@ def download_missing(to_download: set[str], outdir: Path) -> list[str]:
             "--remux-video", "m4a",
             "--cookies-from-browser", COOKIES,
             "--restrict-filenames",
-
-            "--parse-metadata", PARSE_TITLE,
-            "--parse-metadata", PARSE_ARTIST,
             "--parse-metadata", CLEAR_METADATA,
             "--embed-metadata",
             "--embed-thumbnail",
@@ -103,10 +108,15 @@ def download_missing(to_download: set[str], outdir: Path) -> list[str]:
             "-o", str(outdir / "%(title)s [%(id)s].%(ext)s"),
             *video_urls
             ]
+    for field in ("title", "artist"):
+        for pattern, replacement in METADATA_REPLACEMENTS:
+            cmd += ["--replace-in-metadata", field, pattern, replacement]
 
     added: list[str] = []
 
-    with subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True) as proc:
+    with subprocess.Popen(cmd, stdout=subprocess.PIPE, text=True) as proc:
+        assert proc.stdout is not None
+
         for line in proc.stdout:
             line = line.strip()
             if "|||" in line:
@@ -114,7 +124,10 @@ def download_missing(to_download: set[str], outdir: Path) -> list[str]:
                 print(f"  + {title}")
                 added.append(title)
 
-        proc.wait()
+        returncode = proc.wait()
+
+    if returncode != 0:
+        raise subprocess.CalledProcessError(returncode, cmd)
 
     return added
 
@@ -136,18 +149,16 @@ def sync_playlist(name: str, url: str):
     outdir = BASE_DIR / name
     outdir.mkdir(parents=True, exist_ok=True)
 
-    remote_ids = get_remote_ids(url)
+    print(f"\033[93mSyncing {name}\033[0m") # Print header in yellow
+    youtube_ids = get_youtube_ids(url)
     local_map = get_local_files(outdir)
-
     local_ids = set(local_map)
 
-    to_delete = local_ids - remote_ids
-    to_download = remote_ids - local_ids
+    to_delete = local_ids - youtube_ids
+    to_download = youtube_ids - local_ids
 
     # --- delete phase ---
     removed = delete_stale(local_map, to_delete)
-
-    print(f"\033[93mSyncing {name}\033[0m") # Print header in yellow
     added = download_missing(to_download, outdir)
 
     # --- OUTPUT ---
@@ -155,27 +166,28 @@ def sync_playlist(name: str, url: str):
         for r in removed:
             print(f"  - {r}")
 
-        print(f"   → +{len(added)} / -{len(removed)} ({len(remote_ids)})\n")
+        print(f"   → +{len(added)} / -{len(removed)} ({len(youtube_ids)})\n")
         print(f"✔️ {name} updated")
     else:
-        print(f"✔️ {name} is up to date ({len(remote_ids)})")
+        print(f"✔️ {name} is up to date ({len(youtube_ids)})")
 
     final_ids = set(get_local_files(outdir))
 
-    if final_ids != remote_ids:
-        missing = remote_ids - final_ids
-        extra = final_ids - remote_ids
+    if final_ids != youtube_ids:
+        missing = youtube_ids - final_ids
+        extra = final_ids - youtube_ids
 
-        print(f"[WARN] {name} out of sync")
+        print(f"[ERROR] {name} local mirror does not match YouTube")
         if missing:
-            print(f"  missing: {len(missing)}")
+            print(f"  missing from local: {len(missing)}")
         if extra:
-            print(f"  extra: {len(extra)}")
+            print(f"  extra in local: {len(extra)}")
 
-    return len(remote_ids), len(added) + len(removed)
+        raise RuntimeError(f"{name} did not sync cleanly")
+
+    return len(youtube_ids), len(added) + len(removed)
 
 # --- Main ---
-
 def main():
     BASE_DIR.mkdir(parents=True, exist_ok=True)
 

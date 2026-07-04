@@ -6,6 +6,10 @@ local scripts = "~/nix/scripts"
 local volume = scripts .. "/volume-notif"
 local screenshots = scripts .. "/screenshots"
 
+local function bind_cmd(key, cmd, opts)
+    hl.bind(key, hl.dsp.exec_cmd(cmd), opts)
+end
+
 -- Environment
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
@@ -22,6 +26,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("udiskie")
     hl.exec_cmd("hypridle")
     hl.exec_cmd(scripts .. "/network-notify")
+    hl.exec_cmd(scripts .. "/dev/mpc_albums.py ~/Music/Equilibrium")
 end)
 
 -- Workspace Navigation
@@ -32,7 +37,7 @@ end
 
 -- Window Navigation
 for key, dir in pairs({ h = "l", l = "r", k = "u", j = "d" }) do
-    hl.bind(mod  .. " + " .. key, hl.dsp.focus({ direction = dir }))
+    hl.bind(mod .. " + " .. key, hl.dsp.focus({ direction = dir }))
     hl.bind(smod .. " + " .. key, hl.dsp.window.move({ direction = dir }))
 end
 
@@ -50,21 +55,21 @@ hl.bind(smod .. " + TAB", hl.dsp.group.prev())
 hl.bind(mod .. " + grave", hl.dsp.group.toggle())
 hl.bind(smod .. " + Y", hl.dsp.group.lock_active({ action = "toggle" }))
 
--- Misc
-hl.bind("MOD5 + p", hl.dsp.exec_cmd("mpc toggle"), { repeating = true })
-hl.bind("MOD5 + Up", hl.dsp.exec_cmd(volume .. " up"), { repeating = true })
-hl.bind("MOD5 + Down", hl.dsp.exec_cmd(volume .. " down"), { repeating = true })
-hl.bind("MOD5 + Delete", hl.dsp.exec_cmd(volume .. " mute"))
-hl.bind(mod .. " + Delete", hl.dsp.exec_cmd(volume .. " mute-mic"))
+-- Commands
+bind_cmd("MOD5 + p", "mpc toggle", { repeating = true })
+bind_cmd("MOD5 + Up", volume .. " up", { repeating = true })
+bind_cmd("MOD5 + Down", volume .. " down", { repeating = true })
+bind_cmd("MOD5 + Delete", volume .. " mute")
+bind_cmd(mod .. " + Delete", volume .. " mute-mic")
 
-hl.bind("Print", hl.dsp.exec_cmd(screenshots .. "/screen"))
-hl.bind(mod .. " + Print", hl.dsp.exec_cmd(screenshots .. "/area"))
+bind_cmd("Print", screenshots .. "/screen")
+bind_cmd(mod .. " + Print", screenshots .. "/area")
 
-hl.bind(mod .. " + CONTROL + F12", hl.dsp.exec_cmd(scripts .. "/shutdown-delay"))
-hl.bind("KP_Down", hl.dsp.exec_cmd([[notify-send -u low -r 9997 -t 1500 "<b>$(date '+%H:%M')</b>"]]))
-hl.bind( "KP_Next", hl.dsp.exec_cmd(scripts .. "/song_notify"))
-hl.bind(mod .. " + q", hl.dsp.exec_cmd("foot"))
-hl.bind(mod .. " + r", hl.dsp.exec_cmd("fuzzel"))
+bind_cmd(mod .. " + CONTROL + F12", scripts .. "/shutdown-delay")
+bind_cmd("KP_Down", [[notify-send -u low -r 9997 -t 1150 "<b>$(date '+%H:%M')</b>"]])
+bind_cmd("KP_Next", scripts .. "/song_notify")
+bind_cmd(mod .. " + q", "foot")
+bind_cmd(mod .. " + r", "fuzzel")
 
 -- Special workspaces
 hl.workspace_rule({ workspace = "special:mail", on_created_empty = "foot --app-id=neomutt neomutt" })
@@ -86,4 +91,4 @@ end
 
 hl.window_rule({ match = { class = "libreoffice.*" }, suppress_event = "maximize" })
 hl.window_rule({ match = { class = "foot" }, group = "override barred" })
-
+hl.window_rule({ match = { class = "org.octave.Octave", title = "Figure*" }, float = 1, suppress_event = "maximize" })

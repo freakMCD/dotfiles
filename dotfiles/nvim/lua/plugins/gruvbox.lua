@@ -14,11 +14,11 @@ return function()
     invert_intend_guides = false,
     inverse = true,
     contrast = "hard",
+    transparent_mode = true,
   })
 
-  vim.cmd("colorscheme gruvbox")
+  vim.cmd.colorscheme("gruvbox")
 
-vim.api.nvim_set_hl(0, "StatusLine", { link = "Normal" })
-vim.api.nvim_set_hl(0, "StatusLineNC", { link = "NormalFloat" })
-vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "StatusLine", { link = "Normal" })
+  vim.api.nvim_set_hl(0, "StatusLineNC", { link = "NormalFloat" })
 end

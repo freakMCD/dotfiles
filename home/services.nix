@@ -20,7 +20,7 @@
           main = {
               # Layout
               border-radius = 6;
-              max-width = 320;
+              max-width = 400;
               max-height = 400;
               padding-vertical = 8;
               padding-horizontal = 12;

@@ -16,6 +16,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 require("lazy").setup({
   {
@@ -90,9 +91,9 @@ require("lazy").setup({
       g.ale_linters_explicit = 1
 
       g.ale_linters = {
-        python = {'ruff'},
-        c = {'gcc'},
-        nix = {'nix'},
+        python = { "ruff" },
+        c = { "gcc" },
+        nix = { "nix" },
       }
 
       g.ale_fix_on_save = 1

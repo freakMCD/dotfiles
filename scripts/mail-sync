@@ -1,45 +1,43 @@
 #!/usr/bin/env bash
+set -u
 
-source ~/.local/share/linuxfedora
+source "$HOME/.local/share/linuxfedora"
 
-[ ! -r ~/nix/dotfiles/neomutt/.mbsyncrc ] && exit 0
+mbsyncrc="$HOME/nix/dotfiles/neomutt/.mbsyncrc"
+marker="$HOME/.config/neomutt/.mailsynclast"
+prefix="$HOME/.local/share/email/gmail"
 
-if ps -C mbsync > /dev/null; then
-    exit 0
-fi
+[ ! -r "$mbsyncrc" ] && exit 0
+[ ! -d "$prefix" ] && exit 0
 
-touch ~/.config/neomutt/.mailsynclast
-mbsync -c ~/nix/dotfiles/neomutt/.mbsyncrc gmail
-prefix="${HOME}/.local/share/email/gmail"
+lock="${XDG_RUNTIME_DIR:-/tmp}/mailsync.lock"
+exec 9>"$lock"
+flock -n 9 || exit 0
+
+touch "$marker"
+mbsync -c "$mbsyncrc" gmail || exit 1
 
 for file in "$prefix"/*; do
     folder="${file#"$prefix"/}"
-    if [[ "$folder" =~ (INBOX|Github|Interbank) ]]; then
-        # Find all unread mail whose file is newer than the last time this script was run
-        newemails=$(find "$file"/new -type f -newer ~/.config/neomutt/.mailsynclast 2> /dev/null)
 
-        if [[ -z "$newemails" ]]; then
-            continue
-        fi
+    case "$folder" in
+        INBOX|Github|Interbank) ;;
+        *) continue ;;
+    esac
 
-        newcount=$(echo "$newemails" | wc -l)
+    find "$file/new" -type f -newer "$marker" -print0 2>/dev/null |
+    while IFS= read -r -d '' newemail; do
+        sender="$(
+            sed -n '/^From: /s/^From: //p' "$newemail" |
+            perl -pe 'use MIME::EncWords(decode_mimewords); $_=decode_mimewords($_);'
+        )"
 
-        # Send notification if there are new mails
-        if [ "$newcount" -gt 0 ]; then
-            while IFS= read -r newemail; do
-                # Ensure newemail is a valid file
-                [ ! -f "$newemail" ] && continue
+        subject="$(
+            sed -n '/^Subject: /s/^Subject: //p' "$newemail" |
+            perl -pe 'use MIME::EncWords(decode_mimewords); $_=decode_mimewords($_);'
+        )"
 
-                sender=$(sed -n '/^From: /s/^From: //p' "$newemail" \
-                        | perl -pe 'use MIME::EncWords(decode_mimewords); $_=decode_mimewords($_);')
-                subject=$(sed -n '/^Subject: /s/^Subject: //p' "$newemail" \
-                        | perl -pe 'use MIME::EncWords(decode_mimewords); $_=decode_mimewords($_);')
-
-                # Check if sender and subject are empty to prevent empty notifications
-                if [[ -n "$sender" && -n "$subject" ]]; then
-                    notify-send -t 30000 "$sender" "$subject"
-                fi
-            done <<< "$newemails"
-        fi
-    fi
+        [[ -n "$sender" && -n "$subject" ]] &&
+            notify-send -t 30000 "$sender" "$subject"
+    done
 done

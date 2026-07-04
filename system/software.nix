@@ -6,7 +6,7 @@ nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
 environment.systemPackages = with pkgs; [
 # System
-  home-manager yadm gnupg pass gcc mpc
+  home-manager yadm gnupg pass gcc mpc puddletag
 # Terminal
   curl ethtool fd htop p7zip rclone udiskie unrar
 # Desktop
@@ -39,6 +39,7 @@ environment.systemPackages = with pkgs; [
 # quickemu  samba
 # Python
   (pkgs.python3.withPackages (ps: with ps; [
+    mutagen
     numpy
     matplotlib
     opencv4

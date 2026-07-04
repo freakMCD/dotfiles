@@ -4,7 +4,7 @@ tex.in_mathzone = function()
 end
 
 return {
-s({ trig = "([bpv])mat(%d)(%d)", regTrig = true, snippetType = "autosnippet" }, {
+s({ trig = "([bpv])mat([1-9])([1-9])", regTrig = true, snippetType = "autosnippet" }, {
   d(1, function(_, snip)
     local mat_type = snip.captures[1] .. "matrix"
     local rows, cols = tonumber(snip.captures[2]), tonumber(snip.captures[3])
@@ -30,6 +30,6 @@ s({ trig = "([bpv])mat(%d)(%d)", regTrig = true, snippetType = "autosnippet" }, 
     end
 
     table.insert(nodes, t({ "", "\\end{" .. mat_type .. "}" }))
-    return sn(1, nodes)
+    return sn(nil, nodes)
   end),
 }, { condition = tex.in_mathzone })}
