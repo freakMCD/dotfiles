@@ -6,7 +6,7 @@ nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
 environment.systemPackages = with pkgs; [
 # System
-  home-manager yadm gnupg pass gcc mpc kid3
+  home-manager yadm gnupg pass gcc mpc kid3 btop
 # Terminal
   curl ethtool fd p7zip rclone udiskie unrar jq
 # Desktop
