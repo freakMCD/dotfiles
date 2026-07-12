@@ -26,7 +26,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("udiskie")
     hl.exec_cmd("hypridle")
     hl.exec_cmd(scripts .. "/network-notify")
-    hl.exec_cmd(scripts .. "/dev/mpc_albums.py ~/Music/Equilibrium")
+    hl.exec_cmd(scripts .. "/dev/mpc_albums.py ~/Music")
 end)
 
 -- Workspace Navigation
@@ -56,7 +56,7 @@ hl.bind(mod .. " + grave", hl.dsp.group.toggle())
 hl.bind(smod .. " + Y", hl.dsp.group.lock_active({ action = "toggle" }))
 
 -- Commands
-bind_cmd("MOD5 + p", "mpc toggle", { repeating = true })
+bind_cmd("MOD5 + p", "mpc toggle && ~/nix/scripts/song_notify")
 bind_cmd("MOD5 + Up", volume .. " up", { repeating = true })
 bind_cmd("MOD5 + Down", volume .. " down", { repeating = true })
 bind_cmd("MOD5 + Delete", volume .. " mute")
@@ -67,7 +67,6 @@ bind_cmd(mod .. " + Print", screenshots .. "/area")
 
 bind_cmd(mod .. " + CONTROL + F12", scripts .. "/shutdown-delay")
 bind_cmd("KP_Down", [[notify-send -u low -r 9997 -t 1150 "<b>$(date '+%H:%M')</b>"]])
-bind_cmd("KP_Next", scripts .. "/song_notify")
 bind_cmd(mod .. " + q", "foot")
 bind_cmd(mod .. " + r", "fuzzel")
 
@@ -79,8 +78,8 @@ hl.bind(mod .. " + o", hl.dsp.workspace.toggle_special("openfile"))
 
 -- Window rules
 for class, ws in pairs({
-    ["org.pwmt.zathura"] = 1,
-    firefox = 2,
+    firefox = 1,
+    ["org.pwmt.zathura"] = 2,
     geogebra = 3,
 }) do
     hl.window_rule({
@@ -91,4 +90,4 @@ end
 
 hl.window_rule({ match = { class = "libreoffice.*" }, suppress_event = "maximize" })
 hl.window_rule({ match = { class = "foot" }, group = "override barred" })
-hl.window_rule({ match = { class = "^org.octave.Octave", title = "^Figure.*" }, float = 1, suppress_event = "maximize" })
+hl.window_rule({ match = { class = "^org.octave.Octave", title = "^Figure.*" }, workspace = 5 })

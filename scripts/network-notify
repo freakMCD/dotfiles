@@ -1,56 +1,154 @@
 #!/usr/bin/env bash
 
-IFACE="enp34s0"
-NOTIF_ID=9999
-RENEGOTIATING=0
+set -u
 
-get_speed() {
-    cat "/sys/class/net/$IFACE/speed" 2>/dev/null
+# ── Configuration ────────────────────────────────────────────────────────────
+
+readonly IFACE="enp34s0"
+readonly NOTIF_ID=9999
+
+# Time between renegotiation attempts while connected at 10 Mb/s.
+readonly RETRY_DELAY=5
+
+# Polling intervals for the different states.
+readonly DOWN_POLL_DELAY=2
+readonly UP_POLL_DELAY=5
+readonly READ_RETRY_DELAY=1
+
+readonly LOCK_FILE="${XDG_RUNTIME_DIR:-/tmp}/network-renegotiate-${IFACE}.lock"
+
+# ── Single-instance lock ─────────────────────────────────────────────────────
+
+exec 9>"$LOCK_FILE"
+flock -n 9 || exit 0
+
+# ── Functions ────────────────────────────────────────────────────────────────
+
+get_carrier() {
+    local carrier
+
+    read -r carrier <"/sys/class/net/$IFACE/carrier" 2>/dev/null ||
+        return 1
+
+    [[ $carrier == 1 ]]
 }
 
-ip monitor link dev "$IFACE" | while read -r line; do
-    [[ $line != *LOWER_UP* ]] && continue
+get_speed() {
+    local speed
 
-    speed=""
+    read -r speed <"/sys/class/net/$IFACE/speed" 2>/dev/null ||
+        return 1
 
-    for _ in {1..5}; do
-        speed=$(get_speed)
+    [[ $speed =~ ^[0-9]+$ ]] || return 1
+    (( speed > 0 )) || return 1
 
-        if [[ "$speed" =~ ^[0-9]+$ ]] && (( speed > 0 )); then
-            break
+    printf '%s\n' "$speed"
+}
+
+notify_disconnected() {
+    notify-send \
+        -r "$NOTIF_ID" \
+        -t 2000 \
+        "Network" \
+        "Disconnected"
+}
+
+notify_renegotiating() {
+    notify-send \
+        -u critical \
+        -t 0 \
+        -r "$NOTIF_ID" \
+        "Network Warning" \
+        "Negotiated at 10 Mb/s. Renegotiating..."
+}
+
+notify_connected() {
+    local speed=$1
+
+    notify-send \
+        -r "$NOTIF_ID" \
+        -t 3000 \
+        "Network" \
+        "Connected at ${speed} Mb/s"
+}
+
+notify_failure() {
+    notify-send \
+        -u critical \
+        -t 5000 \
+        -r "$NOTIF_ID" \
+        "Network Error" \
+        "Failed to restart Ethernet autonegotiation."
+}
+
+# ── Validation ────────────────────────────────────────────────────────────────
+
+if [[ ! -d /sys/class/net/$IFACE ]]; then
+    printf 'Interface %s does not exist\n' "$IFACE" >&2
+    exit 1
+fi
+
+if ! command -v flock >/dev/null; then
+    printf 'Required command not found: flock\n' >&2
+    exit 1
+fi
+
+if ! command -v ethtool >/dev/null; then
+    printf 'Required command not found: ethtool\n' >&2
+    exit 1
+fi
+
+if ! command -v notify-send >/dev/null; then
+    printf 'Required command not found: notify-send\n' >&2
+    exit 1
+fi
+
+# ── Main loop ────────────────────────────────────────────────────────────────
+
+last_state=""
+
+while true; do
+    if ! get_carrier; then
+        if [[ $last_state != down ]]; then
+            notify_disconnected
+            last_state="down"
         fi
 
-        sleep 1
-    done
+        sleep "$DOWN_POLL_DELAY"
+        continue
+    fi
 
-    case "$speed" in
-        10)
-            if (( ! RENEGOTIATING )); then
-                RENEGOTIATING=1
+    speed=$(get_speed) || {
+        sleep "$READ_RETRY_DELAY"
+        continue
+    }
 
-                notify-send \
-                    -u critical \
-                    -t 0 \
-                    -r "$NOTIF_ID" \
-                    "Network Warning" \
-                    "Negotiated at 10 Mb/s. Renegotiating..."
+    if (( speed == 10 )); then
+        notify_renegotiating
+        last_state="renegotiating"
 
-                if sudo ethtool -r "$IFACE"; then
-                    :
-                else
-                    RENEGOTIATING=0
-                fi
-            fi
-            ;;
+        if ! sudo ethtool -r "$IFACE"; then
+            notify_failure
+            printf 'Failed to renegotiate interface %s\n' "$IFACE" >&2
+        fi
 
-        100|1000|2500|5000|10000)
-            RENEGOTIATING=0
+        sleep "$RETRY_DELAY"
+        continue
+    fi
 
-            notify-send \
-                -r "$NOTIF_ID" \
-                -t 3000 \
-                "Network" \
-                "Connected at ${speed} Mb/s"
-            ;;
-    esac
+    if (( speed > 10 )); then
+        if [[ $last_state != "up:$speed" ]]; then
+            notify_connected "$speed"
+            last_state="up:$speed"
+        fi
+
+        sleep "$UP_POLL_DELAY"
+        continue
+    fi
+
+    # A positive but unexpected speed below 10 Mb/s.
+    printf 'Unexpected speed reported for %s: %s Mb/s\n' \
+        "$IFACE" "$speed" >&2
+
+    sleep "$READ_RETRY_DELAY"
 done

@@ -21,15 +21,13 @@ RCLONE_OPTS = [
         ]
 
 MOMENTUM = {
-    "Resonance": "https://youtube.com/playlist?list=PLW2vM0BtePls",
-    "Afterimage": "https://youtube.com/playlist?list=PLCS7V9uaSFlA",
+    "Ano": "https://youtube.com/playlist?list=PLaf0GGE-g7GM",
+    "Sennzai": "https://youtube.com/playlist?list=PLJ0hTVb5gQ2k",
+    "IU": "https://youtube.com/playlist?list=PLWtYMNfhrYGM",
 }
 
 EQUILIBRIUM = {
-    "IU": "https://youtube.com/playlist?list=PLWtYMNfhrYGM",
     "Sakuzyo": "https://youtube.com/playlist?list=PLGMHPJkSVnos",
-    "Sennzai": "https://youtube.com/playlist?list=PLJ0hTVb5gQ2k",
-    "Ano": "https://youtube.com/playlist?list=PLaf0GGE-g7GM",
 }
 
 PLAYLISTS = {

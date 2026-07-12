@@ -5,6 +5,9 @@ music_dir="$HOME/Music"
 cache_dir="$HOME/.cache/mpd-notify/covers"
 mkdir -p "$cache_dir"
 
+state="$(mpc status '%state%')"
+[ "$state" = "playing" ] || exit 0
+
 mapfile -t meta < <(mpc current --format $'%file%\n%artist%\n%title%\n%album%')
 
 file_rel="${meta[0]:-}"
