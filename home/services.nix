@@ -53,7 +53,7 @@
           };
 
           critical = {
-            background = "${config.colors.red}cc";
+            background = "${config.colors.d_red}ee";
             border-color = "${config.colors.red}ff";
             summary-color = "${config.colors.yellow}ff";
             border-size = 2;

@@ -6,7 +6,7 @@
       apply = toString;
       default = "${config.home.homeDirectory}/nix/dotfiles/";
   };
-  
+
   options.colors = lib.mkOption {
     type = lib.types.attrs;
     description = "Theme configuration including color palette.";
@@ -23,7 +23,7 @@
 
       fg0            = "fbf1c7";
       fg1            = "ebdbb2";
-      
+
       muted_white    = "bdae93";
       red            = "cc241d";
       green          = "98971a";
@@ -40,6 +40,8 @@
       b_magenta = "d3869b";
       b_cyan    = "8ec07c";
       b_white   = "a89984";
+
+      d_red = "1f0706";
 
       orange    = "d65d0e";
       b_orange  = "fe8019";

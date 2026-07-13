@@ -26,7 +26,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("udiskie")
     hl.exec_cmd("hypridle")
     hl.exec_cmd(scripts .. "/network-notify")
-    hl.exec_cmd(scripts .. "/dev/mpc_albums.py ~/Music")
+    hl.exec_cmd(scripts .. "/dev/mpc_albums.py ~/Music/Sakuzyo/")
 end)
 
 -- Workspace Navigation

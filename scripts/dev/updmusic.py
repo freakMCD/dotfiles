@@ -20,16 +20,14 @@ RCLONE_OPTS = [
         "--contimeout", "60s",
         ]
 
-MOMENTUM = {
-    "Ano": "https://youtube.com/playlist?list=PLaf0GGE-g7GM",
-    "Sennzai": "https://youtube.com/playlist?list=PLJ0hTVb5gQ2k",
-    "IU": "https://youtube.com/playlist?list=PLWtYMNfhrYGM",
-    "The Hall": "https://youtube.com/playlist?list=PLWHCQ0fahwAE",
+EQUILIBRIUM = {
+     "Sennzai": "https://youtube.com/playlist?list=PLJ0hTVb5gQ2k",
+     "Sakuzyo": "https://youtube.com/playlist?list=PLSjvpXedvrGM",
 }
 
 PLAYLISTS = {
-    **{f"Momentum/{lang}": url for lang, url in MOMENTUM.items()},
-    "Study": "https://music.youtube.com/playlist?list=PLTLcqeLl6l0g",
+    "The Hall": "https://youtube.com/playlist?list=PLHr6QN96Td6g",
+    **{f"Equilibrium/{lang}": url for lang, url in EQUILIBRIUM.items()},
 }
 
 METADATA_REPLACEMENTS = [
