@@ -24,15 +24,12 @@ MOMENTUM = {
     "Ano": "https://youtube.com/playlist?list=PLaf0GGE-g7GM",
     "Sennzai": "https://youtube.com/playlist?list=PLJ0hTVb5gQ2k",
     "IU": "https://youtube.com/playlist?list=PLWtYMNfhrYGM",
-}
-
-EQUILIBRIUM = {
-    "Sakuzyo": "https://youtube.com/playlist?list=PLGMHPJkSVnos",
+    "The Hall": "https://youtube.com/playlist?list=PLWHCQ0fahwAE",
 }
 
 PLAYLISTS = {
     **{f"Momentum/{lang}": url for lang, url in MOMENTUM.items()},
-    **{f"Equilibrium/{lang}": url for lang, url in EQUILIBRIUM.items()},
+    "Study": "https://music.youtube.com/playlist?list=PLTLcqeLl6l0g",
 }
 
 METADATA_REPLACEMENTS = [

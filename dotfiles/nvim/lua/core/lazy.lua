@@ -1,4 +1,4 @@
--- Bootstrap lazy.nvim
+-- ~/Music/Momentum/Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -26,9 +26,7 @@ require("lazy").setup({
 
       configs.setup({
         ensure_installed = { "c", "lua", "html", "css", "fish", "bash", "nix" },
-        sync_install = false,
         highlight = { enable = true, disable = { "bash" } },
-        indent = { enable = false }
       })
     end
   },
@@ -43,10 +41,11 @@ require("lazy").setup({
 
   {
     "ibhagwan/fzf-lua",
+    cmd = "FzfLua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       files = {
-        fd_opts = "--color=always -t f . /mnt/DATA ~/nix",
+        fd_opts = "--color=never -t f . /mnt/DATA ~/nix",
         fzf_opts = {
           ["--delimiter"] = "/",
           ["--with-nth"] = "4..",
@@ -56,22 +55,22 @@ require("lazy").setup({
   },
 
   {
-    'hrsh7th/nvim-cmp',
-    event = "InsertEnter",
+    'saghen/blink.cmp',
+    version = '1.*',
     dependencies = {
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'saadparwaiz1/cmp_luasnip',
       {
-        'L3MON4D3/LuaSnip',
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
         config = function()
           require("plugins.luasnip")
-        end
+        end,
       },
     },
-    config = function()
-      require("plugins.cmp")
-    end
+
+    opts = {
+      snippets = { preset = 'luasnip' },
+      keymap = { preset = 'enter', },
+    },
   },
 
   {
@@ -83,21 +82,22 @@ require("lazy").setup({
   },
 
   {
-    'dense-analysis/ale',
-    config = function()
-      local g = vim.g
-      g.ale_disable_lsp = 1
-      g.ale_linters_explicit = 1
+    "dense-analysis/ale",
 
-      g.ale_linters = {
+    init = function()
+      vim.g.ale_disable_lsp = 1
+      vim.g.ale_linters_explicit = 1
+
+      vim.g.ale_linters = {
         python = { "ruff" },
         c = { "gcc" },
         nix = { "nix" },
       }
 
-      g.ale_fix_on_save = 1
-      g.ale_fixers = { ["*"] = { "trim_whitespace" } }
-    end
-  }
+      vim.g.ale_fix_on_save = 1
+      vim.g.ale_fixers = {
+        ["*"] = { "trim_whitespace" },
+      }
+    end,
+  },
 })
-

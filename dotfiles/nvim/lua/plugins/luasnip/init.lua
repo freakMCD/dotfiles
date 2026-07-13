@@ -3,7 +3,7 @@ local types = require("luasnip.util.types")
 
 ls.config.setup({
   enable_autosnippets = true,
-  updateevents = "TextChanged,TextChangedI",
+  update_events = "TextChanged,TextChangedI",
   region_check_events = "CursorMoved,CursorMovedI,CursorHold",
   cut_selection_keys = "<Tab>",
   ext_opts = {
@@ -17,19 +17,4 @@ ls.config.setup({
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_lua").load({ paths = {"~/.config/nvim/lua/snippets/"}, fs_event_providers = {libuv=true}})
 vim.cmd([[silent command! LuaSnipEdit :lua require("luasnip.loaders").edit_snippet_files()]])
-
-vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
-vim.keymap.set({"i", "s"}, "<TAB>", function()
-    if ls.jumpable(1) then ls.jump(1) end
-end, {silent = true})
-vim.keymap.set({"i", "s"}, "<S-TAB>", function()
-    if ls.jumpable(-1) then ls.jump(-1) end
-end, {silent = true})
-
-
-vim.keymap.set({"i", "s"}, "<C-E>", function()
-    if ls.choice_active() then
-        require("luasnip.extras.select_choice")()
-    end
-end, {silent = true})
 
