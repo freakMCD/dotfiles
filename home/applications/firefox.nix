@@ -19,7 +19,7 @@ in
             };
           };
           BlockAboutAddons = true;
-          BlockAboutConfig = true;
+#          BlockAboutConfig = true;
           DisableFirefoxAccounts = true;
           DisableFirefoxStudies = true;
           DisableTelemetry = true;
@@ -57,13 +57,23 @@ in
         id=0;
         name = "edwin";
         isDefault = true;
+
         userChrome = ''
+          :root {
+            --tabs-toolbar-height: 29px;
+            --nav-bar-overlap-adjustment: 8px;
+          }
+
           /* Nav bar */
           #nav-bar, .urlbar-background, #sidebar-box, findbar, #navigator-toolbox { background: #${config.colors.bg0} !important; }
 
           #nav-bar {
             margin-left: 80vw !important;
-            margin-top: -36px !important;
+            margin-top: calc(
+              0px
+              - var(--tabs-toolbar-height)
+              - var(--nav-bar-overlap-adjustment)
+            ) !important;
             margin-bottom: -5px !important;
           }
 
@@ -71,8 +81,8 @@ in
 
           #TabsToolbar {
             margin-right: 20vw !important;
-            min-height: 32px !important;
-            max-height: 32px !important;
+            min-height: var(--tabs-toolbar-height) !important;
+            max-height: var(--tabs-toolbar-height) !important;
           }
 
           .tabbrowser-tab {
@@ -131,7 +141,7 @@ in
             "Nixpkgs" = {
               urls = [ { template = "https://search.nixos.org/packages?&query={searchTerms}"; } ];
               definedAliases = [ "@np" ];
-            };          
+            };
 
             "GitHub Code" = {
               urls = [ { template = "https://github.com/search?q={searchTerms}&type=code"; } ];

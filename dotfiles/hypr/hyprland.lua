@@ -26,7 +26,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("udiskie")
     hl.exec_cmd("hypridle")
     hl.exec_cmd(scripts .. "/network-notify")
-    hl.exec_cmd(scripts .. "/dev/mpc_albums.py ~/Music/Sakuzyo/")
+    hl.exec_cmd(scripts .. "/dev/mpc_albums.py ~/Music/")
 end)
 
 -- Workspace Navigation
@@ -66,6 +66,7 @@ bind_cmd("Print", screenshots .. "/screen")
 bind_cmd(mod .. " + Print", screenshots .. "/area")
 
 bind_cmd(mod .. " + CONTROL + F12", scripts .. "/shutdown-delay")
+
 bind_cmd("KP_Down", [[notify-send -u low -r 9997 -t 1150 "<b>$(date '+%H:%M')</b>"]])
 bind_cmd(mod .. " + q", "foot")
 bind_cmd(mod .. " + r", "fuzzel")
