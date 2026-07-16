@@ -3,78 +3,64 @@
 import random
 import subprocess
 import sys
-from pathlib import Path
-from mutagen import File
 from collections import defaultdict
+from pathlib import Path
 
-AUDIO_EXTENSIONS = {
-    ".mp3",
-    ".m4a",
-    ".flac",
-    ".ogg",
-}
+from mutagen import File
 
-library_root = Path.home() / "Music"   # or read from mpd.conf
+AUDIO_EXTENSIONS = {".mp3", ".m4a", ".flac", ".ogg"}
+LIBRARY_ROOT = Path.home() / "Music"
+UNKNOWN_ALBUM = "(Unknown Album)"
 
-def chunks(lst, n=500):
-    for i in range(0, len(lst), n):
-        yield lst[i:i+n]
 
-def get_album(path: Path):
+def get_album(path):
     audio = File(path, easy=True)
     if audio is None:
         return None
 
     album = audio.get("album")
-    if album:
-        return album[0].strip()
+    return album[0].strip() if album else UNKNOWN_ALBUM
 
-    return "(Unknown Album)"
+
+def get_track(path):
+    track = File(path, easy=True).get("tracknumber")
+    try:
+        return int(track[0].split("/")[0]) if track else float("inf")
+    except ValueError:
+        return float("inf")
+
 
 def main():
     if len(sys.argv) != 2:
-        print(f"Usage: {sys.argv[0]} DIRECTORY")
-        sys.exit(1)
+        raise SystemExit(f"Usage: {sys.argv[0]} DIRECTORY")
 
     music_dir = Path(sys.argv[1]).expanduser().resolve()
-
     if not music_dir.is_dir():
-        print(f"{music_dir} is not a directory")
-        sys.exit(1)
+        raise SystemExit(f"{music_dir} is not a directory")
 
     albums = defaultdict(list)
 
-    for f in music_dir.rglob("*"):
-        if f.is_file() and f.suffix.lower() in AUDIO_EXTENSIONS:
-            album = get_album(f)
-            if album is None:
-                print(f"Skipping {f.name}: no album tag")
-                continue
-            albums[album].append(f)
+    for path in music_dir.rglob("*"):
+        if path.is_file() and path.suffix.lower() in AUDIO_EXTENSIONS:
+            album = get_album(path)
+            if album is not None:
+                albums[album].append(path)
 
-    order = list(albums)
-    random.shuffle(order)
+    if not albums:
+        raise SystemExit(f"No albums found in {music_dir}")
+
+    album, songs = random.choice(list(albums.items()))
+    songs.sort(key=lambda path: (get_track(path), path.name.casefold()))
 
     subprocess.run(["mpc", "clear"], check=True)
+    subprocess.run(
+        ["mpc", "add", *(str(song.relative_to(LIBRARY_ROOT)) for song in songs)],
+        check=True,
+        stdout=subprocess.DEVNULL,
+    )
 
-    print("Album order:\n")
+    print(f"Loaded: {album} ({len(songs)} tracks)")
 
-    playlist = []
-
-    for i, album in enumerate(order, 1):
-        print(f"{i:2}. {album}")
-
-        songs = sorted(albums[album], key=lambda p: p.name.casefold())
-        playlist.extend(str(song.relative_to(library_root)) for song in songs)
-
-    for chunk in chunks(playlist):
-        subprocess.run(
-            ["mpc", "add", *chunk],
-            check=True,
-            stdout=subprocess.DEVNULL,
-        )
-
-    print("\nDone.")
 
 if __name__ == "__main__":
     main()

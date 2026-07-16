@@ -60,7 +60,7 @@ in
 
         userChrome = ''
           :root {
-            --tabs-toolbar-height: 29px;
+            --tabs-toolbar-height: 28px;
             --nav-bar-overlap-adjustment: 8px;
           }
 
@@ -69,12 +69,7 @@ in
 
           #nav-bar {
             margin-left: 80vw !important;
-            margin-top: calc(
-              0px
-              - var(--tabs-toolbar-height)
-              - var(--nav-bar-overlap-adjustment)
-            ) !important;
-            margin-bottom: -5px !important;
+            margin-top: calc( 0px - var(--tabs-toolbar-height) - var(--nav-bar-overlap-adjustment) ) !important;
           }
 
           #navigator-toolbox { border: 0px !important; }
@@ -92,8 +87,34 @@ in
           .tab-content { padding-inline: 4px !important; }
           .tab-background { border-radius: 0px !important; }
 
+          /* URL bar */
+          #urlbar-container {
+            width: auto !important;
+            --urlbar-container-height: var(--tabs-toolbar-height) !important;
+          }
+
+          .urlbar-input-container {
+            height: 32px !important;
+            align-items: center !important;
+          }
+
+          #urlbar-input {
+              font-size: 0.85em !important;
+          }
+
+          #urlbar {
+            --urlbar-height: var(--tabs-toolbar-height) !important;
+            top: unset !important;
+          }
+
+          #urlbar[breakout-extend] {
+            inset-inline: 20vw !important;
+            width: unset !important;
+            align-self: flex-start !important;
+          }
+
           /* Hide buttons of Tabbar and urlbar */
-          .searchmode-switcher, #reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button, #urlbar-zoom-button, #reader-mode-button, #trust-icon-container, #permissions-granted-icon, #translations-button-icon, #urlbar-searchmode-switcher, #back-button, #forward-button, #PanelUI-button, #tracking-protection-icon-container, #stop-button, .identity-box-button { display: none !important; }
+          .searchmode-switcher, #stop-reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button, #urlbar-zoom-button, #reader-mode-button, #trust-icon-container, #translations-button, #back-button, #forward-button, #PanelUI-button, #tracking-protection-icon-container, .identity-box-button { display: none !important; }
 
           #star-button-box,
           .unified-extensions-item-row-wrapper {
@@ -101,36 +122,6 @@ in
               margin: 0 !important;
               width: 14px !important;
               align-items: center !important;
-          }
-
-          /* URL bar */
-          #urlbar-container { width: auto !important; }
-
-          #urlbar-input {
-              font-size: 0.85em !important;
-          }
-
-          #urlbar {
-            position: relative !important;
-            top: unset !important;
-            margin-block: auto !important;
-          }
-          #urlbar[breakout-extend] {
-            position: absolute !important;
-            inset-inline: 20vw !important;
-            width: unset !important;
-            align-self: flex-start !important;
-          }
-
-          menupopup {
-            --panel-background: #${config.colors.bg1} !important;
-            --panel-color: #${config.colors.gray} !important;
-            --panel-border-color: #${config.colors.bg3} !important;
-          }
-
-          panelview {
-            color: #${config.colors.yellow} !important;
-            background: #${config.colors.bg0} !important;
           }
         '';
 
