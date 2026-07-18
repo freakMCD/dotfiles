@@ -13,6 +13,10 @@ PLAYLISTS = {
     "The Hall": "https://youtube.com/playlist?list=PLHr6QN96Td6g",
 }
 
+ARTIST_NAMES = {
+    "reol": "Reol",
+}
+
 AUDIO_EXTENSIONS = {".m4a", ".mp3", ".opus", ".webm"}
 VIDEO_ID = re.compile(r" \[([A-Za-z0-9_-]{11})\]$")
 
@@ -34,6 +38,14 @@ def metadata_options(artist: str | None):
     for field in ("meta_title", "meta_artist"):
         for pattern, replacement in replacements:
             options += ["--replace-in-metadata", field, pattern, replacement]
+
+    for name, canonical in ARTIST_NAMES.items():
+        options += [
+            "--replace-in-metadata",
+            "meta_artist",
+            rf"(?i)^{re.escape(name)}$",
+            canonical,
+        ]
 
     return options + [
         "--parse-metadata",
