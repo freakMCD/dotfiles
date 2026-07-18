@@ -26,11 +26,11 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("udiskie")
     hl.exec_cmd("hypridle")
     hl.exec_cmd(scripts .. "/network-notify")
-    hl.exec_cmd(scripts .. "/dev/mpc_albums.py ~/Music/Sennzai/")
+    hl.exec_cmd(scripts .. "/dev/mpc_albums.py ~/Music/Ambience/")
 end)
 
 -- Workspace Navigation
-for ws, key in ipairs({ "1", "2", "3", "4", "F1", "F2", "F3", "F4", "Z" }) do
+for ws, key in ipairs({ "1", "2", "3", "4", "F1", "F2", "F3", "F4", "s" }) do
     hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = ws }))
     hl.bind(smod .. " + " .. key, hl.dsp.window.move({ workspace = ws }))
 end
@@ -81,6 +81,7 @@ for class, ws in pairs({
     firefox = 1,
     ["org.pwmt.zathura"] = 2,
     geogebra = 3,
+    ["chromium-browser"] = 5,
 }) do
     hl.window_rule({
         match = { class = class },

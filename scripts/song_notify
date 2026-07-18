@@ -3,79 +3,70 @@ set -u
 
 music_dir="$HOME/Music"
 cache_dir="$HOME/.cache/mpd-notify/covers"
-mkdir -p "$cache_dir"
+mkdir -p "$cache_dir" || exit 1
 
-state="$(mpc status '%state%')"
-[ "$state" = "playing" ] || exit 0
+[ "$(mpc status '%state%')" = "playing" ] || exit 0
 
-mapfile -t meta < <(mpc current --format $'%file%\n%artist%\n%title%\n%album%')
+mapfile -t meta < <(
+    mpc --format $'%file%\n%artist%\n%title%\n%album%' current
+)
 
 file_rel="${meta[0]:-}"
-[ -n "$file_rel" ] || exit 0
-
 file="$music_dir/$file_rel"
-[ -f "$file" ] || exit 0
+[ -n "$file_rel" ] && [ -f "$file" ] || exit 0
 
-artist="${meta[1]:-}"
-title="${meta[2]:-}"
-album="${meta[3]:-}"
+artist="${meta[1]:-Unknown Artist}"
+title="${meta[2]:-${file_rel##*/}}"
+album="${meta[3]:-Unknown Album}"
 
-# Fallbacks if tags are missing
-[ -z "$artist" ] && artist="Unknown Artist"
-[ -z "$title" ] && title="${file_rel##*/}"
-
-# Cache key: the file path itself. Can't rely on album tags matching
-# shared art -- these are YouTube rips, so two tracks tagged with the
-# same album can easily have different embedded thumbnails.
-cache_key="$file_rel"
-cache_hash="$(printf '%s' "$cache_key" | sha256sum | cut -d' ' -f1)"
-cover="$cache_dir/${cache_hash}.png"
-
-# Extract and cache art only if we haven't already got this track.
-if [ ! -s "$cover" ] && [ ! -e "${cover}.none" ] && [ -f "$file" ]; then
-    ffmpeg -loglevel error -y \
-        -i "$file" \
-        -map 0:v:0 \
-        -an \
-        -frames:v 1 \
-        -vf "scale=500:500:force_original_aspect_ratio=increase,crop=500:500" \
-        "$cover" 2>/dev/null
-
-    if [ ! -s "$cover" ]; then
-        rm -f "$cover"
-        : > "${cover}.none"
-    fi
-fi
-
-tmp_cover=""
-if [ -s "$cover" ]; then
-    tmp_cover="$cover"
-fi
-
-[ -z "$album" ] && album="Unknown Album"
-
-# Truncate long strings with an ellipsis for consistent notification sizing
-max_artist=25
-max_title=50
-max_album=25
 truncate() {
     local s="$1" max="$2"
-    if [ "${#s}" -gt "$max" ]; then
+    if ((${#s} > max)); then
         printf '%s…' "${s:0:$((max - 1))}"
     else
         printf '%s' "$s"
     fi
 }
-artist="$(truncate "$artist" "$max_artist")"
-title="$(truncate "$title" "$max_title")"
-album="$(truncate "$album" "$max_album")"
+
+artist="$(truncate "$artist" 25)"
+title="$(truncate "$title" 50)"
+album="$(truncate "$album" 25)"
+
+hash="$(printf '%s' "$file_rel" | sha256sum)"
+cover="$cache_dir/${hash%% *}.png"
+none="$cover.none"
+
+if { [ ! -s "$cover" ] || [ "$file" -nt "$cover" ]; } &&
+   { [ ! -e "$none" ] || [ "$file" -nt "$none" ]; }; then
+    rm -f "$cover" "$none"
+
+    if ! ffmpeg -nostdin -loglevel error -y \
+        -i "$file" \
+        -map 0:v:0 -an -frames:v 1 \
+        -vf "scale=500:500:force_original_aspect_ratio=increase,crop=500:500" \
+        "$cover" 2>/dev/null ||
+       [ ! -s "$cover" ]; then
+        rm -f "$cover"
+        : > "$none"
+    fi
+fi
+
+escape_body() {
+    local s="$1"
+    s=${s//\\/\\\\}
+    s=${s//&/\&amp;}
+    s=${s//</\&lt;}
+    s=${s//>/\&gt;}
+    printf '%s' "$s"
+}
+
+body="$(escape_body "$artist")"$'\n'"<i>$(escape_body "$album")</i>"
 
 icon_args=()
-[ -n "$tmp_cover" ] && icon_args=(-i "$tmp_cover")
+[ -s "$cover" ] && icon_args=(-i "$cover")
 
 notify-send \
     -r 9998 \
     -t 6150 \
     "${icon_args[@]}" \
-    "$title" \
-    "$artist\n<i>$album</i>"
+    -- "$title" "$body"

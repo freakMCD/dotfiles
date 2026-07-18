@@ -9,7 +9,7 @@ COOKIES = "firefox"
 RCLONE_REMOTE = "drive:Music"
 
 PLAYLISTS = {
-    "Sennzai": "https://youtube.com/playlist?list=PLJ0hTVb5gQ2k",
+    "Ambience": "https://youtube.com/playlist?list=PLFmuCu8hx3eQ",
     "The Hall": "https://youtube.com/playlist?list=PLHr6QN96Td6g",
 }
 
@@ -20,14 +20,11 @@ ARTIST_NAMES = {
 AUDIO_EXTENSIONS = {".m4a", ".mp3", ".opus", ".webm"}
 VIDEO_ID = re.compile(r" \[([A-Za-z0-9_-]{11})\]$")
 
-def metadata_options(artist: str | None):
-    source = (
-        f" {artist}" if artist else
-        "%(artist,artists,creator,creators,uploader,uploader_id|)s"
-    )
+def metadata_options():
     options = [
         "--parse-metadata", "%(title)s:%(meta_title)s",
-        "--parse-metadata", f"{source}:%(meta_artist)s",
+        "--parse-metadata",
+        "%(artist,artists,creator,creators,uploader,uploader_id|)s:%(meta_artist)s",
     ]
 
     replacements = (
@@ -69,7 +66,7 @@ def get_local_ids(directory: Path) -> set[str]:
         if (match := VIDEO_ID.search(file.stem))
     }
 
-def download(video_ids: set[str], outdir: Path, artist: str | None):
+def download(video_ids: set[str], outdir: Path):
     if not video_ids:
         return
 
@@ -89,7 +86,7 @@ def download(video_ids: set[str], outdir: Path, artist: str | None):
             "--remux-video", "m4a",
             "--cookies-from-browser", COOKIES,
             "--restrict-filenames",
-            *metadata_options(artist),
+            *metadata_options(),
             "--embed-metadata",
             "--embed-thumbnail",
             "-o", str(outdir / "%(meta_title)s [%(id)s].%(ext)s"),
@@ -106,9 +103,8 @@ def update_playlist(name: str, url: str):
 
     youtube_ids = get_youtube_ids(url)
     missing = youtube_ids - get_local_ids(outdir)
-    artist = None if name == "The Hall" else Path(name).name
 
-    download(missing, outdir, artist)
+    download(missing, outdir)
 
     remaining = youtube_ids - get_local_ids(outdir)
     if remaining:
@@ -141,7 +137,6 @@ def main():
     print(f"Downloaded: {total_added}\n")
 
     rclone_sync()
-
 
 if __name__ == "__main__":
     main()
