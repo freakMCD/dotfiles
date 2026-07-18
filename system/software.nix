@@ -22,8 +22,6 @@ environment.systemPackages = with pkgs; [
   gimp gthumb imagemagick
 # Mathematics
   geogebra6 octaveFull
-# yt-dlp
-  ffmpeg deno
 # Latex
   (texlive.combine {
     inherit (texlive)

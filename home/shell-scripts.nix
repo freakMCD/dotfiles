@@ -1,4 +1,4 @@
-{ pkgs, ... }: 
+{ pkgs, ... }:
 let
   rcloneOpts = pkgs.lib.strings.concatStringsSep " " [
     "--transfers 8"
@@ -24,7 +24,7 @@ home.packages = with pkgs; [
           nohup xdg-open "$selected_file" >/dev/null 2>&1 &
           sleep 0.2
           # Close the terminal
-          exit 
+          exit
     '')
 
     (writeShellScriptBin "syncFiles" ''

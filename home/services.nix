@@ -3,7 +3,7 @@
   services = {
     mpd = {
       enable = true;
-      musicDirectory = "~/Music/";
+      musicDirectory = "~/Documents/Study/Music/";
       network.startWhenNeeded = true;
       extraConfig = ''
         auto_update "yes"
