@@ -3,7 +3,7 @@ local get_visual = helpers.get_visual
 
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
 
--- Math context detection 
+-- Math context detection
 local tex = {}
 tex.in_mathzone = function() return vim.fn['vimtex#syntax#in_mathzone']() == 1 end
 tex.in_text = function() return not tex.in_mathzone() end
@@ -34,19 +34,6 @@ return
         }
       )
     ),
-    -- DOCUMENTCLASS
-    s({trig = "dcc", snippetType="autosnippet"},
-      fmta(
-        [=[
-        \documentclass[<>]{<>}
-        ]=],
-        {
-          i(1, "a4paper"),
-          i(2, "article"),
-        }
-      ),
-      { condition = line_begin }
-    ),
     -- USE A LATEX PACKAGE
     s({trig = "pack", snippetType="autosnippet"},
       fmta(
@@ -59,72 +46,12 @@ return
       ),
       { condition = line_begin }
     ),
-    -- INPUT a LaTeX file
-    s({trig = "inn", snippetType="autosnippet"},
-      fmta(
-        [[
-      \input{<><>}
-      ]],
-        {
-          i(1, "~/dotfiles/config/latex/templates/"),
-          i(2)
-        }
-      ),
-      { condition = line_begin }
-    ),
-    -- LABEL
-    s({trig = "lbl", snippetType="autosnippet"},
-      fmta(
-        [[
-      \label{<>}
-      ]],
-        {
-          d(1, get_visual),
-        }
-      )
-    ),
     -- HPHANTOM
     s({trig = "hpp", snippetType="autosnippet"},
       fmta(
         [[
       \hphantom{<>}
       ]],
-        {
-          d(1, get_visual),
-        }
-      )
-    ),
-    s({trig = "TODOO", snippetType="autosnippet"},
-      fmta(
-        [[\TODO{<>}]],
-        {
-          d(1, get_visual),
-        }
-      )
-    ),
-    s({trig="nc"},
-      fmta(
-        [[\newcommand{<>}{<>}]],
-        {
-          i(1),
-          i(2)
-        }
-      ),
-      {condition = line_begin}
-    ),
-    s({trig="qtt"},
-      fmta(
-        [[\qty{<>}{<>}]],
-        {
-          i(1),
-          i(2)
-        }
-      )
-    ),
-    -- URL 
-    s({trig="url"},
-      fmta(
-        [[\url{<>}]],
         {
           d(1, get_visual),
         }

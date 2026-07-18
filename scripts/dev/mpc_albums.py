@@ -15,15 +15,13 @@ UNKNOWN_ALBUM = "(Unknown Album)"
 
 def get_album(path):
     audio = File(path, easy=True)
-    if audio is None:
-        return None
-
-    album = audio.get("album")
+    album = audio.get("album") if audio else None
     return album[0].strip() if album else UNKNOWN_ALBUM
 
 
 def get_track(path):
-    track = File(path, easy=True).get("tracknumber")
+    audio = File(path, easy=True)
+    track = audio.get("tracknumber") if audio else None
     try:
         return int(track[0].split("/")[0]) if track else float("inf")
     except ValueError:
@@ -39,18 +37,20 @@ def main():
         raise SystemExit(f"{music_dir} is not a directory")
 
     albums = defaultdict(list)
-
     for path in music_dir.rglob("*"):
         if path.is_file() and path.suffix.lower() in AUDIO_EXTENSIONS:
-            album = get_album(path)
-            if album is not None:
-                albums[album].append(path)
+            albums[get_album(path)].append(path)
 
     if not albums:
         raise SystemExit(f"No albums found in {music_dir}")
 
-    album, songs = random.choice(list(albums.items()))
-    songs.sort(key=lambda path: (get_track(path), path.name.casefold()))
+    albums = list(albums.values())
+    random.shuffle(albums)
+    songs = [
+        song
+        for album in albums
+        for song in sorted(album, key=lambda p: (get_track(p), p.name.casefold()))
+    ]
 
     subprocess.run(["mpc", "clear"], check=True)
     subprocess.run(
@@ -59,7 +59,7 @@ def main():
         stdout=subprocess.DEVNULL,
     )
 
-    print(f"Loaded: {album} ({len(songs)} tracks)")
+    print(f"Loaded: {len(albums)} albums ({len(songs)} tracks)")
 
 
 if __name__ == "__main__":

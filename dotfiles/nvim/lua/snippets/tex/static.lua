@@ -15,22 +15,6 @@ end
 -- Return snippet tables
 return
   {
-    s({trig="q"},
-      {
-        t("\\quad "),
-      }
-    ),
-    s({trig="qq"},
-      {
-        t("\\qquad "),
-      }
-    ),
-    s({trig="npp", snippetType="autosnippet"},
-      {
-        t({"\\newpage", ""}),
-      },
-      {condition = line_begin}
-    ),
     s({trig="which", snippetType="autosnippet"},
       {
         t("\\text{ for which } "),
@@ -48,29 +32,6 @@ return
         t("\\quad \\text{y} \\quad"),
       },
       {condition = tex.in_mathzone}
-    ),
-    s({trig="forall", snippetType="autosnippet"},
-      {
-        t("\\text{ para todo } "),
-      },
-      {condition = tex.in_mathzone}
-    ),
-    s({trig = "toc", snippetType="autosnippet"},
-      {
-        t("\\tableofcontents"),
-      },
-      { condition = line_begin }
-    ),
-    s({trig="inff", snippetType="autosnippet"},
-      {
-        t("\\infty"),
-      }
-    ),
-    s({trig="ii", snippetType="autosnippet"},
-      {
-        t("\\item "),
-      },
-      { condition = line_begin }
     ),
     s({trig = "--", snippetType="autosnippet"},
       {t('% --------------------------------------------- %')},
