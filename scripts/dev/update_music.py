@@ -61,6 +61,8 @@ def download(video_ids: set[str], outdir: Path, artist: str | None):
     if not video_ids:
         return
 
+    print(f"Downloading {len(video_ids)} missing track(s)...")
+
     urls = [
         f"https://www.youtube.com/watch?v={video_id}"
         for video_id in sorted(video_ids)
@@ -69,6 +71,8 @@ def download(video_ids: set[str], outdir: Path, artist: str | None):
     subprocess.run(
         [
             "yt-dlp",
+            "--print",
+            "after_move:  ✔ %(meta_artist)s — %(meta_title)s",
             "-f", "bestaudio[ext=m4a]/bestaudio",
             "--remux-video", "m4a",
             "--cookies-from-browser", COOKIES,

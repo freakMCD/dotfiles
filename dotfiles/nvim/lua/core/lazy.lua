@@ -69,7 +69,13 @@ require("lazy").setup({
 
     opts = {
       snippets = { preset = 'luasnip' },
-      keymap = { preset = 'enter', },
+      keymap = {
+        preset = 'enter',
+
+        ['<Up>'] = false,
+        ['<Down>'] = false,
+      },
+      completion = { list = { selection = { preselect = false} } },
     },
   },
 
