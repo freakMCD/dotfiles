@@ -1,17 +1,15 @@
 return {
 animations = { enabled = false },
 
-decoration = { blur = { enabled = false },
+decoration = { blur = { enabled = false }, shadow = {enabled = false},
 },
 
 dwindle = {
-    default_split_ratio = 1,
     force_split = 2,
     special_scale_factor = 0.6,
 },
 
 general = {
-    allow_tearing = false,
     border_size = 1,
     col = {
         active_border = { colors = { "rgba(ff4500ee)", "rgba(ff6347ee)" }, angle = 135 },
@@ -19,21 +17,19 @@ general = {
     },
     gaps_in = 0,
     gaps_out = 0,
-    snap = { enabled = 1 },
+    snap = { enabled = true },
 },
 
 group = {
     groupbar = {
         col = {
-            active = { colors = { "rgba(ff450099)", "rgba(ff634799)" }, angle = 135 },
+            active = "rgba(ff450099)",
             inactive = "rgba(2a1c1088)",
             locked_active = "rgba(dd66eecc)",
             locked_inactive = "rgba(dd66ee66)",
         },
         gaps_in = 0,
         gaps_out = 0,
-        gradients = false,
-        indicator_gap = 0,
         indicator_height = 6,
         render_titles = false,
         rounding = 0,
@@ -61,8 +57,6 @@ misc = {
     disable_splash_rendering = true,
     enable_anr_dialog = false,
 },
-
-xwayland = { enabled = true },
 
 binds = { allow_pin_fullscreen = true },
 }

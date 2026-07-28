@@ -23,16 +23,15 @@ environment.systemPackages = with pkgs; [
 # Mathematics
   geogebra6 octaveFull
 # Latex
-  (texlive.combine {
-    inherit (texlive)
+  (texliveSmall.withPackages (ps: with ps; [
       scheme-small
       koma-script
       collection-langeuropean
       collection-mathscience
       collection-pictures
       collection-latexextra
-      latexmk;
-  })
+      latexmk
+  ]))
 # Windows
 # quickemu  samba
 # Python

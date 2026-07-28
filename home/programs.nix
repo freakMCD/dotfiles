@@ -16,9 +16,9 @@
       enable = true;
       enableFishIntegration = true;
       defaultCommand = "fd -t f ${command}";
-      fileWidgetCommand = "fd -t f ${command}";
-      changeDirWidgetCommand = "fd -t d ${command}";
-      fileWidgetOptions = ["--delimiter / --with-nth 4.."];
+      fileWidget.command = "fd -t f ${command}";
+      changeDirWidget.command = "fd -t d ${command}";
+      fileWidget.options = ["--delimiter / --with-nth 4.."];
       defaultOptions = [
         "--ansi"
         "--height" "60%"

@@ -17,7 +17,8 @@ hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("HYPRLAND_NO_SD_NOTIFY", "1")
 hl.env("HYPRCURSOR_THEME", "Future-Cyan-Hyprcursor_Theme")
 hl.env("HYPRCURSOR_SIZE", "32")
-hl.env("XCURSOR_SIZE", "16")
+hl.env("HYPRCURSOR_THEME", "Future-Cyan-Hyprcursor_Theme")
+hl.env("XCURSOR_SIZE", "32")
 hl.env("LD_LIBRARY_PATH", "/etc/sane-libs")
 
 -- Autostart
@@ -26,7 +27,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("udiskie")
     hl.exec_cmd("hypridle")
     hl.exec_cmd(scripts .. "/network-notify")
-    hl.exec_cmd("mpc add /")
 end)
 
 -- Workspace Navigation
@@ -90,5 +90,6 @@ for class, ws in pairs({
 end
 
 hl.window_rule({ match = { class = "libreoffice.*" }, suppress_event = "maximize" })
-hl.window_rule({ match = { class = "foot" }, group = "override barred" })
+hl.window_rule({ match = { class = "foot" }, group = "barred" })
 hl.window_rule({ match = { class = "^org.octave.Octave", title = "^Figure.*" }, workspace = 5 })
+
