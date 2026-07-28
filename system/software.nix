@@ -71,27 +71,25 @@ programs = {
   };
 };
 
-systemd.user.services.mailsync = {
-  enable = true;
-  description = "Mailboxes sync";
-  path = [pkgs.bash pkgs.procps pkgs.pass pkgs.isync pkgs.perl pkgs.libnotify];
-  environment = {
-    GNUPGHOME = "%h/.local/share/gnupg";
-    PERL5LIB = "${perlEnv}/lib/perl5/site_perl";
+systemd.user = {
+  services.mailsync = {
+    description = "Mailboxes sync";
+    path = with pkgs; [ bash procps pass isync perl libnotify];
+    environment = {
+      GNUPGHOME = "%h/.local/share/gnupg";
+      PERL5LIB = "${perlEnv}/lib/perl5/site_perl";
+    };
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.bash}/bin/bash %h/nix/scripts/mail-sync";
+    };
   };
-  serviceConfig = {
-    Type = "oneshot";
-    ExecStart = "%h/nix/scripts/mail-sync";
+  timers.mailsync = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnStartupSec = "1m";
+      OnUnitActiveSec = "15m";
+      Persistent = true;
+    };
   };
-  wantedBy = [ "user.target" ];
-};
-
-systemd.user.timers.mailsync = {
-wantedBy = [ "timers.target" ];
-  timerConfig = {
-  OnBootSec = "1m";
-  OnUnitActiveSec = "15m";
-  Unit = "mailsync.service";
-  };
-};
-}
+};}

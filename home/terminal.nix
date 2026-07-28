@@ -83,7 +83,7 @@
 
       yamend = "yadm commit --amend && yadm push -f";
       rclone = "rclone -P --transfers 45 --checkers 65";
-      compresspdf = "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dColorImageResolution=170 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf"; 
+      compresspdf = "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dColorImageResolution=170 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf";
     };
   };
 }

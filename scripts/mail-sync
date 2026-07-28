@@ -1,43 +1,28 @@
 #!/usr/bin/env bash
-set -u
+set -euo pipefail
 
 source "$HOME/.local/share/linuxfedora"
 
-mbsyncrc="$HOME/nix/dotfiles/neomutt/.mbsyncrc"
-marker="$HOME/.config/neomutt/.mailsynclast"
-prefix="$HOME/.local/share/email/gmail"
+config="$HOME/nix/dotfiles/neomutt/.mbsyncrc"
+root="$HOME/.local/share/email/gmail"
+marker=$(mktemp "${XDG_RUNTIME_DIR:?}/mailsync.XXXXXX")
+trap 'rm -f "$marker"' EXIT
 
-[ ! -r "$mbsyncrc" ] && exit 0
-[ ! -d "$prefix" ] && exit 0
+header() {
+    sed -n "/^$1: /s/^$1: //p" "$2" |
+        perl -pe 'use MIME::EncWords(decode_mimewords); $_=decode_mimewords($_);'
+}
 
-lock="${XDG_RUNTIME_DIR:-/tmp}/mailsync.lock"
-exec 9>"$lock"
-flock -n 9 || exit 0
+mbsync -c "$config" gmail
 
-touch "$marker"
-mbsync -c "$mbsyncrc" gmail || exit 1
+for folder in INBOX Github Interbank; do
+    dir="$root/$folder/new"
+    [[ -d "$dir" ]] || continue
 
-for file in "$prefix"/*; do
-    folder="${file#"$prefix"/}"
-
-    case "$folder" in
-        INBOX|Github|Interbank) ;;
-        *) continue ;;
-    esac
-
-    find "$file/new" -type f -newer "$marker" -print0 2>/dev/null |
-    while IFS= read -r -d '' newemail; do
-        sender="$(
-            sed -n '/^From: /s/^From: //p' "$newemail" |
-            perl -pe 'use MIME::EncWords(decode_mimewords); $_=decode_mimewords($_);'
-        )"
-
-        subject="$(
-            sed -n '/^Subject: /s/^Subject: //p' "$newemail" |
-            perl -pe 'use MIME::EncWords(decode_mimewords); $_=decode_mimewords($_);'
-        )"
-
+    while IFS= read -r -d '' mail; do
+        sender=$(header From "$mail")
+        subject=$(header Subject "$mail")
         [[ -n "$sender" && -n "$subject" ]] &&
-            notify-send -t 30000 "$sender" "$subject"
-    done
+            notify-send -t 30000 "$sender" "$subject" || true
+    done < <(find "$dir" -type f -newer "$marker" -print0)
 done
