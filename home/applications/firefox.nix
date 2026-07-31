@@ -32,7 +32,6 @@ in
           PictureInPicture = false;
           SearchSuggestEnabled = false;
           StartDownloadsInTempDirectory = true;
-          WebsiteFilter = import ./.policy.nix;
 
           Preferences = lockedPrefs {
             "accessibility.browsewithcaret_shortcut.enabled" = false;
