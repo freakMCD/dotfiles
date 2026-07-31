@@ -17,7 +17,6 @@ hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("HYPRLAND_NO_SD_NOTIFY", "1")
 hl.env("HYPRCURSOR_THEME", "Future-Cyan-Hyprcursor_Theme")
 hl.env("HYPRCURSOR_SIZE", "32")
-hl.env("HYPRCURSOR_THEME", "Future-Cyan-Hyprcursor_Theme")
 hl.env("XCURSOR_SIZE", "32")
 hl.env("LD_LIBRARY_PATH", "/etc/sane-libs")
 
@@ -56,7 +55,6 @@ hl.bind(mod .. " + grave", hl.dsp.group.toggle())
 hl.bind(smod .. " + Y", hl.dsp.group.lock_active({ action = "toggle" }))
 
 -- Commands
-bind_cmd("MOD5 + p", [[mpc toggle && notify-send -r 991049 -t 1000 "Music" "$(mpc status '%state%')"]])
 bind_cmd("MOD5 + Up", volume .. " up", { repeating = true })
 bind_cmd("MOD5 + Down", volume .. " down", { repeating = true })
 bind_cmd("MOD5 + Delete", volume .. " mute")
