@@ -76,10 +76,8 @@ hl.bind(mod .. " + o", hl.dsp.workspace.toggle_special("openfile"))
 
 -- Window rules
 for class, ws in pairs({
-    firefox = 1,
-    ["org.pwmt.zathura"] = 2,
-    geogebra = 3,
-    ["chromium-browser"] = 5,
+    ["org.pwmt.zathura"] = 5,
+    geogebra = 6,
 }) do
     hl.window_rule({
         match = { class = class },

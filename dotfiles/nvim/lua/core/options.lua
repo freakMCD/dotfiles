@@ -1,5 +1,4 @@
 local options = {
-  clipboard = "unnamedplus",
   breakindent = true,
 	expandtab = true, -- convert tabs to spaces
 	shiftwidth = 2, -- the number of spaces inserted for each indentation

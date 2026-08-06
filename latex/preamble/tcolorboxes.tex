@@ -1,10 +1,27 @@
-\usepackage[most]{tcolorbox}
+\usepackage{tcolorbox}
+\tcbuselibrary{
+    breakable,
+    skins,
+    theorems
+}
+
+\definecolor{LemaDark}{HTML}{1B3B2E}
+\definecolor{LemaBack}{HTML}{F7FAF9}
 
 \definecolor{ProblemDark}{HTML}{1B263B}
 \definecolor{ProblemBack}{HTML}{F8FAFC}
 
-\definecolor{SolutionDark}{HTML}{6B1E1E}
-\definecolor{SolutionBack}{HTML}{FCF8F8}
+\definecolor{AlgorithmDark}{HTML}{6B1E1E}
+\definecolor{AlgorithmBack}{HTML}{FCF8F8}
+
+\newtcbtheorem{lemabox}{Lema}{
+    enhanced,
+    breakable,
+    colback=LemaBack,
+    colframe=LemaDark,
+    fonttitle=\bfseries\small,
+    fontupper=\small,
+}{lem}
 
 \newtcolorbox{problem}[1]{
     before upper={
@@ -27,8 +44,8 @@
     skin last = enhanced,
     breakable,
     boxrule = 0pt,
-    borderline west = {4pt}{0pt}{SolutionDark},
-    colback = SolutionBack,
+    borderline west = {4pt}{0pt}{AlgorithmDark},
+    colback = AlgorithmBack,
     coltitle = white,
     sharp corners,
     rounded corners = southeast,
@@ -38,8 +55,8 @@
     attach boxed title to top left,
     boxed title style = {%
         enhanced,
-        colback = SolutionDark,
-        colframe = SolutionDark,
+        colback = AlgorithmDark,
+        colframe = AlgorithmDark,
         top = 0pt,
         bottom = 0pt,
         sharp corners,

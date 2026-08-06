@@ -3,8 +3,11 @@ local types = require("luasnip.util.types")
 
 ls.config.setup({
   enable_autosnippets = true,
+
   update_events = "TextChanged,TextChangedI",
+  delete_check_events = { "TextChanged", "TextChangedI" },
   region_check_events = "CursorMoved,CursorMovedI,CursorHold",
+
   cut_selection_keys = "<Tab>",
   ext_opts = {
     [types.choiceNode] =
