@@ -125,8 +125,25 @@ return
 {
           i(1),
         })),
-    -- FIGURE
-    s({trig = "fig"},
+-- FIGURE
+s({trig = "fig"},
+  fmta(
+    [[
+    \centering
+    \includegraphics[width=<>\linewidth]{<>}
+    \captionof{figure}{<>}
+    ]],
+    {
+      i(1),
+      i(2),
+      i(3),
+    }
+  ),
+  { condition = line_begin }
+),
+
+    -- FLOATING FIGURE
+    s({trig = "figf"},
       fmta(
         [[
         \begin{figure}[H]
@@ -143,4 +160,6 @@ return
       ),
       { condition = line_begin }
     ),
+
+
   }

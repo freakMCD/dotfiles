@@ -19,6 +19,7 @@
       settings = {
           main = {
               # Layout
+              layer = "overlay";
               border-radius = 6;
               max-width = 400;
               max-height = 400;

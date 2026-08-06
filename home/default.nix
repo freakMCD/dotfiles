@@ -33,4 +33,7 @@
     username = "edwin";
     stateVersion = "26.05";
   };
+  home.file.".latexmkrc".text = ''
+    $sleep_time = 0.1;
+  '';
 }

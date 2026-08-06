@@ -185,17 +185,6 @@ return
     ),
     {condition = tex.in_mathzone}
   ),
-  -- ABSOLUTE VALUE
-  s({trig = "([^%a])aa", regTrig = true, wordTrig = false, snippetType="autosnippet"},
-    fmta(
-      "<>\\abs{<>}",
-      {
-        f( function(_, snip) return snip.captures[1] end ),
-        d(1, get_visual),
-      }
-    ),
-    {condition = tex.in_mathzone}
-  ),
   -- SQUARE ROOT
   s({trig = "([^%\\])sq", wordTrig = false, regTrig = true, snippetType="autosnippet"},
     fmta(
@@ -253,22 +242,10 @@ return
     ),
     {condition = tex.in_mathzone}
   ),
-  -- INTEGRAL with upper and lower limit
-  s({trig = "([^%a])intt", wordTrig = false, regTrig = true, snippetType="autosnippet"},
-    fmta(
-      "<>\\int_{<>}^{<>}",
-      {
-        f( function(_, snip) return snip.captures[1] end ),
-        i(1),
-        i(2),
-      }
-    ),
-    {condition = tex.in_mathzone}
-  ),
   -- INTEGRAL from positive to negative infinity
   s({trig = "([^%a])intf", wordTrig = false, regTrig = true, snippetType="autosnippet"},
     fmta(
-      "<>\\int_{\\infty}^{\\infty}",
+      "<>\\int_{-\\infty}^{\\infty}",
       {
         f( function(_, snip) return snip.captures[1] end ),
       }
@@ -289,14 +266,6 @@ return
   --
   -- BEGIN STATIC SNIPPETS
   --
-
-  -- DIFFERENTIAL, i.e. \diff
-  s({trig = "df", snippetType="autosnippet", priority=2000, snippetType="autosnippet"},
-    {
-      t("\\diff"),
-    },
-    {condition = tex.in_mathzone}
-  ),
   -- BASIC INTEGRAL SYMBOL, i.e. \int
   s({trig = "in1", snippetType="autosnippet"},
     {
@@ -404,14 +373,6 @@ return
       t("\\implies "),
     }
   ),
-  -- ABSOLUTE VALUE
-    s({trig = "abs", snippetType="autosnippet"},
-    fmt("\\left| {} \\right| ",{
-      i(1)
-    }),
-    {condition = tex.in_mathzone}
-  ),
-
   -- NORMA ampliada
    s({trig = "lnorm", snippetType="autosnippet"},
     fmt("\\left\\lVert {} \\right\\rVert ",{

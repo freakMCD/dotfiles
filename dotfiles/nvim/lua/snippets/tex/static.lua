@@ -21,12 +21,6 @@ return
       },
       {condition = tex.in_mathzone}
     ),
-    s({trig="fa", snippetType="autosnippet"},
-      {
-        t("\\forall "),
-      },
-      {condition = tex.in_mathzone}
-    ),
     s({trig="and", snippetType="autosnippet"},
       {
         t("\\quad \\text{y} \\quad"),

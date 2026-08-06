@@ -12,7 +12,7 @@
       };
     };
 
-    fzf = let command="--color=always . /mnt/DATA ~/nix"; in {
+    fzf = let command="--color=always . ~/Documents ~/Downloads ~/MathCareer ~/MediaHub ~/nix"; in {
       enable = true;
       enableFishIntegration = true;
       defaultCommand = "fd -t f ${command}";
