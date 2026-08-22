@@ -69,18 +69,6 @@
               nix store diff-closures $old_system /run/current-system
           end
       end
-
-      function ttv -a channel
-          streamlink \
-              --player-no-close \
-              --player mpv \
-              --twitch-low-latency \
-              --twitch-proxy-playlist=https://eu.luminous.dev,https://lb-eu.cdn-perfprod.com \
-              "https://www.twitch.tv/$channel" \
-              best >/dev/null 2>&1 &
-
-          disown
-      end
     '';
     shellAbbrs = {
       windows10 = ''quickemu --vm windows-10.conf --public-dir ~/Share --mouse "virtio"'';
