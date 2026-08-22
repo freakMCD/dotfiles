@@ -62,12 +62,24 @@
               or return 1
           end
 
-          sudo nixos-rebuild switch --flake ~/nix#edwin
+          sudo nixos-rebuild switch --flake ~/nix#nixos
           or return 1
 
           if contains -- --update $argv
               nix store diff-closures $old_system /run/current-system
           end
+      end
+
+      function ttv -a channel
+          streamlink \
+              --player-no-close \
+              --player mpv \
+              --twitch-low-latency \
+              --twitch-proxy-playlist=https://eu.luminous.dev,https://lb-eu.cdn-perfprod.com \
+              "https://www.twitch.tv/$channel" \
+              best >/dev/null 2>&1 &
+
+          disown
       end
     '';
     shellAbbrs = {

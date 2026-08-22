@@ -1,10 +1,9 @@
 { pkgs, lib, config, ...}:
-{ 
+{
   programs.mpv = {
     enable = true;
     config = {
       hwdec = "auto";
-      gpu-context = "wayland";
       keep-open = true;
       keep-open-pause = true;
       idle = "yes";
@@ -30,18 +29,18 @@
       sub-spacing=0.5;
 
       ## Streaming ##
-      ytdl-format = "bv*[height<=1080]+ba/b[height<=1080]";
+      ytdl-format = "bv[vcodec^=vp9][height<=1080]+ba[ext=m4a]/b[height<=1080]";
       ytdl-raw-options = "cookies-from-browser=firefox";
       force-seekable= true;
-      demuxer-max-bytes = "3000MiB";
-      demuxer-max-back-bytes="500MiB";
-      demuxer-donate-buffer = false;
     };
 
     profiles = {
       "protocol.http" = {
-        cache = "yes";
-        cache-pause = false;
+        cache = true;
+        demuxer-max-bytes = "1GiB";
+        demuxer-max-back-bytes = "500MiB";
+        demuxer-donate-buffer = false;
+        stream-lavf-o = "request_size=10485760";
         force-window = "immediate";
       };
       "protocol.https" = { profile = "protocol.http"; };
@@ -55,6 +54,7 @@
     };
 
     scriptOpts = {
+      ytdl_hook = { ytdl_path = "${config.home.homeDirectory}/.local/bin/yt-dlp"; };
       osc = {
         layout = "slimbox";
         seekbarstyle = "knob";

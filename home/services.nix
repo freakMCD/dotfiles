@@ -1,6 +1,7 @@
 {config, ...}:
 {
   services = {
+    udiskie = { enable = true; };
     mpd = {
       enable = true;
       musicDirectory = "~/MediaHub/Study_Music/";

@@ -10,6 +10,8 @@
     ./xdg.nix
     ./applications/firefox.nix
     ./applications/mpv.nix
+    ./applications/yt-dlp.nix
+    ./applications/mpv_url_handler.nix
   ];
 
   nix.gc = {

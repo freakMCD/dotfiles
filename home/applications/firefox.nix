@@ -17,6 +17,13 @@ in
                 "https://addons.mozilla.org/en-US/firefox/downloads/latest/ublock-origin/latest.xpi";
               installation_mode = "force_installed";
             };
+
+            "{aecec67f-0d10-4fa7-b7c7-609a2db280cf}" = {
+              default_area = "menupanel";
+              install_url =
+                "https://addons.mozilla.org/firefox/downloads/latest/violentmonkey/latest.xpi";
+              installation_mode = "force_installed";
+            };
           };
           BlockAboutAddons = true;
 #          BlockAboutConfig = true;
@@ -126,18 +133,23 @@ in
 
         search = {
           force = true;
-          default = "ddg";
+          default = "ddgnoai";
           engines = {
-            "Nixpkgs" = {
+            ddgnoai = {
+              urls = [{ template = "https://noai.duckduckgo.com/?q={searchTerms}"; }];
+              definedAliases = [ "ddg" ];
+            };
+
+            nixpkgs = {
               urls = [ { template = "https://search.nixos.org/packages?&query={searchTerms}"; } ];
               definedAliases = [ "@np" ];
             };
 
-            "GitHub Code" = {
+            gitHub-code = {
               urls = [ { template = "https://github.com/search?q={searchTerms}&type=code"; } ];
               definedAliases = [ "@gh" ];
             };
-            "Searchix" = {
+            searchix = {
               urls = [{template = "https://searchix.ovh/?query={searchTerms}"; }];
               definedAliases = ["@sn"];
             };

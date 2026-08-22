@@ -22,14 +22,12 @@ hl.env("LD_LIBRARY_PATH", "/etc/sane-libs")
 
 -- Autostart
 hl.on("hyprland.start", function()
-    hl.exec_cmd("fnott")
-    hl.exec_cmd("udiskie")
     hl.exec_cmd("hypridle")
     hl.exec_cmd(scripts .. "/network-notify")
 end)
 
 -- Workspace Navigation
-for ws, key in ipairs({ "1", "2", "3", "4", "F1", "F2", "F3", "F4", "s" }) do
+for ws, key in ipairs({ "1", "2", "3", "4", "F1", "F2", "F3", "F4", "v" }) do
     hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = ws }))
     hl.bind(smod .. " + " .. key, hl.dsp.window.move({ workspace = ws }))
 end
@@ -78,6 +76,7 @@ hl.bind(mod .. " + o", hl.dsp.workspace.toggle_special("openfile"))
 for class, ws in pairs({
     ["org.pwmt.zathura"] = 5,
     geogebra = 6,
+    mpv = 9,
 }) do
     hl.window_rule({
         match = { class = class },

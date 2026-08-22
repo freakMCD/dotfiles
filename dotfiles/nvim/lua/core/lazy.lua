@@ -20,15 +20,31 @@ vim.g.mapleader = " "
 require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
-    config = function ()
-      local configs = require("nvim-treesitter.configs")
 
-      configs.setup({
-        ensure_installed = { "c", "lua", "html", "css", "fish", "bash", "nix" },
-        highlight = { enable = true, disable = { "bash" } },
+    config = function()
+      local treesitter = require("nvim-treesitter")
+
+      local languages = { "c", "lua", "html", "css", "fish", "bash", "nix", "python", }
+
+      treesitter.setup({})
+      treesitter.install(languages)
+
+      local group = vim.api.nvim_create_augroup(
+        "treesitter_highlighting",
+        { clear = true }
+      )
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = group,
+        pattern = { "c", "lua", "html", "css", "fish", "nix", "python" },
+        callback = function(args)
+          vim.treesitter.start(args.buf)
+        end,
       })
-    end
+    end,
   },
 
   {

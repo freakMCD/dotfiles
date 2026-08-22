@@ -8,14 +8,14 @@ environment.systemPackages = with pkgs; [
 # System
   home-manager yadm gnupg pass gcc mpc puddletag btop qbittorrent
 # Terminal
-  curl ethtool fd p7zip rclone udiskie unrar jq
+  curl ethtool fd p7zip rclone udiskie unrar jq ripgrep
 # Desktop
   grimblast hypridle hyprpicker kitty libnotify wev wl-clipboard
 # Documents
   xournalpp pdfarranger simple-scan
   ghostscript # compress pdf
 # Writing
-  neovim texlab ruff lua-language-server
+  neovim tree-sitter texlab ruff lua-language-server
 # Email
   neomutt msmtp isync w3m perlEnv
 # Images
