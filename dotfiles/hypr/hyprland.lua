@@ -88,3 +88,10 @@ hl.window_rule({ match = { class = "libreoffice.*" }, suppress_event = "maximize
 hl.window_rule({ match = { class = "foot" }, group = "barred" })
 hl.window_rule({ match = { class = "^org.octave.Octave", title = "^Figure.*" }, workspace = 5 })
 
+hl.window_rule({
+    match = {
+        float = false,
+        workspace = "r[9-9] w[tv1]",
+    },
+    border_size = 0,
+})

@@ -32,18 +32,24 @@
       ytdl-format = "bv[vcodec^=vp9][height<=1080]+ba[ext=m4a]/b[height<=1080]";
       ytdl-raw-options = "cookies-from-browser=firefox";
       force-seekable= true;
+      demuxer-max-bytes = "1GiB";
+      demuxer-max-back-bytes = "500MiB";
+      demuxer-donate-buffer = false;
+
     };
 
     profiles = {
       "protocol.http" = {
         cache = true;
-        demuxer-max-bytes = "1GiB";
-        demuxer-max-back-bytes = "500MiB";
-        demuxer-donate-buffer = false;
-        stream-lavf-o = "request_size=10485760";
         force-window = "immediate";
       };
       "protocol.https" = { profile = "protocol.http"; };
+
+      youtube = {
+        profile-cond = "get('path', ''):find('youtu%.?be')";
+        profile-restore = "copy";
+        stream-lavf-o = "request_size=10485760";
+      };
     };
 
     bindings = {
