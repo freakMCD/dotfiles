@@ -3,7 +3,9 @@
   programs.mpv = {
     enable = true;
     config = {
-      hwdec = "auto";
+      gpu-context = "wayland";
+      hwdec = "vaapi";
+      vo = "gpu-next";
       keep-open = true;
       keep-open-pause = true;
       idle = "yes";
@@ -29,8 +31,8 @@
       sub-spacing=0.5;
 
       ## Streaming ##
-      ytdl-format = "bv[vcodec^=vp9][height<=1080]+ba[ext=m4a]/b[height<=1080]";
-      ytdl-raw-options = "cookies-from-browser=firefox";
+      ytdl-format = "bv[height<=1080]+ba/b[height<=1080]";
+      ytdl-raw-options = "cookies-from-browser=firefox,compat-options=prefer-vp9-sort";
       demuxer-max-bytes = "1GiB";
       demuxer-max-back-bytes = "500MiB";
       demuxer-donate-buffer = false;

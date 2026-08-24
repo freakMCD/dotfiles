@@ -1,10 +1,15 @@
 {config, ...}:
 {
+  imports = [
+    ./hyprland-update.nix
+    ./tv-renew-token.nix
+  ];
+
   services = {
     udiskie = { enable = true; };
     mpd = {
       enable = true;
-      musicDirectory = "~/MediaHub/Study_Music/";
+      musicDirectory = "~/Music";
       network.startWhenNeeded = true;
       extraConfig = ''
         auto_update "yes"

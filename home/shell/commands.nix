@@ -27,7 +27,7 @@ home.packages = with pkgs; [
           exit
     '')
 
-    (writeShellScriptBin "syncFiles" ''
+    (writeShellScriptBin "syncfiles" ''
       cd "$HOME"
 
       echo "Starting sync to drive..."

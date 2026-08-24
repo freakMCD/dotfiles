@@ -1,4 +1,8 @@
 {
+  imports = [
+    ./commands.nix
+  ];
+
   programs.bash = {
     enable = true;
     initExtra = '' source ~/.local/share/linuxfedora '';

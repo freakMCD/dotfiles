@@ -60,3 +60,5 @@ misc = {
 
 binds = { allow_pin_fullscreen = true },
 }
+
+

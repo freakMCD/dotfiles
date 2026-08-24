@@ -5,6 +5,7 @@ local options = {
 	tabstop = 2, -- insert 2 spaces for a tab
   softtabstop = 2,
 	backup = false, -- creates a backup file
+  writebackup = false,
 	completeopt = { "menuone", "noselect" }, -- mostly just for cmp
 	pumheight = 10, -- pop up menu height
 	mouse = "",
