@@ -2,7 +2,7 @@
 
 let
   tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
-  session = "${pkgs.hyprland}/bin/start-hyprland";
+  session = "${pkgs.uwsm}/bin/uwsm start -e -D Hyprland hyprland.desktop";
 in
 
 {
@@ -14,7 +14,7 @@ in
         user = "edwin";
       };
       default_session = {
-        command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${session}";
+        command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd '${session}'";
         user = "greeter";
       };
     };

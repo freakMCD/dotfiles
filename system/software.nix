@@ -56,7 +56,11 @@ programs = {
     binfmt = true;
   };
 
-  hyprland.enable = true;
+  hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
+
   fish.enable = true;
   gnupg.agent.enable = true;
 
