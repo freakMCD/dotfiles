@@ -5,7 +5,6 @@
     ./firefox.nix
     ./mpv.nix
     ./yt-dlp.nix
-    ./newsraft
   ];
 
   programs = {

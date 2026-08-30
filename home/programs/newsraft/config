@@ -1,4 +1,0 @@
-bind m exec setsid -f mpv --terminal=no "%l" >/dev/null 2>&1
-global-section-hide true
-item-limit 50
-reload-period 720

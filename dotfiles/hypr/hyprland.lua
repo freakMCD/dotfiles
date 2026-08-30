@@ -68,10 +68,8 @@ bind_cmd(mod .. " + r", "fuzzel")
 
 -- Special workspaces
 hl.workspace_rule({ workspace = "special:mail", on_created_empty = "foot --app-id=neomutt neomutt" })
-hl.workspace_rule({ workspace = "special:rss", on_created_empty = "foot --app-id=newsraft newsraft" })
 hl.workspace_rule({ workspace = "special:openfile", on_created_empty = "foot --app-id=openfile open_file" })
-hl.bind("KP_End", hl.dsp.workspace.toggle_special("mail"))
-hl.bind("KP_Down", hl.dsp.workspace.toggle_special("rss"))
+hl.bind(mod .. " + m", hl.dsp.workspace.toggle_special("mail"))
 hl.bind(mod .. " + o", hl.dsp.workspace.toggle_special("openfile"))
 
 -- Window rules
