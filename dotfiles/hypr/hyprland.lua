@@ -92,3 +92,13 @@ hl.window_rule({
     match = { workspace = "r[9-9] w[tv1]", },
     border_size = 0,
 })
+
+hl.layer_rule({
+    name = "hide-notifications-from-screen-share",
+
+    match = {
+        namespace = "^notifications$",
+    },
+
+    no_screen_share = true,
+})

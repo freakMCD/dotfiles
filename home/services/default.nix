@@ -7,19 +7,7 @@
 
   services = {
     udiskie = { enable = true; };
-    mpd = {
-      enable = true;
-      musicDirectory = "~/Music";
-      network.startWhenNeeded = true;
-      extraConfig = ''
-        auto_update "yes"
-        zeroconf_enabled "no"
-        audio_output {
-          type "pulse"
-          name "My Pulse Output"
-        }
-      '';
-    };
+
     fnott = {
       enable = true;
       settings = {

@@ -84,7 +84,6 @@
                 workers = 0;
             };
             colors-dark = {
-                alpha = 0.92;
                 background = config.colors.bg0;
                 foreground = config.colors.white;
                 regular0   = config.colors.bg1 ;

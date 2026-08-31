@@ -1,20 +1,35 @@
+local clay = "rgb(8a7066)"
+local patina = "rgb(5e7775)"
+local dark_patina = "rgb(3e4e4d)"
+local slate = "rgb(34363d)"
+
 return {
-animations = { enabled = false },
+    animations = {
+        enabled = false,
+    },
 
-decoration = { blur = { enabled = false }, shadow = {enabled = false},
-},
+    decoration = {
+        blur = {
+            enabled = false,
+        },
+        shadow = {
+            enabled = false,
+        },
+    },
 
-dwindle = {
-    force_split = 2,
-    special_scale_factor = 0.6,
-},
+    dwindle = {
+        force_split = 2,
+        special_scale_factor = 0.5,
+    },
 
 general = {
     border_size = 1,
+
     col = {
-        active_border = { colors = { "rgba(ff4500ee)", "rgba(ff6347ee)" }, angle = 135 },
-        inactive_border = "rgba(59595966)",
+        active_border = clay,
+        inactive_border = slate,
     },
+
     gaps_in = 0,
     gaps_out = 0,
     snap = { enabled = true },
@@ -23,42 +38,46 @@ general = {
 group = {
     groupbar = {
         col = {
-            active = "rgba(ff450099)",
-            inactive = "rgba(2a1c1088)",
-            locked_active = "rgba(dd66eecc)",
-            locked_inactive = "rgba(dd66ee66)",
+            active = clay,
+            inactive = slate,
+            locked_active = patina,
+            locked_inactive = dark_patina,
         },
-        gaps_in = 0,
+
+        gaps_in = 2,
         gaps_out = 0,
-        indicator_height = 6,
+        middle_click_close = false,
+        indicator_height = 4,
         render_titles = false,
-        rounding = 0,
         scrolling = false,
     },
+
     col = {
-        border_active = { colors = { "rgba(ff4500cc)", "rgba(ff6347cc)" }, angle = 135 },
-        border_inactive = "rgba(59595988)",
-        border_locked_active = "rgba(dd66eecc)",
+        border_active = clay,
+        border_inactive = slate,
+        border_locked_active = patina,
+        border_locked_inactive = dark_patina,
     },
+
     merge_groups_on_drag = false,
     merge_groups_on_groupbar = false,
 },
 
-input = {
-    follow_mouse = 1,
-    kb_layout = "us",
-    kb_variant = "altgr-intl",
-    mouse_refocus = false,
-    sensitivity = 0.3,
-},
+    input = {
+        follow_mouse = 1,
+        kb_layout = "us",
+        kb_variant = "altgr-intl",
+        mouse_refocus = false,
+        sensitivity = 0.3,
+    },
 
-misc = {
-    disable_hyprland_logo = true,
-    disable_splash_rendering = true,
-    enable_anr_dialog = false,
-},
+    misc = {
+        disable_hyprland_logo = true,
+        disable_splash_rendering = true,
+        enable_anr_dialog = false,
+    },
 
-binds = { allow_pin_fullscreen = true },
+    binds = {
+        allow_pin_fullscreen = true,
+    },
 }
-
-

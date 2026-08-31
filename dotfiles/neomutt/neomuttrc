@@ -10,7 +10,6 @@ timeout-hook 'exec sync-mailbox'
 set folder = "~/.local/share/email/gmail"
 set header_cache = "~/.cache/mutt/gmail/header_cache"
 set message_cache_dir = "~/.cache/mutt/gmail/message_cache"
-set sendmail = "msmtp -C $HOME/.config/neomutt/.msmtprc -a gmail"
 set mailcap_path="~/.config/neomutt/mailcap"
 
 # mailbox settings

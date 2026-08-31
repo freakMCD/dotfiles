@@ -6,7 +6,7 @@ nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
 environment.systemPackages = with pkgs; [
 # System
-  home-manager yadm gnupg pass gcc mpc puddletag btop qbittorrent
+  home-manager yadm gnupg pass gcc btop qbittorrent
 # Terminal
   curl ethtool fd p7zip rclone udiskie unrar jq ripgrep
 # Desktop
@@ -17,9 +17,9 @@ environment.systemPackages = with pkgs; [
 # Writing
   neovim tree-sitter texlab ruff lua-language-server
 # Email
-  neomutt msmtp isync w3m perlEnv
+  neomutt isync w3m perlEnv
 # Images
-  gimp gthumb imagemagick
+  gimp gthumb
 # Mathematics
   geogebra6 octaveFull
 # Latex
