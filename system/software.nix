@@ -5,6 +5,7 @@ in
 nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
 environment.systemPackages = with pkgs; [
+streamlink
 # System
   home-manager yadm gnupg pass gcc btop qbittorrent
 # Terminal

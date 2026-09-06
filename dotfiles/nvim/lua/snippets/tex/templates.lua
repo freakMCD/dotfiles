@@ -8,6 +8,7 @@ s("preamble", fmt([[
 \documentclass[parskip=half]{{scrartcl}}
 
 \input{{base}}
+\input{{macros}}
 % \input{{tcolorboxes}}
 % \input{{algorithms}}
 

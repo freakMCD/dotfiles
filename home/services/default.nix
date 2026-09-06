@@ -3,6 +3,7 @@
   imports = [
     ./hyprland-update.nix
     ./tv-renew-token.nix
+    ./firefox-bookmarks-backup.nix
   ];
 
   services = {

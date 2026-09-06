@@ -110,17 +110,26 @@
       enable = true;
       options = {
         adjust-open = "width";
-        scroll-step = 50;
+        scroll-step = 35;
+        scroll-page-aware = true;
+        scroll-full-overlap = 0.12;
+        zoom-center = true;
         selection-clipboard = "clipboard";
         selection-notification = false;
         show-recent = 20;
-        recolor-lightcolor = "rgba(245,232,190,0.8)" ;
-        recolor-darkcolor = "#000000";
+
+        # Warm paper mode
         recolor = true;
         recolor-keephue = true;
-        default-bg = "rgba(0,0,0,7)";
-        default-fg = "#000000";
+        recolor-lightcolor = "#aaa181";
+        recolor-darkcolor = "#12110f";
+
+        default-bg = "#aaa181";
+        default-fg = "#12110f";
+
         render-loading = true;
+        render-loading-bg = "#aaa181";
+        render-loading-fg = "#12110f";
       };
     };
     fuzzel = {

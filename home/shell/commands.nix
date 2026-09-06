@@ -31,8 +31,8 @@ home.packages = with pkgs; [
       cd "$HOME"
 
       echo "Starting sync to drive..."
-      rclone ${rcloneOpts} sync Documents drive:BACKUP/Documents
-      rclone ${rcloneOpts} sync MathCareer drive:BACKUP/MathCareer
+      rclone ${rcloneOpts} sync Documents drive:Backups/Documents
+      rclone ${rcloneOpts} sync MathCareer drive:Backups/MathCareer
 
       echo "Starting sync to mega..."
       rclone ${rcloneOpts} sync Documents mega:Documents

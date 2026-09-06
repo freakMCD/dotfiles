@@ -14,7 +14,7 @@ let
     else
       ${pkgs.libnotify}/bin/notify-send \
         --urgency=critical \
-        --expire-time=60000 \
+        --expire-time=300000 \
         --app-name="Break reminder" \
         "BREAK — 5 MINUTES" \
         "Stand up and move."
