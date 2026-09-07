@@ -2,6 +2,8 @@
 
 let
   breakReminder = pkgs.writeShellScript "break-reminder" ''
+    set -eu
+
     minute="$(${pkgs.coreutils}/bin/date +%M)"
 
     if [ "$minute" = "25" ]; then
@@ -34,7 +36,10 @@ in
   systemd.user.timers.break-reminder = {
     Unit.Description = "Eye and movement reminders";
 
-    Timer.OnCalendar = "*-*-* *:25,55:00";
+    Timer = {
+      OnCalendar = "*-*-* *:25,55:00";
+      AccuracySec = "1s";
+    };
 
     Install.WantedBy = [
       "timers.target"

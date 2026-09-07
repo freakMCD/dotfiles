@@ -5,9 +5,8 @@ in
 nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
 environment.systemPackages = with pkgs; [
-streamlink
 # System
-  home-manager yadm gnupg pass gcc btop qbittorrent
+  home-manager yadm gnupg pass gcc btop qbittorrent dnsutils
 # Terminal
   curl ethtool fd p7zip rclone udiskie unrar jq ripgrep
 # Desktop
@@ -86,7 +85,7 @@ systemd.user = {
     };
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.bash}/bin/bash %h/nix/scripts/mail-sync";
+      ExecStart = "${pkgs.bash}/bin/bash %h/nix/scripts/helpers/mail-sync";
     };
   };
   timers.mailsync = {

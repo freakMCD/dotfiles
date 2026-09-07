@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ...}:
+{ pkgs, ...}:
 {
   programs.mpv = {
     enable = true;
@@ -44,23 +44,15 @@
         force-window = "immediate";
       };
       "protocol.https" = { profile = "protocol.http"; };
-
-      youtube = {
-        profile-cond = "get('path', ''):find('youtu%.?be')";
-        profile-restore = "copy";
-        stream-lavf-o = "request_size=10485760";
-      };
     };
 
     bindings = {
       "ESC" = "ignore";
       "WHEEL_UP" = "ignore";
       "WHEEL_DOWN" = "ignore";
-      "Shift+d" = "playlist-remove current";
     };
 
     scriptOpts = {
-      ytdl_hook = { ytdl_path = "${config.home.homeDirectory}/.local/bin/yt-dlp"; };
       osc = {
         layout = "slimbox";
         seekbarstyle = "knob";
@@ -72,36 +64,12 @@
         vidscale = false;
         minmousemove = 4;
       };
-      playlistmanager = {
-        playlist_display_timeout = 10;
-      };
       stats = {
         font_size = 18;
       };
     };
 
     scripts = with pkgs; [
-        (mpvScripts.buildLua {
-           pname = "mpv-sockets";
-           version = "1.0";
-
-           src = fetchFromGitHub {
-             owner = "wis";
-             repo = "mpvSockets";
-             rev = "be9b7ca84456466e54331bab59441ac207659c1c";
-             sha256 = "sha256-tcY+cHvkQpVNohZ9yHpVlq0bU7iiKMxeUsO/BRwGzAs=";
-           };
-
-          passthru.updateScript = unstableGitUpdater {};
-          scriptPath = "mpvSockets.lua";
-
-           meta = {
-             description = "mpvSockets lua module for mpv";
-             homepage = "https://github.com/wis/mpvSockets";
-             license = lib.licenses.mit;
-           };
-        })
-
         (mpvScripts.buildLua {
           pname = "show-osc-on-seek";
           version = "1.0";
@@ -118,7 +86,6 @@
           };
           scriptPath = "show-osc-on-seek.lua";
         })
-        mpvScripts.mpv-playlistmanager
     ];
   };
 }

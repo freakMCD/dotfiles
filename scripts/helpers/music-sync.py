@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
-"""Synchronize Edwin's YouTube Music playlist with ~/Music.
+"""Mirror the configured playlist to ~/Music and drive:Music.
 
-Managed tracks use yt-dlp's ``Title [VIDEO_ID].extension`` naming scheme.
-The playlist is authoritative for managed-file membership:
+Managed tracks are identified by ``[VIDEO_ID]`` in their filenames.
+Missing tracks are downloaded, obsolete managed tracks are removed, and
+unrecognized files are preserved.
 
-* playlist videos missing locally are downloaded;
-* managed local tracks absent from the playlist are removed;
-* files without a recognizable YouTube video ID are never removed.
-
-Run normally with no arguments. Use ``--dry-run`` to preview changes.
+Run automatically by music-sync.service inside its network sandbox.
 """
 
 from __future__ import annotations
@@ -48,7 +45,7 @@ class SyncError(RuntimeError):
 
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Mirror the configured YouTube Music playlist into ~/Music.",
+        description="Mirror the configured playlist into the local music library.",
     )
     parser.add_argument(
         "--dry-run",

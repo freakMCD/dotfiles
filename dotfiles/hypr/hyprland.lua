@@ -2,9 +2,10 @@ hl.config(require("config"))
 
 local mod = "SUPER"
 local smod = mod .. " + SHIFT"
-local scripts = "~/nix/scripts"
-local volume = scripts .. "/volume-notif"
-local screenshots = scripts .. "/screenshots"
+
+local helpers = "~/nix/scripts/helpers"
+local screenshots = "~/nix/scripts/screenshots"
+local volume = helpers .. "/volume-notif"
 
 local function bind_cmd(key, cmd, opts)
     hl.bind(key, hl.dsp.exec_cmd(cmd), opts)
@@ -23,7 +24,7 @@ hl.env("LD_LIBRARY_PATH", "/etc/sane-libs")
 -- Autostart
 hl.on("hyprland.start", function()
     hl.exec_cmd("hypridle")
-    hl.exec_cmd(scripts .. "/network-notify")
+    hl.exec_cmd(helpers .. "/network-notify")
 end)
 
 -- Workspace Navigation
@@ -61,7 +62,7 @@ bind_cmd(mod .. " + Delete", volume .. " mute-mic")
 bind_cmd("Print", screenshots .. "/screen")
 bind_cmd(mod .. " + Print", screenshots .. "/area")
 
-bind_cmd(mod .. " + CONTROL + F12", scripts .. "/shutdown-delay")
+bind_cmd(mod .. " + CONTROL + F12", helpers .. "/shutdown-delay")
 
 bind_cmd(mod .. " + q", "foot")
 bind_cmd(mod .. " + r", "fuzzel")

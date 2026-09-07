@@ -4,7 +4,6 @@
   imports = [
     ./firefox.nix
     ./mpv.nix
-    ./yt-dlp.nix
   ];
 
   programs = {
