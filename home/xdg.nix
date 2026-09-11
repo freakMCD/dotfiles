@@ -44,7 +44,6 @@ xdg = {
     desktop = "${xdg}/Desktop";
     documents = "${xdg}/Documents";
     download = "${xdg}/Downloads";
-    music = "${xdg}/Music";
     pictures = "${xdg}/Pictures";
     videos = "${xdg}/Videos";
     projects = "${xdg}/Projects";

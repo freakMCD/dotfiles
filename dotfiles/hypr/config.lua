@@ -75,6 +75,7 @@ group = {
         disable_hyprland_logo = true,
         disable_splash_rendering = true,
         enable_anr_dialog = false,
+        middle_click_paste = false,
     },
 
     binds = {

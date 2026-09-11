@@ -1,7 +1,9 @@
-{ ... }:
+{ config, pkgs, ... }:
 
+let
+  ethtool = pkgs.ethtool;
+in
 {
-  # Normal DNS: filtered through NextDNS.
   services.resolved = {
     enable = true;
     settings.Resolve = {
@@ -17,30 +19,13 @@
     };
   };
 
-  networking = {
-    nameservers = [ "127.0.0.1" "::1" ];
+  networking.nameservers = [ "127.0.0.1" "::1" ];
 
-    networkmanager = {
-      enable = true;
-      dns = "systemd-resolved";
-    };
+  # Enable NetworkManager
+  networking.networkmanager.enable = true;
+  networking.networkmanager.dns = "systemd-resolved";
 
-    useDHCP = false;
-    dhcpcd.enable = false;
-  };
-
-  # Unfiltered DNS
-  services.dnsproxy = {
-    enable = true;
-
-    settings = {
-      listen-addrs = [ "127.0.0.2" ];
-      listen-ports = [ 53 ];
-
-      upstream = [
-        "https://1.1.1.1/dns-query"
-        "https://1.0.0.1/dns-query"
-      ];
-    };
-  };
+  # Disable dhcpcd entirely
+  networking.useDHCP = false;
+  networking.dhcpcd.enable = false;
 }

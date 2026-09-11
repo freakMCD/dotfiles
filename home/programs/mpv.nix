@@ -29,21 +29,6 @@
 
       sub-font-size=42;
       sub-spacing=0.5;
-
-      ## Streaming ##
-      ytdl-format = "bv[height<=1080]+ba/b[height<=1080]";
-      ytdl-raw-options = "cookies-from-browser=firefox,compat-options=prefer-vp9-sort";
-      demuxer-max-bytes = "1GiB";
-      demuxer-max-back-bytes = "500MiB";
-      demuxer-donate-buffer = false;
-    };
-
-    profiles = {
-      "protocol.http" = {
-        cache = true;
-        force-window = "immediate";
-      };
-      "protocol.https" = { profile = "protocol.http"; };
     };
 
     bindings = {

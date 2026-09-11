@@ -1,4 +1,5 @@
 \usepackage{tcolorbox}
+\usepackage{needspace}
 \tcbuselibrary{
     breakable,
     skins,
@@ -24,6 +25,7 @@
 }{lem}
 
 \newtcolorbox{problem}[1]{
+    before={\Needspace{17\baselineskip}},
     before upper={
         \phantomsection
         \addcontentsline{toc}{section}{#1}

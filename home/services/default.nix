@@ -4,7 +4,6 @@
     ./hyprland-update.nix
     ./tv-renew-token.nix
     ./firefox-bookmarks-backup.nix
-    ./music-sync.nix
   ];
 
   services = {

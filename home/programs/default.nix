@@ -77,6 +77,7 @@
         enable = true;
         server.enable = true;
         settings = {
+            mouse-bindings.primary-paste = "none";
             main = {
                 term = "foot";
                 font = "JetBrainsMono Nerd Font Mono:size=12";
