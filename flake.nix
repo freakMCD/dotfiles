@@ -26,7 +26,6 @@
 
         modules = [
           ./system
-          ./system/overlays/mpv.nix
 
           home-manager.nixosModules.home-manager
           {

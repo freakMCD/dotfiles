@@ -13,7 +13,7 @@ let
         --app-name="Break reminder" \
         "EYES — 20 SECONDS" \
         "Look far away. Relax your shoulders."
-    else
+    elif [ "$minute" = "55" ]; then
       ${pkgs.libnotify}/bin/notify-send \
         --urgency=critical \
         --expire-time=300000 \

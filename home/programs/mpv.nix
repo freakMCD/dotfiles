@@ -10,9 +10,6 @@
       keep-open-pause = true;
       idle = "yes";
       profile = "fast";
-      save-position-on-quit = true;
-      watch-later-options = "start";
-      save-watch-history = true;
       force-window = true;
       screenshot-directory = "~/MediaHub/screenshots/mpv";
       osd-bar= false;
