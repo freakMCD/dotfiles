@@ -4,6 +4,7 @@
   imports = [
     ./firefox.nix
     ./mpv.nix
+    ./fzf.nix
   ];
 
   programs = {
@@ -16,23 +17,6 @@
           name = "Alex";
         };
       };
-    };
-
-    fzf = let command="--color=always . ~/Documents ~/Downloads ~/MathCareer ~/MediaHub ~/nix"; in {
-      enable = true;
-      enableFishIntegration = true;
-      defaultCommand = "fd -t f ${command}";
-      fileWidget.command = "fd -t f ${command}";
-      changeDirWidget.command = "fd -t d ${command}";
-      fileWidget.options = ["--delimiter / --with-nth 4.."];
-      defaultOptions = [
-        "--ansi"
-        "--height" "60%"
-        "--reverse"
-        "--inline-info"
-        "--color" "fg:-1,bg:-1,hl:230,fg+:3,bg+:233,hl+:229"
-        "--color" "info:150,prompt:110,spinner:150,pointer:167,marker:174"
-      ];
     };
 
     yazi = {

@@ -4,8 +4,8 @@
     ./programs
     ./services
     ./shell
-    ./theme
     ./xdg.nix
+    ./theme.nix
   ];
 
   nix.gc = {

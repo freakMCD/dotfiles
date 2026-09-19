@@ -1,6 +1,10 @@
-\DeclarePairedDelimiterX{\abs}[1]{\lvert}{\rvert}{#1}
-\DeclarePairedDelimiterX{\norm}[1]{\lVert}{\rVert}{#1}
-\DeclarePairedDelimiterX{\ip}[2]{\langle}{\rangle}{#1, #2}
+\DeclarePairedDelimiterX{\absaux}[1]{\lvert}{\rvert}{#1}
+\DeclarePairedDelimiterX{\normaux}[1]{\lVert}{\rVert}{#1}
+\DeclarePairedDelimiterX{\ipaux}[2]{\langle}{\rangle}{#1, #2}
+
+\newcommand{\abs}[1]{\absaux*{#1}}
+\newcommand{\norm}[1]{\normaux*{#1}}
+\newcommand{\ip}[2]{\ipaux*{#1}{#2}}
 
 % algebra
 \DeclareMathOperator{\gen}{gen}
