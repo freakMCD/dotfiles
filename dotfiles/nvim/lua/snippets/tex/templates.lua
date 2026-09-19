@@ -5,7 +5,7 @@ local fmt = require("luasnip.extras.fmt").fmt
 
 return {
 s("preamble", fmt([[
-\documentclass[parskip=half]{{scrartcl}}
+\documentclass{{scrartcl}}
 
 \input{{base}}
 \input{{macros}}

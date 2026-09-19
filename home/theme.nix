@@ -1,9 +1,6 @@
 {lib, config, ... }:
 
-{ imports = [
-    ./break-reminder.nix
-  ];
-
+{
   options.dotfiles = lib.mkOption {
       type = lib.types.path;
       apply = toString;

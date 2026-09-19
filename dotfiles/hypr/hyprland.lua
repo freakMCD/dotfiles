@@ -28,7 +28,7 @@ hl.on("hyprland.start", function()
 end)
 
 -- Workspace Navigation
-for ws, key in ipairs({ "1", "2", "3", "4", "F1", "F2", "F3", "F4", "v" }) do
+for ws, key in ipairs({ "1", "2", "3", "4", "F1", "F2", "F3", "g", "m" }) do
     hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = ws }))
     hl.bind(smod .. " + " .. key, hl.dsp.window.move({ workspace = ws }))
 end
@@ -68,15 +68,14 @@ bind_cmd(mod .. " + q", "foot")
 bind_cmd(mod .. " + r", "fuzzel")
 
 -- Special workspaces
-hl.workspace_rule({ workspace = "special:mail", on_created_empty = "foot --app-id=neomutt neomutt" })
+hl.workspace_rule({ workspace = "special:email", on_created_empty = "foot --app-id=neomutt neomutt" })
 hl.workspace_rule({ workspace = "special:openfile", on_created_empty = "foot --app-id=openfile open_file" })
-hl.bind(mod .. " + m", hl.dsp.workspace.toggle_special("mail"))
+hl.bind(mod .. " + e", hl.dsp.workspace.toggle_special("email"))
 hl.bind(mod .. " + o", hl.dsp.workspace.toggle_special("openfile"))
 
 -- Window rules
 for class, ws in pairs({
-    ["org.pwmt.zathura"] = 5,
-    geogebra = 6,
+    geogebra = 8,
     mpv = 9,
 }) do
     hl.window_rule({

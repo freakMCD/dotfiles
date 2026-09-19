@@ -19,7 +19,7 @@ return {
 
     dwindle = {
         force_split = 2,
-        special_scale_factor = 0.75,
+        special_scale_factor = 0.5,
     },
 
 general = {

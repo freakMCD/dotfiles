@@ -1,16 +1,17 @@
-\usepackage{tcolorbox}
 \usepackage{needspace}
+
+\AddToHook{env/proof/before}{%
+    \Needspace{5\baselineskip}%
+}
+
+\usepackage{tcolorbox}
 \tcbuselibrary{
     breakable,
     skins,
     theorems
 }
-
 \definecolor{LemaDark}{HTML}{1B3B2E}
 \definecolor{LemaBack}{HTML}{F7FAF9}
-
-\definecolor{ProblemDark}{HTML}{1B263B}
-\definecolor{ProblemBack}{HTML}{F8FAFC}
 
 \definecolor{AlgorithmDark}{HTML}{6B1E1E}
 \definecolor{AlgorithmBack}{HTML}{FCF8F8}
@@ -24,26 +25,29 @@
     fontupper=\small,
 }{lem}
 
-\newtcolorbox{problem}[1]{
-    before={\Needspace{17\baselineskip}},
-    before upper={
+\newtcolorbox{problem}[1]{%
+    before upper={%
         \phantomsection
-        \addcontentsline{toc}{section}{#1}
+        \addcontentsline{toc}{section}{#1}%
     },
     enhanced,
     breakable,
-    colframe=ProblemDark,
-    colback=ProblemBack,
+    colback=white,
+    colbacktitle=white,
+    coltitle=black,
+    borderline west={2.8pt}{0pt}{black!80},
+    boxrule=0.25pt,
     title={#1},
     fonttitle=\bfseries,
-    fontupper=\small,
+    left=3mm,
+    right=3mm,
+    top=2mm,
+    bottom=2mm,
+    before skip=10pt,
+    after skip=10pt
 }
-
 \newtcolorbox{algoritmo}[1][]{%
     enhanced,
-    skin first = enhanced,
-    skin middle = enhanced,
-    skin last = enhanced,
     breakable,
     boxrule = 0pt,
     borderline west = {4pt}{0pt}{AlgorithmDark},
