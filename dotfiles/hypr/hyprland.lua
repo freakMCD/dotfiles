@@ -103,5 +103,3 @@ hl.layer_rule({
 
     no_screen_share = true,
 })
-
-

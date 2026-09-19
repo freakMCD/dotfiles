@@ -6,25 +6,24 @@ nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
 environment.systemPackages = with pkgs; [
 # System
-  home-manager yadm gnupg pass gcc btop qbittorrent dnsutils
+  home-manager yadm gnupg pass gcc btop dnsutils
 # Terminal
   curl ethtool fd p7zip rclone udiskie unrar jq ripgrep
 # Desktop
-  grimblast hypridle hyprpicker kitty libnotify wev wl-clipboard
+  grimblast hypridle kitty libnotify wl-clipboard
 # Documents
   xournalpp pdfarranger simple-scan
   ghostscript # compress pdf
 # Writing
   neovim tree-sitter texlab ruff lua-language-server
 # Email
-  neomutt isync w3m perlEnv
+  neomutt isync w3m
 # Images
   gimp gthumb
 # Mathematics
   geogebra6 octaveFull
 # Latex
   (texliveSmall.withPackages (ps: with ps; [
-      scheme-small
       koma-script
       collection-langeuropean
       collection-mathscience
@@ -36,10 +35,8 @@ environment.systemPackages = with pkgs; [
 # quickemu  samba
 # Python
   (pkgs.python3.withPackages (ps: with ps; [
-    mutagen
     numpy
     matplotlib
-    opencv4
     scipy
   ]))
 ];
@@ -78,10 +75,9 @@ programs = {
 systemd.user = {
   services.mailsync = {
     description = "Mailboxes sync";
-    path = with pkgs; [ bash procps pass isync perl libnotify];
+    path = with pkgs; [ bash procps pass isync perlEnv libnotify];
     environment = {
       GNUPGHOME = "%h/.local/share/gnupg";
-      PERL5LIB = "${perlEnv}/lib/perl5/site_perl";
     };
     serviceConfig = {
       Type = "oneshot";

@@ -29,7 +29,6 @@ require("lazy").setup({
 
       local languages = { "c", "lua", "html", "css", "fish", "bash", "nix", "python", }
 
-      treesitter.setup({})
       treesitter.install(languages)
 
       local group = vim.api.nvim_create_augroup(
