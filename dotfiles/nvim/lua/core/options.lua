@@ -1,4 +1,5 @@
 local options = {
+  ignorecase = true,
   breakindent = true,
 	expandtab = true, -- convert tabs to spaces
 	shiftwidth = 2, -- the number of spaces inserted for each indentation

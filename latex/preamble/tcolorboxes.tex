@@ -25,27 +25,22 @@
     fontupper=\small,
 }{lem}
 
-\newtcolorbox{problem}[1]{%
-    before upper={%
-        \phantomsection
-        \addcontentsline{toc}{section}{#1}%
-    },
-    enhanced,
-    breakable,
-    colback=white,
-    colbacktitle=white,
-    coltitle=black,
-    borderline west={2.8pt}{0pt}{black!80},
-    boxrule=0.25pt,
-    title={#1},
-    fonttitle=\bfseries,
-    left=3mm,
-    right=3mm,
-    top=2mm,
-    bottom=2mm,
-    before skip=10pt,
-    after skip=10pt
+\newenvironment{problem}[1]{%
+    \par
+    \addvspace{1.2\baselineskip}
+    \Needspace{5\baselineskip}
+    \phantomsection
+    \addcontentsline{toc}{section}{#1}%
+    \noindent{\large\bfseries #1}\par
+    \nobreak
+    \smallskip
+    \noindent\ignorespaces
+}{%
+    \par
+    \addvspace{0.3\baselineskip}
 }
+
+
 \newtcolorbox{algoritmo}[1][]{%
     enhanced,
     breakable,

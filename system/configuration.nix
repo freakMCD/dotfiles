@@ -39,11 +39,8 @@
 
   systemd.oomd.enable = false;
 
-  # rtkit is optional but recommended
-  security = {
-    rtkit.enable = true;
-    sudo.wheelNeedsPassword = false;
-  };
+  # Recommended for PipeWire
+  security.rtkit.enable = true;
 
   services = {
     dbus.implementation = "broker";

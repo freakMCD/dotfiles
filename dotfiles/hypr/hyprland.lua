@@ -28,7 +28,7 @@ hl.on("hyprland.start", function()
 end)
 
 -- Workspace Navigation
-for ws, key in ipairs({ "1", "2", "3", "4", "F1", "F2", "F3", "g", "m" }) do
+for ws, key in ipairs({ "1", "2", "3", "4", "F1", "F2", "F3", "F4", "g" }) do
     hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = ws }))
     hl.bind(smod .. " + " .. key, hl.dsp.window.move({ workspace = ws }))
 end
@@ -76,7 +76,6 @@ hl.bind(mod .. " + o", hl.dsp.workspace.toggle_special("openfile"))
 -- Window rules
 for class, ws in pairs({
     geogebra = 8,
-    mpv = 9,
 }) do
     hl.window_rule({
         match = { class = class },
@@ -102,3 +101,4 @@ hl.layer_rule({
 
     no_screen_share = true,
 })
+

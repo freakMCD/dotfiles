@@ -3,23 +3,22 @@
 in
 {
 nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
+    builtins.elem (lib.getName pkg) [ "hplip" "geogebra" "unrar"];
 environment.systemPackages = with pkgs; [
 # System
-  home-manager yadm gnupg pass gcc btop dnsutils shotcut
+  home-manager yadm pass gcc shotcut
 # Terminal
   curl ethtool fd p7zip rclone udiskie unrar jq ripgrep
 # Desktop
   grimblast hypridle kitty libnotify wl-clipboard
 # Documents
-  xournalpp pdfarranger simple-scan
-  ghostscript # compress pdf
+  xournalpp pdfarranger simple-scan ghostscript
 # Writing
   neovim tree-sitter texlab ruff lua-language-server
 # Email
-  neomutt isync w3m
+  neomutt
 # Images
-  gimp gthumb
+  gthumb
 # Mathematics
   geogebra6 octaveFull
 # Latex
@@ -31,8 +30,7 @@ environment.systemPackages = with pkgs; [
       collection-latexextra
       latexmk
   ]))
-# Windows
-# quickemu  samba
+
 # Python
   (pkgs.python3.withPackages (ps: with ps; [
     numpy
@@ -41,11 +39,6 @@ environment.systemPackages = with pkgs; [
   ]))
 ];
 
-# virtualization
-#programs.virt-manager.enable = true;
-#users.groups.libvirtd.members = ["edwin"];
-#virtualisation.libvirtd.enable = true;
-#virtualisation.spiceUSBRedirection.enable = true;
 
 programs = {
   appimage = {
@@ -89,9 +82,8 @@ systemd.user = {
     timerConfig = {
       OnStartupSec = "1m";
       OnUnitActiveSec = "15m";
-      Persistent = true;
     };
   };
-}
+};
 
-;}
+}

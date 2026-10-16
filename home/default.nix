@@ -19,7 +19,6 @@
     sessionVariables = {
       GNUPGHOME="$HOME/.local/share/gnupg";
       TEXMFVAR="$HOME/.cache/texlive/texmf-var";
-      W3M_DIR="$HOME/.local/share/w3m";
       EDITOR="nvim";
       MANPAGER="nvim +Man!";
       BUNDLE_FORCE_RUBY_PLATFORM = "true";
