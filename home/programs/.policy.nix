@@ -1,5 +1,0 @@
-{
-  Block = [
-    "*://my.nextdns.io/*"
-  ];
-}

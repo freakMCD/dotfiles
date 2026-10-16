@@ -10,10 +10,10 @@
       keep-open-pause = true;
       idle = "yes";
       profile = "fast";
-      force-window = true;
       screenshot-directory = "~/MediaHub/screenshots/mpv";
       osd-bar= false;
       osd-font-size = 18;
+      shuffle = true;
 
       ## Languages ##
       slang="eng,en,enUS,en-US,spa,es";

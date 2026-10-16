@@ -6,7 +6,7 @@ nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [ "hplip" "geogebra" "unrar"];
 environment.systemPackages = with pkgs; [
 # System
-  home-manager yadm gnupg pass gcc btop dnsutils shotcut
+  home-manager yadm gnupg pass gcc btop dnsutils shotcut ffmpeg deno
 # Terminal
   curl ethtool fd p7zip rclone udiskie unrar jq ripgrep
 # Desktop
@@ -92,6 +92,6 @@ systemd.user = {
       Persistent = true;
     };
   };
-}
+};
 
-;}
+}

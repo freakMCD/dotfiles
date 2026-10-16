@@ -32,7 +32,9 @@ in
           PictureInPicture = false;
           SearchSuggestEnabled = false;
           StartDownloadsInTempDirectory = true;
-          WebsiteFilter = import ./.policy.nix;
+          PromptForDownloadLocation = true;
+          WebsiteFilter = { Block = [ "*://my.nextdns.io/*" ]; };
+
 
           Preferences = lockedPrefs {
             "accessibility.browsewithcaret_shortcut.enabled" = false;
