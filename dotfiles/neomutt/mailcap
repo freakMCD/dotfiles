@@ -1,6 +1,3 @@
-text/html;      firefox %s;     nametemplate=%s.html;       needsterminal
-text/plain; nvim %s
-
-#PDFS
-application/pdf; zathura %s;
-
+text/html; firefox %s; nametemplate=%s.html
+text/plain; nvim %s; needsterminal
+application/pdf; zathura %s

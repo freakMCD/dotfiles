@@ -1,15 +1,14 @@
+set color_directcolor=yes
 source ~/.config/neomutt/colors
 source ~/.config/neomutt/mappings
 
-set from = "vastagox@gmail.com"
-set real_name = "Edwin Velarde"
+set from = "Edwin Velarde <vastagox@gmail.com>"
 set timeout = 300
 timeout-hook 'exec sync-mailbox'
 
 # paths
 set folder = "~/.local/share/email/gmail"
 set header_cache = "~/.cache/mutt/gmail/header_cache"
-set message_cache_dir = "~/.cache/mutt/gmail/message_cache"
 set mailcap_path="~/.config/neomutt/mailcap"
 
 # mailbox settings
@@ -23,22 +22,23 @@ mailboxes +INBOX +Github +Interbank
 ## Generic
 set use_threads=yes sort=reverse-last-date sort_aux=reverse-date
 set pager_stop
-set thorough_search
 set tilde
 
 # Set preffered view modes
-auto_view text/html# view html automatically
-alternative_order text/html text/plain text/enriched text/*
+alternative_order text/plain text/enriched text/html
 
-# Index page format. Default "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
-set index_format='%-15.15L    %s %*     %<[y?%<[m?%<[7d?%<[d?%[  %H:%M ]&%8[%A]>&%[    %a %d]>&%[  %b %d]>&%[%d/%m/%y]>'
+# Number | Flags | Sender | Subject | Date
+set index_format = "%3C %Z %-20.20L  %s%*  %<[d?%[%H:%M]&%<[y?%[%b %d]&%[%d/%m/%y]>>"
 
-# Status Bar -----------------------------------------
-set status_format = "───[ Folder: %D ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
-set status_chars  = " *%A"
+# ── Status bar ───────────────────────────────────
 
-# Unset
+set status_format = " %R %D  │  %M messages%<u?  ·  %u unread>%<f?  ·  %f flagged>%<d?  ·  %d deleted>%<t?  ·  %t tagged>%<p?  ·  %p postponed>%>  %P "
+
+set status_chars = " *%A"
+
+# ── Interface ────────────────────────────────────
+
 unset help
 unset wait_key
 unset markers
-unset quit
+

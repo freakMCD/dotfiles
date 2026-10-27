@@ -3,8 +3,8 @@
 {
   imports = [
     ./firefox.nix
-    ./mpv.nix
     ./fzf.nix
+    ./mpv.nix
   ];
 
   programs = {

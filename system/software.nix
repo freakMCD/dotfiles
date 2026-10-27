@@ -86,4 +86,60 @@ systemd.user = {
   };
 };
 
+systemd.services.ethernet-renegotiate =
+  let
+    user = "edwin";
+  in
+  {
+    description = "Automatic Ethernet renegotiation";
+    wantedBy = [ "multi-user.target" ];
+
+    path = with pkgs; [
+      ethtool
+      coreutils
+      util-linux
+      libnotify
+    ];
+
+    script = ''
+      uid=$(id -u ${user})
+      runtime="/run/user/$uid"
+      last_notification=0
+
+      while true; do
+        if read -r speed < /sys/class/net/enp34s0/speed 2>/dev/null &&
+           [[ "$speed" == 10 ]]; then
+
+          now=$(date +%s)
+
+          # Notify at most once every 5 minutes
+          if (( now - last_notification >= 300 )) &&
+             [[ -S "$runtime/bus" ]]; then
+
+            if runuser -u ${user} -- \
+              env XDG_RUNTIME_DIR="$runtime" \
+              DBUS_SESSION_BUS_ADDRESS="unix:path=$runtime/bus" \
+              notify-send \
+                -a "Ethernet" \
+                -u normal \
+                "Ethernet: 10 Mbps" \
+                "Attempting link renegotiation."; then
+              last_notification=$now
+            fi
+          fi
+
+          ethtool -r enp34s0 || true
+        fi
+
+        sleep 5
+      done
+    '';
+
+    serviceConfig = {
+      Type = "simple";
+      Restart = "always";
+      RestartSec = 3;
+    };
+  };
+
 }

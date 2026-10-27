@@ -1,38 +1,75 @@
-color normal		  default default         # Text is "Text"
 
-color index		    color2 default ~N       # New Messages are Green
-color index		    color1 default ~F       # Flagged messages are Red
-color index		    color13 default ~T      # Tagged Messages are Red
-color index		    color1 default ~D       # Messages to delete are Red
-color index_author italic white default '~f .'
-color index_date color245 default '~f .'
+# NeoMutt — Gruvbox Dark
+# System palette: #090505 / #ebdbb2
 
-color attachment	color5 default          # Attachments are Pink
-color signature	  color8 default          # Signatures are Surface 2
-color search		  color4 default          # Highlighted results are Blue
+# General
+color normal            #ebdbb2 default
+color indicator         #fbf1c7 #282828
+color status            #ebdbb2 #1d2021
+color error             #fb4934 #1f0706
+color warning           #fabd2f default
+color message           #83a598 default
 
-color indicator		default color236 # currently highlighted message
-color error		    color1 default          # error messages are Red
-color status		  color15 default         # status line "Subtext 0"
-color tree        magenta default         # thread tree arrows Subtext 0
-color tilde       color15 default         # blank line padding Subtext 0
+# Index
+color index             #ebdbb2 default "~A"
+color index             #928374 default "~D"
 
-color hdrdefault  color13 default         # default headers Pink
-color header		  color13 default "^From:"
-color header	 	  color13 default "^Subject:"
+# Sender
+color index_author      #bdae93 default "~A"
+color index_author bold #b8bb26 default "~U"
+color index_author      #928374 default "~D"
 
-color quoted		  color15 default         # Subtext 0
-color quoted1		  color7 default          # Subtext 1
-color quoted2		  color8 default          # Surface 2
-color quoted3		  color0 default          # Surface 1
-color quoted4		  color0 default
-color quoted5		  color0 default
+# Subject
+color index_subject     #ebdbb2 default "~A"
+color index_subject bold #fbf1c7 default "~U"
+color index_subject     #fabd2f default "~F"
+color index_subject     #928374 default "~D"
 
-color body		color2 default		[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+               # email addresses Green
-color body	  color2 default		(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+        # URLs Green
-color body		color4 default		(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$) # *bold* text Blue
-color body		color4 default		(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)     # _underlined_ text Blue
-color body		color4 default		(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)     # /italic/ text Blue
+# Metadata
+color index_number      #928374 default
+color index_date        #928374 default
+color index_flags       #928374 default "~A"
+color index_flags       #b8bb26 default "~U"
+color index_flags       #d3869b default "~T"
+color index_flags       #fb4934 default "~F"
+color index_flags       #928374 default "~D"
 
-color sidebar_flagged   color1 default    # Mailboxes with flagged mails are Red
-color sidebar_new       color10 default   # Mailboxes with new mail are Green
+# Status bar
+color status            #b8bb26 #1d2021 '[0-9]+ new'
+color status            #d3869b #1d2021 '[0-9]+ flagged'
+color status            #fb4934 #1d2021 '[0-9]+ deleted'
+
+# Pager
+color attachment        #d3869b default
+color signature         #928374 default
+color search            #090505 #fabd2f
+color tree              #928374 default
+color tilde             #32302f default
+color markers           #928374 default
+
+# Headers
+color hdrdefault        #928374 default
+color header            #d3869b default '^From:'
+color header            #bdae93 default '^To:'
+color header            #83a598 default '^Subject:'
+color header            #928374 default '^Date:'
+
+# Quoted text
+color quoted0           #83a598 default
+color quoted1           #689d6a default
+color quoted2           #b16286 default
+color quoted3           #928374 default
+color quoted4           #a89984 default
+
+# Body
+color body #b8bb26 default '[[:alnum:]_.%+-]+@[[:alnum:].-]+'
+color body #83a598 default 'https?://[^[:space:]<>]+'
+
+# Sidebar
+color sidebar_ordinary  #bdae93 default
+color sidebar_new       #b8bb26 default
+color sidebar_unread    #98971a default
+color sidebar_flagged   #fb4934 default
+color sidebar_indicator #fbf1c7 #282828
+color sidebar_divider   #32302f default
+

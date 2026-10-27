@@ -68,7 +68,7 @@ bind_cmd(mod .. " + q", "foot")
 bind_cmd(mod .. " + r", "fuzzel")
 
 -- Special workspaces
-hl.workspace_rule({ workspace = "special:email", on_created_empty = "foot --app-id=neomutt neomutt" })
+hl.workspace_rule({ workspace = "special:email", on_created_empty = "foot --app-id=neomutt --term=foot-direct neomutt" })
 hl.workspace_rule({ workspace = "special:openfile", on_created_empty = "foot --app-id=openfile open_file" })
 hl.bind(mod .. " + e", hl.dsp.workspace.toggle_special("email"))
 hl.bind(mod .. " + o", hl.dsp.workspace.toggle_special("openfile"))

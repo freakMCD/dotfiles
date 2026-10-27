@@ -8,14 +8,12 @@ let
     "$HOME/Documents"
     "$HOME/Downloads"
     "$HOME/MediaHub"
-    "$HOME/nix"
   ];
 
   activeDirRoots = [
     currentCycle
     "$HOME/Documents"
     "$HOME/MediaHub"
-    "$HOME/nix"
   ];
 
   allFileRoots = [
@@ -23,7 +21,6 @@ let
     "$HOME/Documents"
     "$HOME/Downloads"
     "$HOME/MediaHub"
-    "$HOME/nix"
   ];
 
   activeFileRootsStr = lib.concatStringsSep " " activeFileRoots;

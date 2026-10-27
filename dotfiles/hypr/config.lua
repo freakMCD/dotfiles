@@ -1,4 +1,4 @@
-local clay = "rgb(8a7066)"
+local red = "rgb(b83246)"
 local patina = "rgb(5e7775)"
 local dark_patina = "rgb(3e4e4d)"
 local slate = "rgb(34363d)"
@@ -26,7 +26,7 @@ general = {
     border_size = 1,
 
     col = {
-        active_border = clay,
+        active_border = red,
         inactive_border = slate,
     },
 
@@ -38,22 +38,25 @@ general = {
 group = {
     groupbar = {
         col = {
-            active = clay,
+            active = red,
             inactive = slate,
             locked_active = patina,
             locked_inactive = dark_patina,
         },
 
-        gaps_in = 2,
-        gaps_out = 0,
-        middle_click_close = false,
-        indicator_height = 4,
+        indicator_height = 6,
+
+        gaps_in = 6,
+        gaps_out = 3,
+
         render_titles = false,
+        keep_upper_gap = false,
+        middle_click_close = false,
         scrolling = false,
     },
 
     col = {
-        border_active = clay,
+        border_active = red,
         border_inactive = slate,
         border_locked_active = patina,
         border_locked_inactive = dark_patina,
