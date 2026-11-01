@@ -51,37 +51,35 @@ hl.bind(mod .. " + mouse:273", hl.dsp.window.resize())
 hl.bind(mod .. " + TAB", hl.dsp.group.next())
 hl.bind(smod .. " + TAB", hl.dsp.group.prev())
 hl.bind(mod .. " + grave", hl.dsp.group.toggle())
-hl.bind(smod .. " + Y", hl.dsp.group.lock_active({ action = "toggle" }))
+hl.bind(smod .. " + Y", hl.dsp.group.lock({ action = "toggle" }))
 
 -- Commands
 bind_cmd("MOD5 + Up", volume .. " up", { repeating = true })
 bind_cmd("MOD5 + Down", volume .. " down", { repeating = true })
 bind_cmd("MOD5 + Delete", volume .. " mute")
+hl.bind("MOD5 + P", hl.dsp.exec_cmd("mpc toggle"))
 bind_cmd(mod .. " + Delete", volume .. " mute-mic")
 
 bind_cmd("Print", screenshots .. "/screen")
 bind_cmd(mod .. " + Print", screenshots .. "/area")
 
-bind_cmd(mod .. " + CONTROL + F12", helpers .. "/shutdown-delay")
+bind_cmd(
+    "MOD5 + CONTROL + F12",
+    "wlogout -b 3 -T 500 -B 500 -L 630 -R 630"
+)
 
 bind_cmd(mod .. " + q", "foot")
 bind_cmd(mod .. " + r", "fuzzel")
 
 -- Special workspaces
-hl.workspace_rule({ workspace = "special:email", on_created_empty = "foot --app-id=neomutt --term=foot-direct neomutt" })
-hl.workspace_rule({ workspace = "special:openfile", on_created_empty = "foot --app-id=openfile open_file" })
 hl.bind(mod .. " + e", hl.dsp.workspace.toggle_special("email"))
 hl.bind(mod .. " + o", hl.dsp.workspace.toggle_special("openfile"))
 
 -- Window rules
-for class, ws in pairs({
-    geogebra = 8,
-}) do
-    hl.window_rule({
-        match = { class = class },
-        workspace = tostring(ws),
-    })
-end
+hl.window_rule({
+    match = { class = "geogebra" },
+    workspace = "8",
+})
 
 hl.window_rule({ match = { class = "libreoffice.*" }, suppress_event = "maximize" })
 hl.window_rule({ match = { class = "foot" }, group = "barred" })
@@ -101,4 +99,30 @@ hl.layer_rule({
 
     no_screen_share = true,
 })
+
+hl.workspace_rule({
+    workspace = "special:email",
+    gaps_in = 0,
+    gaps_out = 100,
+})
+
+hl.workspace_rule({
+    workspace = "special:openfile",
+    gaps_in = 0,
+    gaps_out = 350,
+})
+
+local workspace_commands = {
+    ["special:email"] = "foot --app-id=neomutt --term=foot-direct neomutt",
+    ["special:openfile"] = "foot --app-id=openfile open_file",
+}
+
+hl.on("workspace.created", function(ws)
+    if not ws.is_empty then return end
+
+    local cmd = workspace_commands[ws.name]
+    if cmd then
+        hl.exec_cmd(cmd, { workspace = ws.name .. " silent" })
+    end
+end)
 

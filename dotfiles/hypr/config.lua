@@ -19,7 +19,6 @@ return {
 
     dwindle = {
         force_split = 2,
-        special_scale_factor = 0.5,
     },
 
 general = {
@@ -44,11 +43,7 @@ group = {
             locked_inactive = dark_patina,
         },
 
-        indicator_height = 6,
-
-        gaps_in = 6,
-        gaps_out = 3,
-
+        gaps_out = 0,
         render_titles = false,
         keep_upper_gap = false,
         middle_click_close = false,

@@ -33,8 +33,10 @@ in
           SearchSuggestEnabled = false;
           StartDownloadsInTempDirectory = true;
           PromptForDownloadLocation = true;
+          WebsiteFilter = { Block = [ "*://*.youtube.com/*" ]; };
 
           Preferences = lockedPrefs {
+            "browser.quitShortcut.disabled" = true;
             "accessibility.browsewithcaret_shortcut.enabled" = false;
             "browser.aboutConfig.showWarning" = false;
             "browser.cache.disk.enable" = false;
@@ -50,7 +52,35 @@ in
             "ui.key.menuAccessKeyFocuses" = false;
             "widget.use-xdg-desktop-portal.file-picker" = 2;
           };
+
+          "3rdparty".Extensions."uBlock0@raymondhill.net" = {
+            toOverwrite = {
+              filters = [
+                "! Hide the WhatsApp navigation sidebar"
+                ''web.whatsapp.com##header:has([data-testid="navbar-primary-section"])''
+
+                "! Remove its reserved width"
+                ''web.whatsapp.com##:root:style(--navbar-width: 0px !important;)''
+
+                "! Remove leftover separators"
+                ''web.whatsapp.com##[data-testid="drawer-left"],[data-testid="drawer-middle"]:style(border-inline-start-width: 0 !important;)''
+              ];
+
+              # Reuse your complete existing list selection.
+              filterLists =
+                config.programs.firefox.profiles.default.extensions.settings
+                  ."uBlock0@raymondhill.net".settings.selectedFilterLists;
+            };
+
+            # Prevent access to the dashboard, including My filters.
+            disableDashboard = true;
+
+            # Hide per-site switches, including cosmetic filtering.
+            disabledPopupPanelParts = [ "extraTools" ];
+          };
       };
+
+
 
       profiles.default = {
         id=0;
@@ -113,7 +143,7 @@ in
           }
 
           /* Hide buttons of Tabbar and urlbar */
-          .searchmode-switcher, #stop-reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button, #urlbar-zoom-button, #reader-mode-button, #trust-icon-container, #translations-button, #back-button, #forward-button, #PanelUI-button, #tracking-protection-icon-container, .identity-box-button { display: none !important; }
+          .searchmode-switcher, #stop-reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button, #urlbar-zoom-button, #reader-mode-button, #trust-icon-container, #translations-button, #back-button, #forward-button, #PanelUI-button, #tracking-protection-icon-container, .identity-box-button, .tab-icon-stack { display: none !important; }
 
           #star-button-box,
           .unified-extensions-item-row-wrapper {
@@ -184,15 +214,11 @@ in
                 "plowe-0"
                 "dpollock-0"
                 ## ----- Cookie Notices -----
-                ## ----- Easylist -----
                 "fanboy-cookiemonster"
                 "ublock-cookies-easylist"
                 ## ------ Social -----
                 "fanboy-social"
-                # "adguard-social"
-                "fanboy-thirdparty_social"
                 ## ----- Annoyances -----
-                ### ----- Easylist -----
                 "easylist-chat"
                 "easylist-newsletters"
                 "easylist-notifications"

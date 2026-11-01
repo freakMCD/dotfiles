@@ -1,7 +1,10 @@
+{ config, pkgs, ... }:
 {
   imports = [
     ./commands.nix
   ];
+
+  home.packages = [ pkgs.mpc ];
 
   programs.bash = {
     enable = true;
@@ -10,7 +13,8 @@
 
   programs.fish = {
     enable = true;
-    interactiveShellInit = /* fish */''
+
+    interactiveShellInit = /* fish */ ''
       set fish_greeting
       set -U fish_features qmark-noglob
       fish_config prompt choose nim
@@ -74,6 +78,7 @@
           end
       end
     '';
+
     shellAbbrs = {
       windows10 = ''quickemu --vm windows-10.conf --public-dir ~/Share --mouse "virtio"'';
       rm = "rm -I";

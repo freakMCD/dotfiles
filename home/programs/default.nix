@@ -5,6 +5,7 @@
     ./firefox.nix
     ./fzf.nix
     ./mpv.nix
+    ./wlogout.nix
   ];
 
   programs = {
