@@ -8,11 +8,11 @@ environment.systemPackages = with pkgs; [
 # System
   home-manager yadm pass gcc losslesscut
 # Terminal
-  curl ethtool fd p7zip rclone udiskie unrar jq ripgrep
+  curl ethtool fd p7zip rclone unrar ripgrep
 # Desktop
   grimblast hypridle kitty libnotify wl-clipboard
 # Documents
-  xournalpp pdfarranger simple-scan ghostscript
+  xournalpp pdfarranger naps2 ghostscript
 # Writing
   neovim tree-sitter texlab ruff lua-language-server
 # Email
@@ -88,6 +88,7 @@ systemd.user = {
 
 systemd.services.ethernet-renegotiate =
   let
+    interface = "enp34s0";
     user = "edwin";
   in
   {
@@ -102,44 +103,111 @@ systemd.services.ethernet-renegotiate =
     ];
 
     script = ''
+      device="/sys/class/net/${interface}"
       uid=$(id -u ${user})
       runtime="/run/user/$uid"
-      last_notification=0
+
+      notification_id=0
+      reconnecting=false
+      last_attempt=-5
+
+      notify() {
+        local title="$1"
+        local message="$2"
+        local timeout="$3"
+        local id
+
+        [[ -S "$runtime/bus" ]] || return 1
+
+        id=$(runuser -u ${user} -- \
+          env XDG_RUNTIME_DIR="$runtime" \
+          DBUS_SESSION_BUS_ADDRESS="unix:path=$runtime/bus" \
+          notify-send \
+            -a "Ethernet" \
+            -u normal \
+            -t "$timeout" \
+            -p \
+            -r "$notification_id" \
+            "$title" "$message") || return 1
+
+        [[ "$id" =~ ^[0-9]+$ ]] || return 1
+        notification_id="$id"
+      }
 
       while true; do
-        if read -r speed < /sys/class/net/enp34s0/speed 2>/dev/null &&
-           [[ "$speed" == 10 ]]; then
+        speed="unknown"
+        carrier=0
 
-          now=$(date +%s)
-
-          # Notify at most once every 5 minutes
-          if (( now - last_notification >= 300 )) &&
-             [[ -S "$runtime/bus" ]]; then
-
-            if runuser -u ${user} -- \
-              env XDG_RUNTIME_DIR="$runtime" \
-              DBUS_SESSION_BUS_ADDRESS="unix:path=$runtime/bus" \
-              notify-send \
-                -a "Ethernet" \
-                -u normal \
-                "Ethernet: 10 Mbps" \
-                "Attempting link renegotiation."; then
-              last_notification=$now
-            fi
-          fi
-
-          ethtool -r enp34s0 || true
+        if [[ -r "$device/carrier" ]]; then
+          read -r carrier < "$device/carrier" || carrier=0
         fi
 
-        sleep 5
+        if [[ "$carrier" == 1 ]]; then
+          read -r speed < "$device/speed" 2>/dev/null ||
+            speed="unknown"
+        fi
+
+        if [[ "$carrier" == 1 && "$speed" == 10 ]]; then
+          if [[ "$reconnecting" == false ]]; then
+            reconnecting=true
+            notification_id=0
+            echo "Ethernet degraded to 10 Mbps"
+          fi
+
+          if (( notification_id == 0 )); then
+            notify \
+              "Ethernet: Reconnecting" \
+              "Negotiating a faster connection..." \
+              0 || true
+          fi
+
+          if (( SECONDS - last_attempt >= 5 )); then
+            last_attempt=$SECONDS
+
+            echo "Restarting Ethernet autonegotiation"
+            ethtool -r ${interface} ||
+              echo "Renegotiation request failed" >&2
+          fi
+
+        elif [[ "$speed" =~ ^[0-9]+$ ]] &&
+             (( speed >= 100 )); then
+
+          if [[ "$reconnecting" == true ]]; then
+            echo "Ethernet restored: $speed Mbps"
+
+            notify \
+              "Ethernet: Connected" \
+              "Link established at $speed Mbps." \
+              5000 || true
+
+            reconnecting=false
+            notification_id=0
+          fi
+
+        elif [[ "$reconnecting" == true &&
+                "$notification_id" == 0 ]]; then
+          notify \
+            "Ethernet: Reconnecting" \
+            "Waiting for the Ethernet link..." \
+            0 || true
+        fi
+
+        sleep 1
       done
     '';
 
     serviceConfig = {
       Type = "simple";
       Restart = "always";
-      RestartSec = 3;
+      RestartSec = 2;
     };
   };
 
+
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  services.tailscale.enable = true;
 }

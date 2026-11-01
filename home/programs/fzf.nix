@@ -5,6 +5,7 @@ let
 
   activeFileRoots = [
     currentCycle
+    "$HOME/MathCareer"
     "$HOME/Documents"
     "$HOME/Downloads"
     "$HOME/MediaHub"
@@ -12,6 +13,7 @@ let
 
   activeDirRoots = [
     currentCycle
+    "$HOME/MathCareer"
     "$HOME/Documents"
     "$HOME/MediaHub"
   ];

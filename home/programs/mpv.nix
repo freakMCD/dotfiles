@@ -1,73 +1,30 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
   programs.mpv = {
     enable = true;
+
+    package = pkgs.mpv.override {
+      youtubeSupport = false;
+    };
+
     config = {
+      # Video
       gpu-context = "wayland";
       hwdec = "vaapi";
       vo = "gpu-next";
-      keep-open = true;
-      keep-open-pause = true;
-      idle = "yes";
       profile = "fast";
-      screenshot-directory = "~/MediaHub/screenshots/mpv";
-      osd-bar= false;
-      osd-font-size = 18;
-      shuffle = true;
 
-      ## Languages ##
-      slang="eng,en,enUS,en-US,spa,es";
-      alang="Japanese,jpn,ja,Korean,kor,ko,eng,en,enUS,en-US,spa,es";
+      # Playback
+      keep-open = true;
+      idle = "no";
 
-      ## Subtitles ##
-      sub-auto="fuzzy";
-      sub-scale-by-window="no";
-      sub-ass-override="force";
-
-      sub-font-size=42;
-      sub-spacing=0.5;
+      # Interface
+      osd-bar = false;
     };
 
     bindings = {
-      "ESC" = "ignore";
-      "WHEEL_UP" = "ignore";
-      "WHEEL_DOWN" = "ignore";
+      WHEEL_UP = "ignore";
+      WHEEL_DOWN = "ignore";
     };
-
-    scriptOpts = {
-      osc = {
-        layout = "slimbox";
-        seekbarstyle = "knob";
-        seekbarhandlesize = 0.6;
-        valign = -0.9;
-        deadzonesize = 0;
-        scrollcontrols = false;
-        hidetimeout = 500;
-        vidscale = false;
-        minmousemove = 4;
-      };
-      stats = {
-        font_size = 18;
-      };
-    };
-
-    scripts = with pkgs; [
-        (mpvScripts.buildLua {
-          pname = "show-osc-on-seek";
-          version = "1.0";
-          src = pkgs.writeTextFile {
-            name = "show-osc-on-seek-src";
-            text = ''
-              mp.observe_property("seeking", "native", function(_, seeking)
-                if seeking then
-                    mp.command("script-message osc-show")
-                end
-              end)
-            '';
-            destination = "/show-osc-on-seek.lua";
-          };
-          scriptPath = "show-osc-on-seek.lua";
-        })
-    ];
   };
 }

@@ -113,7 +113,7 @@ in
           }
 
           /* Hide buttons of Tabbar and urlbar */
-          .searchmode-switcher, #stop-reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button, #urlbar-zoom-button, #reader-mode-button, #trust-icon-container, #translations-button, #back-button, #forward-button, #PanelUI-button, #tracking-protection-icon-container, .identity-box-button { display: none !important; }
+          .searchmode-switcher, #stop-reload-button, #tabs-newtab-button, .titlebar-buttonbox, .titlebar-spacer, .tabbrowser-tab .tab-close-button, #alltabs-button, #urlbar-zoom-button, #reader-mode-button, #trust-icon-container, #translations-button, #back-button, #forward-button, #PanelUI-button, #tracking-protection-icon-container, .identity-box-button, .tab-icon-stack { display: none !important; }
 
           #star-button-box,
           .unified-extensions-item-row-wrapper {
@@ -184,15 +184,11 @@ in
                 "plowe-0"
                 "dpollock-0"
                 ## ----- Cookie Notices -----
-                ## ----- Easylist -----
                 "fanboy-cookiemonster"
                 "ublock-cookies-easylist"
                 ## ------ Social -----
                 "fanboy-social"
-                # "adguard-social"
-                "fanboy-thirdparty_social"
                 ## ----- Annoyances -----
-                ### ----- Easylist -----
                 "easylist-chat"
                 "easylist-newsletters"
                 "easylist-notifications"

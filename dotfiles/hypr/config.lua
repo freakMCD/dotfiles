@@ -1,4 +1,4 @@
-local red = "rgb(b83246)"
+local orange = "rgb(9d5b3f)"
 local patina = "rgb(5e7775)"
 local dark_patina = "rgb(3e4e4d)"
 local slate = "rgb(34363d)"
@@ -19,14 +19,13 @@ return {
 
     dwindle = {
         force_split = 2,
-        special_scale_factor = 0.5,
     },
 
 general = {
     border_size = 1,
 
     col = {
-        active_border = red,
+        active_border = orange,
         inactive_border = slate,
     },
 
@@ -38,7 +37,7 @@ general = {
 group = {
     groupbar = {
         col = {
-            active = red,
+            active = orange,
             inactive = slate,
             locked_active = patina,
             locked_inactive = dark_patina,
@@ -56,7 +55,7 @@ group = {
     },
 
     col = {
-        border_active = red,
+        border_active = orange,
         border_inactive = slate,
         border_locked_active = patina,
         border_locked_inactive = dark_patina,
