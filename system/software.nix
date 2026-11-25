@@ -44,6 +44,19 @@ programs = {
   appimage = {
     enable = true;
     binfmt = true;
+
+    package = pkgs.appimage-run.override {
+      extraPkgs = p: with p; [
+        webkitgtk_4_1
+        glib-networking
+      ];
+
+      buildFHSEnv = args: pkgs.buildFHSEnv (args // {
+        profile = (args.profile or "") + ''
+          export GIO_EXTRA_MODULES="${pkgs.glib-networking}/lib/gio/modules''${GIO_EXTRA_MODULES:+:$GIO_EXTRA_MODULES}"
+        '';
+      });
+    };
   };
 
   hyprland = {
